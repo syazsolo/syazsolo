@@ -1,10 +1,92 @@
 "use client";
 
-import { ChevronDown, Pencil, Plus, Send } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { ChevronDown, Moon, Pencil, Plus, Send, Sun } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
-import React from "react";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 
-const Card = ({
+const Header = () => {
+  const [isDark, setIsDark] = useState<boolean>(false);
+  const [mounted, setMounted] = useState(false);
+
+  // Handle mounting and system preference
+  useEffect(() => {
+    setMounted(true);
+    // Check system preference after mounting
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setIsDark(prefersDark);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    
+    // Apply dark mode based on current setting
+    const root = document.documentElement;
+    
+    if (isDark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+  }, [isDark, mounted]);
+
+  const toggleDarkMode = () => {
+    setIsDark(!isDark);
+  };
+
+  const getDarkModeIcon = () => {
+    return isDark ? <Moon size={18} /> : <Sun size={18} />;
+  };
+  return (
+    <header className="bg-[#1d1d1d] text-white">
+      <div className="max-w-[1128px] mx-auto px-3 md:px-6">
+        <div className="flex items-center justify-between h-14">
+          {/* Left side - Name/Logo */}
+          <div className="flex items-center">
+            <a href="#" className="text-xl font-semibold text-white hover:text-gray-300">
+              Syaz Solo
+            </a>
+          </div>
+
+
+          {/* Right side - Dark mode toggle and CTA */}
+          <div className="flex items-center space-x-4">
+            {/* Dark Mode Toggle */}
+            {mounted && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleDarkMode}
+                    className="hover:bg-gray-700"
+                    aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+                  >
+                    {getDarkModeIcon()}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent side="bottom" className="w-64">
+                  <div className="font-medium mb-1">Dark Mode Toggle</div>
+                  <div className="text-xs">
+                    Did you know LinkedIn has dark mode options? This is a complete mock implementation! 
+                    Click to toggle between light and dark mode.
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            )}
+
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+const ProfileCard = ({
   title,
   children,
   actions,
@@ -13,11 +95,11 @@ const Card = ({
   children: React.ReactNode;
   actions?: React.ReactNode;
 }) => (
-  <section className="bg-white border border-[#d6d9dc] rounded-lg overflow-hidden">
-    <div className="px-4 md:px-6 py-4 md:py-5">
-      <div className="flex items-center justify-between mb-3 md:mb-4">
+  <Card className="bg-white dark:bg-[#1a1a1a] border-[#d6d9dc] dark:border-[#333333] transition-colors">
+    <CardHeader className="pb-3">
+      <div className="flex items-center justify-between">
         {title ? (
-          <h2 className="text-[20px] leading-6 font-semibold text-[#191919]">
+          <h2 className="text-[20px] leading-6 font-semibold text-[#191919] dark:text-white">
             {title}
           </h2>
         ) : (
@@ -25,71 +107,61 @@ const Card = ({
         )}
         {actions}
       </div>
+    </CardHeader>
+    <CardContent className="pt-0">
       {children}
-    </div>
-  </section>
+    </CardContent>
+  </Card>
 );
 
-const Header = () => {
+const ProfileHeader = () => {
   const profile = {
     name: "Syaz Solo",
     headline:
       "Software Engineer | Full Stack Developer | Mobile App Developer | Tech Enthusiast",
     location: "Batu Caves, Selangor, Malaysia",
     connections: "500+",
-    bannerUrl: "https://placehold.co/1200x300/60a5fa/ffffff?text=Banner+Image",
-    profileUrl: "https://placehold.co/160x160/e0e0e0/333?text=Syaz",
+    bannerUrl: "/solo.jpg",
+    profileUrl: "/acak.jpg",
   };
 
   return (
-    <section className="bg-white border border-[#d6d9dc] rounded-lg overflow-hidden">
-      <div className="h-32 md:h-[196px] bg-[#f3f2ef]">
+    <Card className="bg-white dark:bg-[#1a1a1a] border-[#d6d9dc] dark:border-[#333333] transition-colors overflow-hidden">
+      <div className="h-32 md:h-[196px] bg-[#f3f2ef] dark:bg-[#2a2a2a]">
         <img
           src={profile.bannerUrl}
           alt="Banner"
           className="w-full h-full object-cover"
-          onError={(e) => {
-            (e.currentTarget as HTMLImageElement).src =
-              "https://placehold.co/1200x300/cccccc/333?text=Banner";
-          }}
         />
       </div>
 
-      <div className="px-4 md:px-6 pb-4 md:pb-5 relative">
+      <CardContent className="relative">
         <div className="absolute -top-10 md:-top-14 left-4 md:left-6">
-          <img
-            src={profile.profileUrl}
-            alt={profile.name}
-            className="w-24 h-24 md:w-32 md:h-32 rounded-full border-4 border-white object-cover"
-            onError={(e) => {
-              (e.currentTarget as HTMLImageElement).src =
-                "https://placehold.co/160x160/cccccc/333?text=Image";
-            }}
-          />
+          <Avatar className="w-24 h-24 md:w-32 md:h-32 border-4 border-white">
+            <AvatarImage src={profile.profileUrl} alt={profile.name} />
+            <AvatarFallback>{profile.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+          </Avatar>
         </div>
 
         <div className="flex justify-end pt-3">
-          <button
-            className="p-2 rounded-full hover:bg-black/5 text-[#666d74]"
-            aria-label="Edit profile"
-          >
+          <Button variant="ghost" size="icon" className="text-[#666d74]">
             <Pencil size={18} />
-          </button>
+          </Button>
         </div>
 
         <div className="mt-10 md:mt-12">
-          <h1 className="text-[24px] md:text-[28px] leading-[1.2] font-semibold text-[#191919]">
+          <h1 className="text-[24px] md:text-[28px] leading-[1.2] font-semibold text-[#191919] dark:text-white">
             {profile.name}
           </h1>
-          <p className="text-[14px] md:text-[16px] leading-5 md:leading-6 text-[#404040] mt-1">
+          <p className="text-[14px] md:text-[16px] leading-5 md:leading-6 text-[#404040] dark:text-gray-300 mt-1">
             {profile.headline}
           </p>
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-[#666d74] text-[14px]">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-[#666d74] dark:text-gray-400 text-[14px]">
             <span>{profile.location}</span>
-            <span className="text-[#a1a1a1]">·</span>
+            <span className="text-[#a1a1a1] dark:text-gray-500">·</span>
             <a
               href="#"
-              className="text-[#0a66c2] font-semibold hover:underline"
+              className="text-[#0a66c2] dark:text-[#70b7ff] font-semibold hover:underline"
             >
               Contact info
             </a>
@@ -97,38 +169,40 @@ const Header = () => {
           <div className="mt-1">
             <a
               href="#"
-              className="text-[#0a66c2] font-semibold hover:underline text-[14px]"
+              className="text-[#0a66c2] dark:text-[#70b7ff] font-semibold hover:underline text-[14px]"
             >
               {profile.connections} connections
             </a>
           </div>
 
           <div className="mt-3 flex flex-wrap gap-2">
-            <button className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#0a66c2] text-white rounded-full font-medium text-[14px] hover:bg-[#004182]">
-              <Plus size={18} /> Connect
-            </button>
-            <button className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#0a66c2] text-[#0a66c2] rounded-full font-medium text-[14px] hover:bg-[#eef3f8]">
-              <Send size={16} /> Message
-            </button>
-            <button className="inline-flex items-center gap-1.5 px-4 py-2 border border-[#666d74] text-[#191919] rounded-full font-medium text-[14px] hover:bg-black/5">
-              More <ChevronDown size={18} />
-            </button>
+            <Button className="bg-[#0a66c2] hover:bg-[#004182] text-white rounded-full">
+              <Plus size={18} className="mr-1.5" />
+              Connect
+            </Button>
+            <Button variant="outline" className="border-[#0a66c2] text-[#0a66c2] hover:bg-[#eef3f8] rounded-full">
+              <Send size={16} className="mr-1.5" />
+              Message
+            </Button>
+            <Button variant="outline" className="border-[#666d74] text-[#191919] hover:bg-black/5 rounded-full">
+              More <ChevronDown size={18} className="ml-1.5" />
+            </Button>
           </div>
         </div>
-      </div>
-    </section>
+      </CardContent>
+    </Card>
   );
 };
 
 const About = () => (
-  <Card title="About">
-    <p className="text-[14px] md:text-[15px] leading-6 text-[#404040] whitespace-pre-line">
+  <ProfileCard title="About">
+    <p className="text-[14px] md:text-[15px] leading-6 text-[#404040] dark:text-gray-300 whitespace-pre-line">
       A passionate and driven software engineer with experience in building and
       maintaining web and mobile applications. Skilled in various technologies
       including React, Node.js, Java, and cloud platforms. Always eager to
       learn, adapt, and take on new challenges in the tech industry.
     </p>
-  </Card>
+  </ProfileCard>
 );
 
 const Experience = () => {
@@ -159,41 +233,38 @@ const Experience = () => {
   ];
 
   return (
-    <Card
+    <ProfileCard
       title="Experience"
       actions={
-        <button
-          className="p-2 rounded-full hover:bg-black/5 text-[#666d74]"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-[#666d74]"
           aria-label="Edit experience"
         >
           <Pencil size={18} />
-        </button>
+        </Button>
       }
     >
       <div className="flex flex-col divide-y divide-[#eef0f3]">
         {items.map((item, idx) => (
           <div key={idx} className="flex gap-3 md:gap-4 py-3 md:py-4">
-            <img
-              src={item.logo}
-              alt={`${item.company} logo`}
-              className="w-12 h-12 rounded-md object-cover shrink-0"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src =
-                  "https://placehold.co/48x48/cccccc/333?text=Logo";
-              }}
-            />
+            <Avatar className="w-12 h-12 rounded-md shrink-0">
+              <AvatarImage src={item.logo} alt={`${item.company} logo`} />
+              <AvatarFallback>{item.company.substring(0, 2).toUpperCase()}</AvatarFallback>
+            </Avatar>
             <div>
-              <h3 className="text-[16px] font-semibold text-[#191919]">
+              <h3 className="text-[16px] font-semibold text-[#191919] dark:text-white">
                 {item.title}
               </h3>
-              <p className="text-[14px] text-[#404040]">{item.company}</p>
-              <p className="text-[12px] text-[#666d74]">{item.duration}</p>
-              <p className="text-[12px] text-[#666d74]">{item.location}</p>
+              <p className="text-[14px] text-[#404040] dark:text-gray-300">{item.company}</p>
+              <p className="text-[12px] text-[#666d74] dark:text-gray-400">{item.duration}</p>
+              <p className="text-[12px] text-[#666d74] dark:text-gray-400">{item.location}</p>
             </div>
           </div>
         ))}
       </div>
-    </Card>
+    </ProfileCard>
   );
 };
 
@@ -208,40 +279,37 @@ const Education = () => {
     },
   ];
   return (
-    <Card
+    <ProfileCard
       title="Education"
       actions={
-        <button
-          className="p-2 rounded-full hover:bg-black/5 text-[#666d74]"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-[#666d74]"
           aria-label="Edit education"
         >
           <Pencil size={18} />
-        </button>
+        </Button>
       }
     >
       <div className="flex flex-col divide-y divide-[#eef0f3]">
         {items.map((item, idx) => (
           <div key={idx} className="flex gap-3 md:gap-4 py-3 md:py-4">
-            <img
-              src={item.logo}
-              alt={`${item.school} logo`}
-              className="w-12 h-12 rounded-md object-cover shrink-0"
-              onError={(e) => {
-                (e.currentTarget as HTMLImageElement).src =
-                  "https://placehold.co/48x48/cccccc/333?text=Logo";
-              }}
-            />
+            <Avatar className="w-12 h-12 rounded-md shrink-0">
+              <AvatarImage src={item.logo} alt={`${item.school} logo`} />
+              <AvatarFallback>{item.school.substring(0, 2).toUpperCase()}</AvatarFallback>
+            </Avatar>
             <div>
-              <h3 className="text-[16px] font-semibold text-[#191919]">
+              <h3 className="text-[16px] font-semibold text-[#191919] dark:text-white">
                 {item.school}
               </h3>
-              <p className="text-[14px] text-[#404040]">{item.degree}</p>
-              <p className="text-[12px] text-[#666d74]">{item.duration}</p>
+              <p className="text-[14px] text-[#404040] dark:text-gray-300">{item.degree}</p>
+              <p className="text-[12px] text-[#666d74] dark:text-gray-400">{item.duration}</p>
             </div>
           </div>
         ))}
       </div>
-    </Card>
+    </ProfileCard>
   );
 };
 
@@ -260,28 +328,27 @@ const Skills = () => {
     "Amazon Web Services (AWS)",
   ];
   return (
-    <Card
+    <ProfileCard
       title="Skills"
       actions={
-        <button
-          className="p-2 rounded-full hover:bg-black/5 text-[#666d74]"
+        <Button
+          variant="ghost"
+          size="icon"
+          className="text-[#666d74]"
           aria-label="Edit skills"
         >
           <Pencil size={18} />
-        </button>
+        </Button>
       }
     >
-      <ul className="flex flex-col">
+      <div className="flex flex-wrap gap-2">
         {skills.map((skill, idx) => (
-          <li
-            key={idx}
-            className="py-3 border-b last:border-b-0 border-[#eef0f3]"
-          >
-            <span className="text-[15px] text-[#191919]">{skill}</span>
-          </li>
+          <Badge key={idx} variant="secondary" className="text-[15px] text-[#191919] dark:text-white">
+            {skill}
+          </Badge>
         ))}
-      </ul>
-    </Card>
+      </div>
+    </ProfileCard>
   );
 };
 
@@ -305,94 +372,91 @@ const Sidebar = () => {
   ];
   return (
     <div className="flex flex-col gap-4 md:gap-6">
-      <section className="bg-white border border-[#d6d9dc] rounded-lg overflow-hidden">
-        <div className="px-4 md:px-6 py-4 md:py-5">
-          <h3 className="text-[16px] font-semibold text-[#191919] mb-3 md:mb-4">
+      <Card className="bg-white dark:bg-[#1a1a1a] border-[#d6d9dc] dark:border-[#333333] transition-colors">
+        <CardHeader className="pb-3">
+          <h3 className="text-[16px] font-semibold text-[#191919] dark:text-white">
             People also viewed
           </h3>
+        </CardHeader>
+        <CardContent className="pt-0">
           <div className="flex flex-col gap-4">
             {people.map((p, idx) => (
               <div key={idx} className="flex items-center gap-3">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  className="w-12 h-12 rounded-full object-cover shrink-0"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src =
-                      "https://placehold.co/48x48/cccccc/333?text=?";
-                  }}
-                />
+                <Avatar className="w-12 h-12 shrink-0">
+                  <AvatarImage src={p.img} alt={p.name} />
+                  <AvatarFallback>{p.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                </Avatar>
                 <div className="min-w-0">
-                  <div className="text-[14px] font-semibold text-[#191919] truncate">
+                  <div className="text-[14px] font-semibold text-[#191919] dark:text-white truncate">
                     {p.name}
                   </div>
-                  <div className="text-[12px] text-[#666d74] line-clamp-2">
+                  <div className="text-[12px] text-[#666d74] dark:text-gray-400 line-clamp-2">
                     {p.headline}
                   </div>
-                  <button className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 border border-[#666d74] text-[#191919] rounded-full font-medium text-[12px] hover:bg-black/5">
-                    <Plus size={14} /> Connect
-                  </button>
+                  <Button variant="outline" size="sm" className="mt-2 h-7 px-3 text-[12px] border-[#666d74] text-[#191919] dark:text-white hover:bg-black/5">
+                    <Plus size={14} className="mr-1.5" /> Connect
+                  </Button>
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </CardContent>
+      </Card>
 
-      <section className="bg-white border border-[#d6d9dc] rounded-lg overflow-hidden">
-        <div className="px-4 md:px-6 py-4 md:py-5">
-          <h3 className="text-[16px] font-semibold text-[#191919] mb-3 md:mb-4">
+      <Card className="bg-white dark:bg-[#1a1a1a] border-[#d6d9dc] dark:border-[#333333] transition-colors">
+        <CardHeader className="pb-3">
+          <h3 className="text-[16px] font-semibold text-[#191919] dark:text-white">
             People you may know
           </h3>
+        </CardHeader>
+        <CardContent className="pt-0">
           <div className="flex flex-col gap-4">
             {people.slice(0, 2).map((p, idx) => (
               <div key={idx} className="flex items-center gap-3">
-                <img
-                  src={p.img}
-                  alt={p.name}
-                  className="w-12 h-12 rounded-full object-cover shrink-0"
-                  onError={(e) => {
-                    (e.currentTarget as HTMLImageElement).src =
-                      "https://placehold.co/48x48/cccccc/333?text=?";
-                  }}
-                />
+                <Avatar className="w-12 h-12 shrink-0">
+                  <AvatarImage src={p.img} alt={p.name} />
+                  <AvatarFallback>{p.name.split(' ').map(n => n[0]).join('')}</AvatarFallback>
+                </Avatar>
                 <div className="min-w-0">
-                  <div className="text-[14px] font-semibold text-[#191919] truncate">
+                  <div className="text-[14px] font-semibold text-[#191919] dark:text-white truncate">
                     {p.name}
                   </div>
-                  <div className="text-[12px] text-[#666d74] line-clamp-2">
+                  <div className="text-[12px] text-[#666d74] dark:text-gray-400 line-clamp-2">
                     {p.headline}
                   </div>
-                  <button className="mt-2 inline-flex items-center gap-1.5 px-3 py-1 border border-[#666d74] text-[#191919] rounded-full font-medium text-[12px] hover:bg-black/5">
-                    <Plus size={14} /> Connect
-                  </button>
+                  <Button variant="outline" size="sm" className="mt-2 h-7 px-3 text-[12px] border-[#666d74] text-[#191919] dark:text-white hover:bg-black/5">
+                    <Plus size={14} className="mr-1.5" /> Connect
+                  </Button>
                 </div>
               </div>
             ))}
-          </div>
         </div>
-      </section>
+        </CardContent>
+      </Card>
     </div>
   );
 };
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-[#f3f2ef]">
-      <div className="max-w-[1128px] mx-auto px-3 md:px-6 py-4 md:py-6">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
-          <div className="lg:col-span-2 flex flex-col gap-4 md:gap-6">
-            <Header />
-            <About />
-            <Experience />
-            <Education />
-            <Skills />
-          </div>
-          <div className="lg:col-span-1">
-            <Sidebar />
+    <TooltipProvider>
+      <div className="min-h-screen bg-[#f3f2ef] dark:bg-[#0a0a0a] transition-colors">
+        <Header />
+        <div className="max-w-[1128px] mx-auto px-3 md:px-6 py-4 md:py-6">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
+            <div className="lg:col-span-2 flex flex-col gap-4 md:gap-6">
+              <ProfileHeader />
+              <About />
+              <Experience />
+              <Education />
+              <Skills />
+            </div>
+            <div className="lg:col-span-1">
+              <Sidebar />
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 }
