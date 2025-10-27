@@ -79,7 +79,7 @@
 
   /* Additional semantic colors for dark mode */
   --secondary-text: #a1a1a1; /* Secondary text color */
-  --header-bg: #0a0a0a; /* Header background - dark mode */
+  --header-bg: #0a0a0a; /* Header background - dark mode (same as main background) */
   --hover-bg: #333333; /* Hover background */
 }
 
@@ -124,6 +124,10 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
+.container-max-width {
+  max-width: 1180px;
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
@@ -146,3 +150,4 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
