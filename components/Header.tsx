@@ -18,8 +18,7 @@ const Header = () => {
   return (
     <header className="bg-header-bg text-foreground shadow-xs">
       <div className="container-max-width mx-auto px-3 md:px-6">
-        <div className="flex items-center justify-between h-12">
-          {/* Left side - Logo */}
+        <div className="flex items-center justify-between h-13">
           <div className="flex items-center">
             <Link href="/" className="cursor-pointer">
               <Image
@@ -32,9 +31,7 @@ const Header = () => {
             </Link>
           </div>
 
-          {/* Right side - Dark mode toggle and CTA */}
           <div className="flex items-center space-x-4">
-            {/* Dark Mode Toggle */}
             <Tooltip>
               <TooltipTrigger asChild>
                 <Button
@@ -47,10 +44,9 @@ const Header = () => {
                   {isDark ? <Moon size={18} /> : <Sun size={18} />}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="bottom" className="w-72">
-                <div className="font-medium mb-1">Dark Mode Toggle</div>
+              <TooltipContent side="bottom" className="w-72 text-wrap">
                 <div className="text-xs">
-                  Do you know LinkedIn has a dark mode option?
+                  Did you know that LinkedIn has a dark mode option?
                   <br />
                   <br />
                   It's in Settings & Privacy &gt; Account preferences &gt;
