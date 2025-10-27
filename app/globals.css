@@ -79,7 +79,7 @@
 
   /* Additional semantic colors for dark mode */
   --secondary-text: #a1a1a1; /* Secondary text color */
-  --header-bg: #0a0a0a; /* Header background - dark mode */
+  --header-bg: #0a0a0a; /* Header background - dark mode (same as main background) */
   --hover-bg: #333333; /* Hover background */
 }
 
