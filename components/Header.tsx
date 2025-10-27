@@ -8,7 +8,6 @@ import {
 } from '@/components/ui/tooltip';
 
 import { Button } from '@/components/ui/button';
-import React from 'react';
 import { useTheme } from '@/components/ThemeProvider';
 
 const Header = () => {
@@ -18,14 +17,8 @@ const Header = () => {
     <header className="bg-header-bg text-white">
       <div className="max-w-[1128px] mx-auto px-3 md:px-6">
         <div className="flex items-center justify-between h-12">
-          {/* Left side - Name/Logo */}
+          {/* Left side - Empty for now */}
           <div className="flex items-center">
-            <a
-              href="#"
-              className="text-lg font-semibold text-foreground hover:text-primary transition-colors"
-            >
-              Syaz Solo
-            </a>
           </div>
 
           {/* Right side - Dark mode toggle and CTA */}
