@@ -16,14 +16,14 @@ const Header = () => {
   const { isDark, toggleDarkMode } = useTheme();
 
   return (
-    <header className="bg-background text-foreground">
-      <div className="max-w-[1128px] mx-auto px-3 md:px-6">
+    <header className="bg-header-bg text-foreground shadow-xs">
+      <div className="container-max-width mx-auto px-3 md:px-6">
         <div className="flex items-center justify-between h-12">
           {/* Left side - Logo */}
           <div className="flex items-center">
             <Link href="/" className="cursor-pointer">
               <Image
-                src={isDark ? "/logo-dark.png" : "/logo.png"}
+                src={isDark ? '/logo-dark.png' : '/logo.png'}
                 alt="Syaz Solo Logo"
                 width={120}
                 height={32}
@@ -47,12 +47,14 @@ const Header = () => {
                   {isDark ? <Moon size={18} /> : <Sun size={18} />}
                 </Button>
               </TooltipTrigger>
-              <TooltipContent side="bottom" className="w-64">
+              <TooltipContent side="bottom" className="w-72">
                 <div className="font-medium mb-1">Dark Mode Toggle</div>
                 <div className="text-xs">
-                  Did you know LinkedIn has dark mode options? This is a
-                  complete mock implementation! Click to toggle between light
-                  and dark mode.
+                  Do you know LinkedIn has a dark mode option?
+                  <br />
+                  <br />
+                  It's in Settings & Privacy &gt; Account preferences &gt;
+                  Display &gt; Dark Mode.
                 </div>
               </TooltipContent>
             </Tooltip>

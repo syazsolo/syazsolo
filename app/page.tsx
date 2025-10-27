@@ -14,7 +14,7 @@ export default function Home() {
     <TooltipProvider>
       <div className="min-h-screen bg-background transition-colors">
         <Header />
-        <div className="max-w-[1128px] mx-auto px-3 md:px-6 py-4 md:py-6">
+        <div className="container-max-width mx-auto px-3 md:px-6 py-4 md:py-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 md:gap-6">
             <div className="lg:col-span-2 flex flex-col gap-4 md:gap-6">
               <ProfileHeader />
