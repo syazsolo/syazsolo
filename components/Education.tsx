@@ -1,20 +1,20 @@
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
-import ProfileCard from "./ProfileCard";
+import { Button } from '@/components/ui/button';
+import { Pencil } from 'lucide-react';
+import ProfileCard from './ProfileCard';
 
 const Education = () => {
   const items = [
     {
       school:
-        "Asia Pacific University of Technology and Innovation (APU / APIIT)",
-      degree: "Bachelor of Science - BS, Computer Science",
-      duration: "2018 - 2021",
-      logo: "https://placehold.co/48x48/f0f0f0/333?text=APU",
+        'Asia Pacific University of Technology and Innovation (APU / APIIT)',
+      degree: 'Bachelor of Science - BS, Computer Science',
+      duration: '2018 - 2021',
+      logo: 'https://placehold.co/48x48/f0f0f0/333?text=APU',
     },
   ];
-  
+
   return (
     <ProfileCard
       title="Education"
@@ -22,7 +22,7 @@ const Education = () => {
         <Button
           variant="ghost"
           size="icon"
-          className="text-[#666d74]"
+          className="text-muted-foreground"
           aria-label="Edit education"
         >
           <Pencil size={18} />
@@ -34,14 +34,18 @@ const Education = () => {
           <div key={idx} className="flex gap-3 md:gap-4 py-3 md:py-4">
             <Avatar className="w-12 h-12 rounded-md shrink-0">
               <AvatarImage src={item.logo} alt={`${item.school} logo`} />
-              <AvatarFallback>{item.school.substring(0, 2).toUpperCase()}</AvatarFallback>
+              <AvatarFallback>
+                {item.school.substring(0, 2).toUpperCase()}
+              </AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="text-[16px] font-semibold text-[#191919] dark:text-white">
+              <h3 className="text-[16px] font-semibold text-foreground">
                 {item.school}
               </h3>
-              <p className="text-[14px] text-[#404040] dark:text-gray-300">{item.degree}</p>
-              <p className="text-[12px] text-[#666d74] dark:text-gray-400">{item.duration}</p>
+              <p className="text-[14px] text-secondary-text">{item.degree}</p>
+              <p className="text-[12px] text-muted-foreground">
+                {item.duration}
+              </p>
             </div>
           </div>
         ))}

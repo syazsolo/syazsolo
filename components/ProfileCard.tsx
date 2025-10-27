@@ -1,6 +1,6 @@
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
 
-import React from "react";
+import React from 'react';
 
 const ProfileCard = ({
   title,
@@ -11,11 +11,11 @@ const ProfileCard = ({
   children: React.ReactNode;
   actions?: React.ReactNode;
 }) => (
-  <Card className="bg-white dark:bg-[#1a1a1a] border-[#d6d9dc] dark:border-[#333333] transition-colors">
+  <Card className="bg-card border-border transition-colors">
     <CardHeader className="pb-3">
       <div className="flex items-center justify-between">
         {title ? (
-          <h2 className="text-[20px] leading-6 font-semibold text-[#191919] dark:text-white">
+          <h2 className="text-[20px] leading-6 font-semibold text-foreground">
             {title}
           </h2>
         ) : (
@@ -24,9 +24,7 @@ const ProfileCard = ({
         {actions}
       </div>
     </CardHeader>
-    <CardContent className="pt-0">
-      {children}
-    </CardContent>
+    <CardContent className="pt-0">{children}</CardContent>
   </Card>
 );
 
