@@ -45,11 +45,20 @@ export const ChatList = ({
   onSelectConvo: (id: string) => void;
 }) => {
   const [selected, setSelected] = useState('syazani');
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleSelect = (id: string) => {
     setSelected(id);
     onSelectConvo(id);
   };
+
+  const filteredConversations = conversations.filter(convo => {
+    const query = searchQuery.toLowerCase();
+    return (
+      convo.name.toLowerCase().includes(query) ||
+      convo.message.toLowerCase().includes(query)
+    );
+  });
 
   return (
     <div className="bg-white h-full flex flex-col">
@@ -63,19 +72,13 @@ export const ChatList = ({
           <Input
             placeholder="Search messages"
             className="pl-9 bg-gray-50 border-gray-200 text-sm"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
           />
-        </div>
-        <div className="mt-3 flex gap-2">
-          <button className="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 rounded-full">
-            Focused
-          </button>
-          <button className="px-3 py-1.5 text-xs font-semibold text-gray-500 hover:bg-gray-100 rounded-full">
-            Other
-          </button>
         </div>
       </div>
       <div className="grow overflow-y-auto">
-        {conversations.map(convo => (
+        {filteredConversations.map(convo => (
           <div
             key={convo.id}
             onClick={() => handleSelect(convo.id)}
