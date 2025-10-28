@@ -11,16 +11,16 @@ import {
   X,
 } from 'lucide-react';
 
-import React from 'react';
 import { conversationsData } from '@/lib/conversations';
+import { useState } from 'react';
 
 export const Messaging = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selectedConversation, setSelectedConversation] = React.useState<
+  const [isOpen, setIsOpen] = useState(false);
+  const [selectedConversation, setSelectedConversation] = useState<
     string | null
   >(null);
-  const [isChatOpen, setIsChatOpen] = React.useState(false);
-  const [isChatMaximized, setIsChatMaximized] = React.useState(false);
+  const [isChatOpen, setIsChatOpen] = useState(false);
+  const [isChatMaximized, setIsChatMaximized] = useState(false);
 
   const handleSelectConversation = (conversationId: string) => {
     setSelectedConversation(conversationId);

@@ -3,10 +3,10 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
 import { Input } from '../ui/input';
-import React from 'react';
 import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { messages } from '@/lib/messages';
+import { useState } from 'react';
 
 type Conversation = {
   id: string;
@@ -37,7 +37,7 @@ export const ChatList = ({
 }: {
   onSelectConvo: (id: string) => void;
 }) => {
-  const [selected, setSelected] = React.useState('bot');
+  const [selected, setSelected] = useState('bot');
 
   const handleSelect = (id: string) => {
     setSelected(id);
