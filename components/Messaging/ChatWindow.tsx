@@ -57,7 +57,7 @@ export const ChatWindow = ({
     ]);
 
     setTimeout(() => {
-      const response = getConversationResponse(conversationId, nextState);
+      const response = getConversationResponse(conversation, nextState);
 
       setMessages(prev => [
         ...prev,
@@ -71,9 +71,8 @@ export const ChatWindow = ({
     }, 1000);
   };
 
-  // Get current quick replies based on state
   const currentQuickReplies = getConversationQuickReplies(
-    conversationId,
+    conversation,
     currentState
   );
 

@@ -1,5 +1,4 @@
 import {
-  conversationsData,
   getConversationQuickReplies,
   getConversationResponse,
 } from '../../lib/conversations';
@@ -10,12 +9,9 @@ import mockConversationData from '../fixtures/mock-conversation.json';
 const mockConversation = mockConversationData as ConversationData;
 
 describe('Conversation State Machine - Implementation Tests', () => {
-  const testConversationId = 'test-bot';
-  const testConversation = conversationsData[testConversationId];
-
   describe('Feature 1: One-to-One Replies', () => {
     it('should return a specific text response when transitioning to a state', () => {
-      const response = getConversationResponse(testConversationId, 'greeting');
+      const response = getConversationResponse(mockConversation, 'greeting');
 
       expect(response.text).toBeDefined();
       expect(typeof response.text).toBe('string');
@@ -24,9 +20,9 @@ describe('Conversation State Machine - Implementation Tests', () => {
     });
 
     it('should handle state transitions via quick replies', () => {
-      const initialState = testConversation.initialState;
+      const initialState = mockConversation.initialState;
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         initialState
       );
 
@@ -35,7 +31,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
       expect(greetingReply!.nextState).toBe('greeting');
 
       const response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         greetingReply!.nextState
       );
       expect(response.text).toBe('Hello! Nice to meet you.');
@@ -46,7 +42,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
   describe('Feature 2: One-to-Many Replies', () => {
     it('should return one of multiple possible responses for array-based state messages', () => {
       const response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         'random_facts'
       );
 
@@ -65,7 +61,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
       for (let i = 0; i < 20; i++) {
         const response = getConversationResponse(
-          testConversationId,
+          mockConversation,
           'random_facts'
         );
         responses.add(response.text);
@@ -81,10 +77,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
         'A day on Venus is longer than its year.',
       ];
 
-      const response = getConversationResponse(
-        testConversationId,
-        'more_facts'
-      );
+      const response = getConversationResponse(mockConversation, 'more_facts');
 
       expect(possibleResponses).toContain(response.text);
       expect(response.nextState).toBe('more_facts');
@@ -94,7 +87,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
   describe('Feature 3: Infinite Conversations (State Loops)', () => {
     it('should allow looping back to welcome state from greeting', () => {
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'greeting'
       );
       const backReply = quickReplies.find(r => r.text === 'Go back');
@@ -103,7 +96,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
       expect(backReply!.nextState).toBe('welcome');
 
       const response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply!.nextState
       );
       expect(response.nextState).toBe('welcome');
@@ -111,7 +104,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should allow looping back to welcome from help_menu', () => {
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'help_menu'
       );
       const backReply = quickReplies.find(r => r.text === 'Back to main menu');
@@ -122,7 +115,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should allow looping back to welcome from random_facts', () => {
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'random_facts'
       );
       const backReply = quickReplies.find(r => r.text === 'Back to start');
@@ -133,7 +126,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should allow infinite loops within a state (self-loops)', () => {
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'more_facts'
       );
       const moreFactsReply = quickReplies.find(
@@ -144,13 +137,13 @@ describe('Conversation State Machine - Implementation Tests', () => {
       expect(moreFactsReply!.nextState).toBe('random_facts');
 
       const response1 = getConversationResponse(
-        testConversationId,
+        mockConversation,
         moreFactsReply!.nextState
       );
       expect(response1.nextState).toBe('random_facts');
 
       const response2 = getConversationResponse(
-        testConversationId,
+        mockConversation,
         response1.nextState
       );
       expect(response2.nextState).toBe('random_facts');
@@ -158,7 +151,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should allow nested state loops (back to greeting from about)', () => {
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'about'
       );
       const backReply = quickReplies.find(r => r.text === 'Go back');
@@ -170,12 +163,12 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
   describe('Feature 4: State Transitions', () => {
     it('should transition through multiple states in sequence', () => {
-      let currentState = testConversation.initialState;
+      let currentState = mockConversation.initialState;
       const stateHistory: string[] = [currentState];
 
       for (let i = 0; i < 5; i++) {
         const quickReplies = getConversationQuickReplies(
-          testConversationId,
+          mockConversation,
           currentState
         );
 
@@ -183,7 +176,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
         const reply = quickReplies[0];
         const response = getConversationResponse(
-          testConversationId,
+          mockConversation,
           reply.nextState
         );
 
@@ -196,67 +189,67 @@ describe('Conversation State Machine - Implementation Tests', () => {
       expect(stateHistory.length).toBeGreaterThan(1);
 
       stateHistory.forEach(state => {
-        expect(testConversation.states[state]).toBeDefined();
+        expect(mockConversation.states[state]).toBeDefined();
       });
     });
 
     it('should handle complex state flow: welcome -> greeting -> about -> capabilities -> about -> greeting -> welcome', () => {
-      let state = testConversation.initialState;
-      let quickReplies = getConversationQuickReplies(testConversationId, state);
+      let state = mockConversation.initialState;
+      let quickReplies = getConversationQuickReplies(mockConversation, state);
       const greetReply = quickReplies.find(r => r.text === 'Say hello');
       expect(greetReply).toBeDefined();
 
       let response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         greetReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('greeting');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const tellMoreReply = quickReplies.find(
         r => r.text === 'Tell me more about yourself'
       );
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         tellMoreReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('about');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const capabilitiesReply = quickReplies.find(
         r => r.text === 'What can you do?'
       );
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         capabilitiesReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('capabilities');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const backReply = quickReplies.find(r => r.text === 'Back to about');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('about');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const backReply2 = quickReplies.find(r => r.text === 'Go back');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply2!.nextState
       );
       state = response.nextState;
       expect(state).toBe('greeting');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const backReply3 = quickReplies.find(r => r.text === 'Go back');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply3!.nextState
       );
       state = response.nextState;
@@ -264,47 +257,47 @@ describe('Conversation State Machine - Implementation Tests', () => {
     });
 
     it('should handle conversation with one-to-many and loops', () => {
-      let state = testConversation.initialState;
-      let quickReplies = getConversationQuickReplies(testConversationId, state);
+      let state = mockConversation.initialState;
+      let quickReplies = getConversationQuickReplies(mockConversation, state);
 
       const randomReply = quickReplies.find(
         r => r.text === 'Tell me something random'
       );
       let response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         randomReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('random_facts');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const moreFactsReply = quickReplies.find(
         r => r.text === 'Tell me another fact'
       );
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         moreFactsReply!.nextState
       );
       expect(response.nextState).toBe('more_facts');
 
       quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'more_facts'
       );
       const moreReply = quickReplies.find(r => r.text === 'More random facts');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         moreReply!.nextState
       );
       expect(response.nextState).toBe('random_facts');
 
       quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'random_facts'
       );
       const backReply = quickReplies.find(r => r.text === 'Back to start');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply!.nextState
       );
       state = response.nextState;
@@ -312,50 +305,47 @@ describe('Conversation State Machine - Implementation Tests', () => {
     });
 
     it('should handle help menu flow with nested loops', () => {
-      let state = testConversation.initialState;
-      let quickReplies = getConversationQuickReplies(testConversationId, state);
+      let state = mockConversation.initialState;
+      let quickReplies = getConversationQuickReplies(mockConversation, state);
 
       const helpReply = quickReplies.find(r => r.text === 'Get help');
       let response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         helpReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('help_menu');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const faqReply = quickReplies.find(r => r.text === 'View FAQ');
-      response = getConversationResponse(
-        testConversationId,
-        faqReply!.nextState
-      );
+      response = getConversationResponse(mockConversation, faqReply!.nextState);
       state = response.nextState;
       expect(state).toBe('faq');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const questionReply = quickReplies.find(r => r.text === 'What is this?');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         questionReply!.nextState
       );
       expect(response.nextState).toBe('faq_answer');
 
       quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'faq_answer'
       );
       const backReply = quickReplies.find(r => r.text === 'Back to help menu');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply!.nextState
       );
       state = response.nextState;
       expect(state).toBe('help_menu');
 
-      quickReplies = getConversationQuickReplies(testConversationId, state);
+      quickReplies = getConversationQuickReplies(mockConversation, state);
       const backReply2 = quickReplies.find(r => r.text === 'Back to main menu');
       response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         backReply2!.nextState
       );
       state = response.nextState;
@@ -366,7 +356,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
   describe('Feature 5: Graceful Fallbacks', () => {
     it('should return default response for invalid state', () => {
       const response = getConversationResponse(
-        testConversationId,
+        mockConversation,
         'invalid-state-12345'
       );
 
@@ -374,11 +364,8 @@ describe('Conversation State Machine - Implementation Tests', () => {
       expect(response.nextState).toBe('');
     });
 
-    it('should return default response for invalid conversation ID', () => {
-      const response = getConversationResponse(
-        'invalid-conversation-id-12345',
-        'any-state'
-      );
+    it('should return default response for invalid conversation', () => {
+      const response = getConversationResponse(null as any, 'any-state');
 
       expect(response.text).toBe('Thanks for your message!');
       expect(response.nextState).toBe('');
@@ -386,15 +373,15 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should return empty array for non-existent state', () => {
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'non-existent-state-12345'
       );
       expect(quickReplies).toEqual([]);
     });
 
-    it('should return empty array for non-existent conversation', () => {
+    it('should return empty array for invalid conversation', () => {
       const quickReplies = getConversationQuickReplies(
-        'non-existent-bot-12345',
+        null as any,
         'any-state'
       );
       expect(quickReplies).toEqual([]);
@@ -403,9 +390,9 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
   describe('Quick Replies Functionality', () => {
     it('should return quick replies for any state', () => {
-      const initialState = testConversation.initialState;
+      const initialState = mockConversation.initialState;
       const quickReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         initialState
       );
 
@@ -422,11 +409,11 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should return different quick replies for different states', () => {
       const welcomeReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'welcome'
       );
       const greetingReplies = getConversationQuickReplies(
-        testConversationId,
+        mockConversation,
         'greeting'
       );
 

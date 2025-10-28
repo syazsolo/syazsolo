@@ -32,9 +32,7 @@ export const Messaging = () => {
 
   const handleSelectConversation = (conversationId: string) => {
     setSelectedConversation(conversationId);
-    if (conversationId === 'bot' || conversationId === 'sponsored') {
-      setIsChatBoxOpen(true);
-    }
+    setIsChatBoxOpen(true);
   };
 
   return (

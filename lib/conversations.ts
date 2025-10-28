@@ -1,5 +1,5 @@
-import syazaniConversation from './data/conversations/syazani.json';
 import soloConversation from './data/conversations/solo.json';
+import syazaniConversation from './data/conversations/syazani.json';
 
 export interface ConversationState {
   message: string | string[];
@@ -17,11 +17,17 @@ export interface ConversationData {
   states: Record<string, ConversationState>;
 }
 
+const defaultConversationsData: Record<string, ConversationData> = {
+  syazani: syazaniConversation as ConversationData,
+  solo: soloConversation as ConversationData,
+};
+
+export const conversationsData = defaultConversationsData;
+
 export const getConversationResponse = (
-  conversationId: string,
+  conversation: ConversationData,
   nextState: string
 ): { text: string; nextState: string } => {
-  const conversation = conversationsData[conversationId];
   if (!conversation?.states) {
     return { text: 'Thanks for your message!', nextState: '' };
   }
@@ -46,23 +52,13 @@ export const getConversationResponse = (
 };
 
 export const getConversationQuickReplies = (
-  conversationId: string,
+  conversation: ConversationData,
   currentState: string
 ): Array<{ text: string; nextState: string }> => {
-  const conversation = conversationsData[conversationId];
   if (!conversation?.states) {
     return [];
   }
 
   const state = conversation.states[currentState];
   return state?.quickReplies || [];
-};
-
-export const conversationsData: Record<string, ConversationData> = {
-  syazani: syazaniConversation as ConversationData,
-  solo: soloConversation as ConversationData,
-  ...(process.env.NODE_ENV === 'test' && {
-    'test-bot':
-      require('../__tests__/fixtures/mock-conversation.json') as ConversationData,
-  }),
 };
