@@ -1,10 +1,10 @@
 import {
   getConversationQuickReplies,
   getConversationResponse,
-} from '../../lib/conversations';
+} from '@/lib/conversations';
 
-import type { ConversationData } from '../../lib/conversations';
-import mockConversationData from '../fixtures/mock-conversation.json';
+import type { ConversationData } from '@/lib/conversations';
+import mockConversationData from '@/__tests__/fixtures/mock-conversation.json';
 
 const mockConversation = mockConversationData as ConversationData;
 

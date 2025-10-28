@@ -26,13 +26,13 @@ export const conversationsData = defaultConversationsData;
 
 export const getConversationResponse = (
   conversation: ConversationData,
-  nextState: string
+  currentState: string
 ): { text: string; nextState: string } => {
   if (!conversation?.states) {
     return { text: 'Thanks for your message!', nextState: '' };
   }
 
-  const state = conversation.states[nextState];
+  const state = conversation.states[currentState];
   if (!state?.message) {
     return { text: 'Thanks for your message!', nextState: '' };
   }
@@ -41,13 +41,13 @@ export const getConversationResponse = (
     const randomIndex = Math.floor(Math.random() * state.message.length);
     return {
       text: state.message[randomIndex],
-      nextState,
+      nextState: currentState,
     };
   }
 
   return {
     text: state.message,
-    nextState,
+    nextState: currentState,
   };
 };
 
