@@ -2,25 +2,27 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { Maximize, Minus, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { ChatWindow } from './ChatWindow';
 import { conversationsData } from '@/lib/conversations';
 
 interface ChatBoxProps {
-  isOpen: boolean;
   conversationId: string | null;
-  isMaximized: boolean;
-  onClose: () => void;
-  onToggleMaximize: () => void;
 }
 
-export const ChatBox = ({
-  isOpen,
-  conversationId,
-  isMaximized,
-  onClose,
-  onToggleMaximize,
-}: ChatBoxProps) => {
+export const ChatBox = ({ conversationId }: ChatBoxProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isMaximized, setIsMaximized] = useState(false);
+
+  useEffect(() => {
+    if (conversationId) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [conversationId]);
+
   if (!conversationId) return null;
 
   return (
@@ -64,21 +66,21 @@ export const ChatBox = ({
             </div>
             <div className="flex items-center gap-1">
               <button
-                onClick={onClose}
+                onClick={() => setIsOpen(false)}
                 className="p-1 hover:bg-gray-200 rounded"
                 aria-label="Minimize"
               >
                 <Minus size={14} />
               </button>
               <button
-                onClick={onToggleMaximize}
+                onClick={() => setIsMaximized(!isMaximized)}
                 className="p-1 hover:bg-gray-200 rounded"
                 aria-label="Maximize"
               >
                 <Maximize size={14} />
               </button>
               <button
-                onClick={onClose}
+                onClick={() => setIsOpen(false)}
                 className="p-1 hover:bg-red-100 rounded"
                 aria-label="Close"
               >
