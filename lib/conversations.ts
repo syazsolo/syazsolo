@@ -27,27 +27,33 @@ export const conversationsData = defaultConversationsData;
 export const getConversationResponse = (
   conversation: ConversationData,
   currentState: string
-): { text: string; nextState: string } => {
+): { text: string; state: string } => {
   if (!conversation?.states) {
-    return { text: 'Thanks for your message!', nextState: '' };
+    return {
+      text: "Sorry, something went wrong. Let's start over.",
+      state: conversation?.initialState || '',
+    };
   }
 
   const state = conversation.states[currentState];
   if (!state?.message) {
-    return { text: 'Thanks for your message!', nextState: '' };
+    return {
+      text: "Sorry, I don't understand that. Let's start over.",
+      state: conversation.initialState,
+    };
   }
 
   if (Array.isArray(state.message)) {
     const randomIndex = Math.floor(Math.random() * state.message.length);
     return {
       text: state.message[randomIndex],
-      nextState: currentState,
+      state: currentState,
     };
   }
 
   return {
     text: state.message,
-    nextState: currentState,
+    state: currentState,
   };
 };
 

@@ -85,7 +85,7 @@ export const ChatWindow = ({
         },
       ]);
 
-      setCurrentState(response.nextState);
+      setCurrentState(response.state);
       setIsWaitingForResponse(false);
 
       setTimeout(scrollToUserMessage, SCROLL_DELAY);
