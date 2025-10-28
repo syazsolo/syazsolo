@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { Maximize, Minus, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { ChatWindow } from './ChatWindow';
+import { ChatWindow } from '@/components/Messaging/ChatWindow';
 import { conversationsData } from '@/lib/conversations';
 
 interface ChatBoxProps {

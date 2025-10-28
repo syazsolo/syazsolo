@@ -39,7 +39,7 @@ const conversations: Conversation[] = [
   },
 ];
 
-export const ChatList = ({
+export const MessageList = ({
   onSelectConvo,
 }: {
   onSelectConvo: (id: string) => void;
@@ -62,7 +62,6 @@ export const ChatList = ({
 
   return (
     <div className="bg-white h-full flex flex-col">
-      {/* Search Bar */}
       <div className="p-3 border-b border-gray-200">
         <div className="relative">
           <Search

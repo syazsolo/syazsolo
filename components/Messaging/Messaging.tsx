@@ -1,7 +1,7 @@
 'use client';
 
-import { ChatBox } from './ChatBox';
-import { MessageBar } from './MessageBar';
+import { ChatBox } from '@/components/Messaging/ChatBox';
+import { MessageBar } from '@/components/Messaging/MessageBar';
 import { useState } from 'react';
 
 export const Messaging = () => {

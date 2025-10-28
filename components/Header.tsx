@@ -46,7 +46,7 @@ const Header = () => {
               </TooltipTrigger>
               <TooltipContent side="bottom" className="w-72 text-wrap">
                 <div className="text-xs">
-                  Did you know that LinkedIn has a dark mode option?
+                  Did you know LinkedIn has a dark mode option?
                   <br />
                   <br />
                   It's in Settings & Privacy &gt; Account preferences &gt;
