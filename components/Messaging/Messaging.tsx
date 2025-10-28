@@ -122,7 +122,7 @@ export const Messaging = () => {
       <AnimatePresence>
         {isChatBoxOpen && (
           <motion.div
-            className={`fixed z-50 ${isChatBoxMaximized ? 'inset-0' : 'bottom-4 right-80'}`}
+            className={`fixed z-50 ${isChatBoxMaximized ? 'inset-0' : 'bottom-0 right-80'}`}
             initial={{
               scale: 0.9,
               opacity: 0,
