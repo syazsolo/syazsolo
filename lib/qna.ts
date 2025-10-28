@@ -1,3 +1,5 @@
+import { getQuickReply, messages } from './messages';
+
 export type QnaOption = {
   id: string;
   question: string;
@@ -9,20 +11,19 @@ export const qnaData: Record<string, QnaOption> = {
   start: {
     id: 'start',
     question: 'Start',
-    answer:
-      "Hi! I'm Syazani. Ask me anything about my work, skills, or experience. I'll answer directly here.",
+    answer: messages.bot.identity.welcome,
     followUp: ['about-syazani', 'skills', 'experience', 'contact'],
   },
   'about-syazani': {
     id: 'about-syazani',
-    question: 'Who are you?',
+    question: getQuickReply('bot', 'who'),
     answer:
       "I'm a software engineer who enjoys building clean, reliable web apps. I care about thoughtful UX and pragmatic engineering.",
     followUp: ['hobbies', 'motivation', 'start-again'],
   },
   skills: {
     id: 'skills',
-    question: 'What are your skills?',
+    question: getQuickReply('bot', 'skills'),
     answer:
       "Day‑to‑day I work with React, Next.js, TypeScript, Node.js, and Tailwind. I'm comfortable across the stack and I pick up new tools quickly.",
     followUp: ['frontend-skills', 'backend-skills', 'start-again'],
@@ -43,7 +44,7 @@ export const qnaData: Record<string, QnaOption> = {
   },
   experience: {
     id: 'experience',
-    question: "What's your experience?",
+    question: getQuickReply('bot', 'experience'),
     answer:
       "I've shipped features for both small sites and larger web apps. I love collaborating with designers and product folks to deliver polished outcomes.",
     followUp: ['specific-project', 'start-again'],
@@ -57,7 +58,7 @@ export const qnaData: Record<string, QnaOption> = {
   },
   contact: {
     id: 'contact',
-    question: 'How do I contact you?',
+    question: getQuickReply('bot', 'contact'),
     answer:
       "The quickest way is LinkedIn or email (both are linked on this site). If you're hiring, I'd love to chat!",
     followUp: ['start-again'],

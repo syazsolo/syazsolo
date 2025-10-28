@@ -1,49 +1,43 @@
-"use client";
+'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { MoreHorizontal, Pencil, Search } from "lucide-react";
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 
-import { Badge } from "@/components/ui/badge";
-import { Input } from "../ui/input";
-import React from "react";
-import { cn } from "@/lib/utils";
+import { Input } from '../ui/input';
+import React from 'react';
+import { Search } from 'lucide-react';
+import { cn } from '@/lib/utils';
+import { messages } from '@/lib/messages';
 
 type Conversation = {
   id: string;
   name: string;
   message: string;
   avatar: string;
-  date: string;
   unread?: number;
 };
 
 const conversations: Conversation[] = [
   {
-    id: "bot",
-    name: "Syazani's Assistant",
-    message: "Ask me anything!",
-    avatar: "/logo-dark.png",
-    date: "Oct 27",
+    id: 'bot',
+    name: messages.bot.identity.name,
+    message: messages.bot.identity.welcome,
+    avatar: messages.bot.identity.avatar,
   },
   {
-    id: "sponsored",
-    name: "HP",
-    message: "Sponsored: Get your HP Z Workstation from as low...",
-    avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/ad/HP_logo_2012.svg/1200px-HP_logo_2012.svg.png",
-    date: "Oct 16",
+    id: 'sponsored',
+    name: messages.solo.identity.name,
+    message: messages.solo.identity.welcome,
+    avatar: messages.solo.identity.avatar,
     unread: 1,
-  },
-  {
-    id: "linkedin",
-    name: "LinkedIn Offer",
-    message: "Hi there, Syazani% We've recently seen...",
-    avatar: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/LinkedIn_logo_initials.png/600px-LinkedIn_logo_initials.png",
-    date: "Oct 26",
   },
 ];
 
-export const ChatList = ({ onSelectConvo }: { onSelectConvo: (id: string) => void }) => {
-  const [selected, setSelected] = React.useState("bot");
+export const ChatList = ({
+  onSelectConvo,
+}: {
+  onSelectConvo: (id: string) => void;
+}) => {
+  const [selected, setSelected] = React.useState('bot');
 
   const handleSelect = (id: string) => {
     setSelected(id);
@@ -51,50 +45,54 @@ export const ChatList = ({ onSelectConvo }: { onSelectConvo: (id: string) => voi
   };
 
   return (
-    <div className="bg-[#1e1e1e] h-full flex flex-col">
-      <div className="p-4 border-b border-gray-700">
-        <div className="flex justify-between items-center">
-          <h2 className="text-xl font-bold">Messaging</h2>
-          <div className="flex gap-2">
-            <button className="p-2 hover:bg-gray-700 rounded-full">
-              <MoreHorizontal size={20} />
-            </button>
-            <button className="p-2 hover:bg-gray-700 rounded-full">
-              <Pencil size={20} />
-            </button>
-          </div>
+    <div className="bg-white h-full flex flex-col">
+      {/* Search Bar */}
+      <div className="p-3 border-b border-gray-200">
+        <div className="relative">
+          <Search
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            size={16}
+          />
+          <Input
+            placeholder={messages.ui.chatList.searchPlaceholder}
+            className="pl-9 bg-gray-50 border-gray-200 text-sm"
+          />
         </div>
-        <div className="relative mt-4">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} />
-          <Input placeholder="Search messages" className="pl-10 bg-[#383838] border-gray-600" />
-        </div>
-        <div className="mt-4 flex gap-2">
-          <button className="px-4 py-2 text-sm font-semibold text-white bg-green-700 rounded-full">Focused</button>
-          <button className="px-4 py-2 text-sm font-semibold text-gray-400 hover:bg-gray-700 rounded-full">Other</button>
+        <div className="mt-3 flex gap-2">
+          <button className="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 rounded-full">
+            {messages.ui.chatList.focusedTab}
+          </button>
+          <button className="px-3 py-1.5 text-xs font-semibold text-gray-500 hover:bg-gray-100 rounded-full">
+            {messages.ui.chatList.otherTab}
+          </button>
         </div>
       </div>
       <div className="grow overflow-y-auto">
-        {conversations.map((convo) => (
+        {conversations.map(convo => (
           <div
             key={convo.id}
             onClick={() => handleSelect(convo.id)}
-            className={cn("flex items-start gap-4 p-4 cursor-pointer hover:bg-gray-800", {
-              "bg-gray-700": selected === convo.id,
-            })}
+            className={cn(
+              'flex items-start gap-3 p-3 cursor-pointer hover:bg-gray-50',
+              {
+                'bg-blue-50': selected === convo.id,
+              }
+            )}
           >
-            <Avatar className="w-12 h-12">
+            <Avatar className="w-10 h-10">
               <AvatarImage src={convo.avatar} alt={convo.name} />
               <AvatarFallback>{convo.name.charAt(0)}</AvatarFallback>
             </Avatar>
-            <div className="grow">
-              <div className="flex justify-between items-center">
-                <h3 className="font-semibold">{convo.name}</h3>
-                <span className="text-xs text-gray-400">{convo.date}</span>
-              </div>
-              <p className="text-sm text-gray-400 truncate">{convo.message}</p>
+            <div className="grow min-w-0">
+              <h3 className="font-semibold text-sm text-gray-900 truncate">
+                {convo.name}
+              </h3>
+              <p className="text-xs text-gray-500 truncate mt-1">
+                {convo.message}
+              </p>
             </div>
             {convo.unread && (
-              <div className="flex items-center justify-center w-5 h-5 text-xs text-white bg-green-600 rounded-full">
+              <div className="flex items-center justify-center w-4 h-4 text-xs text-white bg-blue-600 rounded-full">
                 {convo.unread}
               </div>
             )}
