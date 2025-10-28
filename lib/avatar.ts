@@ -35,16 +35,13 @@ const selectRandomStyle = (): AvatarStyle => {
   return AVATAR_STYLES[Math.floor(Math.random() * AVATAR_STYLES.length)];
 };
 
-export const generateRandomAvatar = (
-  seed?: string,
-  style?: AvatarStyle
-): string => {
+const generateRandomAvatar = (seed?: string, style?: AvatarStyle): string => {
   const avatarSeed = seed || generateRandomSeed();
   const avatarStyle = style || selectRandomStyle();
   return buildAvatarUrl(avatarStyle, avatarSeed);
 };
 
-export const generateCachedRandomAvatar = (): string => {
+const generateCachedRandomAvatar = (): string => {
   const cachedAvatar = sessionStorage.getItem(SESSION_AVATAR_KEY);
   if (cachedAvatar) {
     return cachedAvatar;

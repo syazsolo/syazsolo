@@ -1,18 +1,11 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChatList, ChatWindow } from '@/components/Messaging';
-import {
-  ChevronDown,
-  ChevronUp,
-  Maximize,
-  Minus,
-  MoreHorizontal,
-  Pencil,
-  X,
-} from 'lucide-react';
+import { Maximize, Minus, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
+import { ChatWindow } from './ChatWindow';
+import { MessageBar } from './MessageBar';
 import { conversationsData } from '@/lib/conversations';
 import { getMessagingHeaderAvatar } from '@/lib/avatar';
 
@@ -37,86 +30,12 @@ export const Messaging = () => {
 
   return (
     <>
-      {/* MessageBar - Fixed to bottom-right corner */}
-      <div className="fixed bottom-0 right-4 z-40 w-72 ml-4">
-        {/* MessageBar Header */}
-        <div className="flex items-center h-12 px-2 bg-white hover:bg-gray-50 border-l border-r border-t border-gray-300 rounded-t-lg shadow-lg transition-colors">
-          <button
-            onClick={() => setIsMessageBarOpen(!isMessageBarOpen)}
-            className="flex items-center flex-1 text-left"
-            aria-label={isMessageBarOpen ? 'Close messaging' : 'Open messaging'}
-          >
-            <div className="relative mr-2">
-              <img
-                src={
-                  avatarSrc ||
-                  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNmM2Y0ZjYiLz4KPC9zdmc+'
-                }
-                alt="Messaging"
-                className="w-8 h-8 rounded-full"
-              />
-              <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
-            </div>
-            <span className="text-sm font-semibold text-gray-900 mr-1">
-              Messaging
-            </span>
-          </button>
-          <div className="flex items-center gap-1">
-            <button
-              className="p-1.5 hover:bg-gray-200 rounded-full transition-colors"
-              aria-label="More options"
-            >
-              <MoreHorizontal size={16} className="text-gray-700" />
-            </button>
-            <button
-              className="p-1.5 hover:bg-gray-200 rounded-full transition-colors"
-              aria-label="New message"
-            >
-              <Pencil size={16} className="text-gray-700" />
-            </button>
-            <button
-              onClick={() => setIsMessageBarOpen(!isMessageBarOpen)}
-              className="p-1.5 hover:bg-gray-200 rounded-full transition-colors"
-              aria-label={isMessageBarOpen ? 'Minimize' : 'Expand'}
-            >
-              {isMessageBarOpen ? (
-                <ChevronDown size={16} className="text-gray-700" />
-              ) : (
-                <ChevronUp size={16} className="text-gray-700" />
-              )}
-            </button>
-          </div>
-        </div>
-
-        {/* MessageBar Expanded List - with snappy animation */}
-        <AnimatePresence>
-          {isMessageBarOpen && (
-            <motion.div
-              className="w-72 h-96 bg-white border-l border-r border-b border-gray-300 shadow-lg"
-              initial={{
-                height: 0,
-                opacity: 0,
-              }}
-              animate={{
-                height: '24rem',
-                opacity: 1,
-              }}
-              exit={{
-                height: 0,
-                opacity: 0,
-              }}
-              transition={{
-                type: 'spring',
-                stiffness: 300,
-                damping: 25,
-                duration: 0.3,
-              }}
-            >
-              <ChatList onSelectConvo={handleSelectConversation} />
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
+      <MessageBar
+        isOpen={isMessageBarOpen}
+        onToggle={() => setIsMessageBarOpen(!isMessageBarOpen)}
+        avatarSrc={avatarSrc}
+        onSelectConversation={handleSelectConversation}
+      />
 
       {/* ChatBox - Separate chat window */}
       <AnimatePresence>
