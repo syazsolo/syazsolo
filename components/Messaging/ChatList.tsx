@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Input } from '../ui/input';
 import { Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { messages } from '@/lib/messages';
+import { conversationsData } from '@/lib/conversations';
 import { useState } from 'react';
 
 type Conversation = {
@@ -16,18 +16,25 @@ type Conversation = {
   unread?: number;
 };
 
+const syazani = conversationsData.syazani;
+const solo = conversationsData.solo;
+
+const getInitialMessage = (message: string | string[]): string => {
+  return Array.isArray(message) ? message[0] : message;
+};
+
 const conversations: Conversation[] = [
   {
-    id: 'bot',
-    name: messages.bot.identity.name,
-    message: messages.bot.identity.welcome,
-    avatar: messages.bot.identity.avatar,
+    id: syazani.id,
+    name: syazani.name,
+    message: getInitialMessage(syazani.states[syazani.initialState].message),
+    avatar: syazani.avatar,
   },
   {
-    id: 'sponsored',
-    name: messages.solo.identity.name,
-    message: messages.solo.identity.welcome,
-    avatar: messages.solo.identity.avatar,
+    id: solo.id,
+    name: solo.name,
+    message: getInitialMessage(solo.states[solo.initialState].message),
+    avatar: solo.avatar,
     unread: 1,
   },
 ];
@@ -37,7 +44,7 @@ export const ChatList = ({
 }: {
   onSelectConvo: (id: string) => void;
 }) => {
-  const [selected, setSelected] = useState('bot');
+  const [selected, setSelected] = useState('syazani');
 
   const handleSelect = (id: string) => {
     setSelected(id);
@@ -54,16 +61,16 @@ export const ChatList = ({
             size={16}
           />
           <Input
-            placeholder={messages.ui.chatList.searchPlaceholder}
+            placeholder="Search messages"
             className="pl-9 bg-gray-50 border-gray-200 text-sm"
           />
         </div>
         <div className="mt-3 flex gap-2">
           <button className="px-3 py-1.5 text-xs font-semibold text-white bg-green-600 rounded-full">
-            {messages.ui.chatList.focusedTab}
+            Focused
           </button>
           <button className="px-3 py-1.5 text-xs font-semibold text-gray-500 hover:bg-gray-100 rounded-full">
-            {messages.ui.chatList.otherTab}
+            Other
           </button>
         </div>
       </div>

@@ -14,11 +14,10 @@ import { Button } from '@/components/ui/button';
 type Message = {
   sender: 'user' | 'bot';
   text: string;
-  timestamp: string;
 };
 
 export const ChatWindow = ({
-  conversationId = 'bot',
+  conversationId = 'syazani',
 }: {
   conversationId?: string;
 }) => {
@@ -26,57 +25,49 @@ export const ChatWindow = ({
   const [currentState, setCurrentState] = useState<string>('');
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const conversation: ConversationData =
-    conversationsData[conversationId] || conversationsData.bot;
+    conversationsData[conversationId] || conversationsData.syazani;
 
   useEffect(() => {
-    setMessages(conversation.messages);
-    setCurrentState(conversation.initialState);
+    const initialState = conversation.initialState;
+    const state = conversation.states[initialState];
+    const initialMessage = Array.isArray(state.message)
+      ? state.message[Math.floor(Math.random() * state.message.length)]
+      : state.message;
+
+    setMessages([
+      {
+        sender: 'bot',
+        text: initialMessage,
+      },
+    ]);
+    setCurrentState(initialState);
   }, [conversationId]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  const handleQuickReply = (replyId: string) => {
-    // Get current quick replies to find the text
-    const quickReplies = getConversationQuickReplies(
-      conversationId,
-      currentState
-    );
-    const reply = quickReplies.find(r => r.id === replyId);
-    const replyText = reply?.text || replyId;
-
-    // Add user message
+  const handleQuickReply = (replyText: string, nextState: string) => {
     setMessages(prev => [
       ...prev,
       {
         sender: 'user',
         text: replyText,
-        timestamp: 'Just now',
       },
     ]);
 
-    // Get bot response from conversation data
     setTimeout(() => {
-      const response = getConversationResponse(
-        conversationId,
-        replyId,
-        currentState
-      );
+      const response = getConversationResponse(conversationId, nextState);
 
       setMessages(prev => [
         ...prev,
         {
           sender: 'bot',
           text: response.text,
-          timestamp: 'Just now',
         },
       ]);
 
-      // Update state if there's a next state
-      if (response.nextState) {
-        setCurrentState(response.nextState);
-      }
+      setCurrentState(response.nextState);
     }, 1000);
   };
 
@@ -115,9 +106,6 @@ export const ChatWindow = ({
               >
                 {msg.text}
               </div>
-              <span className="text-xs text-gray-500 mt-1 px-1">
-                {msg.timestamp}
-              </span>
             </div>
             {msg.sender === 'user' && (
               <Avatar className="w-6 h-6">
@@ -128,15 +116,14 @@ export const ChatWindow = ({
           </div>
         ))}
 
-        {/* Quick Reply Options */}
         {currentQuickReplies && currentQuickReplies.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-4">
-            {currentQuickReplies.map(reply => (
+            {currentQuickReplies.map((reply, index) => (
               <Button
-                key={reply.id}
+                key={`${reply.nextState}-${index}`}
                 variant="outline"
                 className="bg-gray-100 border-gray-300 hover:bg-gray-200 text-xs text-gray-700"
-                onClick={() => handleQuickReply(reply.id)}
+                onClick={() => handleQuickReply(reply.text, reply.nextState)}
               >
                 {reply.text}
               </Button>
