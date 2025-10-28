@@ -11,9 +11,10 @@ import {
   Pencil,
   X,
 } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { conversationsData } from '@/lib/conversations';
-import { useState } from 'react';
+import { getMessagingHeaderAvatar } from '@/lib/avatar';
 
 export const Messaging = () => {
   const [isMessageBarOpen, setIsMessageBarOpen] = useState(false);
@@ -22,6 +23,12 @@ export const Messaging = () => {
   >(null);
   const [isChatBoxOpen, setIsChatBoxOpen] = useState(false);
   const [isChatBoxMaximized, setIsChatBoxMaximized] = useState(false);
+  const [avatarSrc, setAvatarSrc] = useState<string>('');
+
+  // Generate avatar only after hydration to avoid SSR mismatch
+  useEffect(() => {
+    setAvatarSrc(getMessagingHeaderAvatar());
+  }, []);
 
   const handleSelectConversation = (conversationId: string) => {
     setSelectedConversation(conversationId);
@@ -43,8 +50,11 @@ export const Messaging = () => {
           >
             <div className="relative mr-2">
               <img
-                src="/acak.jpg"
-                alt="Syazani"
+                src={
+                  avatarSrc ||
+                  'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNmM2Y0ZjYiLz4KPC9zdmc+'
+                }
+                alt="Messaging"
                 className="w-8 h-8 rounded-full"
               />
               <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
