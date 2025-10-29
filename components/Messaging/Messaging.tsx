@@ -1,9 +1,10 @@
 'use client';
 
+import { useEffect, useState } from 'react';
+
 import { FloatingChatDesktop } from '@/components/Messaging/FloatingChatDesktop';
 import { FloatingChatMobile } from '@/components/Messaging/FloatingChatMobile';
 import dynamic from 'next/dynamic';
-import { useState } from 'react';
 
 const MessageBar = dynamic(
   () => import('@/components/Messaging/MessageBar').then(mod => mod.MessageBar),
@@ -12,6 +13,17 @@ const MessageBar = dynamic(
 
 export const Messaging = () => {
   const [openConversations, setOpenConversations] = useState<string[]>([]);
+  const [mounted, setMounted] = useState(false);
+  const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+    const mql = window.matchMedia('(max-width: 639px)');
+    const update = () => setIsSmallScreen(mql.matches);
+    update();
+    mql.addEventListener('change', update);
+    return () => mql.removeEventListener('change', update);
+  }, []);
 
   const openConversation = (conversationId: string) => {
     setOpenConversations(prev => {
@@ -33,16 +45,20 @@ export const Messaging = () => {
     setOpenConversations(prev => prev.filter(id => id !== conversationId));
   };
 
+  if (!mounted) return null;
+
   return (
     <>
       <MessageBar onSelectConversation={openConversation} />
 
-      <div className="sm:hidden">
-        <FloatingChatMobile
-          conversationId={openConversations[0] ?? null}
-          onClose={() => setOpenConversations([])}
-        />
-      </div>
+      {isSmallScreen && (
+        <div className="sm:hidden">
+          <FloatingChatMobile
+            conversationId={openConversations[0] ?? null}
+            onClose={() => setOpenConversations([])}
+          />
+        </div>
+      )}
 
       <div className="hidden sm:block">
         {openConversations.map((id, index) => (
