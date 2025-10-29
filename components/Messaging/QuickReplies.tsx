@@ -17,7 +17,7 @@ export const QuickReplies = ({
   }
 
   return (
-    <div className="flex flex-wrap gap-2">
+    <div className="flex w-full flex-wrap justify-end gap-2">
       {quickReplies.map((reply, index) => (
         <Button
           key={`${reply.nextState}-${index}`}
