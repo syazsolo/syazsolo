@@ -4,9 +4,11 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ConversationData, QuickReply } from '@/lib/conversations';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
+import { BotMessage } from '@/components/Messaging/BotMessage';
 import { QuickReplies } from '@/components/Messaging/QuickReplies';
+import { TypingIndicator } from '@/components/Messaging/TypingIndicator';
+import { UserMessage } from '@/components/Messaging/UserMessage';
 import { getSharedAvatarUrl } from '@/lib/avatar';
-import { parseFormattedText } from '@/lib/utils';
 
 type Message = {
   sender: 'user' | 'bot';
@@ -21,7 +23,7 @@ interface MessageAreaProps {
   quickReplies: QuickReply[];
   onQuickReply: (
     text: string,
-    nextState: string,
+    nextState: string | undefined,
     message?: string | string[]
   ) => void;
   isWaitingForResponse: boolean;
@@ -74,46 +76,20 @@ export const MessageArea = ({
         const isLastUserMessage = index === lastUserMessageIndex;
         const isUser = msg.sender === 'user';
 
+        if (isUser) {
+          return (
+            <UserMessage
+              key={index}
+              text={msg.text}
+              userAvatarSrc={userAvatarSrc}
+              isLastUserMessage={isLastUserMessage}
+              lastUserMessageRef={lastUserMessageRef}
+            />
+          );
+        }
+
         return (
-          <div
-            key={index}
-            ref={isLastUserMessage ? lastUserMessageRef : null}
-            className={`flex items-start gap-2 scroll-mt-2 ${isUser ? 'justify-end' : ''}`}
-          >
-            {!isUser && (
-              <Avatar className="w-6 h-6">
-                <AvatarImage
-                  src={conversation.avatar}
-                  alt={conversation.name}
-                />
-                <AvatarFallback>{conversation.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-            )}
-            <div className="flex flex-col sm:max-w-[80%] max-w-[85%]">
-              <div
-                className={`rounded-2xl px-3 py-2 text-sm ${
-                  isUser
-                    ? 'bg-primary text-primary-foreground'
-                    : 'bg-card text-foreground'
-                }`}
-              >
-                {parseFormattedText(msg.text).map((part, index) => (
-                  <span
-                    key={index}
-                    className={`${part.italic ? 'italic' : ''} ${part.bold ? 'font-bold' : ''}`}
-                  >
-                    {part.text}
-                  </span>
-                ))}
-              </div>
-            </div>
-            {isUser && (
-              <Avatar className="w-6 h-6">
-                <AvatarImage src={userAvatarSrc} alt="You" />
-                <AvatarFallback>Y</AvatarFallback>
-              </Avatar>
-            )}
-          </div>
+          <BotMessage key={index} conversation={conversation} text={msg.text} />
         );
       })}
       {areQuickRepliesVisible && (
@@ -131,22 +107,14 @@ export const MessageArea = ({
             <AvatarFallback>{conversation.name.charAt(0)}</AvatarFallback>
           </Avatar>
           <div className="rounded-2xl px-3 py-2 text-sm bg-card text-foreground">
-            <span className="typing">
-              <span className="typing-dot" />
-              <span className="typing-dot" />
-              <span className="typing-dot" />
-            </span>
+            <TypingIndicator />
           </div>
         </div>
       )}
       {isUserTyping && (
         <div className="flex items-start gap-2 justify-end">
           <div className="rounded-2xl px-3 py-2 text-sm bg-primary text-primary-foreground">
-            <span className="typing">
-              <span className="typing-dot" />
-              <span className="typing-dot" />
-              <span className="typing-dot" />
-            </span>
+            <TypingIndicator />
           </div>
           <Avatar className="w-6 h-6">
             <AvatarImage src={userAvatarSrc} alt="You" />

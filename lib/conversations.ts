@@ -3,7 +3,7 @@ import syazaniConversation from './data/conversations/syazani.json';
 
 export interface QuickReply {
   text: string;
-  nextState: string;
+  nextState?: string;
   message?: string | string[];
 }
 
@@ -79,7 +79,7 @@ export const getInitialMessage = (
 export const getConversationQuickReplies = (
   conversation: ConversationData,
   currentState: string
-): Array<{ text: string; nextState: string }> => {
+): QuickReply[] => {
   if (!conversation?.states) {
     return [];
   }

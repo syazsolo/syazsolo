@@ -8,7 +8,7 @@ interface QuickRepliesProps {
   quickReplies: QuickReply[];
   onQuickReply: (
     text: string,
-    nextState: string,
+    nextState: string | undefined,
     message?: string | string[]
   ) => void;
 }

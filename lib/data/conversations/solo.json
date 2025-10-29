@@ -43,7 +43,7 @@
       "message": ["__laughs__", "What is it? Some kind of local trouble?"],
       "quickReplies": [
         {
-          "text": "Let's avoid Imperial entanglements.",
+          "text": "We don't want trouble.",
           "message": "Let's just say we'd like to avoid any Imperial entanglements.",
           "nextState": "entanglements"
         }
