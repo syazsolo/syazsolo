@@ -31,7 +31,6 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
             alt="Messaging"
             className="w-8 h-8 rounded-full"
           />
-          <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-white"></div>
         </div>
         <span className="text-sm font-semibold text-gray-900 mr-1 flex-1">
           Messaging

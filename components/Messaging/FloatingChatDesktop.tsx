@@ -18,10 +18,16 @@ export const FloatingChatDesktop = ({
   offsetIndex = 0,
 }: FloatingChatDesktopProps) => {
   const [isMaximized, setIsMaximized] = useState(false);
-  const isOpen = !!conversationId;
+  const [isVisible, setIsVisible] = useState(true);
+  const isOpen = !!conversationId && isVisible;
 
   const handleClose = () => {
-    onClose();
+    setIsVisible(false);
+    setTimeout(() => {
+      onClose();
+      // Reset so if reopened it animates in again
+      setIsVisible(true);
+    }, 350);
   };
 
   if (!conversationId) {
@@ -32,7 +38,7 @@ export const FloatingChatDesktop = ({
     <AnimatePresence mode="popLayout">
       {isOpen && (
         <motion.div
-          className={`fixed z-50 bg-white border border-gray-300 shadow-2xl text-gray-900 flex flex-col ${
+          className={`fixed z-50 bg-white border border-gray-300 shadow-2xl text-gray-900 flex flex-col overflow-hidden ${
             isMaximized
               ? 'inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg'
               : 'bottom-0 w-80 h-96 rounded-lg'
