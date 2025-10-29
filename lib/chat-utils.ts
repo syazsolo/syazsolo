@@ -20,10 +20,7 @@ export function isEndOfConversation({
     return false;
   }
 
-  // Optional guard: ensure bot had the last word
-  if (lastMessageSender && lastMessageSender !== 'bot') {
-    return false;
-  }
-
+  // If there are no more quick replies and no one is typing/waiting,
+  // consider the conversation ended regardless of who sent the last message.
   return true;
 }

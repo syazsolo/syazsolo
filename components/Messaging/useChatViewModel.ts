@@ -8,14 +8,16 @@ import {
   useCurrentState,
   useIsUserTyping,
   useIsWaitingForResponse,
+  useIsTerminal,
 } from '@/lib/chat-state';
 import { useEffect, useRef } from 'react';
 
-import { useChatLogic } from '@/components/Messaging/useChatLogic';
+import { isEndOfConversation } from '@/lib/chat-utils';
+import { useConversationFlow } from '@/components/Messaging/useConversationFlow';
 
 const SCROLL_DELAY = 50;
 
-export const useChat = (conversationId: string = 'syazani') => {
+export const useChatViewModel = (conversationId: string = 'syazani') => {
   const conversation: ConversationData =
     conversationsData[conversationId] || conversationsData.syazani;
 
@@ -24,13 +26,11 @@ export const useChat = (conversationId: string = 'syazani') => {
   const isWaitingForResponse = useIsWaitingForResponse(conversationId);
   const isUserTyping = useIsUserTyping(conversationId);
   const areQuickRepliesVisible = useAreQuickRepliesVisible(conversationId);
+  const isTerminal = useIsTerminal(conversationId);
   const { setAreQuickRepliesVisible, init } = useChatActions(conversationId);
 
-  const { handleQuickReply, currentQuickReplies } = useChatLogic(
-    conversation,
-    currentState,
-    conversationId
-  );
+  const { handleQuickReply, currentQuickReplies, restartConversation } =
+    useConversationFlow(conversation, currentState, conversationId);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const lastUserMessageRef = useRef<HTMLDivElement>(null);
@@ -85,6 +85,17 @@ export const useChat = (conversationId: string = 'syazani') => {
     }
   }, [messages]);
 
+  const endOfConversation = isEndOfConversation({
+    currentQuickRepliesCount: currentQuickReplies.length,
+    isWaitingForResponse,
+    isUserTyping,
+    lastMessageSender: messages[messages.length - 1]?.sender as
+      | 'user'
+      | 'bot'
+      | undefined,
+  });
+  const effectiveEndOfConversation = isTerminal || endOfConversation;
+
   return {
     conversation,
     messages,
@@ -95,5 +106,9 @@ export const useChat = (conversationId: string = 'syazani') => {
     lastUserMessageRef,
     currentQuickReplies,
     handleQuickReply,
+    endOfConversation: effectiveEndOfConversation,
+    restartConversation,
   };
 };
+
+

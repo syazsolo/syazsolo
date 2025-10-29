@@ -1,3 +1,5 @@
+'use client';
+
 import {
   ConversationData,
   getConversationQuickReplies,
@@ -6,20 +8,10 @@ import {
 } from '@/lib/conversations';
 import { useEffect, useRef } from 'react';
 
+import { calculateTypingDelay } from '@/lib/typing-utils';
 import { useChatActions } from '@/lib/chat-state';
 
-const BOT_RESPONSE_DELAY_BASE = 600;
-const BOT_RESPONSE_DELAY_PER_CHAR = 20;
-const BOT_RESPONSE_DELAY_MAX = 3000;
-
-const calculateTypingDelay = (text: string): number => {
-  const charCount = text.length;
-  const delay =
-    BOT_RESPONSE_DELAY_BASE + charCount * BOT_RESPONSE_DELAY_PER_CHAR;
-  return Math.min(delay, BOT_RESPONSE_DELAY_MAX);
-};
-
-export const useChatLogic = (
+export const useConversationFlow = (
   conversation: ConversationData,
   currentState: string,
   conversationId: string
@@ -31,6 +23,7 @@ export const useChatLogic = (
     setIsWaitingForResponse,
     setIsUserTyping,
     setAreQuickRepliesVisible,
+    setIsTerminal,
     reset,
   } = useChatActions(conversationId);
   const timeoutsRef = useRef<number[]>([]);
@@ -44,6 +37,7 @@ export const useChatLogic = (
 
   useEffect(() => {
     reset();
+    setIsTerminal(false);
     const initialState = conversation.initialState;
     const state = conversation.states[initialState];
     const message = getInitialMessage(state.message);
@@ -69,7 +63,14 @@ export const useChatLogic = (
       }, accumulatedDelay);
       timeoutsRef.current.push(id);
     });
-  }, [conversation.id]);
+  }, [
+    conversation.id,
+    reset,
+    setMessages,
+    setCurrentState,
+    setIsWaitingForResponse,
+    setIsTerminal,
+  ]);
 
   const handleQuickReply = (
     replyText: string,
@@ -104,7 +105,11 @@ export const useChatLogic = (
             setIsUserTyping(false);
           }
           if (nextState) {
+            setIsTerminal(false);
             processBotResponse(nextState);
+          } else {
+            // No next state: mark conversation as terminal without mutating currentState
+            setIsTerminal(true);
           }
         }
       }, accumulatedDelay);
@@ -150,8 +155,45 @@ export const useChatLogic = (
     currentState
   );
 
+  const restartConversation = () => {
+    const initialState = conversation.initialState;
+    const state = (conversation as any).states?.[initialState];
+    if (!state?.message) return;
+
+    addMessage({ sender: 'bot', text: '__divider__' });
+    setCurrentState(initialState);
+    setAreQuickRepliesVisible(false);
+    setIsTerminal(false);
+
+    if (Array.isArray(state.message)) {
+      const first = getInitialMessage(state.message);
+      addMessage({ sender: 'bot', text: first });
+
+      const remaining = state.message.slice(1);
+      if (remaining.length > 0) {
+        setIsWaitingForResponse(true);
+        let accumulated = 0;
+        remaining.forEach((item: string | string[], index: number) => {
+          const text = Array.isArray(item) ? item[0] : item;
+          const delay = calculateTypingDelay(text);
+          accumulated += delay;
+          window.setTimeout(() => {
+            addMessage({ sender: 'bot', text });
+            if (index === remaining.length - 1) {
+              setIsWaitingForResponse(false);
+            }
+          }, accumulated);
+        });
+      }
+    } else {
+      const text = state.message as string;
+      addMessage({ sender: 'bot', text });
+    }
+  };
+
   return {
     handleQuickReply,
     currentQuickReplies,
+    restartConversation,
   };
 };

@@ -12,6 +12,7 @@ interface ConversationState {
   isWaitingForResponse: boolean;
   isUserTyping: boolean;
   areQuickRepliesVisible: boolean;
+  isTerminal: boolean;
 }
 
 interface RootChatStore {
@@ -24,6 +25,7 @@ interface RootChatStore {
     setIsWaitingForResponse: (id: string, isWaiting: boolean) => void;
     setIsUserTyping: (id: string, isTyping: boolean) => void;
     setAreQuickRepliesVisible: (id: string, isVisible: boolean) => void;
+    setIsTerminal: (id: string, isTerminal: boolean) => void;
     reset: (id: string) => void;
   };
 }
@@ -34,6 +36,7 @@ const createEmptyConversation = (): ConversationState => ({
   isWaitingForResponse: false,
   isUserTyping: false,
   areQuickRepliesVisible: false,
+  isTerminal: false,
 });
 
 const EMPTY_MESSAGES: Message[] = [];
@@ -107,6 +110,16 @@ const useChatStore = create<RootChatStore>(set => ({
           },
         },
       })),
+    setIsTerminal: (id, isTerminal) =>
+      set(state => ({
+        conversations: {
+          ...state.conversations,
+          [id]: {
+            ...(state.conversations[id] ?? createEmptyConversation()),
+            isTerminal,
+          },
+        },
+      })),
     reset: id =>
       set(state => ({
         conversations: {
@@ -129,6 +142,8 @@ export const useAreQuickRepliesVisible = (id: string) =>
   useChatStore(
     state => state.conversations[id]?.areQuickRepliesVisible ?? false
   );
+export const useIsTerminal = (id: string) =>
+  useChatStore(state => state.conversations[id]?.isTerminal ?? false);
 
 export const useChatActions = (id: string) => {
   const actions = useChatStore(state => state.actions);
@@ -144,6 +159,8 @@ export const useChatActions = (id: string) => {
         actions.setIsUserTyping(id, isTyping),
       setAreQuickRepliesVisible: (isVisible: boolean) =>
         actions.setAreQuickRepliesVisible(id, isVisible),
+      setIsTerminal: (isTerminal: boolean) =>
+        actions.setIsTerminal(id, isTerminal),
       reset: () => actions.reset(id),
       init: () => actions.init(id),
     }),

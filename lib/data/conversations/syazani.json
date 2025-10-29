@@ -5,8 +5,7 @@
   "initialState": "welcome",
   "states": {
     "welcome": {
-      "message": "Hi! I'm Syazani.",
-      "quickReplies": [{ "text": "Restart", "nextState": "welcome" }]
+      "message": "Hi! I'm Syazani."
     }
   }
 }
