@@ -9,10 +9,17 @@ export const Messaging = () => {
     string | null
   >(null);
 
+  const handleCloseChat = () => {
+    setSelectedConversation(null);
+  };
+
   return (
     <>
       <MessageBar onSelectConversation={setSelectedConversation} />
-      <ChatBox conversationId={selectedConversation} />
+      <ChatBox
+        conversationId={selectedConversation}
+        onClose={handleCloseChat}
+      />
     </>
   );
 };

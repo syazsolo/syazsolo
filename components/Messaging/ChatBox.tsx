@@ -9,9 +9,10 @@ import { conversationsData } from '@/lib/conversations';
 
 interface ChatBoxProps {
   conversationId: string | null;
+  onClose: () => void;
 }
 
-export const ChatBox = ({ conversationId }: ChatBoxProps) => {
+export const ChatBox = ({ conversationId, onClose }: ChatBoxProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
 
@@ -22,6 +23,11 @@ export const ChatBox = ({ conversationId }: ChatBoxProps) => {
       setIsOpen(false);
     }
   }, [conversationId]);
+
+  const handleClose = () => {
+    setIsOpen(false);
+    onClose();
+  };
 
   if (!conversationId) return null;
 
@@ -66,7 +72,7 @@ export const ChatBox = ({ conversationId }: ChatBoxProps) => {
             </div>
             <div className="flex items-center gap-1">
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="p-1 hover:bg-gray-200 rounded"
                 aria-label="Minimize"
               >
@@ -80,7 +86,7 @@ export const ChatBox = ({ conversationId }: ChatBoxProps) => {
                 <Maximize size={14} />
               </button>
               <button
-                onClick={() => setIsOpen(false)}
+                onClick={handleClose}
                 className="p-1 hover:bg-red-100 rounded"
                 aria-label="Close"
               >
