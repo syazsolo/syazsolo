@@ -42,7 +42,7 @@ export const MessageArea = ({
           <div
             key={index}
             ref={isLastUserMessage ? lastUserMessageRef : null}
-            className={`flex items-start gap-2 ${isUser ? 'justify-end' : ''}`}
+            className={`flex items-start gap-2 scroll-mt-2 ${isUser ? 'justify-end' : ''}`}
           >
             {!isUser && (
               <Avatar className="w-6 h-6">
