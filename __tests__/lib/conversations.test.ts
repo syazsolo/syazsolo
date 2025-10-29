@@ -172,7 +172,9 @@ describe('Conversation State Machine - Implementation Tests', () => {
           currentState
         );
 
-        if (quickReplies.length === 0) break;
+        if (quickReplies.length === 0) {
+          break;
+        }
 
         const reply = quickReplies[0];
         const response = getConversationResponse(
@@ -180,7 +182,9 @@ describe('Conversation State Machine - Implementation Tests', () => {
           reply.nextState
         );
 
-        if (!response.state) break;
+        if (!response.state) {
+          break;
+        }
 
         currentState = response.state;
         stateHistory.push(currentState);
@@ -367,7 +371,10 @@ describe('Conversation State Machine - Implementation Tests', () => {
     });
 
     it('should return default response for invalid conversation', () => {
-      const response = getConversationResponse(null as any, 'any-state');
+      const response = getConversationResponse(
+        null as unknown as ConversationData,
+        'any-state'
+      );
 
       expect(response.text).toBe(
         "Sorry, something went wrong. Let's start over."
@@ -385,7 +392,7 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
     it('should return empty array for invalid conversation', () => {
       const quickReplies = getConversationQuickReplies(
-        null as any,
+        null as unknown as ConversationData,
         'any-state'
       );
       expect(quickReplies).toEqual([]);
@@ -437,14 +444,14 @@ describe('Conversation State Machine - Implementation Tests', () => {
 
 describe('Mock Conversation Structure Validation', () => {
   it('Rule 1: Every state must have quickReplies array', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       expect(state.quickReplies).toBeDefined();
       expect(Array.isArray(state.quickReplies)).toBe(true);
     });
   });
 
   it('Rule 2: Every state must have a message', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       expect(state.message).toBeDefined();
       const isStringOrArray =
         typeof state.message === 'string' || Array.isArray(state.message);
@@ -453,7 +460,7 @@ describe('Mock Conversation Structure Validation', () => {
   });
 
   it('Rule 3: Every quick reply must have text and nextState', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       state.quickReplies.forEach(reply => {
         expect(reply.text).toBeDefined();
         expect(reply.nextState).toBeDefined();
@@ -464,7 +471,7 @@ describe('Mock Conversation Structure Validation', () => {
   });
 
   it('Rule 4: If nextState is provided, it should be a valid state', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       state.quickReplies.forEach(reply => {
         expect(mockConversation.states[reply.nextState]).toBeDefined();
       });
@@ -484,7 +491,9 @@ describe('Mock Conversation Structure Validation', () => {
 
     while (queue.length > 0) {
       const currentState = queue.shift()!;
-      if (visited.has(currentState)) continue;
+      if (visited.has(currentState)) {
+        continue;
+      }
 
       visited.add(currentState);
 
@@ -502,7 +511,7 @@ describe('Mock Conversation Structure Validation', () => {
   });
 
   it('Rule 7: One-to-many messages must have at least one option', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       if (Array.isArray(state.message)) {
         expect(state.message.length).toBeGreaterThan(0);
       }
@@ -510,7 +519,7 @@ describe('Mock Conversation Structure Validation', () => {
   });
 
   it('Rule 8: All quick reply nextStates should be unique within a state', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       const nextStates = state.quickReplies.map(qr => qr.nextState);
       const uniqueNextStates = new Set(nextStates);
       expect(nextStates.length).toBe(uniqueNextStates.size);
@@ -526,7 +535,7 @@ describe('Mock Conversation Structure Validation', () => {
   });
 
   it('Rule 10: All states should have at least one quick reply', () => {
-    Object.entries(mockConversation.states).forEach(([stateName, state]) => {
+    Object.entries(mockConversation.states).forEach(([_stateName, state]) => {
       expect(state.quickReplies.length).toBeGreaterThan(0);
     });
   });

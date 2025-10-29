@@ -1,10 +1,10 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
+import { useState } from 'react';
 
 interface FloatingChatDesktopProps {
   conversationId: string | null;
@@ -17,19 +17,10 @@ export const FloatingChatDesktop = ({
   onClose,
   offsetIndex = 0,
 }: FloatingChatDesktopProps) => {
-  const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
-
-  useEffect(() => {
-    if (conversationId) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  }, [conversationId]);
+  const isOpen = !!conversationId;
 
   const handleClose = () => {
-    setIsOpen(false);
     onClose();
   };
 

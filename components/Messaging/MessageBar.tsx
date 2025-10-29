@@ -2,10 +2,10 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
-import { useEffect, useState } from 'react';
 
 import { ConversationList } from '@/components/Messaging/ConversationList';
 import { getMessagingHeaderAvatar } from '@/lib/avatar';
+import { useState } from 'react';
 
 interface MessageBarProps {
   onSelectConversation: (conversationId: string) => void;
@@ -13,11 +13,7 @@ interface MessageBarProps {
 
 export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [avatarSrc, setAvatarSrc] = useState<string>('');
-
-  useEffect(() => {
-    setAvatarSrc(getMessagingHeaderAvatar());
-  }, []);
+  const avatarSrc = getMessagingHeaderAvatar();
 
   return (
     <div className="fixed bottom-0 z-40 w-full sm:w-72 left-0 right-0 sm:left-auto sm:right-4 px-2 sm:px-0">

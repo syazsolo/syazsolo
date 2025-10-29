@@ -49,7 +49,7 @@ const Header = () => {
                   Did you know LinkedIn has a dark mode option?
                   <br />
                   <br />
-                  It's in Settings & Privacy &gt; Account preferences &gt;
+                  It&apos;s in Settings & Privacy &gt; Account preferences &gt;
                   Display &gt; Dark Mode.
                 </div>
               </TooltipContent>

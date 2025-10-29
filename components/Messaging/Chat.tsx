@@ -1,9 +1,7 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
   ConversationData,
-  QuickReply,
   conversationsData,
   getConversationQuickReplies,
   getConversationResponse,
@@ -11,7 +9,6 @@ import {
 import { useEffect, useRef, useState } from 'react';
 
 import { MessageArea } from '@/components/Messaging/MessageArea';
-import { QuickReplies } from '@/components/Messaging/QuickReplies';
 
 type Message = {
   sender: 'user' | 'bot';
@@ -21,34 +18,35 @@ type Message = {
 const BOT_RESPONSE_DELAY = 1000;
 const SCROLL_DELAY = 50;
 
+const getInitialMessage = (conversation: ConversationData) => {
+  const initialState = conversation.initialState;
+  const state = conversation.states[initialState];
+  const message = Array.isArray(state.message)
+    ? state.message[Math.floor(Math.random() * state.message.length)]
+    : state.message;
+  return { message, state: initialState };
+};
+
 export const Chat = ({
   conversationId = 'syazani',
 }: {
   conversationId?: string;
 }) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [currentState, setCurrentState] = useState<string>('');
-  const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
-  const messagesEndRef = useRef<HTMLDivElement>(null);
-  const lastUserMessageRef = useRef<HTMLDivElement>(null);
   const conversation: ConversationData =
     conversationsData[conversationId] || conversationsData.syazani;
 
-  useEffect(() => {
-    const initialState = conversation.initialState;
-    const state = conversation.states[initialState];
-    const initialMessage = Array.isArray(state.message)
-      ? state.message[Math.floor(Math.random() * state.message.length)]
-      : state.message;
+  const [messages, setMessages] = useState<Message[]>(() => {
+    const { message } = getInitialMessage(conversation);
+    return [{ sender: 'bot', text: message }];
+  });
 
-    setMessages([
-      {
-        sender: 'bot',
-        text: initialMessage,
-      },
-    ]);
-    setCurrentState(initialState);
-  }, [conversationId]);
+  const [currentState, setCurrentState] = useState<string>(
+    () => getInitialMessage(conversation).state
+  );
+
+  const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+  const lastUserMessageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (messages.length === 1) {

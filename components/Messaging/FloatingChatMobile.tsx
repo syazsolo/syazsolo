@@ -1,10 +1,10 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
+import { useEffect } from 'react';
 
 interface FloatingChatMobileProps {
   conversationId: string | null;
@@ -15,15 +15,7 @@ export const FloatingChatMobile = ({
   conversationId,
   onClose,
 }: FloatingChatMobileProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    if (conversationId) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  }, [conversationId]);
+  const isOpen = !!conversationId;
 
   useEffect(() => {
     if (isOpen) {
@@ -44,7 +36,6 @@ export const FloatingChatMobile = ({
   }, [isOpen]);
 
   const handleClose = () => {
-    setIsOpen(false);
     onClose();
   };
 
