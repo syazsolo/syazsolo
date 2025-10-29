@@ -6,7 +6,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { QuickReplies } from '@/components/Messaging/QuickReplies';
 import { getSharedAvatarUrl } from '@/lib/avatar';
-import { parseItalicText } from '@/lib/utils';
+import { parseFormattedText } from '@/lib/utils';
 
 type Message = {
   sender: 'user' | 'bot';
@@ -97,8 +97,11 @@ export const MessageArea = ({
                     : 'bg-card text-foreground'
                 }`}
               >
-                {parseItalicText(msg.text).map((part, index) => (
-                  <span key={index} className={part.italic ? 'italic' : ''}>
+                {parseFormattedText(msg.text).map((part, index) => (
+                  <span
+                    key={index}
+                    className={`${part.italic ? 'italic' : ''} ${part.bold ? 'font-bold' : ''}`}
+                  >
                     {part.text}
                   </span>
                 ))}

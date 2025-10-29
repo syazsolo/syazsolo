@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { QuickReply } from '@/lib/conversations';
-import { parseItalicText } from '@/lib/utils';
+import { parseFormattedText } from '@/lib/utils';
 
 interface QuickRepliesProps {
   quickReplies: QuickReply[];
@@ -37,8 +37,11 @@ export const QuickReplies = ({
               onQuickReply(reply.text, reply.nextState, reply.message)
             }
           >
-            {parseItalicText(reply.text).map((part, i) => (
-              <span key={i} className={part.italic ? 'italic' : ''}>
+            {parseFormattedText(reply.text).map((part, i) => (
+              <span
+                key={i}
+                className={`${part.italic ? 'italic' : ''} ${part.bold ? 'font-bold' : ''}`}
+              >
                 {part.text}
               </span>
             ))}

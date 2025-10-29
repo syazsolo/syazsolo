@@ -5,45 +5,46 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-export function parseItalicText(
+export function parseFormattedText(
   text: string
-): Array<{ text: string; italic: boolean }> {
-  const parts: Array<{ text: string; italic: boolean }> = [];
+): Array<{ text: string; italic: boolean; bold: boolean }> {
+  const parts: Array<{ text: string; italic: boolean; bold: boolean }> = [];
   let currentIndex = 0;
 
-  // Match text wrapped in double underscores (WhatsApp style)
-  const italicRegex = /__([^_]+)__/g;
-  let match;
+  // Match either __italic__ or *bold*
+  const combinedRegex = /__([^_]+)__|\*([^*]+)\*/g;
+  let match: RegExpExecArray | null;
 
-  while ((match = italicRegex.exec(text)) !== null) {
-    // Add text before the italic part
+  while ((match = combinedRegex.exec(text)) !== null) {
     if (match.index > currentIndex) {
       parts.push({
         text: text.slice(currentIndex, match.index),
         italic: false,
+        bold: false,
       });
     }
 
-    // Add the italic part
+    const italicGroup = match[1];
+    const boldGroup = match[2];
     parts.push({
-      text: match[1],
-      italic: true,
+      text: italicGroup ?? boldGroup ?? '',
+      italic: Boolean(italicGroup),
+      bold: Boolean(boldGroup),
     });
 
     currentIndex = match.index + match[0].length;
   }
 
-  // Add remaining text after the last match
   if (currentIndex < text.length) {
     parts.push({
       text: text.slice(currentIndex),
       italic: false,
+      bold: false,
     });
   }
 
-  // If no italic text found, return the original text
   if (parts.length === 0) {
-    parts.push({ text, italic: false });
+    parts.push({ text, italic: false, bold: false });
   }
 
   return parts;
