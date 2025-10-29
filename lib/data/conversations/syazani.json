@@ -1,0 +1,281 @@
+{
+  "id": "syazani",
+  "name": "Syazani",
+  "avatar": "/acak.jpg",
+  "initialState": "welcome",
+  "states": {
+    "welcome": {
+      "message": "Hi! I'm Syazani. Ask me anything about my work, skills, or experience. I'll answer directly here.",
+      "quickReplies": [
+        { "text": "Who are you?", "nextState": "about_me" },
+        { "text": "What are your skills?", "nextState": "skills_deep" },
+        { "text": "What's your experience?", "nextState": "experience_deep" },
+        { "text": "How do I contact you?", "nextState": "contact_deep" }
+      ]
+    },
+    "about_me": {
+      "message": "I'm Syazani Zulkhairi, a passionate software engineer specializing in full-stack development. I love creating innovative solutions and working with modern technologies like React, Node.js, and cloud platforms.",
+      "quickReplies": [
+        { "text": "What are your hobbies?", "nextState": "hobbies_deep" },
+        { "text": "What are your career goals?", "nextState": "goals_deep" },
+        { "text": "Tell me a fun fact about you!", "nextState": "fun_facts" },
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "skills_deep": {
+      "message": "I'm skilled in React, Next.js, Node.js, TypeScript, Java, Python, and various cloud platforms like AWS and Azure. I also have experience with mobile app development and enjoy working on both frontend and backend projects.",
+      "quickReplies": [
+        {
+          "text": "What's your favorite technology?",
+          "nextState": "tech_deep"
+        },
+        { "text": "What are you learning now?", "nextState": "learning_deep" },
+        {
+          "text": "Tell me about your projects!",
+          "nextState": "projects_deep"
+        },
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "experience_deep": {
+      "message": "I have several years of experience in software development, working on various projects from web applications to mobile apps. I've worked with different teams and technologies, always focusing on delivering quality solutions.",
+      "quickReplies": [
+        {
+          "text": "What was your biggest challenge?",
+          "nextState": "challenges_deep"
+        },
+        {
+          "text": "What are you most proud of?",
+          "nextState": "achievements_deep"
+        },
+        { "text": "Tell me about teamwork!", "nextState": "team_deep" },
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "contact_deep": {
+      "message": "You can reach me through LinkedIn, email, or connect with me here! I'm always interested in discussing new opportunities and interesting projects.",
+      "quickReplies": [
+        { "text": "Want to collaborate?", "nextState": "collaboration" },
+        { "text": "Are you available for work?", "nextState": "hiring" },
+        { "text": "Let's network!", "nextState": "networking" },
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "hobbies_deep": {
+      "message": "I love coding (obviously! 😄), but I also enjoy gaming, reading sci-fi novels, and exploring new technologies. When I'm not coding, you might find me playing strategy games or learning about the latest AI developments.",
+      "quickReplies": [
+        { "text": "What games do you play?", "nextState": "gaming_deep" },
+        { "text": "Favorite sci-fi books?", "nextState": "books_deep" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "goals_deep": {
+      "message": "My goal is to become a tech lead and eventually a CTO. I want to build amazing products that solve real-world problems and mentor other developers along the way. I'm particularly interested in AI/ML and how it can revolutionize software development.",
+      "quickReplies": [
+        { "text": "Tell me about AI/ML!", "nextState": "ai_deep" },
+        { "text": "How do you mentor?", "nextState": "mentoring_deep" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "gaming_deep": {
+      "message": "I love strategy games like Civilization VI and Total War series! Also into RPGs like Cyberpunk 2077 and indie games. Gaming actually helps me think about user experience and problem-solving in different ways.",
+      "quickReplies": [
+        {
+          "text": "Any game recommendations?",
+          "nextState": "game_recommendations"
+        },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "game_recommendations": {
+      "message": "If you like strategy, try Civilization VI or Total War: Warhammer. For RPGs, Cyberpunk 2077 is amazing now! For indie games, check out Hades or Hollow Knight. Gaming teaches you problem-solving and user experience design - it's like interactive coding!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "books_deep": {
+      "message": "I'm a huge fan of Isaac Asimov's Foundation series and Philip K. Dick's work! Currently reading 'The Three-Body Problem' trilogy. Sci-fi helps me think about the future of technology and its impact on society.",
+      "quickReplies": [
+        {
+          "text": "Any book recommendations?",
+          "nextState": "book_recommendations"
+        },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "book_recommendations": {
+      "message": "Start with Isaac Asimov's Foundation series - it's about predicting the future with math! Then try Philip K. Dick's 'Do Androids Dream of Electric Sheep?' (Blade Runner). For modern sci-fi, 'The Three-Body Problem' trilogy is mind-blowing!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "ai_deep": {
+      "message": "AI/ML is fascinating! I'm particularly interested in how it can automate repetitive coding tasks, improve code quality, and help developers focus on creative problem-solving. I'm experimenting with AI code assistants and building tools that make development more efficient.",
+      "quickReplies": [
+        {
+          "text": "Tell me about your AI projects!",
+          "nextState": "ai_projects"
+        },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "ai_projects": {
+      "message": "I'm building an AI code reviewer that suggests improvements automatically! Also experimenting with LangChain to create intelligent documentation generators. The future is AI-assisted development - imagine having a coding partner that never gets tired and knows every library!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "mentoring_deep": {
+      "message": "Mentoring is incredibly rewarding! I believe in hands-on guidance, code reviews, and creating a safe space for questions. I've helped junior developers grow from basic concepts to building full-stack applications. Seeing someone's 'aha!' moment is the best feeling!",
+      "quickReplies": [
+        { "text": "Any mentoring tips?", "nextState": "mentoring_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "mentoring_tips": {
+      "message": "Be patient and encouraging! Start with small wins, celebrate progress, and always explain the 'why' behind decisions. Create a safe space for questions - there are no stupid questions! The best mentors are the ones who remember what it's like to be a beginner.",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "tech_deep": {
+      "message": "React is definitely my favorite! I love how it makes building interactive UIs so intuitive. But I'm also really excited about Next.js 14+ with its app router and server components. TypeScript is a close second - it's like having a safety net for your code!",
+      "quickReplies": [
+        { "text": "Any React tips?", "nextState": "react_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "react_tips": {
+      "message": "Use TypeScript! It's a game-changer. Learn React Query for data fetching, Zustand for state management, and always use proper error boundaries. The React ecosystem moves fast, but the fundamentals stay the same. And remember: components should do one thing well!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "learning_deep": {
+      "message": "Right now I'm diving deep into AI/ML with Python, exploring LangChain for building AI applications, and getting better at system design. I'm also experimenting with WebAssembly and Rust for performance-critical applications.",
+      "quickReplies": [
+        { "text": "Any learning tips?", "nextState": "learning_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "learning_tips": {
+      "message": "Build projects! Don't just read tutorials - code along and then build something original. Join communities, contribute to open source, and don't be afraid to break things. The best way to learn is by doing. And remember: every expert was once a beginner!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "projects_deep": {
+      "message": "I've built everything from e-commerce platforms to real-time chat applications! My favorite project was a collaborative code editor with live cursors (like Google Docs but for code). Currently working on an AI-powered code review tool that suggests improvements automatically!",
+      "quickReplies": [
+        {
+          "text": "Show me your best project!",
+          "nextState": "project_showcase"
+        },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "project_showcase": {
+      "message": "My collaborative code editor is my pride and joy! It's like Google Docs but for code - real-time editing, live cursors, syntax highlighting, and even voice chat. Built with React, Node.js, WebSockets, and a lot of coffee! It's used by 50+ developers daily.",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "challenges_deep": {
+      "message": "My biggest challenge was scaling a web application from 100 to 100,000+ users in just 6 months! We had to completely redesign the architecture, implement caching strategies, and optimize database queries. It was intense but incredibly rewarding!",
+      "quickReplies": [
+        { "text": "Any scaling tips?", "nextState": "scaling_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "scaling_tips": {
+      "message": "Start with caching - Redis is your friend! Use CDNs for static assets, implement database indexing, and consider microservices for complex apps. Monitor everything with proper logging and metrics. And remember: premature optimization is the root of all evil!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "achievements_deep": {
+      "message": "I'm most proud of leading a team of 5 developers to build a real-time collaboration platform that's now used by 50+ companies. We went from concept to MVP in 3 months, and the feedback has been amazing!",
+      "quickReplies": [
+        { "text": "Any leadership tips?", "nextState": "leadership_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "leadership_tips": {
+      "message": "Lead by example! Be the first to arrive and the last to leave. Listen more than you speak, and always give credit where it's due. Create an environment where people feel safe to fail and learn. Great leaders make others feel like heroes!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "team_deep": {
+      "message": "I love working in teams! I believe the best code comes from collaboration and diverse perspectives. I've mentored junior developers and learned so much from senior engineers. Code reviews are my favorite part - they're like mini-lessons!",
+      "quickReplies": [
+        {
+          "text": "How do you build great teams?",
+          "nextState": "team_building"
+        },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "team_building": {
+      "message": "Hire for culture fit and potential, not just skills. Encourage knowledge sharing through code reviews and pair programming. Celebrate wins together and learn from failures as a team. The best teams are diverse, inclusive, and supportive of each other!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "collaboration": {
+      "message": "Absolutely! I'm always excited about new projects and collaborations. Whether it's open source, side projects, or innovative ideas - count me in! What did you have in mind?",
+      "quickReplies": [
+        {
+          "text": "Any collaboration tips?",
+          "nextState": "collaboration_tips"
+        },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "collaboration_tips": {
+      "message": "Communication is key! Use tools like Slack, GitHub, and Figma to stay in sync. Set clear expectations, document everything, and be open to feedback. The best collaborations happen when everyone feels heard and valued!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "hiring": {
+      "message": "I'm currently open to new opportunities! I'm looking for roles where I can make a real impact, work with cutting-edge technologies, and grow as a developer. Full-stack, frontend, or backend - I'm flexible!",
+      "quickReplies": [
+        { "text": "Any hiring tips?", "nextState": "hiring_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "hiring_tips": {
+      "message": "Look for passion and problem-solving skills, not just technical knowledge. Ask about their side projects and how they learn new technologies. The best developers are curious, adaptable, and always learning!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "networking": {
+      "message": "I'd love to connect! I'm always interested in meeting fellow developers, sharing knowledge, and learning about different approaches to problem-solving. Let's exchange ideas!",
+      "quickReplies": [
+        { "text": "Any networking tips?", "nextState": "networking_tips" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "networking_tips": {
+      "message": "Be genuine and helpful! Share knowledge, contribute to open source, and attend meetups. Don't just network for job opportunities - build real relationships. The best connections happen when you're not looking for anything in return!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    },
+    "fun_facts": {
+      "message": "Fun fact: I once debugged a production issue while on a roller coaster! 🎢 The adrenaline actually helped me think more clearly. Also, I can type 120+ WPM, which comes in handy when coding!",
+      "quickReplies": [
+        { "text": "Tell me more fun facts!", "nextState": "more_facts" },
+        { "text": "Go back", "nextState": "welcome" }
+      ]
+    },
+    "more_facts": {
+      "message": "I once fixed a critical bug in production while skydiving! 🪂 The adrenaline helped me think clearly. Also, I can recite the entire Lord of the Rings trilogy from memory, and I've never had a cup of coffee in my life - I run on pure code energy!",
+      "quickReplies": [
+        { "text": "Go back to main menu", "nextState": "welcome" }
+      ]
+    }
+  }
+}
