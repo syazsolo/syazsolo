@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 import { ConversationList } from '@/components/Messaging/ConversationList';
-import { generateRandomAvatar } from '@/lib/avatar';
+import { getSharedAvatarUrl } from '@/lib/avatar';
 import { useState } from 'react';
 
 interface MessageBarProps {
@@ -13,7 +13,7 @@ interface MessageBarProps {
 
 export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [avatarSrc] = useState(() => generateRandomAvatar());
+  const [avatarSrc] = useState(() => getSharedAvatarUrl());
 
   return (
     <div className="fixed bottom-0 z-40 w-full sm:w-72 left-0 right-0 sm:left-auto sm:right-4 px-2 sm:px-0">
@@ -24,10 +24,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
       >
         <div className="relative mr-2">
           <img
-            src={
-              avatarSrc ||
-              'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzIiIGhlaWdodD0iMzIiIHZpZXdCb3g9IjAgMCAzMiAzMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPGNpcmNsZSBjeD0iMTYiIGN5PSIxNiIgcj0iMTYiIGZpbGw9IiNmM2Y0ZjYiLz4KPC9zdmc+'
-            }
+            src={avatarSrc}
             alt="Messaging"
             className="w-8 h-8 rounded-full"
           />

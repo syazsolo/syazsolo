@@ -18,8 +18,12 @@ type Conversation = {
 const syazani = conversationsData.syazani;
 const solo = conversationsData.solo;
 
-const getInitialMessage = (message: string | string[]): string => {
-  return Array.isArray(message) ? message[0] : message;
+const getInitialMessage = (
+  message: string | Array<string | string[]>
+): string => {
+  if (!Array.isArray(message)) return message;
+  const first = message[0];
+  return Array.isArray(first) ? first[0] : first;
 };
 
 const conversations: Conversation[] = [

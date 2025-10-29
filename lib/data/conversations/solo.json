@@ -5,8 +5,74 @@
   "initialState": "welcome",
   "states": {
     "welcome": {
+      "message": [
+        "Han Solo.",
+        "I'm captain of the Millennium Falcon.",
+        "Chewie here told me you're looking for passage to the Alderaan system."
+      ],
+      "quickReplies": [
+        { "text": "Yes indeed. If it's a fast ship.", "nextState": "fast-ship" }
+      ]
+    },
+    "fast-ship": {
+      "message": "Fast ship? You've never heard of the Millennium Falcon?",
+      "quickReplies": [{ "text": "Should I have?", "nextState": "kessel-run" }]
+    },
+    "kessel-run": {
+      "message": [
+        "It's the ship that made the Kessel Run in less than 12 parsecs.",
+        "I've outrun Imperial starships. Not the local bulk cruisers, mind you. I'm talking about the big Corellian ships, now. She's fast enough for you, old man.",
+        "What's the cargo?"
+      ],
+      "quickReplies": [
+        {
+          "text": "Only passengers. Myself, the boy, two droids - and no questions asked.",
+          "nextState": "cargo"
+        }
+      ]
+    },
+    "cargo": {
+      "message": "What is it? Some kind of local trouble?",
+      "quickReplies": [
+        {
+          "text": "Let's just say we like to avoid any Imperial entanglements.",
+          "nextState": "entanglements"
+        }
+      ]
+    },
+    "entanglements": {
+      "message": [
+        "Well that's the real trick, isn't it? And it's going to cost you something extra.",
+        "10 thousand, all in advance."
+      ],
+      "quickReplies": [
+        {
+          "text": "10 thousand? We can almost buy our own ship for that.",
+          "nextState": "own-ship"
+        },
+        {
+          "text": "We can pay you 2 thousand now, plus 15, when we reach Alderaan.",
+          "nextState": "17-thousand"
+        }
+      ]
+    },
+    "own-ship": {
+      "message": "But who's going to fly it kid? You?",
+      "quickReplies": [
+        {
+          "text": "You bet I could, I'm not such a bad pilot myself, we don't have to sit here and (interrupted)...",
+          "nextState": "end-1"
+        }
+      ]
+    },
+    "end-1": {
       "message": "...",
-      "quickReplies": [{ "text": "Restart", "nextState": "welcome" }]
+      "quickReplies": [
+        {
+          "text": "We can pay you 2 thousand now, plus 15, when we reach Alderaan.",
+          "nextState": "17-thousand"
+        }
+      ]
     }
   }
 }
