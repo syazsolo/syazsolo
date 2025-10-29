@@ -132,6 +132,35 @@ html {
   scrollbar-gutter: stable;
 }
 
+/* Themed scrollbars (light and dark) */
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) var(--background);
+}
+
+/* WebKit (Chromium, Safari, Edge) */
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--background);
+  border-radius: 8px;
+}
+*::-webkit-scrollbar-thumb {
+  background-color: color-mix(
+    in oklab,
+    var(--muted-foreground) 60%,
+    var(--background)
+  );
+  border-radius: 8px;
+  border: 2px solid var(--background);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background-color: var(--muted-foreground);
+}
+
 body {
   font-family:
     -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu',
@@ -153,4 +182,43 @@ body {
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Typing indicator dots */
+@keyframes typing-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  30% {
+    transform: translateY(-3px);
+    opacity: 1;
+  }
+}
+
+.typing {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.typing-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 9999px;
+  background-color: currentColor;
+  animation: typing-bounce 1.2s infinite ease-in-out;
+  opacity: 0.9;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: 0ms;
+}
+.typing-dot:nth-child(2) {
+  animation-delay: 150ms;
+}
+.typing-dot:nth-child(3) {
+  animation-delay: 300ms;
 }

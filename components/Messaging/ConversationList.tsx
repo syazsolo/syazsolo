@@ -1,12 +1,13 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { conversationsData, getInitialMessage } from '@/lib/conversations';
+import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
+import { chatActivityStore } from '@/lib/chat-activity';
 import { cn } from '@/lib/utils';
-import { conversationsData } from '@/lib/conversations';
-import { useState } from 'react';
 
 type Conversation = {
   id: string;
@@ -15,27 +16,14 @@ type Conversation = {
   avatar: string;
 };
 
-const syazani = conversationsData.syazani;
-const solo = conversationsData.solo;
-
-const getInitialMessage = (message: string | string[]): string => {
-  return Array.isArray(message) ? message[0] : message;
-};
-
-const conversations: Conversation[] = [
-  {
-    id: syazani.id,
-    name: syazani.name,
-    message: getInitialMessage(syazani.states[syazani.initialState].message),
-    avatar: syazani.avatar,
-  },
-  {
-    id: solo.id,
-    name: solo.name,
-    message: getInitialMessage(solo.states[solo.initialState].message),
-    avatar: solo.avatar,
-  },
-];
+const conversations: Conversation[] = Object.values(conversationsData).map(
+  convo => ({
+    id: convo.id,
+    name: convo.name,
+    avatar: convo.avatar,
+    message: getInitialMessage(convo.states[convo.initialState].message),
+  })
+);
 
 export const ConversationList = ({
   onSelectConvo,
@@ -44,6 +32,15 @@ export const ConversationList = ({
 }) => {
   const [selected, setSelected] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
+  const [, force] = useState(0);
+
+  useEffect(() => {
+    const unsubscribe = chatActivityStore.subscribe(() => {
+      // Force re-render on store updates
+      force(v => v + 1);
+    });
+    return unsubscribe;
+  }, []);
 
   const handleSelect = (id: string) => {
     setSelected(id);
@@ -86,10 +83,15 @@ export const ConversationList = ({
               }
             )}
           >
-            <Avatar className="w-10 h-10">
-              <AvatarImage src={convo.avatar} alt={convo.name} />
-              <AvatarFallback>{convo.name.charAt(0)}</AvatarFallback>
-            </Avatar>
+            <div className="relative">
+              <Avatar className="w-10 h-10">
+                <AvatarImage src={convo.avatar} alt={convo.name} />
+                <AvatarFallback>{convo.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              {chatActivityStore.isActive(convo.id) && (
+                <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
+              )}
+            </div>
             <div className="grow min-w-0">
               <h3 className="font-semibold text-sm truncate">{convo.name}</h3>
               <p className="text-xs text-muted-foreground truncate mt-1">

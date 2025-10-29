@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
+import { useFloatingChat } from './useFloatingChat';
 import { useState } from 'react';
 
 interface FloatingChatDesktopProps {
@@ -18,17 +19,10 @@ export const FloatingChatDesktop = ({
   offsetIndex = 0,
 }: FloatingChatDesktopProps) => {
   const [isMaximized, setIsMaximized] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const isOpen = !!conversationId && isVisible;
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-      // Reset so if reopened it animates in again
-      setIsVisible(true);
-    }, 400);
-  };
+  const { isVisible, isOpen, handleClose } = useFloatingChat({
+    conversationId,
+    onClose,
+  });
 
   if (!conversationId) {
     return null;
@@ -38,10 +32,10 @@ export const FloatingChatDesktop = ({
     <AnimatePresence mode="wait">
       {isOpen && (
         <motion.div
-          className={`fixed z-50 bg-card border border-border shadow-2xl text-foreground flex flex-col overflow-hidden ${
+          className={`fixed bg-card border border-border shadow-2xl text-foreground flex flex-col overflow-hidden ${
             isMaximized
-              ? 'inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg'
-              : 'bottom-0 w-80 h-96 rounded-lg'
+              ? 'z-60 inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg'
+              : 'z-50 bottom-0 w-80 h-96 rounded-lg'
           }`}
           style={
             !isMaximized

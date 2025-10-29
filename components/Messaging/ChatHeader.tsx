@@ -1,7 +1,9 @@
 'use client';
 
 import { Maximize, X } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
+import { chatActivityStore } from '@/lib/chat-activity';
 import { conversationsData } from '@/lib/conversations';
 
 interface ChatHeaderProps {
@@ -21,6 +23,19 @@ export const ChatHeader = ({
   onHeaderClick,
 }: ChatHeaderProps) => {
   const conversation = conversationsData[conversationId];
+  const [isOnline, setIsOnline] = useState(false);
+
+  useEffect(() => {
+    const updateOnlineStatus = () => {
+      setIsOnline(chatActivityStore.isActive(conversationId));
+    };
+
+    updateOnlineStatus();
+
+    const unsubscribe = chatActivityStore.subscribe(updateOnlineStatus);
+
+    return unsubscribe;
+  }, [conversationId]);
 
   return (
     <div
@@ -28,11 +43,16 @@ export const ChatHeader = ({
       onClick={onHeaderClick}
     >
       <div className="flex items-center gap-2">
-        <img
-          src={conversation.avatar}
-          alt={conversation.name}
-          className="w-6 h-6 rounded-full"
-        />
+        <div className="relative">
+          <img
+            src={conversation.avatar}
+            alt={conversation.name}
+            className="w-6 h-6 rounded-full"
+          />
+          {isOnline && (
+            <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
+          )}
+        </div>
         <span className="font-semibold text-sm">{conversation.name}</span>
       </div>
       <div className="flex items-center gap-1">

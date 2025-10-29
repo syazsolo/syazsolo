@@ -11,7 +11,7 @@ const ProfileHeader = () => {
       'Software Engineer | Full Stack Developer | Mobile App Developer | Tech Enthusiast',
     location: 'Batu Caves, Selangor, Malaysia',
     connections: '500+',
-    bannerUrl: '/solo.jpg',
+    bannerUrl: '/background.jpg',
     profileUrl: '/acak.jpg',
   };
 
