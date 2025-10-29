@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
+import { useFloatingChat } from './useFloatingChat';
 import { useState } from 'react';
 
 interface FloatingChatDesktopProps {
@@ -18,17 +19,10 @@ export const FloatingChatDesktop = ({
   offsetIndex = 0,
 }: FloatingChatDesktopProps) => {
   const [isMaximized, setIsMaximized] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const isOpen = !!conversationId && isVisible;
-
-  const handleClose = () => {
-    setIsVisible(false);
-    setTimeout(() => {
-      onClose();
-      // Reset so if reopened it animates in again
-      setIsVisible(true);
-    }, 400);
-  };
+  const { isVisible, isOpen, handleClose } = useFloatingChat({
+    conversationId,
+    onClose,
+  });
 
   if (!conversationId) {
     return null;

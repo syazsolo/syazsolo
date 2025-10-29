@@ -5,6 +5,7 @@ import {
   conversationsData,
   getConversationQuickReplies,
   getConversationResponse,
+  getInitialMessage,
 } from '@/lib/conversations';
 import { useEffect, useRef, useState } from 'react';
 
@@ -13,20 +14,16 @@ type Message = {
   text: string;
 };
 
-const BOT_RESPONSE_DELAY = 1000;
+const BOT_RESPONSE_DELAY_BASE = 600;
+const BOT_RESPONSE_DELAY_PER_CHAR = 20;
+const BOT_RESPONSE_DELAY_MAX = 3000;
 const SCROLL_DELAY = 50;
 
-const getInitialMessage = (conversation: ConversationData) => {
-  const initialState = conversation.initialState;
-  const state = conversation.states[initialState];
-  // If the initial state's message is a sequence, start with the first item deterministically
-  const message = Array.isArray(state.message)
-    ? (() => {
-        const first = state.message[0];
-        return Array.isArray(first) ? first[0] : first;
-      })()
-    : state.message;
-  return { message, state: initialState };
+const calculateTypingDelay = (text: string): number => {
+  const charCount = text.length;
+  const delay =
+    BOT_RESPONSE_DELAY_BASE + charCount * BOT_RESPONSE_DELAY_PER_CHAR;
+  return Math.min(delay, BOT_RESPONSE_DELAY_MAX);
 };
 
 export const useChat = (conversationId: string = 'syazani') => {
@@ -62,7 +59,9 @@ export const useChat = (conversationId: string = 'syazani') => {
     timeoutsRef.current.forEach(id => clearTimeout(id));
     timeoutsRef.current = [];
 
-    const { message, state: initialState } = getInitialMessage(conversation);
+    const initialState = conversation.initialState;
+    const state = conversation.states[initialState];
+    const message = getInitialMessage(state.message);
     setMessages([{ sender: 'bot', text: message }]);
     setCurrentState(initialState);
 
@@ -74,18 +73,19 @@ export const useChat = (conversationId: string = 'syazani') => {
 
     lastScheduledConversationIdRef.current = conversation.id;
     setIsWaitingForResponse(true);
-    let accumulatedDelay = BOT_RESPONSE_DELAY;
+    let accumulatedDelay = 0;
     const remaining = initial.message.slice(1);
     remaining.forEach((item, index) => {
+      const text = Array.isArray(item) ? item[0] : item;
+      const delay = calculateTypingDelay(text);
+      accumulatedDelay += delay;
       const id = window.setTimeout(() => {
-        const text = Array.isArray(item) ? item[0] : item;
         setMessages(prev => [...prev, { sender: 'bot', text }]);
         if (index === remaining.length - 1) {
           setIsWaitingForResponse(false);
         }
       }, accumulatedDelay);
       timeoutsRef.current.push(id);
-      accumulatedDelay += BOT_RESPONSE_DELAY;
     });
   }, [conversation.id]);
 
@@ -117,6 +117,7 @@ export const useChat = (conversationId: string = 'syazani') => {
     setCurrentState(response.state);
 
     if (response.kind === 'single') {
+      const delay = calculateTypingDelay(response.text);
       const id = window.setTimeout(() => {
         setMessages(prev => [
           ...prev,
@@ -128,19 +129,19 @@ export const useChat = (conversationId: string = 'syazani') => {
 
         setIsWaitingForResponse(false);
         setTimeout(scrollToUserMessage, SCROLL_DELAY);
-      }, BOT_RESPONSE_DELAY);
+      }, delay);
       timeoutsRef.current.push(id);
       return;
     }
 
-    // Sequence: schedule each item one second apart
-    let accumulatedDelay = BOT_RESPONSE_DELAY;
+    let accumulatedDelay = 0;
     response.items.forEach((item, index) => {
+      const text = Array.isArray(item)
+        ? item[Math.floor(Math.random() * item.length)]
+        : item;
+      const delay = calculateTypingDelay(text);
+      accumulatedDelay += delay;
       const id = window.setTimeout(() => {
-        const text = Array.isArray(item)
-          ? item[Math.floor(Math.random() * item.length)]
-          : item;
-
         setMessages(prev => [
           ...prev,
           {
@@ -155,7 +156,6 @@ export const useChat = (conversationId: string = 'syazani') => {
         }
       }, accumulatedDelay);
       timeoutsRef.current.push(id);
-      accumulatedDelay += BOT_RESPONSE_DELAY;
     });
   };
 

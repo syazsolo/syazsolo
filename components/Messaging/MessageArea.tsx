@@ -6,6 +6,7 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { QuickReplies } from '@/components/Messaging/QuickReplies';
 import { getSharedAvatarUrl } from '@/lib/avatar';
+import { parseItalicText } from '@/lib/utils';
 
 type Message = {
   sender: 'user' | 'bot';
@@ -99,7 +100,11 @@ export const MessageArea = ({
                     : 'bg-card text-foreground'
                 }`}
               >
-                {msg.text}
+                {parseItalicText(msg.text).map((part, index) => (
+                  <span key={index} className={part.italic ? 'italic' : ''}>
+                    {part.text}
+                  </span>
+                ))}
               </div>
             </div>
             {isUser && (
@@ -134,7 +139,7 @@ export const MessageArea = ({
           </div>
         </div>
       )}
-      <div ref={messagesEndRef} />
+      <div ref={messagesEndRef} className="h-32" />
     </div>
   );
 };

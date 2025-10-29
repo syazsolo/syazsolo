@@ -1,10 +1,11 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
-import { useEffect, useState } from 'react';
 
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
+import { useEffect } from 'react';
+import { useFloatingChat } from './useFloatingChat';
 
 interface FloatingChatMobileProps {
   conversationId: string | null;
@@ -15,8 +16,13 @@ export const FloatingChatMobile = ({
   conversationId,
   onClose,
 }: FloatingChatMobileProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const isOpen = !!conversationId;
+  const { isVisible, isOpen, handleClose, setIsVisible } = useFloatingChat({
+    conversationId,
+    onClose: () => {
+      // we need to override the default behavior a bit here
+      onClose();
+    },
+  });
 
   useEffect(() => {
     if (isOpen) {
@@ -35,15 +41,7 @@ export const FloatingChatMobile = ({
       document.body.style.position = '';
       document.body.style.width = '';
     };
-  }, [isOpen]);
-
-  const handleClose = () => {
-    setIsVisible(false);
-    // Delay the close to allow exit animation to complete
-    setTimeout(() => {
-      onClose();
-    }, 400); // Match the exit animation duration
-  };
+  }, [isOpen, setIsVisible]);
 
   if (!conversationId) {
     return null;

@@ -20,34 +20,34 @@
     },
     "kessel-run": {
       "message": [
-        "It's the ship that made the Kessel Run in less than 12 parsecs.",
-        "I've outrun Imperial starships. Not the local bulk cruisers, mind you. I'm talking about the big Corellian ships, now. She's fast enough for you, old man.",
+        "It's the ship that made the Kessel Run in less than 12 parsecs!",
+        "I've outrun Imperial starships, not the local bulk cruisers, mind you. I'm talking about the big Corellian ships now. She's fast enough for you, old man.",
         "What's the cargo?"
       ],
       "quickReplies": [
         {
-          "text": "Only passengers. Myself, the boy, two droids - and no questions asked.",
+          "text": "Only passengers -- and no questions asked.",
           "nextState": "cargo"
         }
       ]
     },
     "cargo": {
-      "message": "What is it? Some kind of local trouble?",
+      "message": ["__laughs__", "What is it? Some kind of local trouble?"],
       "quickReplies": [
         {
-          "text": "Let's just say we like to avoid any Imperial entanglements.",
+          "text": "Let's just say we'd like to avoid any Imperial entanglements.",
           "nextState": "entanglements"
         }
       ]
     },
     "entanglements": {
       "message": [
-        "Well that's the real trick, isn't it? And it's going to cost you something extra.",
+        "Well, that's the real trick, isn't it? And it's going to cost you something extra.",
         "10 thousand, all in advance."
       ],
       "quickReplies": [
         {
-          "text": "10 thousand? We can almost buy our own ship for that.",
+          "text": "10 thousand? We could almost buy our own ship for that.",
           "nextState": "own-ship"
         },
         {
@@ -57,15 +57,15 @@
       ]
     },
     "own-ship": {
-      "message": "But who's going to fly it kid? You?",
+      "message": ["But who's going to fly it kid?", "You?"],
       "quickReplies": [
         {
-          "text": "You bet I could, I'm not such a bad pilot myself, we don't have to sit here and (interrupted)...",
-          "nextState": "end-1"
+          "text": "You bet I could. I'm not such a bad pilot myself! We don't have to sit here and ...",
+          "nextState": "branch-1-ends"
         }
       ]
     },
-    "end-1": {
+    "branch-1-ends": {
       "message": "...",
       "quickReplies": [
         {

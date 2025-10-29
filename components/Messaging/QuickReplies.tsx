@@ -27,7 +27,7 @@ export const QuickReplies = ({
             key={`${reply.nextState}-${index}`}
             variant="outline"
             size="sm"
-            className="border-dashed bg-accent/60 hover:bg-accent text-foreground"
+            className="border-dashed bg-accent/60 hover:bg-accent text-foreground max-w-full sm:max-w-[75%] h-auto min-h-8 whitespace-normal wrap-break-word text-left leading-snug px-4 py-2"
             onClick={() => onQuickReply(reply.text, reply.nextState)}
           >
             {reply.text}

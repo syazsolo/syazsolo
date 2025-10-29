@@ -67,6 +67,14 @@ export const getConversationResponse = (
   };
 };
 
+export const getInitialMessage = (
+  message: string | Array<string | string[]>
+): string => {
+  if (!Array.isArray(message)) return message;
+  const first = message[0];
+  return Array.isArray(first) ? first[0] : first;
+};
+
 export const getConversationQuickReplies = (
   conversation: ConversationData,
   currentState: string
