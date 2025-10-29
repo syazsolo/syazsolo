@@ -1,6 +1,6 @@
 'use client';
 
-import { Maximize, Minus, X } from 'lucide-react';
+import { Maximize, X } from 'lucide-react';
 
 import { conversationsData } from '@/lib/conversations';
 
@@ -8,20 +8,25 @@ interface ChatHeaderProps {
   conversationId: string;
   isMaximized: boolean;
   onClose: () => void;
-  onMinimize: () => void;
   onToggleMaximize: () => void;
+  showMaximize?: boolean;
+  onHeaderClick?: () => void;
 }
 
 export const ChatHeader = ({
   conversationId,
   onClose,
-  onMinimize,
   onToggleMaximize,
+  showMaximize = true,
+  onHeaderClick,
 }: ChatHeaderProps) => {
   const conversation = conversationsData[conversationId];
 
   return (
-    <div className="flex items-center justify-between p-3 border-b border-gray-200">
+    <div
+      className={`flex items-center justify-between p-3 border-b border-gray-200 ${onHeaderClick ? 'cursor-pointer' : 'cursor-default'}`}
+      onClick={onHeaderClick}
+    >
       <div className="flex items-center gap-2">
         <img
           src={conversation.avatar}
@@ -31,23 +36,21 @@ export const ChatHeader = ({
         <span className="font-semibold text-sm">{conversation.name}</span>
       </div>
       <div className="flex items-center gap-1">
+        {showMaximize && (
+          <button
+            onClick={onToggleMaximize}
+            className="p-1 hover:bg-gray-200 rounded-full cursor-pointer"
+            aria-label="Maximize"
+          >
+            <Maximize size={14} />
+          </button>
+        )}
         <button
-          onClick={onMinimize}
-          className="p-1 hover:bg-gray-200 rounded hidden sm:inline-flex"
-          aria-label="Minimize"
-        >
-          <Minus size={14} />
-        </button>
-        <button
-          onClick={onToggleMaximize}
-          className="p-1 hover:bg-gray-200 rounded hidden sm:inline-flex"
-          aria-label="Maximize"
-        >
-          <Maximize size={14} />
-        </button>
-        <button
-          onClick={onClose}
-          className="p-1 hover:bg-red-100 rounded"
+          onClick={e => {
+            e.stopPropagation();
+            onClose();
+          }}
+          className="p-1 hover:bg-red-100 rounded-full cursor-pointer"
           aria-label="Close"
         >
           <X size={14} />

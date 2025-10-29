@@ -1,10 +1,10 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
-import { useEffect } from 'react';
 
 interface FloatingChatMobileProps {
   conversationId: string | null;
@@ -15,10 +15,12 @@ export const FloatingChatMobile = ({
   conversationId,
   onClose,
 }: FloatingChatMobileProps) => {
+  const [isVisible, setIsVisible] = useState(false);
   const isOpen = !!conversationId;
 
   useEffect(() => {
     if (isOpen) {
+      setIsVisible(true);
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
@@ -36,7 +38,11 @@ export const FloatingChatMobile = ({
   }, [isOpen]);
 
   const handleClose = () => {
-    onClose();
+    setIsVisible(false);
+    // Delay the close to allow exit animation to complete
+    setTimeout(() => {
+      onClose();
+    }, 400); // Match the exit animation duration
   };
 
   if (!conversationId) {
@@ -44,21 +50,33 @@ export const FloatingChatMobile = ({
   }
 
   return (
-    <AnimatePresence>
-      {isOpen && (
+    <AnimatePresence mode="wait">
+      {isVisible && (
         <motion.div
           className="fixed inset-0 z-50 bg-white text-gray-900 flex flex-col"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.15 }}
+          initial={{ opacity: 0, y: '100%' }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{
+            opacity: 0,
+            y: '100%',
+            scale: 0.8,
+            transition: {
+              duration: 0.4,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            },
+          }}
+          transition={{
+            duration: 0.3,
+            ease: [0.4, 0.0, 0.2, 1],
+          }}
         >
           <ChatHeader
             conversationId={conversationId}
             isMaximized={true}
             onClose={handleClose}
-            onMinimize={handleClose}
             onToggleMaximize={() => {}}
+            showMaximize={false}
+            onHeaderClick={handleClose}
           />
           <div className="grow h-full overflow-hidden">
             <Chat conversationId={conversationId} />

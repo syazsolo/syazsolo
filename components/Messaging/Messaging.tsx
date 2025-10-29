@@ -2,8 +2,13 @@
 
 import { FloatingChatDesktop } from '@/components/Messaging/FloatingChatDesktop';
 import { FloatingChatMobile } from '@/components/Messaging/FloatingChatMobile';
-import { MessageBar } from '@/components/Messaging/MessageBar';
+import dynamic from 'next/dynamic';
 import { useState } from 'react';
+
+const MessageBar = dynamic(
+  () => import('@/components/Messaging/MessageBar').then(mod => mod.MessageBar),
+  { ssr: false }
+);
 
 export const Messaging = () => {
   const [openConversations, setOpenConversations] = useState<string[]>([]);
@@ -13,10 +18,13 @@ export const Messaging = () => {
       if (prev.includes(conversationId)) {
         return prev;
       }
+
       const next = [...prev, conversationId];
+
       if (next.length > 3) {
         next.shift();
       }
+
       return next;
     });
   };

@@ -21,7 +21,6 @@ const getDicebearBaseUrl = (): string => {
 };
 
 const DICEBEAR_BASE_URL = getDicebearBaseUrl();
-const SESSION_AVATAR_KEY = 'session_user_avatar';
 
 const generateRandomSeed = (): string => {
   return Math.random().toString(36).substring(2, 15);
@@ -35,25 +34,11 @@ const selectRandomStyle = (): AvatarStyle => {
   return AVATAR_STYLES[Math.floor(Math.random() * AVATAR_STYLES.length)];
 };
 
-const generateRandomAvatar = (seed?: string, style?: AvatarStyle): string => {
+export const generateRandomAvatar = (
+  seed?: string,
+  style?: AvatarStyle
+): string => {
   const avatarSeed = seed || generateRandomSeed();
   const avatarStyle = style || selectRandomStyle();
   return buildAvatarUrl(avatarStyle, avatarSeed);
-};
-
-const generateCachedRandomAvatar = (): string => {
-  const cachedAvatar = sessionStorage.getItem(SESSION_AVATAR_KEY);
-  if (cachedAvatar) {
-    return cachedAvatar;
-  }
-
-  const randomSeed = generateRandomSeed() + generateRandomSeed();
-  const avatar = generateRandomAvatar(randomSeed);
-  sessionStorage.setItem(SESSION_AVATAR_KEY, avatar);
-
-  return avatar;
-};
-
-export const getMessagingHeaderAvatar = (): string => {
-  return generateCachedRandomAvatar();
 };

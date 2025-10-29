@@ -29,21 +29,19 @@ export const FloatingChatDesktop = ({
   }
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="popLayout">
       {isOpen && (
         <motion.div
           className={`fixed z-50 bg-white border border-gray-300 shadow-2xl text-gray-900 flex flex-col ${
             isMaximized
-              ? 'inset-0 w-full h-full rounded-none'
+              ? 'inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg'
               : 'bottom-0 w-80 h-96 rounded-lg'
           }`}
           style={
             !isMaximized
               ? {
-                  // Place windows to the left of the MessageBar
-                  // baseRight = right margin (16px) + bar width (18rem=288px) + gap (16px) = 320px
-                  // step = window width (20rem=320px) + gap (16px) = 336px
                   right: 320 + offsetIndex * 336,
+                  willChange: 'transform, opacity',
                 }
               : undefined
           }
@@ -54,7 +52,6 @@ export const FloatingChatDesktop = ({
           animate={{
             scale: 1,
             opacity: 1,
-            borderRadius: isMaximized ? 0 : 8,
           }}
           exit={{
             scale: 0.9,
@@ -65,12 +62,12 @@ export const FloatingChatDesktop = ({
             stiffness: 600,
             damping: 35,
           }}
+          layout
         >
           <ChatHeader
             conversationId={conversationId}
             isMaximized={isMaximized}
             onClose={handleClose}
-            onMinimize={handleClose}
             onToggleMaximize={() => setIsMaximized(!isMaximized)}
           />
           <div className="grow h-full overflow-hidden">
