@@ -49,7 +49,7 @@ export const FloatingChatMobile = ({
 
   return (
     <AnimatePresence mode="wait">
-      {isVisible && (
+      {isOpen && (
         <motion.div
           className="fixed inset-0 z-50 bg-background text-foreground flex flex-col"
           initial={{ opacity: 0, y: '100%' }}

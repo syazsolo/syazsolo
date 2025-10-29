@@ -62,16 +62,18 @@ export const Messaging = () => {
         </div>
       )}
 
-      <div className="hidden sm:block">
-        {openConversations.map((id, index) => (
-          <FloatingChatDesktop
-            key={id}
-            conversationId={id}
-            onClose={() => closeConversation(id)}
-            offsetIndex={index}
-          />
-        ))}
-      </div>
+      {!isSmallScreen && (
+        <div className="hidden sm:block">
+          {openConversations.map((id, index) => (
+            <FloatingChatDesktop
+              key={id}
+              conversationId={id}
+              onClose={() => closeConversation(id)}
+              offsetIndex={index}
+            />
+          ))}
+        </div>
+      )}
     </>
   );
 };
