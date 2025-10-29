@@ -19,8 +19,14 @@ interface MessageAreaProps {
   lastUserMessageRef: MutableRefObject<HTMLDivElement | null>;
   messagesEndRef: MutableRefObject<HTMLDivElement | null>;
   quickReplies: QuickReply[];
-  onQuickReply: (text: string, nextState: string) => void;
+  onQuickReply: (
+    text: string,
+    nextState: string,
+    message?: string | string[]
+  ) => void;
   isWaitingForResponse: boolean;
+  isUserTyping: boolean;
+  areQuickRepliesVisible: boolean;
 }
 
 export const MessageArea = ({
@@ -31,11 +37,12 @@ export const MessageArea = ({
   quickReplies,
   onQuickReply,
   isWaitingForResponse,
+  isUserTyping,
+  areQuickRepliesVisible,
 }: MessageAreaProps) => {
   const lastUserMessageIndex = messages.findLastIndex(m => m.sender === 'user');
   const containerRef = useRef<HTMLDivElement | null>(null);
   const atBottomRef = useRef(true);
-  const [areQuickRepliesVisible, setAreQuickRepliesVisible] = useState(false);
   const [userAvatarSrc] = useState(() => getSharedAvatarUrl());
 
   useEffect(() => {
@@ -56,16 +63,6 @@ export const MessageArea = ({
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isWaitingForResponse, messagesEndRef]);
-
-  // Delay quick replies by 1s after bot finishes responding
-  useEffect(() => {
-    if (isWaitingForResponse) {
-      setAreQuickRepliesVisible(false);
-      return;
-    }
-    const id = window.setTimeout(() => setAreQuickRepliesVisible(true), 1000);
-    return () => clearTimeout(id);
-  }, [isWaitingForResponse]);
 
   return (
     <div
@@ -137,6 +134,21 @@ export const MessageArea = ({
               <span className="typing-dot" />
             </span>
           </div>
+        </div>
+      )}
+      {isUserTyping && (
+        <div className="flex items-start gap-2 justify-end">
+          <div className="rounded-2xl px-3 py-2 text-sm bg-primary text-primary-foreground">
+            <span className="typing">
+              <span className="typing-dot" />
+              <span className="typing-dot" />
+              <span className="typing-dot" />
+            </span>
+          </div>
+          <Avatar className="w-6 h-6">
+            <AvatarImage src={userAvatarSrc} alt="You" />
+            <AvatarFallback>Y</AvatarFallback>
+          </Avatar>
         </div>
       )}
       <div ref={messagesEndRef} className="h-32" />

@@ -2,10 +2,15 @@
 
 import { Button } from '@/components/ui/button';
 import { QuickReply } from '@/lib/conversations';
+import { parseItalicText } from '@/lib/utils';
 
 interface QuickRepliesProps {
   quickReplies: QuickReply[];
-  onQuickReply: (text: string, nextState: string) => void;
+  onQuickReply: (
+    text: string,
+    nextState: string,
+    message?: string | string[]
+  ) => void;
 }
 
 export const QuickReplies = ({
@@ -28,9 +33,15 @@ export const QuickReplies = ({
             variant="outline"
             size="sm"
             className="border-dashed bg-accent/60 hover:bg-accent text-foreground max-w-full sm:max-w-[75%] h-auto min-h-8 whitespace-normal wrap-break-word text-left leading-snug px-4 py-2"
-            onClick={() => onQuickReply(reply.text, reply.nextState)}
+            onClick={() =>
+              onQuickReply(reply.text, reply.nextState, reply.message)
+            }
           >
-            {reply.text}
+            {parseItalicText(reply.text).map((part, i) => (
+              <span key={i} className={part.italic ? 'italic' : ''}>
+                {part.text}
+              </span>
+            ))}
           </Button>
         ))}
       </div>

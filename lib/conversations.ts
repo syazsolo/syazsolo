@@ -4,6 +4,7 @@ import syazaniConversation from './data/conversations/syazani.json';
 export interface QuickReply {
   text: string;
   nextState: string;
+  message?: string | string[];
 }
 
 export interface ConversationState {

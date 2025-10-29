@@ -12,6 +12,8 @@ export const Chat = ({
     conversation,
     messages,
     isWaitingForResponse,
+    isUserTyping,
+    areQuickRepliesVisible,
     messagesEndRef,
     lastUserMessageRef,
     currentQuickReplies,
@@ -28,6 +30,8 @@ export const Chat = ({
         quickReplies={currentQuickReplies}
         onQuickReply={handleQuickReply}
         isWaitingForResponse={isWaitingForResponse}
+        isUserTyping={isUserTyping}
+        areQuickRepliesVisible={areQuickRepliesVisible}
       />
     </div>
   );

@@ -33,6 +33,8 @@ export const useChat = (conversationId: string = 'syazani') => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [currentState, setCurrentState] = useState<string>('');
   const [isWaitingForResponse, setIsWaitingForResponse] = useState(false);
+  const [isUserTyping, setIsUserTyping] = useState(false);
+  const [areQuickRepliesVisible, setAreQuickRepliesVisible] = useState(false);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const lastUserMessageRef = useRef<HTMLDivElement>(null);
@@ -89,6 +91,24 @@ export const useChat = (conversationId: string = 'syazani') => {
     });
   }, [conversation.id]);
 
+  useEffect(() => {
+    const quickReplies = getConversationQuickReplies(
+      conversation,
+      currentState
+    );
+
+    if (isWaitingForResponse || isUserTyping || quickReplies.length === 0) {
+      setAreQuickRepliesVisible(false);
+      return;
+    }
+
+    const id = window.setTimeout(() => {
+      setAreQuickRepliesVisible(true);
+    }, 1000); // Delay before showing quick replies
+
+    return () => clearTimeout(id);
+  }, [isWaitingForResponse, isUserTyping, currentState, conversation]);
+
   const scrollToUserMessage = () => {
     requestAnimationFrame(() => {
       lastUserMessageRef.current?.scrollIntoView({
@@ -98,64 +118,83 @@ export const useChat = (conversationId: string = 'syazani') => {
     });
   };
 
-  const handleQuickReply = (replyText: string, nextState: string) => {
-    // Cancel any in-flight scheduled messages
+  const handleQuickReply = (
+    replyText: string,
+    nextState: string,
+    message?: string | string[]
+  ) => {
+    setAreQuickRepliesVisible(false);
     timeoutsRef.current.forEach(id => clearTimeout(id));
     timeoutsRef.current = [];
 
-    setIsWaitingForResponse(true);
+    const userMessages: string[] = [];
+    if (message) {
+      userMessages.push(...(Array.isArray(message) ? message : [message]));
+    } else {
+      userMessages.push(replyText);
+    }
 
-    setMessages(prev => [
-      ...prev,
-      {
-        sender: 'user',
-        text: replyText,
-      },
-    ]);
-
-    const response = getConversationResponse(conversation, nextState);
-    setCurrentState(response.state);
-
-    if (response.kind === 'single') {
-      const delay = calculateTypingDelay(response.text);
-      const id = window.setTimeout(() => {
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: 'bot',
-            text: response.text,
-          },
-        ]);
-
-        setIsWaitingForResponse(false);
-        setTimeout(scrollToUserMessage, SCROLL_DELAY);
-      }, delay);
-      timeoutsRef.current.push(id);
-      return;
+    if (userMessages.length > 1) {
+      setIsUserTyping(true);
     }
 
     let accumulatedDelay = 0;
-    response.items.forEach((item, index) => {
-      const text = Array.isArray(item)
-        ? item[Math.floor(Math.random() * item.length)]
-        : item;
-      const delay = calculateTypingDelay(text);
+    userMessages.forEach((msg, index) => {
+      const isLastUserMessage = index === userMessages.length - 1;
+      const delay = userMessages.length > 1 ? calculateTypingDelay(msg) : 0;
       accumulatedDelay += delay;
-      const id = window.setTimeout(() => {
-        setMessages(prev => [
-          ...prev,
-          {
-            sender: 'bot',
-            text,
-          },
-        ]);
 
-        if (index === response.items.length - 1) {
-          setIsWaitingForResponse(false);
-          setTimeout(scrollToUserMessage, SCROLL_DELAY);
+      const userMessageTimeoutId = window.setTimeout(() => {
+        setMessages(prev => [...prev, { sender: 'user', text: msg }]);
+
+        if (isLastUserMessage) {
+          if (userMessages.length > 1) {
+            setIsUserTyping(false);
+          }
+
+          if (!nextState) {
+            return;
+          }
+
+          setIsWaitingForResponse(true);
+
+          const response = getConversationResponse(conversation, nextState);
+          setCurrentState(response.state);
+
+          if (response.kind === 'single') {
+            const botDelay = calculateTypingDelay(response.text);
+            const botResponseTimeoutId = window.setTimeout(() => {
+              setMessages(prev => [
+                ...prev,
+                { sender: 'bot', text: response.text },
+              ]);
+              setIsWaitingForResponse(false);
+              setTimeout(scrollToUserMessage, SCROLL_DELAY);
+            }, botDelay);
+            timeoutsRef.current.push(botResponseTimeoutId);
+            return;
+          }
+
+          let botAccumulatedDelay = 0;
+          response.items.forEach((item, botIndex) => {
+            const isLastBotMessage = botIndex === response.items.length - 1;
+            const text = Array.isArray(item)
+              ? item[Math.floor(Math.random() * item.length)]
+              : item;
+            const botDelay = calculateTypingDelay(text);
+            botAccumulatedDelay += botDelay;
+            const botSequenceTimeoutId = window.setTimeout(() => {
+              setMessages(prev => [...prev, { sender: 'bot', text }]);
+              if (isLastBotMessage) {
+                setIsWaitingForResponse(false);
+                setTimeout(scrollToUserMessage, SCROLL_DELAY);
+              }
+            }, botAccumulatedDelay);
+            timeoutsRef.current.push(botSequenceTimeoutId);
+          });
         }
       }, accumulatedDelay);
-      timeoutsRef.current.push(id);
+      timeoutsRef.current.push(userMessageTimeoutId);
     });
   };
 
@@ -168,6 +207,8 @@ export const useChat = (conversationId: string = 'syazani') => {
     conversation,
     messages,
     isWaitingForResponse,
+    isUserTyping,
+    areQuickRepliesVisible,
     messagesEndRef,
     lastUserMessageRef,
     currentQuickReplies,

@@ -20,7 +20,7 @@
     },
     "kessel-run": {
       "message": [
-        "It's the ship that made the Kessel Run in less than 12 parsecs!",
+        "It's the ship that made the Kessel Run in less than 12 parsecs.",
         "I've outrun Imperial starships, not the local bulk cruisers, mind you. I'm talking about the big Corellian ships now. She's fast enough for you, old man.",
         "What's the cargo?"
       ],
@@ -60,17 +60,48 @@
       "message": ["But who's going to fly it kid?", "You?"],
       "quickReplies": [
         {
-          "text": "You bet I could. I'm not such a bad pilot myself! We don't have to sit here and ...",
-          "nextState": "branch-1-ends"
+          "text": "We can pay you 2 thousand now, plus 15, when we reach Alderaan.",
+          "nextState": "17-thousand"
         }
       ]
     },
-    "branch-1-ends": {
-      "message": "...",
+    "17-thousand": {
+      "message": "17?",
       "quickReplies": [
         {
-          "text": "We can pay you 2 thousand now, plus 15, when we reach Alderaan.",
-          "nextState": "17-thousand"
+          "text": "__nods__",
+          "nextState": "nods"
+        }
+      ]
+    },
+    "nods": {
+      "message": [
+        "Okay. You guys got yourself a ship.",
+        "We'll leave as soon as you're ready.",
+        "Docking bay Ninety-four."
+      ],
+      "quickReplies": [
+        {
+          "text": "Going somewhere, Solo?",
+          "nextState": "greo"
+        }
+      ]
+    },
+    "greo": {
+      "message": [
+        "Yes, Greo. As a matter of fact, I was just going to see your boss.",
+        "Tell Jabba that I've got his money."
+      ],
+      "quickReplies": [
+        {
+          "text": "It's too late.",
+          "message": [
+            "You should have paid him when you had the chance.",
+            "Jabba's put a price on your head so large every bounty hunter in the galaxy will be looking for you.",
+            "__hehehe__",
+            "I'm lucky I found you first."
+          ],
+          "nextState": "greo"
         }
       ]
     }
