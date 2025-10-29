@@ -21,7 +21,8 @@ const calculateTypingDelay = (text: string): number => {
 
 export const useChatLogic = (
   conversation: ConversationData,
-  currentState: string
+  currentState: string,
+  conversationId: string
 ) => {
   const {
     setMessages,
@@ -31,7 +32,7 @@ export const useChatLogic = (
     setIsUserTyping,
     setAreQuickRepliesVisible,
     reset,
-  } = useChatActions();
+  } = useChatActions(conversationId);
   const timeoutsRef = useRef<number[]>([]);
 
   useEffect(() => {
