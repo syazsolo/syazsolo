@@ -98,7 +98,7 @@ export const Chat = ({
   );
 
   return (
-    <div className="bg-white h-full flex flex-col">
+    <div className="bg-background text-foreground h-full flex flex-col">
       <MessageArea
         messages={messages}
         conversation={conversation}

@@ -22,7 +22,7 @@ export const QuickReplies = ({
         <Button
           key={`${reply.nextState}-${index}`}
           variant="outline"
-          className="bg-gray-100 border-gray-300 hover:bg-gray-200 text-xs text-gray-700"
+          size="sm"
           onClick={() => onQuickReply(reply.text, reply.nextState)}
         >
           {reply.text}

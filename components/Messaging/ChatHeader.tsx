@@ -24,7 +24,7 @@ export const ChatHeader = ({
 
   return (
     <div
-      className={`flex items-center justify-between p-3 border-b border-gray-200 ${onHeaderClick ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`flex items-center justify-between p-3 bg-card border-b border-border ${onHeaderClick ? 'cursor-pointer' : 'cursor-default'}`}
       onClick={onHeaderClick}
     >
       <div className="flex items-center gap-2">
@@ -39,7 +39,7 @@ export const ChatHeader = ({
         {showMaximize && (
           <button
             onClick={onToggleMaximize}
-            className="p-1 hover:bg-gray-200 rounded-full cursor-pointer"
+            className="p-1 hover:bg-accent rounded-full cursor-pointer"
             aria-label="Maximize"
           >
             <Maximize size={14} />
@@ -50,7 +50,7 @@ export const ChatHeader = ({
             e.stopPropagation();
             onClose();
           }}
-          className="p-1 hover:bg-red-100 rounded-full cursor-pointer"
+          className="p-1 hover:bg-destructive/15 rounded-full cursor-pointer"
           aria-label="Close"
         >
           <X size={14} />

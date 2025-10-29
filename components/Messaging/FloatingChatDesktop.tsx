@@ -27,7 +27,7 @@ export const FloatingChatDesktop = ({
       onClose();
       // Reset so if reopened it animates in again
       setIsVisible(true);
-    }, 350);
+    }, 400);
   };
 
   if (!conversationId) {
@@ -35,10 +35,10 @@ export const FloatingChatDesktop = ({
   }
 
   return (
-    <AnimatePresence mode="popLayout">
+    <AnimatePresence mode="wait">
       {isOpen && (
         <motion.div
-          className={`fixed z-50 bg-white border border-gray-300 shadow-2xl text-gray-900 flex flex-col overflow-hidden ${
+          className={`fixed z-50 bg-card border border-border shadow-2xl text-foreground flex flex-col overflow-hidden ${
             isMaximized
               ? 'inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg'
               : 'bottom-0 w-80 h-96 rounded-lg'
@@ -51,23 +51,13 @@ export const FloatingChatDesktop = ({
                 }
               : undefined
           }
-          initial={{
-            scale: 0.9,
-            opacity: 0,
-          }}
-          animate={{
-            scale: 1,
-            opacity: 1,
-          }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{
-            scale: 0.9,
             opacity: 0,
+            transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] },
           }}
-          transition={{
-            type: 'spring',
-            stiffness: 600,
-            damping: 35,
-          }}
+          transition={{ duration: 0.2, ease: [0.4, 0.0, 0.2, 1] }}
           layout
         >
           <ChatHeader

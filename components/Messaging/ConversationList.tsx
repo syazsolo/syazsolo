@@ -13,7 +13,6 @@ type Conversation = {
   name: string;
   message: string;
   avatar: string;
-  unread?: number;
 };
 
 const syazani = conversationsData.syazani;
@@ -35,7 +34,6 @@ const conversations: Conversation[] = [
     name: solo.name,
     message: getInitialMessage(solo.states[solo.initialState].message),
     avatar: solo.avatar,
-    unread: 1,
   },
 ];
 
@@ -44,7 +42,7 @@ export const ConversationList = ({
 }: {
   onSelectConvo: (id: string) => void;
 }) => {
-  const [selected, setSelected] = useState('syazani');
+  const [selected, setSelected] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
 
   const handleSelect = (id: string) => {
@@ -61,16 +59,16 @@ export const ConversationList = ({
   });
 
   return (
-    <div className="bg-white h-full flex flex-col">
-      <div className="p-3 border-b border-gray-200">
+    <div className="bg-card text-foreground h-full flex flex-col">
+      <div className="p-3 border-b border-border">
         <div className="relative">
           <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
             size={16}
           />
           <Input
             placeholder="Search messages"
-            className="pl-9 bg-gray-50 border-gray-200 text-sm"
+            className="pl-9 text-sm"
             value={searchQuery}
             onChange={e => setSearchQuery(e.target.value)}
           />
@@ -82,9 +80,9 @@ export const ConversationList = ({
             key={convo.id}
             onClick={() => handleSelect(convo.id)}
             className={cn(
-              'flex items-start gap-3 p-3 cursor-pointer hover:bg-gray-50',
+              'flex items-start gap-3 p-3 cursor-pointer hover:bg-accent',
               {
-                'bg-blue-50': selected === convo.id,
+                'bg-accent': selected === convo.id,
               }
             )}
           >
@@ -93,18 +91,11 @@ export const ConversationList = ({
               <AvatarFallback>{convo.name.charAt(0)}</AvatarFallback>
             </Avatar>
             <div className="grow min-w-0">
-              <h3 className="font-semibold text-sm text-gray-900 truncate">
-                {convo.name}
-              </h3>
-              <p className="text-xs text-gray-500 truncate mt-1">
+              <h3 className="font-semibold text-sm truncate">{convo.name}</h3>
+              <p className="text-xs text-muted-foreground truncate mt-1">
                 {convo.message}
               </p>
             </div>
-            {convo.unread && (
-              <div className="flex items-center justify-center w-4 h-4 text-xs text-white bg-blue-600 rounded-full">
-                {convo.unread}
-              </div>
-            )}
           </div>
         ))}
       </div>

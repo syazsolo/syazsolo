@@ -45,7 +45,9 @@ export const Messaging = () => {
     setOpenConversations(prev => prev.filter(id => id !== conversationId));
   };
 
-  if (!mounted) return null;
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
