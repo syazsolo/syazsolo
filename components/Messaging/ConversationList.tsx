@@ -39,7 +39,7 @@ const conversations: Conversation[] = [
   },
 ];
 
-export const MessageList = ({
+export const ConversationList = ({
   onSelectConvo,
 }: {
   onSelectConvo: (id: string) => void;

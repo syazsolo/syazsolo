@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { MessageList } from '@/components/Messaging/MessageList';
+import { ConversationList } from '@/components/Messaging/ConversationList';
 import { getMessagingHeaderAvatar } from '@/lib/avatar';
 
 interface MessageBarProps {
@@ -20,7 +20,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
   }, []);
 
   return (
-    <div className="fixed bottom-0 right-4 z-40 w-72 ml-4">
+    <div className="fixed bottom-0 z-40 w-full sm:w-72 left-0 right-0 sm:left-auto sm:right-4 px-2 sm:px-0">
       <div className="flex items-center h-12 px-2 bg-white hover:bg-gray-50 border-l border-r border-t border-gray-300 rounded-t-lg shadow-lg transition-colors">
         <button
           onClick={() => setIsOpen(!isOpen)}
@@ -60,13 +60,13 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="w-72 h-96 bg-white border-l border-r border-b border-gray-300 shadow-lg"
+            className="sm:w-72 sm:h-96 w-full h-[min(70vh,24rem)] bg-white border-l border-r border-b border-gray-300 shadow-lg"
             initial={{
               height: 0,
               opacity: 0,
             }}
             animate={{
-              height: '24rem',
+              height: 'min(70vh, 24rem)',
               opacity: 1,
             }}
             exit={{
@@ -80,7 +80,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
               duration: 0.3,
             }}
           >
-            <MessageList onSelectConvo={onSelectConversation} />
+            <ConversationList onSelectConvo={onSelectConversation} />
           </motion.div>
         )}
       </AnimatePresence>

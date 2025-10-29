@@ -1,12 +1,14 @@
 import soloConversation from './data/conversations/solo.json';
 import syazaniConversation from './data/conversations/syazani.json';
 
+export interface QuickReply {
+  text: string;
+  nextState: string;
+}
+
 export interface ConversationState {
   message: string | string[];
-  quickReplies: Array<{
-    text: string;
-    nextState: string;
-  }>;
+  quickReplies: QuickReply[];
 }
 
 export interface ConversationData {
