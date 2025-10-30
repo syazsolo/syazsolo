@@ -206,7 +206,12 @@
       }
     },
     { "from": "seventeen", "to": "nods", "label": "__nods__" },
-    { "from": "nods", "to": "greo", "label": "Going somewhere, Solo?" },
+    {
+      "from": "nods",
+      "to": "greo",
+      "label": "__Jump to Greo__",
+      "message": { "type": "single", "text": "Going somewhere, Solo?" }
+    },
     {
       "from": "greo",
       "to": "yeah-but",
@@ -246,7 +251,7 @@
     {
       "from": "even-I-get-boarded",
       "to": "my-dead-body",
-      "label": "As Greo",
+      "label": "__Stay as Greo__",
       "message": {
         "type": "sequence",
         "items": ["You can tell that to Jabba.", "He may only take your ship."]
@@ -255,7 +260,7 @@
     {
       "from": "even-I-get-boarded",
       "to": "pay-you-back",
-      "label": "As Jabba",
+      "label": "__Jump to Jabba__",
       "message": { "type": "single", "text": "Ah!" }
     },
     {
