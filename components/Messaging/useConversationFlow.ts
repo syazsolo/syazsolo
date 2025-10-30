@@ -2,6 +2,7 @@
 
 import {
   ConversationData,
+  expandMessageNode,
   getConversationQuickReplies,
   getConversationResponse,
   getInitialMessage,
@@ -40,17 +41,17 @@ export const useConversationFlow = (
     setIsTerminal(false);
     const initialState = conversation.initialState;
     const state = conversation.states[initialState];
-    const message = getInitialMessage(state.message);
-    setMessages([{ sender: 'bot', text: message }]);
+    const messages = expandMessageNode(state.message);
+    setMessages([{ sender: 'bot', text: messages[0] ?? '' }]);
     setCurrentState(initialState);
 
-    if (!Array.isArray(state.message) || state.message.length <= 1) {
+    if (messages.length <= 1) {
       return;
     }
 
     setIsWaitingForResponse(true);
     let accumulatedDelay = 0;
-    const remaining = state.message.slice(1);
+    const remaining = messages.slice(1);
     remaining.forEach((item, index) => {
       const text = Array.isArray(item) ? item[0] : item;
       const delay = calculateTypingDelay(text);
@@ -75,17 +76,22 @@ export const useConversationFlow = (
   const handleQuickReply = (
     replyText: string,
     nextState: string | undefined,
-    message?: string | string[]
+    message?: string | string[] | import('@/lib/conversations').MessageNode
   ) => {
     setAreQuickRepliesVisible(false);
     timeoutsRef.current.forEach(id => clearTimeout(id));
     timeoutsRef.current = [];
 
-    const userMessages = Array.isArray(message)
-      ? message
-      : message
-        ? [message]
-        : [replyText];
+    let userMessages: string[];
+    if (!message) {
+      userMessages = [replyText];
+    } else if (Array.isArray(message)) {
+      userMessages = message;
+    } else if (typeof message === 'string') {
+      userMessages = [message];
+    } else {
+      userMessages = expandMessageNode(message);
+    }
 
     if (userMessages.length > 1) {
       setIsUserTyping(true);
@@ -175,29 +181,25 @@ export const useConversationFlow = (
     setAreQuickRepliesVisible(false);
     setIsTerminal(false);
 
-    if (Array.isArray(state.message)) {
-      const first = getInitialMessage(state.message);
-      addMessage({ sender: 'bot', text: first });
+    const messages = expandMessageNode(state.message);
+    const first = messages[0] ?? '';
+    addMessage({ sender: 'bot', text: first });
 
-      const remaining = state.message.slice(1);
-      if (remaining.length > 0) {
-        setIsWaitingForResponse(true);
-        let accumulated = 0;
-        remaining.forEach((item: string | string[], index: number) => {
-          const text = Array.isArray(item) ? item[0] : item;
-          const delay = calculateTypingDelay(text);
-          accumulated += delay;
-          window.setTimeout(() => {
-            addMessage({ sender: 'bot', text });
-            if (index === remaining.length - 1) {
-              setIsWaitingForResponse(false);
-            }
-          }, accumulated);
-        });
-      }
-    } else {
-      const text = state.message as string;
-      addMessage({ sender: 'bot', text });
+    const remaining = messages.slice(1);
+    if (remaining.length > 0) {
+      setIsWaitingForResponse(true);
+      let accumulated = 0;
+      remaining.forEach((item: string | string[], index: number) => {
+        const text = Array.isArray(item) ? item[0] : item;
+        const delay = calculateTypingDelay(text);
+        accumulated += delay;
+        window.setTimeout(() => {
+          addMessage({ sender: 'bot', text });
+          if (index === remaining.length - 1) {
+            setIsWaitingForResponse(false);
+          }
+        }, accumulated);
+      });
     }
   };
 

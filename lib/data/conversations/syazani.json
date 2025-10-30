@@ -3,9 +3,11 @@
   "name": "Syazani",
   "avatar": "/acak.jpg",
   "initialState": "root",
-  "states": {
-    "welcome": {
+  "nodes": [
+    {
+      "id": "root",
       "message": { "type": "single", "text": "Hi! I'm Syazani." }
     }
-  }
+  ],
+  "edges": []
 }
