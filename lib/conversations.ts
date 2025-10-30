@@ -4,13 +4,18 @@ import syazaniConversation from './data/conversations/syazani.json';
 export interface QuickReply {
   text: string;
   nextState?: string;
-  message?: string | string[];
+  message?: string | string[] | MessageNode;
 }
 
+export type MessageNode =
+  | { type: 'single'; text: string }
+  | { type: 'sequence'; items: string[] }
+  | { type: 'random'; items: string[] };
+
 export interface ConversationState {
-  // string = single; array = sequence; array items can be string | string[]
-  message: string | Array<string | string[]>;
-  quickReplies: QuickReply[];
+  // New explicit message node schema
+  message: MessageNode;
+  quickReplies?: QuickReply[];
 }
 
 export interface ConversationData {
@@ -21,16 +26,93 @@ export interface ConversationData {
   states: Record<string, ConversationState>;
 }
 
+// Directed graph schema (alternative JSON shape)
+export interface GraphNode {
+  id: string;
+  message: MessageNode;
+}
+
+export interface GraphEdge {
+  from: string;
+  to: string;
+  label?: string; // shown as quick reply text
+  message?: string | string[] | MessageNode; // optional user echo before transition
+}
+
+export interface GraphConversationData {
+  id: string;
+  name: string;
+  avatar: string;
+  initialState: string; // should match a node id
+  nodes: GraphNode[];
+  edges: GraphEdge[];
+}
+
+const isGraphConversation = (data: any): data is GraphConversationData =>
+  !!data && Array.isArray(data.nodes) && Array.isArray(data.edges);
+
+const normalizeConversation = (data: any): ConversationData => {
+  if (!isGraphConversation(data)) return data as ConversationData;
+
+  const states: Record<string, ConversationState> = {};
+
+  // Initialize states from nodes
+  for (const node of data.nodes) {
+    states[node.id] = { message: node.message, quickReplies: [] };
+  }
+
+  // Build quick replies from outgoing edges
+  for (const edge of data.edges) {
+    const fromState = states[edge.from];
+    if (!fromState) continue;
+    const reply: QuickReply = {
+      text: edge.label ?? edge.to,
+      nextState: edge.to,
+      message: edge.message,
+    };
+    fromState.quickReplies = [...(fromState.quickReplies ?? []), reply];
+  }
+
+  return {
+    id: data.id,
+    name: data.name,
+    avatar: data.avatar,
+    initialState: data.initialState,
+    states,
+  } as ConversationData;
+};
+
+export const expandMessageNode = (node: MessageNode): string[] => {
+  if (node.type === 'single') {
+    return [node.text];
+  }
+  if (node.type === 'sequence') {
+    return node.items;
+  }
+  // random
+  const items = node.items;
+  const choice = items[Math.floor(Math.random() * items.length)] ?? '';
+  return [choice];
+};
+
 const defaultConversationsData: Record<string, ConversationData> = {
-  syazani: syazaniConversation as ConversationData,
-  solo: soloConversation as ConversationData,
+  syazani: normalizeConversation(syazaniConversation),
+  solo: normalizeConversation(soloConversation),
 };
 
 export const conversationsData = defaultConversationsData;
 
 export type ConversationResponse =
-  | { kind: 'single'; text: string; state: string }
-  | { kind: 'sequence'; items: Array<string | string[]>; state: string };
+  | { type: ConversationType; text: string; state: string }
+  | { type: ConversationType; items: Array<string | string[]>; state: string };
+
+export const CONVERSATION_TYPE = {
+  SINGLE: 'single',
+  SEQUENCE: 'sequence',
+} as const;
+
+export type ConversationType =
+  (typeof CONVERSATION_TYPE)[keyof typeof CONVERSATION_TYPE];
 
 export const getConversationResponse = (
   conversation: ConversationData,
@@ -38,7 +120,7 @@ export const getConversationResponse = (
 ): ConversationResponse => {
   if (!conversation?.states) {
     return {
-      kind: 'single',
+      type: CONVERSATION_TYPE.SINGLE,
       text: "Sorry, something went wrong. Let's start over.",
       state: conversation?.initialState || '',
     };
@@ -47,33 +129,44 @@ export const getConversationResponse = (
   const state = conversation.states[currentState];
   if (!state?.message) {
     return {
-      kind: 'single',
+      type: CONVERSATION_TYPE.SINGLE,
       text: "Sorry, I don't understand that. Let's start over.",
       state: conversation.initialState,
     };
   }
 
-  if (Array.isArray(state.message)) {
+  const node = state.message;
+  if (node.type === 'single') {
     return {
-      kind: 'sequence',
-      items: state.message,
+      type: CONVERSATION_TYPE.SINGLE,
+      text: node.text,
       state: currentState,
     };
   }
-
+  if (node.type === 'sequence') {
+    return {
+      type: CONVERSATION_TYPE.SEQUENCE,
+      items: node.items,
+      state: currentState,
+    };
+  }
+  // random -> pick one
+  const items = node.items;
+  const choice = items[Math.floor(Math.random() * items.length)] ?? '';
   return {
-    kind: 'single',
-    text: state.message,
+    type: CONVERSATION_TYPE.SINGLE,
+    text: choice,
     state: currentState,
   };
 };
 
-export const getInitialMessage = (
-  message: string | Array<string | string[]>
-): string => {
-  if (!Array.isArray(message)) return message;
-  const first = message[0];
-  return Array.isArray(first) ? first[0] : first;
+export const getInitialMessage = (message: MessageNode): string => {
+  if (message.type === 'single') return message.text;
+  if (message.type === 'sequence') return message.items[0] ?? '';
+  // random
+  const choice =
+    message.items[Math.floor(Math.random() * message.items.length)] ?? '';
+  return choice;
 };
 
 export const getConversationQuickReplies = (

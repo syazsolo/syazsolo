@@ -1,7 +1,7 @@
 'use client';
 
 import { MessageArea } from '@/components/Messaging/MessageArea';
-import { useChat } from './useChat';
+import { useChatViewModel } from '@/components/Messaging/useChatViewModel';
 
 export const Chat = ({
   conversationId = 'syazani',
@@ -18,7 +18,9 @@ export const Chat = ({
     lastUserMessageRef,
     currentQuickReplies,
     handleQuickReply,
-  } = useChat(conversationId);
+    endOfConversation,
+    restartConversation,
+  } = useChatViewModel(conversationId);
 
   return (
     <div className="bg-background text-foreground h-full flex flex-col">
@@ -32,6 +34,8 @@ export const Chat = ({
         isWaitingForResponse={isWaitingForResponse}
         isUserTyping={isUserTyping}
         areQuickRepliesVisible={areQuickRepliesVisible}
+        isEndOfConversation={endOfConversation}
+        onRestart={restartConversation}
       />
     </div>
   );

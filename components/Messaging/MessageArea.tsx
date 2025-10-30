@@ -5,6 +5,7 @@ import { ConversationData, QuickReply } from '@/lib/conversations';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { BotMessage } from '@/components/Messaging/BotMessage';
+import { Button } from '@/components/ui/button';
 import { QuickReplies } from '@/components/Messaging/QuickReplies';
 import { TypingIndicator } from '@/components/Messaging/TypingIndicator';
 import { UserMessage } from '@/components/Messaging/UserMessage';
@@ -26,9 +27,11 @@ interface MessageAreaProps {
     nextState: string | undefined,
     message?: string | string[]
   ) => void;
+  onRestart?: () => void;
   isWaitingForResponse: boolean;
   isUserTyping: boolean;
   areQuickRepliesVisible: boolean;
+  isEndOfConversation?: boolean;
 }
 
 export const MessageArea = ({
@@ -38,14 +41,17 @@ export const MessageArea = ({
   messagesEndRef,
   quickReplies,
   onQuickReply,
+  onRestart,
   isWaitingForResponse,
   isUserTyping,
   areQuickRepliesVisible,
+  isEndOfConversation,
 }: MessageAreaProps) => {
   const lastUserMessageIndex = messages.findLastIndex(m => m.sender === 'user');
   const containerRef = useRef<HTMLDivElement | null>(null);
   const atBottomRef = useRef(true);
   const [userAvatarSrc] = useState(() => getSharedAvatarUrl());
+  const [showBackToTop, setShowBackToTop] = useState(false);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -66,6 +72,19 @@ export const MessageArea = ({
     }
   }, [messages, isWaitingForResponse, messagesEndRef]);
 
+  useEffect(() => {
+    setShowBackToTop(false);
+    if (isEndOfConversation && !isWaitingForResponse && !isUserTyping) {
+      const id = window.setTimeout(() => setShowBackToTop(true), 1000);
+      return () => clearTimeout(id);
+    }
+  }, [
+    messages.length,
+    isEndOfConversation,
+    isWaitingForResponse,
+    isUserTyping,
+  ]);
+
   return (
     <div
       ref={containerRef}
@@ -75,6 +94,14 @@ export const MessageArea = ({
       {messages.map((msg, index) => {
         const isLastUserMessage = index === lastUserMessageIndex;
         const isUser = msg.sender === 'user';
+
+        if (msg.text === '__divider__') {
+          return (
+            <div key={index} className="py-2">
+              <hr className="border-t border-border" />
+            </div>
+          );
+        }
 
         if (isUser) {
           return (
@@ -120,6 +147,13 @@ export const MessageArea = ({
             <AvatarImage src={userAvatarSrc} alt="You" />
             <AvatarFallback>Y</AvatarFallback>
           </Avatar>
+        </div>
+      )}
+      {showBackToTop && (
+        <div className="flex justify-center pt-2">
+          <Button variant="ghost" size="sm" onClick={onRestart}>
+            Back to top?
+          </Button>
         </div>
       )}
       <div ref={messagesEndRef} className="h-32" />

@@ -1,27 +1,21 @@
+'use client';
+
 import {
   ConversationData,
+  expandMessageNode,
   getConversationQuickReplies,
   getConversationResponse,
   getInitialMessage,
 } from '@/lib/conversations';
 import { useEffect, useRef } from 'react';
 
+import { calculateTypingDelay } from '@/lib/typing-utils';
 import { useChatActions } from '@/lib/chat-state';
 
-const BOT_RESPONSE_DELAY_BASE = 600;
-const BOT_RESPONSE_DELAY_PER_CHAR = 20;
-const BOT_RESPONSE_DELAY_MAX = 3000;
-
-const calculateTypingDelay = (text: string): number => {
-  const charCount = text.length;
-  const delay =
-    BOT_RESPONSE_DELAY_BASE + charCount * BOT_RESPONSE_DELAY_PER_CHAR;
-  return Math.min(delay, BOT_RESPONSE_DELAY_MAX);
-};
-
-export const useChatLogic = (
+export const useConversationFlow = (
   conversation: ConversationData,
-  currentState: string
+  currentState: string,
+  conversationId: string
 ) => {
   const {
     setMessages,
@@ -30,8 +24,9 @@ export const useChatLogic = (
     setIsWaitingForResponse,
     setIsUserTyping,
     setAreQuickRepliesVisible,
+    setIsTerminal,
     reset,
-  } = useChatActions();
+  } = useChatActions(conversationId);
   const timeoutsRef = useRef<number[]>([]);
 
   useEffect(() => {
@@ -43,19 +38,20 @@ export const useChatLogic = (
 
   useEffect(() => {
     reset();
+    setIsTerminal(false);
     const initialState = conversation.initialState;
     const state = conversation.states[initialState];
-    const message = getInitialMessage(state.message);
-    setMessages([{ sender: 'bot', text: message }]);
+    const messages = expandMessageNode(state.message);
+    setMessages([{ sender: 'bot', text: messages[0] ?? '' }]);
     setCurrentState(initialState);
 
-    if (!Array.isArray(state.message) || state.message.length <= 1) {
+    if (messages.length <= 1) {
       return;
     }
 
     setIsWaitingForResponse(true);
     let accumulatedDelay = 0;
-    const remaining = state.message.slice(1);
+    const remaining = messages.slice(1);
     remaining.forEach((item, index) => {
       const text = Array.isArray(item) ? item[0] : item;
       const delay = calculateTypingDelay(text);
@@ -68,22 +64,34 @@ export const useChatLogic = (
       }, accumulatedDelay);
       timeoutsRef.current.push(id);
     });
-  }, [conversation.id]);
+  }, [
+    conversation.id,
+    reset,
+    setMessages,
+    setCurrentState,
+    setIsWaitingForResponse,
+    setIsTerminal,
+  ]);
 
   const handleQuickReply = (
     replyText: string,
     nextState: string | undefined,
-    message?: string | string[]
+    message?: string | string[] | import('@/lib/conversations').MessageNode
   ) => {
     setAreQuickRepliesVisible(false);
     timeoutsRef.current.forEach(id => clearTimeout(id));
     timeoutsRef.current = [];
 
-    const userMessages = Array.isArray(message)
-      ? message
-      : message
-        ? [message]
-        : [replyText];
+    let userMessages: string[];
+    if (!message) {
+      userMessages = [replyText];
+    } else if (Array.isArray(message)) {
+      userMessages = message;
+    } else if (typeof message === 'string') {
+      userMessages = [message];
+    } else {
+      userMessages = expandMessageNode(message);
+    }
 
     if (userMessages.length > 1) {
       setIsUserTyping(true);
@@ -103,7 +111,11 @@ export const useChatLogic = (
             setIsUserTyping(false);
           }
           if (nextState) {
+            setIsTerminal(false);
             processBotResponse(nextState);
+          } else {
+            // No next state: mark conversation as terminal without mutating currentState
+            setIsTerminal(true);
           }
         }
       }, accumulatedDelay);
@@ -116,10 +128,15 @@ export const useChatLogic = (
     const response = getConversationResponse(conversation, nextState);
     setCurrentState(response.state);
 
-    if (response.kind === 'single') {
-      const botDelay = calculateTypingDelay(response.text);
+    if (response.type === 'single') {
+      const single = response as {
+        type: 'single';
+        text: string;
+        state: string;
+      };
+      const botDelay = calculateTypingDelay(single.text);
       const botResponseTimeoutId = window.setTimeout(() => {
-        addMessage({ sender: 'bot', text: response.text });
+        addMessage({ sender: 'bot', text: single.text });
         setIsWaitingForResponse(false);
       }, botDelay);
       timeoutsRef.current.push(botResponseTimeoutId);
@@ -127,8 +144,13 @@ export const useChatLogic = (
     }
 
     let botAccumulatedDelay = 0;
-    response.items.forEach((item, botIndex) => {
-      const isLastBotMessage = botIndex === response.items.length - 1;
+    const sequence = response as {
+      type: 'sequence';
+      items: Array<string | string[]>;
+      state: string;
+    };
+    sequence.items.forEach((item: string | string[], botIndex: number) => {
+      const isLastBotMessage = botIndex === sequence.items.length - 1;
       const text = Array.isArray(item)
         ? item[Math.floor(Math.random() * item.length)]
         : item;
@@ -149,8 +171,41 @@ export const useChatLogic = (
     currentState
   );
 
+  const restartConversation = () => {
+    const initialState = conversation.initialState;
+    const state = (conversation as any).states?.[initialState];
+    if (!state?.message) return;
+
+    addMessage({ sender: 'bot', text: '__divider__' });
+    setCurrentState(initialState);
+    setAreQuickRepliesVisible(false);
+    setIsTerminal(false);
+
+    const messages = expandMessageNode(state.message);
+    const first = messages[0] ?? '';
+    addMessage({ sender: 'bot', text: first });
+
+    const remaining = messages.slice(1);
+    if (remaining.length > 0) {
+      setIsWaitingForResponse(true);
+      let accumulated = 0;
+      remaining.forEach((item: string | string[], index: number) => {
+        const text = Array.isArray(item) ? item[0] : item;
+        const delay = calculateTypingDelay(text);
+        accumulated += delay;
+        window.setTimeout(() => {
+          addMessage({ sender: 'bot', text });
+          if (index === remaining.length - 1) {
+            setIsWaitingForResponse(false);
+          }
+        }, accumulated);
+      });
+    }
+  };
+
   return {
     handleQuickReply,
     currentQuickReplies,
+    restartConversation,
   };
 };

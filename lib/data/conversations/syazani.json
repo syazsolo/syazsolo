@@ -2,11 +2,12 @@
   "id": "syazani",
   "name": "Syazani",
   "avatar": "/acak.jpg",
-  "initialState": "welcome",
-  "states": {
-    "welcome": {
-      "message": "Hi! I'm Syazani.",
-      "quickReplies": [{ "text": "Restart", "nextState": "welcome" }]
+  "initialState": "root",
+  "nodes": [
+    {
+      "id": "root",
+      "message": { "type": "single", "text": "Hi! I'm Syazani." }
     }
-  }
+  ],
+  "edges": []
 }
