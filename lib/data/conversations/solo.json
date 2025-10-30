@@ -2,14 +2,17 @@
   "id": "solo",
   "name": "Solo",
   "avatar": "/han-solo.jpeg",
-  "initialState": "welcome",
+  "initialState": "root",
   "states": {
     "welcome": {
-      "message": [
-        "Han Solo.",
-        "I'm captain of the Millennium Falcon.",
-        "Chewie here told me you're looking for passage to the Alderaan system."
-      ],
+      "message": {
+        "type": "sequence",
+        "items": [
+          "Han Solo.",
+          "I'm captain of the Millennium Falcon.",
+          "Chewie here told me you're looking for passage to the Alderaan system."
+        ]
+      },
       "quickReplies": [
         {
           "text": "If it's a fast ship.",
@@ -19,15 +22,18 @@
       ]
     },
     "fast-ship": {
-      "message": "Fast ship? You've never heard of the Millennium Falcon?",
+      "message": { "type": "single", "text": "Fast ship? You've never heard of the Millennium Falcon?" },
       "quickReplies": [{ "text": "Should I have?", "nextState": "kessel-run" }]
     },
     "kessel-run": {
-      "message": [
-        "It's the ship that made the Kessel Run in less than 12 parsecs.",
-        "I've outrun Imperial starships, not the local bulk cruisers, mind you. I'm talking about the big Corellian ships now. She's fast enough for you, old man.",
-        "What's the cargo?"
-      ],
+      "message": {
+        "type": "sequence",
+        "items": [
+          "It's the ship that made the Kessel Run in less than 12 parsecs.",
+          "I've outrun Imperial starships, not the local bulk cruisers, mind you. I'm talking about the big Corellian ships now. She's fast enough for you, old man.",
+          "What's the cargo?"
+        ]
+      },
       "quickReplies": [
         {
           "text": "Only passengers -- and no questions asked.",
@@ -40,7 +46,7 @@
       ]
     },
     "cargo": {
-      "message": ["__laughs__", "What is it? Some kind of local trouble?"],
+      "message": { "type": "sequence", "items": ["__laughs__", "What is it? Some kind of local trouble?"] },
       "quickReplies": [
         {
           "text": "We don't want trouble.",
@@ -50,10 +56,10 @@
       ]
     },
     "entanglements": {
-      "message": [
+      "message": { "type": "sequence", "items": [
         "Well, that's the real trick, isn't it? And it's going to cost you something extra.",
         "Ten thousand, all in advance."
-      ],
+      ] },
       "quickReplies": [
         {
           "text": "Ten thousand?",
@@ -71,7 +77,7 @@
       ]
     },
     "own-ship": {
-      "message": ["But who's going to fly it kid?", "You?"],
+      "message": { "type": "sequence", "items": ["But who's going to fly it kid?", "You?"] },
       "quickReplies": [
         {
           "text": "You bet!",
@@ -85,7 +91,7 @@
       ]
     },
     "seventeen": {
-      "message": "Seventeen?",
+      "message": { "type": "single", "text": "Seventeen?" },
       "quickReplies": [
         {
           "text": "__nods__",
@@ -94,11 +100,11 @@
       ]
     },
     "nods": {
-      "message": [
+      "message": { "type": "sequence", "items": [
         "Okay. You guys got yourself a ship.",
         "We'll leave as soon as you're ready.",
         "Docking bay ninety-four."
-      ],
+      ] },
       "quickReplies": [
         {
           "text": "Going somewhere, Solo?",
@@ -107,10 +113,10 @@
       ]
     },
     "greo": {
-      "message": [
+      "message": { "type": "sequence", "items": [
         "Yes, Greo. As a matter of fact, I was just going to see your boss.",
         "Tell Jabba I've got his money."
-      ],
+      ] },
       "quickReplies": [
         {
           "text": "It's too late.",
@@ -126,7 +132,7 @@
       ]
     },
     "yeah-but": {
-      "message": "Yeah, but this time I've got the money.",
+      "message": { "type": "single", "text": "Yeah, but this time I've got the money." },
       "quickReplies": [
         {
           "text": "Give it to me.",
@@ -136,7 +142,7 @@
       ]
     },
     "dont-have-it-with-me": {
-      "message": ["__raises voice__", "I don't have it with me. Tell Jabba..."],
+      "message": { "type": "sequence", "items": ["__raises voice__", "I don't have it with me. Tell Jabba..."] },
       "quickReplies": [
         {
           "text": "No",
@@ -149,7 +155,7 @@
       ]
     },
     "even-I-get-boarded": {
-      "message": "Even I get boarded sometimes. You think I had a choice?",
+      "message": { "type": "single", "text": "Even I get boarded sometimes. You think I had a choice?" },
       "quickReplies": [
         {
           "text": "As Greo",
@@ -167,7 +173,7 @@
       ]
     },
     "my-dead-body": {
-      "message": "Over my dead body.",
+      "message": { "type": "single", "text": "Over my dead body." },
       "quickReplies": [
         {
           "text": "That's the idea.",
@@ -180,20 +186,20 @@
       ]
     },
     "shoots": {
-      "message": [
+      "message": { "type": "sequence", "items": [
         "Yes, I bet you have.",
         "*shoots!*",
         "...",
         "Sorry about the mess.",
         "__tosses coin to bartender__"
-      ],
+      ] },
       "quickReplies": []
     },
     "pay-you-back": {
-      "message": [
+      "message": { "type": "sequence", "items": [
         "But I got a nice easy charter now.",
         "I'll pay you back, plus a little extra, I just need a little more time."
-      ],
+      ] },
       "quickReplies": [
         {
           "text": "Bargain.",
@@ -207,7 +213,7 @@
       ]
     },
     "dont-push-it": {
-      "message": "Fifteen, Jabba. Don't push it.",
+      "message": { "type": "single", "text": "Fifteen, Jabba. Don't push it." },
       "quickReplies": [
         {
           "text": "__Huttese__",
@@ -217,7 +223,7 @@
       ]
     },
     "wonderful-human-being": {
-      "message": ["Jabba", "You're a wonderful human being."],
+      "message": { "type": "sequence", "items": ["Jabba", "You're a wonderful human being."] },
       "quickReplies": [
         {
           "text": "__Huttese__ Baska..."

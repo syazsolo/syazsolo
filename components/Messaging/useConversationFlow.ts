@@ -122,10 +122,15 @@ export const useConversationFlow = (
     const response = getConversationResponse(conversation, nextState);
     setCurrentState(response.state);
 
-    if (response.kind === 'single') {
-      const botDelay = calculateTypingDelay(response.text);
+    if (response.type === 'single') {
+      const single = response as {
+        type: 'single';
+        text: string;
+        state: string;
+      };
+      const botDelay = calculateTypingDelay(single.text);
       const botResponseTimeoutId = window.setTimeout(() => {
-        addMessage({ sender: 'bot', text: response.text });
+        addMessage({ sender: 'bot', text: single.text });
         setIsWaitingForResponse(false);
       }, botDelay);
       timeoutsRef.current.push(botResponseTimeoutId);
@@ -133,8 +138,13 @@ export const useConversationFlow = (
     }
 
     let botAccumulatedDelay = 0;
-    response.items.forEach((item, botIndex) => {
-      const isLastBotMessage = botIndex === response.items.length - 1;
+    const sequence = response as {
+      type: 'sequence';
+      items: Array<string | string[]>;
+      state: string;
+    };
+    sequence.items.forEach((item: string | string[], botIndex: number) => {
+      const isLastBotMessage = botIndex === sequence.items.length - 1;
       const text = Array.isArray(item)
         ? item[Math.floor(Math.random() * item.length)]
         : item;

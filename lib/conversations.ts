@@ -7,10 +7,15 @@ export interface QuickReply {
   message?: string | string[];
 }
 
+export type MessageNode =
+  | { type: 'single'; text: string }
+  | { type: 'sequence'; items: string[] }
+  | { type: 'random'; options: string[] };
+
 export interface ConversationState {
-  // string = single; array = sequence; array items can be string | string[]
-  message: string | Array<string | string[]>;
-  quickReplies: QuickReply[];
+  // New explicit message node schema
+  message: MessageNode;
+  quickReplies?: QuickReply[];
 }
 
 export interface ConversationData {
@@ -29,8 +34,16 @@ const defaultConversationsData: Record<string, ConversationData> = {
 export const conversationsData = defaultConversationsData;
 
 export type ConversationResponse =
-  | { kind: 'single'; text: string; state: string }
-  | { kind: 'sequence'; items: Array<string | string[]>; state: string };
+  | { type: ConversationType; text: string; state: string }
+  | { type: ConversationType; items: Array<string | string[]>; state: string };
+
+export const CONVERSATION_TYPE = {
+  SINGLE: 'single',
+  SEQUENCE: 'sequence',
+} as const;
+
+export type ConversationType =
+  (typeof CONVERSATION_TYPE)[keyof typeof CONVERSATION_TYPE];
 
 export const getConversationResponse = (
   conversation: ConversationData,
@@ -38,7 +51,7 @@ export const getConversationResponse = (
 ): ConversationResponse => {
   if (!conversation?.states) {
     return {
-      kind: 'single',
+      type: CONVERSATION_TYPE.SINGLE,
       text: "Sorry, something went wrong. Let's start over.",
       state: conversation?.initialState || '',
     };
@@ -47,33 +60,42 @@ export const getConversationResponse = (
   const state = conversation.states[currentState];
   if (!state?.message) {
     return {
-      kind: 'single',
+      type: CONVERSATION_TYPE.SINGLE,
       text: "Sorry, I don't understand that. Let's start over.",
       state: conversation.initialState,
     };
   }
 
-  if (Array.isArray(state.message)) {
+  const node = state.message;
+  if (node.type === 'single') {
     return {
-      kind: 'sequence',
-      items: state.message,
+      type: CONVERSATION_TYPE.SINGLE,
+      text: node.text,
       state: currentState,
     };
   }
-
+  if (node.type === 'sequence') {
+    return {
+      type: CONVERSATION_TYPE.SEQUENCE,
+      items: node.items,
+      state: currentState,
+    };
+  }
+  // random -> pick one
+  const options = node.options;
+  const choice = options[Math.floor(Math.random() * options.length)] ?? '';
   return {
-    kind: 'single',
-    text: state.message,
+    type: CONVERSATION_TYPE.SINGLE,
+    text: choice,
     state: currentState,
   };
 };
 
-export const getInitialMessage = (
-  message: string | Array<string | string[]>
-): string => {
-  if (!Array.isArray(message)) return message;
-  const first = message[0];
-  return Array.isArray(first) ? first[0] : first;
+export const getInitialMessage = (message: MessageNode): string => {
+  if (message.type === 'single') return message.text;
+  if (message.type === 'sequence') return message.items[0] ?? '';
+  // random
+  return message.options[0] ?? '';
 };
 
 export const getConversationQuickReplies = (
