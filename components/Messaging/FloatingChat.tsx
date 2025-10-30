@@ -1,11 +1,15 @@
 'use client';
 
 import { AnimatePresence, motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
+
 import { Chat } from '@/components/Messaging/Chat';
 import { ChatHeader } from '@/components/Messaging/ChatHeader';
 import { useFloatingChat } from './useFloatingChat';
-import { useEffect, useState } from 'react';
 import { useIsMobile } from '@/hooks/useIsMobile';
+
+const EASE_MOBILE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
+const EASE_STANDARD: [number, number, number, number] = [0.4, 0.0, 0.2, 1];
 
 interface FloatingChatProps {
   conversationId: string | null;
@@ -60,12 +64,12 @@ export const FloatingChat = ({
           scale: 0.8,
           transition: {
             duration: 0.4,
-            ease: [0.25, 0.46, 0.45, 0.94],
+            ease: EASE_MOBILE,
           },
         },
         transition: {
           duration: 0.3,
-          ease: [0.4, 0.0, 0.2, 1],
+          ease: EASE_STANDARD,
         },
       }
     : {
@@ -73,9 +77,9 @@ export const FloatingChat = ({
         animate: { opacity: 1 },
         exit: {
           opacity: 0,
-          transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] },
+          transition: { duration: 0.2, ease: EASE_STANDARD },
         },
-        transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] },
+        transition: { duration: 0.2, ease: EASE_STANDARD },
       };
 
   const isChatMaximized = isMobile || isMaximized;
