@@ -25,11 +25,11 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
         <div className="relative mr-2">
           <img
             src={avatarSrc}
-            alt="Messaging"
+            alt="random user avatar"
             className="w-8 h-8 rounded-full"
           />
         </div>
-        <span className="text-sm font-semibold mr-1 flex-1">Messaging</span>
+        <span className="text-sm font-semibold mr-1 flex-1">Chatbox</span>
         <div className="flex items-center gap-1">
           {isOpen ? (
             <ChevronDown size={16} className="text-muted-foreground" />

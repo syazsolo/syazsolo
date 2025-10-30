@@ -34,8 +34,8 @@ export interface GraphNode {
 
 export interface GraphEdge {
   from: string;
-  to: string;
-  label?: string; // shown as quick reply text
+  to?: string; // optional: omit to end the conversation after this reply
+  label: string; // shown as quick reply text
   message?: string | string[] | MessageNode; // optional user echo before transition
 }
 
@@ -66,7 +66,7 @@ const normalizeConversation = (data: any): ConversationData => {
     const fromState = states[edge.from];
     if (!fromState) continue;
     const reply: QuickReply = {
-      text: edge.label ?? edge.to,
+      text: edge.label,
       nextState: edge.to,
       message: edge.message,
     };
