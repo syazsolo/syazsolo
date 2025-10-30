@@ -1,0 +1,121 @@
+'use client';
+
+import { AnimatePresence, motion } from 'framer-motion';
+import { Chat } from '@/components/Messaging/Chat';
+import { ChatHeader } from '@/components/Messaging/ChatHeader';
+import { useFloatingChat } from './useFloatingChat';
+import { useEffect, useState } from 'react';
+import { useIsMobile } from '@/hooks/useIsMobile';
+
+interface FloatingChatProps {
+  conversationId: string | null;
+  onClose: () => void;
+  offsetIndex?: number;
+}
+
+export const FloatingChat = ({
+  conversationId,
+  onClose,
+  offsetIndex = 0,
+}: FloatingChatProps) => {
+  const isMobile = useIsMobile();
+  const [isMaximized, setIsMaximized] = useState(false);
+  const { isOpen, handleClose, setIsVisible } = useFloatingChat({
+    conversationId,
+    onClose,
+  });
+
+  useEffect(() => {
+    if (!isMobile) return;
+
+    if (isOpen) {
+      setIsVisible(true);
+      document.body.style.overflow = 'hidden';
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    } else {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    }
+
+    return () => {
+      document.body.style.overflow = '';
+      document.body.style.position = '';
+      document.body.style.width = '';
+    };
+  }, [isOpen, setIsVisible, isMobile]);
+
+  if (!conversationId) {
+    return null;
+  }
+
+  const motionVariants = isMobile
+    ? {
+        initial: { opacity: 0, y: '100%' },
+        animate: { opacity: 1, y: 0 },
+        exit: {
+          opacity: 0,
+          y: '100%',
+          scale: 0.8,
+          transition: {
+            duration: 0.4,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          },
+        },
+        transition: {
+          duration: 0.3,
+          ease: [0.4, 0.0, 0.2, 1],
+        },
+      }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: {
+          opacity: 0,
+          transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] },
+        },
+        transition: { duration: 0.2, ease: [0.4, 0.0, 0.2, 1] },
+      };
+
+  const isChatMaximized = isMobile || isMaximized;
+
+  return (
+    <AnimatePresence mode="wait">
+      {isOpen && (
+        <motion.div
+          className={`fixed flex flex-col overflow-hidden ${
+            isChatMaximized
+              ? 'z-60 inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg bg-card border border-border shadow-2xl text-foreground'
+              : 'z-50 bottom-0 w-80 h-96 rounded-lg bg-card border border-border shadow-2xl text-foreground'
+          } ${isMobile ? 'inset-0 z-50 bg-background text-foreground' : ''}`}
+          style={
+            !isChatMaximized && !isMobile
+              ? {
+                  right: 320 + offsetIndex * 336,
+                  willChange: 'transform, opacity',
+                }
+              : undefined
+          }
+          initial={motionVariants.initial}
+          animate={motionVariants.animate}
+          exit={motionVariants.exit}
+          transition={motionVariants.transition}
+          layout={!isMobile}
+        >
+          <ChatHeader
+            conversationId={conversationId}
+            isMaximized={isChatMaximized}
+            onClose={handleClose}
+            onToggleMaximize={() => !isMobile && setIsMaximized(!isMaximized)}
+            showMaximize={!isMobile}
+            onHeaderClick={isMobile ? handleClose : undefined}
+          />
+          <div className="grow h-full overflow-hidden">
+            <Chat conversationId={conversationId} />
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};

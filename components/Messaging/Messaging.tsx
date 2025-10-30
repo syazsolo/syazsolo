@@ -1,10 +1,9 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-
-import { FloatingChatDesktop } from '@/components/Messaging/FloatingChatDesktop';
-import { FloatingChatMobile } from '@/components/Messaging/FloatingChatMobile';
+import { FloatingChat } from '@/components/Messaging/FloatingChat';
 import dynamic from 'next/dynamic';
+import { useIsMobile } from '@/hooks/useIsMobile';
 
 const MessageBar = dynamic(
   () => import('@/components/Messaging/MessageBar').then(mod => mod.MessageBar),
@@ -14,19 +13,18 @@ const MessageBar = dynamic(
 export const Messaging = () => {
   const [openConversations, setOpenConversations] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
-  const [isSmallScreen, setIsSmallScreen] = useState(false);
+  const isSmallScreen = useIsMobile();
 
   useEffect(() => {
     setMounted(true);
-    const mql = window.matchMedia('(max-width: 639px)');
-    const update = () => setIsSmallScreen(mql.matches);
-    update();
-    mql.addEventListener('change', update);
-    return () => mql.removeEventListener('change', update);
   }, []);
 
   const openConversation = (conversationId: string) => {
     setOpenConversations(prev => {
+      if (isSmallScreen) {
+        return [conversationId];
+      }
+
       if (prev.includes(conversationId)) {
         return prev;
       }
@@ -53,26 +51,20 @@ export const Messaging = () => {
     <>
       <MessageBar onSelectConversation={openConversation} />
 
-      {isSmallScreen && (
-        <div className="sm:hidden">
-          <FloatingChatMobile
-            conversationId={openConversations[0] ?? null}
-            onClose={() => setOpenConversations([])}
+      {isSmallScreen ? (
+        <FloatingChat
+          conversationId={openConversations[0] ?? null}
+          onClose={() => setOpenConversations([])}
+        />
+      ) : (
+        openConversations.map((id, index) => (
+          <FloatingChat
+            key={id}
+            conversationId={id}
+            onClose={() => closeConversation(id)}
+            offsetIndex={index}
           />
-        </div>
-      )}
-
-      {!isSmallScreen && (
-        <div className="hidden sm:block">
-          {openConversations.map((id, index) => (
-            <FloatingChatDesktop
-              key={id}
-              conversationId={id}
-              onClose={() => closeConversation(id)}
-              offsetIndex={index}
-            />
-          ))}
-        </div>
+        ))
       )}
     </>
   );
