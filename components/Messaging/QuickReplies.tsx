@@ -1,11 +1,7 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import {
-  QuickReply,
-  expandMessageNode,
-  type MessageNode,
-} from '@/lib/conversations';
+import { QuickReply, type MessageNode } from '@/lib/conversations';
 import { parseFormattedText } from '@/lib/utils';
 
 interface QuickRepliesProps {
@@ -13,7 +9,7 @@ interface QuickRepliesProps {
   onQuickReply: (
     text: string,
     nextState: string | undefined,
-    message?: string | string[]
+    message?: string | string[] | MessageNode
   ) => void;
 }
 
@@ -25,22 +21,8 @@ export const QuickReplies = ({
     return null;
   }
 
-  const isMessageNode = (value: unknown): value is MessageNode => {
-    return (
-      typeof value === 'object' &&
-      value !== null &&
-      'type' in (value as Record<string, unknown>)
-    );
-  };
-
   const handleQuickReply = (reply: QuickReply) => {
-    let message: string | string[] | undefined;
-    if (isMessageNode(reply.message)) {
-      message = expandMessageNode(reply.message);
-    } else {
-      message = reply.message;
-    }
-    onQuickReply(reply.text, reply.nextState, message);
+    onQuickReply(reply.text, reply.nextState, reply.message);
   };
 
   return (

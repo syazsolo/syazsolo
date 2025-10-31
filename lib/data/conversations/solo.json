@@ -6,140 +6,98 @@
   "nodes": [
     {
       "id": "welcome",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Han Solo.",
-          "I'm captain of the Millennium Falcon.",
-          "Chewie here told me you're looking for passage to the Alderaan system."
-        ]
-      }
+      "message": [
+        "Han Solo.",
+        "I'm captain of the Millennium Falcon.",
+        "Chewie here told me you're looking for passage to the Alderaan system."
+      ]
     },
     {
       "id": "fast-ship",
-      "message": {
-        "type": "single",
-        "text": "Fast ship? You've never heard of the Millennium Falcon?"
-      }
+      "message": "Fast ship? You've never heard of the Millennium Falcon?"
     },
     {
       "id": "kessel-run",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "It's the ship that made the Kessel Run in less than 12 parsecs.",
-          "I've outrun Imperial starships, not the local bulk cruisers, mind you. I'm talking about the big Corellian ships now. She's fast enough for you, old man.",
-          "What's the cargo?"
-        ]
-      }
+      "message": [
+        "It's the ship that made the Kessel Run in less than 12 parsecs.",
+        "I've outrun Imperial starships, not the local bulk cruisers, mind you. I'm talking about the big Corellian ships now. She's fast enough for you, old man.",
+        "What's the cargo?"
+      ]
     },
     {
       "id": "cargo",
-      "message": {
-        "type": "sequence",
-        "items": ["__laughs__", "What is it? Some kind of local trouble?"]
-      }
+      "message": ["__laughs__", "What is it? Some kind of local trouble?"]
     },
     {
       "id": "entanglements",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Well, that's the real trick, isn't it? And it's going to cost you something extra.",
-          "Ten thousand, all in advance."
-        ]
-      }
+      "message": [
+        "Well, that's the real trick, isn't it? And it's going to cost you something extra.",
+        "Ten thousand, all in advance."
+      ]
     },
     {
       "id": "own-ship",
-      "message": {
-        "type": "sequence",
-        "items": ["But who's going to fly it kid?", "You?"]
-      }
+      "message": ["But who's going to fly it kid?", "You?"]
     },
     {
       "id": "seventeen",
-      "message": { "type": "single", "text": "Seventeen?" }
+      "message": "Seventeen?"
     },
     {
       "id": "nods",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Okay. You guys got yourself a ship.",
-          "We'll leave as soon as you're ready.",
-          "Docking bay ninety-four."
-        ]
-      }
+      "message": [
+        "Okay. You guys got yourself a ship.",
+        "We'll leave as soon as you're ready.",
+        "Docking bay ninety-four."
+      ]
     },
     {
       "id": "greo",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Yes, Greo. As a matter of fact, I was just going to see your boss.",
-          "Tell Jabba I've got his money."
-        ]
-      }
+      "message": [
+        "Yes, Greo. As a matter of fact, I was just going to see your boss.",
+        "Tell Jabba I've got his money."
+      ]
     },
     {
       "id": "yeah-but",
-      "message": {
-        "type": "single",
-        "text": "Yeah, but this time I've got the money."
-      }
+      "message": "Yeah, but this time I've got the money."
     },
     {
       "id": "dont-have-it-with-me",
-      "message": {
-        "type": "sequence",
-        "items": ["__raises voice__", "I don't have it with me. Tell Jabba..."]
-      }
+      "message": ["__raises voice__", "I don't have it with me. Tell Jabba..."]
     },
     {
       "id": "even-I-get-boarded",
-      "message": {
-        "type": "single",
-        "text": "Even I get boarded sometimes. You think I had a choice?"
-      }
+      "message": "Even I get boarded sometimes. You think I had a choice?"
     },
     {
       "id": "my-dead-body",
-      "message": { "type": "single", "text": "Over my dead body." }
+      "message": "Over my dead body."
     },
     {
       "id": "shoots",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Yes, I bet you have.",
-          "*shoots!*",
-          "...",
-          "Sorry about the mess.",
-          "__tosses coin to bartender__"
-        ]
-      }
+      "message": [
+        "Yes, I bet you have.",
+        "*shoots!*",
+        "...",
+        "Sorry about the mess.",
+        "__tosses coin to bartender__"
+      ]
     },
     {
       "id": "pay-you-back",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "But I got a nice easy charter now.",
-          "I'll pay you back, plus a little extra, I just need a little more time."
-        ]
-      }
+      "message": [
+        "But I got a nice easy charter now.",
+        "I'll pay you back, plus a little extra, I just need a little more time."
+      ]
     },
     {
       "id": "dont-push-it",
-      "message": { "type": "single", "text": "Fifteen, Jabba. Don't push it." }
+      "message": "Fifteen, Jabba. Don't push it."
     },
     {
       "id": "wonderful-human-being",
-      "message": {
-        "type": "sequence",
-        "items": ["Jabba", "You're a wonderful human being."]
-      }
+      "message": ["Jabba", "You're a wonderful human being."]
     }
   ],
   "edges": [
@@ -147,155 +105,116 @@
       "from": "welcome",
       "to": "fast-ship",
       "label": "Yes indeed.",
-      "message": {
-        "type": "sequence",
-        "items": ["Yes indeed.", "If it's a fast ship."]
-      }
+      "message": ["Yes indeed.", "If it's a fast ship."]
     },
     { "from": "fast-ship", "to": "kessel-run", "label": "Should I have?" },
     {
       "from": "kessel-run",
       "to": "cargo",
       "label": "Only passengers.",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Only passengers. Myself, the boy, two droids.",
-          "And no questions asked."
-        ]
-      }
+      "message": [
+        "Only passengers. Myself, the boy, two droids.",
+        "And no questions asked."
+      ]
     },
     {
       "from": "cargo",
       "to": "entanglements",
       "label": "Imperial entanglements.",
-      "message": {
-        "type": "single",
-        "text": "Let's just say we'd like to avoid any Imperial entanglements."
-      }
+      "message": "Let's just say we'd like to avoid any Imperial entanglements."
     },
     {
       "from": "entanglements",
       "to": "own-ship",
       "label": "Ten thousand?",
-      "message": {
-        "type": "sequence",
-        "items": ["Ten thousand?", "We could almost buy our own ship for that."]
-      }
+      "message": ["Ten thousand?", "We could almost buy our own ship for that."]
     },
     {
       "from": "entanglements",
       "to": "seventeen",
       "label": "Negotiate.",
-      "message": {
-        "type": "single",
-        "text": "We can pay you two thousand now, plus fifteen, when we reach Alderaan."
-      }
+      "message": "We can pay you two thousand now, plus fifteen, when we reach Alderaan."
     },
     {
       "from": "own-ship",
       "to": "seventeen",
       "label": "You bet!",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "You bet I could! I'm not such a bad pilot myself! We don't have to sit here and listen to...",
-          "__Obi-Wan is calm__",
-          "We can pay you two thousand now, plus fifteen, when we reach Alderaan."
-        ]
-      }
+      "message": [
+        "You bet I could! I'm not such a bad pilot myself! We don't have to sit here and listen to...",
+        "__Obi-Wan is calm__",
+        "We can pay you two thousand now, plus fifteen, when we reach Alderaan."
+      ]
     },
     { "from": "seventeen", "to": "nods", "label": "__nods__" },
     {
       "from": "nods",
       "to": "greo",
       "label": "__Jump to Greo__",
-      "message": { "type": "single", "text": "Going somewhere, Solo?" }
+      "message": "Going somewhere, Solo?"
     },
     {
       "from": "greo",
       "to": "yeah-but",
       "label": "It's too late.",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "It's too late.",
-          "You should have paid him when you had the chance.",
-          "Jabba's put a price on your head so large every bounty hunter in the galaxy will be looking for you.",
-          "__hehehe__",
-          "I'm lucky I found you first."
-        ]
-      }
+      "message": [
+        "It's too late.",
+        "You should have paid him when you had the chance.",
+        "Jabba's put a price on your head so large every bounty hunter in the galaxy will be looking for you.",
+        "__hehehe__",
+        "I'm lucky I found you first."
+      ]
     },
     {
       "from": "yeah-but",
       "to": "dont-have-it-with-me",
       "label": "Give it to me.",
-      "message": {
-        "type": "single",
-        "text": "If you give it to me, I might forget I found you."
-      }
+      "message": "If you give it to me, I might forget I found you."
     },
     {
       "from": "dont-have-it-with-me",
       "to": "even-I-get-boarded",
       "label": "No",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Jabba's through with you.",
-          "He has no time for smugglers who drop their shipments at the first sign of an Imperial cruiser."
-        ]
-      }
+      "message": [
+        "Jabba's through with you.",
+        "He has no time for smugglers who drop their shipments at the first sign of an Imperial cruiser."
+      ]
     },
     {
       "from": "even-I-get-boarded",
       "to": "my-dead-body",
       "label": "__Stay as Greo__",
-      "message": {
-        "type": "sequence",
-        "items": ["You can tell that to Jabba.", "He may only take your ship."]
-      }
+      "message": ["You can tell that to Jabba.", "He may only take your ship."]
     },
     {
       "from": "even-I-get-boarded",
       "to": "pay-you-back",
       "label": "__Jump to Jabba__",
-      "message": { "type": "single", "text": "Ah!" }
+      "message": "Ah!"
     },
     {
       "from": "my-dead-body",
       "to": "shoots",
       "label": "That's the idea.",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "That's the idea.",
-          "I've been looking forward to this for a long time..."
-        ]
-      }
+      "message": [
+        "That's the idea.",
+        "I've been looking forward to this for a long time..."
+      ]
     },
     {
       "from": "pay-you-back",
       "to": "dont-push-it",
       "label": "Bargain.",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "__In Huttese__",
-          "Han, my boy, I'm only doing this because you're the best and I need you.",
-          "So, for an extra twenty..."
-        ]
-      }
+      "message": [
+        "__In Huttese__",
+        "Han, my boy, I'm only doing this because you're the best and I need you.",
+        "So, for an extra twenty..."
+      ]
     },
     {
       "from": "dont-push-it",
       "to": "wonderful-human-being",
       "label": "__Huttese__",
-      "message": {
-        "type": "sequence",
-        "items": ["__Huttese__", "__Huttese__", "__Huttese...__"]
-      }
+      "message": ["__Huttese__", "__Huttese__", "__Huttese...__"]
     }
   ]
 }

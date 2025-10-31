@@ -79,7 +79,7 @@ export const useChatViewModel = (conversationId: string = 'syazani') => {
 
     if (messages.length > 0) {
       const lastMessage = messages[messages.length - 1];
-      if (lastMessage.sender === 'user') {
+      if (lastMessage.type === 'message' && lastMessage.sender === 'user') {
         setTimeout(scrollToUserMessage, SCROLL_DELAY);
       }
     }
@@ -89,10 +89,10 @@ export const useChatViewModel = (conversationId: string = 'syazani') => {
     currentQuickRepliesCount: currentQuickReplies.length,
     isWaitingForResponse,
     isUserTyping,
-    lastMessageSender: messages[messages.length - 1]?.sender as
-      | 'user'
-      | 'bot'
-      | undefined,
+    lastMessageSender:
+      messages[messages.length - 1]?.type === 'message'
+        ? (messages[messages.length - 1] as any).sender
+        : undefined,
   });
   const effectiveEndOfConversation = isTerminal || endOfConversation;
 

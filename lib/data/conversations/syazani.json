@@ -6,33 +6,24 @@
   "nodes": [
     {
       "id": "root",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "Hello!",
-          "I'm Syazani. People call me Syaz.",
-          "This is the bot version of me. I write these texts myself."
-        ]
-      }
+      "message": [
+        "Hello!",
+        "I'm Syazani. People call me Syaz.",
+        "This is the bot version of me. I write these texts myself."
+      ]
     },
     {
       "id": "base",
-      "message": {
-        "type": "sequence",
-        "items": ["Hi!", "What do you want to talk about?"]
-      }
+      "message": ["Hi!", "What do you want to talk about?"]
     },
     {
       "id": "han-solo",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "I do that. I use fictional characters to represent different parts of me I want to show.",
-          "As for being a Software Engineer, I'm Syaz + Han Solo = Syaz Solo.",
-          "I do my work my way. I am the best pilot in the galaxy.",
-          "So to answer your question, Han Solo is my brand."
-        ]
-      }
+      "message": [
+        "I do that. I use fictional characters to represent different parts of me I want to show.",
+        "As for being a Software Engineer, I'm Syaz + Han Solo = Syaz Solo.",
+        "I do my work my way. I am the best pilot in the galaxy.",
+        "So to answer your question, Han Solo is my brand."
+      ]
     },
     {
       "id": "random-solo-quote",
@@ -48,13 +39,10 @@
     },
     {
       "id": "other-characters",
-      "message": {
-        "type": "sequence",
-        "items": [
-          "There are different chatboxes here for other things.",
-          "For example, the chatbox Hal from The Space Odyssey is for about how I use AI in my work."
-        ]
-      }
+      "message": [
+        "There are different chatboxes here for other things.",
+        "For example, the chatbox Hal from The Space Odyssey is for about how I use AI in my work."
+      ]
     }
   ],
   "edges": [
@@ -67,28 +55,19 @@
       "from": "base",
       "to": "han-solo",
       "label": "Han Solo?",
-      "message": {
-        "type": "single",
-        "text": "What's with the Han Solo reference?"
-      }
+      "message": "What's with the Han Solo reference?"
     },
     {
       "from": "han-solo",
       "to": "random-solo-quote",
       "label": "Random quote.",
-      "message": {
-        "type": "single",
-        "text": "Give me random Han Solo quote."
-      }
+      "message": "Give me random Han Solo quote."
     },
     {
       "from": "han-solo",
       "to": "other-characters",
       "label": "Other characters?",
-      "message": {
-        "type": "single",
-        "text": "There are other characters?"
-      }
+      "message": "There are other characters?"
     },
     {
       "from": "random-solo-quote",

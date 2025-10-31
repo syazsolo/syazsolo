@@ -1,13 +1,21 @@
 import { create } from 'zustand';
 import { useMemo } from 'react';
+import { MessageNode } from '@/lib/conversations';
 
-type Message = {
+export type ChatMessage = {
+  type: 'message';
   sender: 'user' | 'bot';
-  text: string;
+  content: MessageNode;
 };
 
+export type DividerMessage = {
+  type: 'divider';
+};
+
+export type DisplayableMessage = ChatMessage | DividerMessage;
+
 interface ConversationState {
-  messages: Message[];
+  messages: DisplayableMessage[];
   currentState: string;
   isWaitingForResponse: boolean;
   isUserTyping: boolean;
@@ -19,8 +27,8 @@ interface RootChatStore {
   conversations: Record<string, ConversationState>;
   actions: {
     init: (id: string) => void;
-    setMessages: (id: string, messages: Message[]) => void;
-    addMessage: (id: string, message: Message) => void;
+    setMessages: (id: string, messages: DisplayableMessage[]) => void;
+    addMessage: (id: string, message: DisplayableMessage) => void;
     setCurrentState: (id: string, state: string) => void;
     setIsWaitingForResponse: (id: string, isWaiting: boolean) => void;
     setIsUserTyping: (id: string, isTyping: boolean) => void;
@@ -39,7 +47,7 @@ const createEmptyConversation = (): ConversationState => ({
   isTerminal: false,
 });
 
-const EMPTY_MESSAGES: Message[] = [];
+const EMPTY_MESSAGES: DisplayableMessage[] = [];
 
 const useChatStore = create<RootChatStore>(set => ({
   conversations: {},
@@ -149,8 +157,10 @@ export const useChatActions = (id: string) => {
   const actions = useChatStore(state => state.actions);
   return useMemo(
     () => ({
-      setMessages: (messages: Message[]) => actions.setMessages(id, messages),
-      addMessage: (message: Message) => actions.addMessage(id, message),
+      setMessages: (messages: DisplayableMessage[]) =>
+        actions.setMessages(id, messages),
+      addMessage: (message: DisplayableMessage) =>
+        actions.addMessage(id, message),
       setCurrentState: (stateStr: string) =>
         actions.setCurrentState(id, stateStr),
       setIsWaitingForResponse: (isWaiting: boolean) =>
