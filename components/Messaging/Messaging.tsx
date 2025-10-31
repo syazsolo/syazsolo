@@ -63,6 +63,7 @@ export const Messaging = () => {
             conversationId={id}
             onClose={() => closeConversation(id)}
             offsetIndex={index}
+            totalChats={openConversations.length}
           />
         ))
       )}

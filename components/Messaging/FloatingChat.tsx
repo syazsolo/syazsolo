@@ -11,23 +11,42 @@ import { useIsMobile } from '@/hooks/useIsMobile';
 const EASE_MOBILE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
 const EASE_STANDARD: [number, number, number, number] = [0.4, 0.0, 0.2, 1];
 
+const CHAT_WIDTH = 320;
+const CHAT_GAP = 16;
+const MESSAGE_BAR_WIDTH = 320;
+
 interface FloatingChatProps {
   conversationId: string | null;
   onClose: () => void;
   offsetIndex?: number;
+  totalChats?: number;
 }
 
 export const FloatingChat = ({
   conversationId,
   onClose,
   offsetIndex = 0,
+  totalChats = 1,
 }: FloatingChatProps) => {
   const isMobile = useIsMobile();
   const [isMaximized, setIsMaximized] = useState(false);
+  const [windowWidth, setWindowWidth] = useState(0);
   const { isOpen, handleClose, setIsVisible } = useFloatingChat({
     conversationId,
     onClose,
   });
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    setWindowWidth(window.innerWidth);
+
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (!isMobile) return;
@@ -49,6 +68,24 @@ export const FloatingChat = ({
       document.body.style.width = '';
     };
   }, [isOpen, setIsVisible, isMobile]);
+
+  const calculateRightOffset = () => {
+    if (isMobile || isMaximized) return undefined;
+    if (!windowWidth)
+      return MESSAGE_BAR_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
+
+    const availableWidth = windowWidth - MESSAGE_BAR_WIDTH;
+    const totalNeededWidth =
+      totalChats * CHAT_WIDTH + (totalChats - 1) * CHAT_GAP;
+
+    if (totalNeededWidth > availableWidth) {
+      const adjustedGap =
+        (availableWidth - totalChats * CHAT_WIDTH) / (totalChats - 1 || 1);
+      return MESSAGE_BAR_WIDTH + offsetIndex * (CHAT_WIDTH + adjustedGap);
+    }
+
+    return MESSAGE_BAR_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
+  };
 
   if (!conversationId) {
     return null;
@@ -96,7 +133,7 @@ export const FloatingChat = ({
           style={
             !isChatMaximized && !isMobile
               ? {
-                  right: 320 + offsetIndex * 336,
+                  right: calculateRightOffset(),
                   willChange: 'transform, opacity',
                 }
               : undefined
