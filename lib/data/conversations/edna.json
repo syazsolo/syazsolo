@@ -1,0 +1,20 @@
+{
+  "id": "edna",
+  "name": "Edna \"E\" Mode (The Incredibles)",
+  "avatar": "/bots/edna.webp",
+  "initialState": "root",
+  "nodes": [
+    {
+      "id": "root",
+      "message": {
+        "type": "sequence",
+        "items": [
+          "This project has completely confiscated my life.",
+          "Consumed me as only hero work can.",
+          "My best work, I must admit. Simple, elegant, yet bold. You will die."
+        ]
+      }
+    }
+  ],
+  "edges": []
+}

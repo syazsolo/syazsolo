@@ -1,7 +1,7 @@
 {
   "id": "solo",
   "name": "Solo",
-  "avatar": "/han-solo.jpeg",
+  "avatar": "/bots/han-solo.jpeg",
   "initialState": "welcome",
   "nodes": [
     {

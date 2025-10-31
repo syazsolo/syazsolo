@@ -1,3 +1,4 @@
+import ednaConversation from './data/conversations/edna.json';
 import soloConversation from './data/conversations/solo.json';
 import syazaniConversation from './data/conversations/syazani.json';
 
@@ -98,6 +99,7 @@ export const expandMessageNode = (node: MessageNode): string[] => {
 const defaultConversationsData: Record<string, ConversationData> = {
   syazani: normalizeConversation(syazaniConversation),
   solo: normalizeConversation(soloConversation),
+  edna: normalizeConversation(ednaConversation),
 };
 
 export const conversationsData = defaultConversationsData;
