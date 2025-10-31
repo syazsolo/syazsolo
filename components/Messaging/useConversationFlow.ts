@@ -3,7 +3,6 @@
 import {
   ConversationData,
   MessageNode,
-  QuickReply,
   RandomNode,
   getConversationQuickReplies,
 } from '@/lib/conversations';
@@ -28,6 +27,7 @@ export const useConversationFlow = (
     reset,
   } = useChatActions(conversationId);
   const timeoutsRef = useRef<number[]>([]);
+  const isProcessingRef = useRef<boolean>(false);
 
   const clearTimeouts = () => {
     timeoutsRef.current.forEach(id => clearTimeout(id));
@@ -97,31 +97,53 @@ export const useConversationFlow = (
     nextState: string | undefined,
     message?: string | string[] | MessageNode
   ) => {
+    if (isProcessingRef.current) return;
+    isProcessingRef.current = true;
+
     setAreQuickRepliesVisible(false);
     clearTimeouts();
 
-    // User message is always a string for now
-    const userMessageContent: MessageNode =
-      typeof message === 'string'
-        ? message
-        : Array.isArray(message) && typeof message[0] === 'string'
-          ? (message as string[])
-          : replyText;
-
-    addMessage({
-      type: 'message',
-      sender: 'user',
-      content: userMessageContent,
-    });
-
-    if (nextState) {
-      setIsTerminal(false);
-      const nextNode = conversation.states[nextState]?.message;
-      if (nextNode) {
-        processNode(nextNode);
+    const transitionTo = (state: string | undefined) => {
+      if (state) {
+        setCurrentState(state);
+        setIsTerminal(false);
+        const nextNode = conversation.states[state]?.message;
+        if (nextNode) {
+          processNode(nextNode);
+        }
+      } else {
+        setIsTerminal(true);
       }
+      isProcessingRef.current = false;
+    };
+
+    if (Array.isArray(message) && message.every(m => typeof m === 'string')) {
+      setIsUserTyping(true);
+      let accumulatedDelay = 0;
+      (message as string[]).forEach(part => {
+        const delay = calculateTypingDelay(part);
+        const timeoutId = window.setTimeout(
+          () => addMessage({ type: 'message', sender: 'user', content: part }),
+          accumulatedDelay + delay
+        );
+        timeoutsRef.current.push(timeoutId);
+        accumulatedDelay += delay;
+      });
+
+      const finalTimeoutId = window.setTimeout(() => {
+        setIsUserTyping(false);
+        transitionTo(nextState);
+      }, accumulatedDelay);
+      timeoutsRef.current.push(finalTimeoutId);
     } else {
-      setIsTerminal(true);
+      const userMessageContent: MessageNode =
+        typeof message === 'string' ? message : replyText;
+      addMessage({
+        type: 'message',
+        sender: 'user',
+        content: userMessageContent,
+      });
+      transitionTo(nextState);
     }
   };
 
