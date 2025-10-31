@@ -1,0 +1,23 @@
+{
+  "id": "edna",
+  "name": "Edna \"E\" Mode (The Incredibles)",
+  "avatar": "/bots/edna.webp",
+  "initialState": "root",
+  "nodes": [
+    {
+      "id": "root",
+      "message": [
+        {
+          "type": "embed",
+          "provider": "youtube",
+          "url": "https://www.youtube.com/embed/Frg2xBkS3BU?si=asuFmaKbKdF-xIxN&start=220",
+          "preview": "Come in, come in!"
+        },
+        "This project has completely confiscated my life, darling.",
+        "Consumed me as only hero work can.",
+        "My best work, I must admit. Simple, elegant, yet bold. You will die."
+      ]
+    }
+  ],
+  "edges": []
+}

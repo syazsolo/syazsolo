@@ -6,18 +6,15 @@ import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { BotMessage } from '@/components/Messaging/BotMessage';
 import { Button } from '@/components/ui/button';
+import { DisplayableMessage } from '@/lib/chat-state';
+import { MessageNode } from '@/lib/conversations';
 import { QuickReplies } from '@/components/Messaging/QuickReplies';
 import { TypingIndicator } from '@/components/Messaging/TypingIndicator';
 import { UserMessage } from '@/components/Messaging/UserMessage';
 import { getSharedAvatarUrl } from '@/lib/avatar';
 
-type Message = {
-  sender: 'user' | 'bot';
-  text: string;
-};
-
 interface MessageAreaProps {
-  messages: Message[];
+  messages: DisplayableMessage[];
   conversation: ConversationData;
   lastUserMessageRef: MutableRefObject<HTMLDivElement | null>;
   messagesEndRef: MutableRefObject<HTMLDivElement | null>;
@@ -25,7 +22,7 @@ interface MessageAreaProps {
   onQuickReply: (
     text: string,
     nextState: string | undefined,
-    message?: string | string[]
+    message?: string | string[] | MessageNode
   ) => void;
   onRestart?: () => void;
   isWaitingForResponse: boolean;
@@ -47,7 +44,9 @@ export const MessageArea = ({
   areQuickRepliesVisible,
   isEndOfConversation,
 }: MessageAreaProps) => {
-  const lastUserMessageIndex = messages.findLastIndex(m => m.sender === 'user');
+  const lastUserMessageIndex = messages.findLastIndex(
+    m => m.type === 'message' && m.sender === 'user'
+  );
   const containerRef = useRef<HTMLDivElement | null>(null);
   const atBottomRef = useRef(true);
   const [userAvatarSrc] = useState(() => getSharedAvatarUrl());
@@ -92,10 +91,7 @@ export const MessageArea = ({
       style={{ scrollBehavior: 'smooth' }}
     >
       {messages.map((msg, index) => {
-        const isLastUserMessage = index === lastUserMessageIndex;
-        const isUser = msg.sender === 'user';
-
-        if (msg.text === '__divider__') {
+        if (msg.type === 'divider') {
           return (
             <div key={index} className="py-2">
               <hr className="border-t border-border" />
@@ -103,11 +99,14 @@ export const MessageArea = ({
           );
         }
 
+        const isLastUserMessage = index === lastUserMessageIndex;
+        const isUser = msg.sender === 'user';
+
         if (isUser) {
           return (
             <UserMessage
               key={index}
-              text={msg.text}
+              content={msg.content}
               userAvatarSrc={userAvatarSrc}
               isLastUserMessage={isLastUserMessage}
               lastUserMessageRef={lastUserMessageRef}
@@ -116,7 +115,11 @@ export const MessageArea = ({
         }
 
         return (
-          <BotMessage key={index} conversation={conversation} text={msg.text} />
+          <BotMessage
+            key={index}
+            conversation={conversation}
+            content={msg.content}
+          />
         );
       })}
       {areQuickRepliesVisible && (

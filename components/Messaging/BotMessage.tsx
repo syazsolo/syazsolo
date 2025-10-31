@@ -1,13 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ConversationData } from '@/lib/conversations';
-import { parseFormattedText } from '@/lib/utils';
+import { MessageNode } from '@/lib/conversations';
+import { RenderNode } from './RenderNode';
 
 interface BotMessageProps {
   conversation: ConversationData;
-  text: string;
+  content: MessageNode;
 }
 
-export const BotMessage = ({ conversation, text }: BotMessageProps) => {
+export const BotMessage = ({ conversation, content }: BotMessageProps) => {
   return (
     <div className="flex items-start gap-2">
       <Avatar className="w-6 h-6">
@@ -16,16 +17,7 @@ export const BotMessage = ({ conversation, text }: BotMessageProps) => {
       </Avatar>
       <div className="flex flex-col sm:max-w-[80%] max-w-[85%]">
         <div className="rounded-2xl px-3 py-2 text-sm bg-card text-foreground">
-          {parseFormattedText(text).map((part, index) => (
-            <span
-              key={index}
-              className={`${part.italic ? 'italic' : ''} ${
-                part.bold ? 'font-bold' : ''
-              }`}
-            >
-              {part.text}
-            </span>
-          ))}
+          <RenderNode node={content} />
         </div>
       </div>
     </div>

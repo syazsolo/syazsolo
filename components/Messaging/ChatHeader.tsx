@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 
 import { chatActivityStore } from '@/lib/chat-activity';
 import { conversationsData } from '@/lib/conversations';
+import { useConversationProgress } from '@/lib/progress';
+import { ProgressCircle } from '@/components/Messaging/ProgressCircle';
 
 interface ChatHeaderProps {
   conversationId: string;
@@ -24,6 +26,9 @@ export const ChatHeader = ({
 }: ChatHeaderProps) => {
   const conversation = conversationsData[conversationId];
   const [isOnline, setIsOnline] = useState(false);
+  const { percent, visitedCount, totalStates } = useConversationProgress(
+    conversationId
+  );
 
   useEffect(() => {
     const updateOnlineStatus = () => {
@@ -54,6 +59,10 @@ export const ChatHeader = ({
           )}
         </div>
         <span className="font-semibold text-sm">{conversation.name}</span>
+        <ProgressCircle
+          progress={percent}
+          label={`${visitedCount}/${totalStates} states visited`}
+        />
       </div>
       <div className="flex items-center gap-1">
         {showMaximize && (

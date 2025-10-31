@@ -1,7 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { conversationsData, getInitialMessage } from '@/lib/conversations';
+import { conversationsData, getNodePreview } from '@/lib/conversations';
 import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/ui/input';
@@ -21,7 +21,7 @@ const conversations: Conversation[] = Object.values(conversationsData).map(
     id: convo.id,
     name: convo.name,
     avatar: convo.avatar,
-    message: getInitialMessage(convo.states[convo.initialState].message),
+    message: getNodePreview(convo.states[convo.initialState].message),
   })
 );
 

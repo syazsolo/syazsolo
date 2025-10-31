@@ -1,3 +1,4 @@
+import ednaConversation from './data/conversations/edna.json';
 import soloConversation from './data/conversations/solo.json';
 import syazaniConversation from './data/conversations/syazani.json';
 
@@ -7,13 +8,21 @@ export interface QuickReply {
   message?: string | string[] | MessageNode;
 }
 
-export type MessageNode =
-  | { type: 'single'; text: string }
-  | { type: 'sequence'; items: string[] }
-  | { type: 'random'; items: string[] };
+// Minimal recursive message algebra
+export type EmbedProvider = 'youtube';
+
+export type EmbedNode = {
+  type: 'embed';
+  provider: EmbedProvider;
+  url: string;
+  preview?: string;
+};
+
+export type RandomNode = { type: 'random'; items: MessageNode[] };
+
+export type MessageNode = string | EmbedNode | RandomNode | MessageNode[];
 
 export interface ConversationState {
-  // New explicit message node schema
   message: MessageNode;
   quickReplies?: QuickReply[];
 }
@@ -82,92 +91,77 @@ const normalizeConversation = (data: any): ConversationData => {
   } as ConversationData;
 };
 
-export const expandMessageNode = (node: MessageNode): string[] => {
-  if (node.type === 'single') {
-    return [node.text];
-  }
-  if (node.type === 'sequence') {
-    return node.items;
-  }
-  // random
-  const items = node.items;
-  const choice = items[Math.floor(Math.random() * items.length)] ?? '';
-  return [choice];
+// Helpers
+export const isEmbedNode = (n: unknown): n is EmbedNode => {
+  const e = n as EmbedNode | null;
+  return (
+    !!e &&
+    (e as any).type === 'embed' &&
+    (e as any).provider === 'youtube' &&
+    typeof e.url === 'string' &&
+    e.url.length > 0
+  );
+};
+
+export const toEmbedSrc = (node: EmbedNode): string => {
+  const url = node.url.trim();
+  if (url.includes('embed')) return url;
+  const short = url.match(/https?:\/\/youtu\.be\/([\w-]{6,})/i);
+  if (short) return `https://www.youtube.com/embed/${short[1]}`;
+  const id = url.match(/[?&]v=([\w-]{6,})/i);
+  if (id) return `https://www.youtube.com/embed/${id[1]}`;
+  return url;
+};
+
+export const validateMessageNode = (node: unknown): node is MessageNode => {
+  const validate = (n: any): boolean => {
+    if (typeof n === 'string') return n.length > 0;
+    if (isEmbedNode(n)) return true;
+    if (
+      n &&
+      n.type === 'random' &&
+      Array.isArray(n.items) &&
+      n.items.length > 0
+    )
+      return n.items.every(validate);
+    if (Array.isArray(n)) return n.length > 0 && n.every(validate);
+    return false;
+  };
+  return validate(node);
+};
+
+export const getNodePreview = (node: MessageNode): string => {
+  const previewOf = (n: MessageNode): string => {
+    if (typeof n === 'string') return n;
+    if (Array.isArray(n)) {
+      for (const child of n) {
+        const p = previewOf(child);
+        if (p) return p;
+      }
+      return '';
+    }
+    if ('type' in n && n.type === 'embed') {
+      return n.preview ?? '';
+    }
+    if ('type' in n && n.type === 'random') {
+      for (const child of n.items) {
+        const p = previewOf(child);
+        if (p) return p;
+      }
+      return '';
+    }
+    return '';
+  };
+  return previewOf(node);
 };
 
 const defaultConversationsData: Record<string, ConversationData> = {
   syazani: normalizeConversation(syazaniConversation),
   solo: normalizeConversation(soloConversation),
+  edna: normalizeConversation(ednaConversation),
 };
 
 export const conversationsData = defaultConversationsData;
-
-export type ConversationResponse =
-  | { type: ConversationType; text: string; state: string }
-  | { type: ConversationType; items: Array<string | string[]>; state: string };
-
-export const CONVERSATION_TYPE = {
-  SINGLE: 'single',
-  SEQUENCE: 'sequence',
-} as const;
-
-export type ConversationType =
-  (typeof CONVERSATION_TYPE)[keyof typeof CONVERSATION_TYPE];
-
-export const getConversationResponse = (
-  conversation: ConversationData,
-  currentState: string
-): ConversationResponse => {
-  if (!conversation?.states) {
-    return {
-      type: CONVERSATION_TYPE.SINGLE,
-      text: "Sorry, something went wrong. Let's start over.",
-      state: conversation?.initialState || '',
-    };
-  }
-
-  const state = conversation.states[currentState];
-  if (!state?.message) {
-    return {
-      type: CONVERSATION_TYPE.SINGLE,
-      text: "Sorry, I don't understand that. Let's start over.",
-      state: conversation.initialState,
-    };
-  }
-
-  const node = state.message;
-  if (node.type === 'single') {
-    return {
-      type: CONVERSATION_TYPE.SINGLE,
-      text: node.text,
-      state: currentState,
-    };
-  }
-  if (node.type === 'sequence') {
-    return {
-      type: CONVERSATION_TYPE.SEQUENCE,
-      items: node.items,
-      state: currentState,
-    };
-  }
-  // random -> pick one
-  const items = node.items;
-  const choice = items[Math.floor(Math.random() * items.length)] ?? '';
-  return {
-    type: CONVERSATION_TYPE.SINGLE,
-    text: choice,
-    state: currentState,
-  };
-};
-
-export const getInitialMessage = (message: MessageNode): string => {
-  if (message.type === 'single') return message.text;
-  if (message.type === 'sequence') return message.items[0] ?? '';
-  // random
-  const choice =
-    message.items[Math.floor(Math.random() * message.items.length)] ?? '';
-  return choice;
-};
 
 export const getConversationQuickReplies = (
   conversation: ConversationData,

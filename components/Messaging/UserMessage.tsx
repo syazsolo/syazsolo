@@ -1,16 +1,18 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { parseFormattedText } from '@/lib/utils';
 import { MutableRefObject } from 'react';
+import { MessageNode } from '@/lib/conversations';
+import { RenderNode } from './RenderNode';
 
 interface UserMessageProps {
-  text: string;
+  content: MessageNode;
   userAvatarSrc: string;
   isLastUserMessage: boolean;
   lastUserMessageRef: MutableRefObject<HTMLDivElement | null>;
 }
 
 export const UserMessage = ({
-  text,
+  content,
   userAvatarSrc,
   isLastUserMessage,
   lastUserMessageRef,
@@ -22,16 +24,7 @@ export const UserMessage = ({
     >
       <div className="flex flex-col sm:max-w-[80%] max-w-[85%]">
         <div className="rounded-2xl px-3 py-2 text-sm bg-primary text-primary-foreground">
-          {parseFormattedText(text).map((part, index) => (
-            <span
-              key={index}
-              className={`${part.italic ? 'italic' : ''} ${
-                part.bold ? 'font-bold' : ''
-              }`}
-            >
-              {part.text}
-            </span>
-          ))}
+          <RenderNode node={content} />
         </div>
       </div>
       <Avatar className="w-6 h-6">

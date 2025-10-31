@@ -1,7 +1,6 @@
 const AVATAR_STYLES = [
   'bottts',
   'identicon',
-  'initials',
   'micah',
   'miniavs',
   'open-peeps',
