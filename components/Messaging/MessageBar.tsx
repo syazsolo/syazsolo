@@ -28,6 +28,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
             alt="random user avatar"
             className="w-8 h-8 rounded-full"
           />
+          <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
         </div>
         <span className="text-sm font-semibold mr-1 flex-1">Chatbox</span>
         <div className="flex items-center gap-1">

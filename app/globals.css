@@ -124,14 +124,6 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 
-.container-max-width {
-  max-width: 1180px;
-}
-
-html {
-  scrollbar-gutter: stable;
-}
-
 /* Themed scrollbars (light and dark) */
 /* Firefox */
 html {
