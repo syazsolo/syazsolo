@@ -7,8 +7,8 @@ export default function Home() {
   return (
     <div className="relative min-h-screen bg-background transition-colors">
       <Header />
-      <div className="max-w-[960px] xl:max-w-[1180px] mx-auto px-3 md:px-6 py-4 md:py-6">
-        <div className="grid grid-cols-1 md:grid-cols-[7fr_3fr] gap-4 md:gap-6">
+      <div className="max-w-[960px] xl:max-w-[1180px] mx-auto md:px-6 py-3 md:py-6">
+        <div className="grid grid-cols-1 md:grid-cols-[72fr_28fr] gap-4 md:gap-6">
           <div>
             <ProfileHeader />
           </div>
