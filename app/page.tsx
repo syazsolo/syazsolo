@@ -1,5 +1,6 @@
 'use client';
 
+import ContactInfo from '@/components/ContactInfo';
 import Header from '@/components/Header';
 import ProfileHeader from '@/components/ProfileHeader';
 
@@ -13,7 +14,7 @@ export default function Home() {
             <ProfileHeader />
           </div>
           <div className="hidden lg:flex lg:flex-col">
-            <div className="bg-green-200">Hai</div>
+            <ContactInfo />
           </div>
         </div>
       </div>

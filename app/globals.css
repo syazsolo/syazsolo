@@ -47,7 +47,7 @@
 .dark {
   --background: #0a0a0a; /* LinkedIn dark background */
   --foreground: #ffffff; /* Light text */
-  --card: #1a1a1a; /* LinkedIn dark cards */
+  --card: #1b1f23; /* LinkedIn dark cards */
   --card-foreground: #ffffff;
   --popover: #1a1a1a;
   --popover-foreground: #ffffff;
@@ -79,7 +79,7 @@
 
   /* Additional semantic colors for dark mode */
   --secondary-text: #a1a1a1; /* Secondary text color */
-  --header-bg: #0a0a0a; /* Header background - dark mode (same as main background) */
+  --header-bg: #1b1f23; /* Header background - dark mode (same as main background) */
   --hover-bg: #333333; /* Hover background */
 }
 
