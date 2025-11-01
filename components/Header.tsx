@@ -1,11 +1,6 @@
 'use client';
 
 import { Moon, Sun } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
 
 import { Button } from '@/components/ui/button';
 import Image from 'next/image';
@@ -17,7 +12,7 @@ const Header = () => {
 
   return (
     <header className="bg-header-bg text-foreground shadow-xs">
-      <div className="container-max-width mx-auto px-3 md:px-6">
+      <div className="max-w-[960px] xl:max-w-[1180px]  mx-auto px-3 md:px-6">
         <div className="flex items-center justify-between h-13">
           <div className="flex items-center">
             <Link href="/" className="cursor-pointer">
@@ -32,28 +27,15 @@ const Header = () => {
           </div>
 
           <div className="flex items-center space-x-4">
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  onClick={toggleDarkMode}
-                  className="text-foreground hover:bg-muted"
-                  aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
-                >
-                  {isDark ? <Moon size={18} /> : <Sun size={18} />}
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent side="bottom" className="w-72 text-wrap">
-                <div className="text-xs">
-                  Did you know LinkedIn has a dark mode option?
-                  <br />
-                  <br />
-                  It&apos;s in Settings & Privacy &gt; Account preferences &gt;
-                  Display &gt; Dark Mode.
-                </div>
-              </TooltipContent>
-            </Tooltip>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={toggleDarkMode}
+              className="text-foreground hover:bg-muted"
+              aria-label={`Switch to ${isDark ? 'light' : 'dark'} mode`}
+            >
+              {isDark ? <Moon size={18} /> : <Sun size={18} />}
+            </Button>
           </div>
         </div>
       </div>
