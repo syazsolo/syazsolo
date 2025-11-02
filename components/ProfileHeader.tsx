@@ -47,11 +47,11 @@ const ProfileHeader = () => {
             <p className="text-[14px] md:text-[16px] leading-5 md:leading-6 text-foreground mt-0.5">
               {profile.headline}
             </p>
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-muted-foreground text-[14px] lg:hidden">
+            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-muted-foreground text-[14px]">
               <span>{profile.location}</span>
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="text-primary font-semibold hover:underline"
+                className="text-primary font-semibold hover:underline lg:hidden"
               >
                 Contact info
               </button>
