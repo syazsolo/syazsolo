@@ -26,7 +26,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
           <img
             src={avatarSrc}
             alt="random user avatar"
-            className="w-8 h-8 rounded-full"
+            className="w-8 h-8 rounded-full bg-background"
           />
           <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
         </div>

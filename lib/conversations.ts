@@ -42,7 +42,7 @@ export interface GraphNode {
 }
 
 export interface GraphEdge {
-  from: string;
+  from: string | string[];
   to?: string; // optional: omit to end the conversation after this reply
   label: string; // shown as quick reply text
   message?: string | string[] | MessageNode; // optional user echo before transition
@@ -72,14 +72,17 @@ const normalizeConversation = (data: any): ConversationData => {
 
   // Build quick replies from outgoing edges
   for (const edge of data.edges) {
-    const fromState = states[edge.from];
-    if (!fromState) continue;
+    const fromNodes = Array.isArray(edge.from) ? edge.from : [edge.from];
     const reply: QuickReply = {
       text: edge.label,
       nextState: edge.to,
       message: edge.message,
     };
-    fromState.quickReplies = [...(fromState.quickReplies ?? []), reply];
+    for (const fromNode of fromNodes) {
+      const fromState = states[fromNode];
+      if (!fromState) continue;
+      fromState.quickReplies = [...(fromState.quickReplies ?? []), reply];
+    }
   }
 
   return {
