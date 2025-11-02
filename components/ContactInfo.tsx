@@ -45,7 +45,7 @@ const renderContactItem = (item: ContactItem, index: number) => {
 const ContactInfo = () => {
   return (
     <Card className="bg-card border-border transition-colors">
-      <CardContent className="p-4">
+      <CardContent className="pt-4 px-3 pb-6">
         <div className="space-y-4">
           {contactItems.map((item, index) => renderContactItem(item, index))}
         </div>
