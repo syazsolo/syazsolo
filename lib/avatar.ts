@@ -47,17 +47,6 @@ let cachedSharedAvatarUrl: string | null = null;
 export const getSharedAvatarUrl = (): string => {
   if (cachedSharedAvatarUrl) return cachedSharedAvatarUrl;
 
-  let seed: string | null = null;
-  if (typeof window !== 'undefined') {
-    seed = window.localStorage.getItem('shared_avatar_seed');
-    if (!seed) {
-      seed = generateRandomSeed();
-      try {
-        window.localStorage.setItem('shared_avatar_seed', seed);
-      } catch {}
-    }
-  }
-
-  cachedSharedAvatarUrl = generateRandomAvatar(seed || undefined);
+  cachedSharedAvatarUrl = generateRandomAvatar();
   return cachedSharedAvatarUrl;
 };
