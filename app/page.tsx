@@ -1,11 +1,29 @@
-'use client';
-
 import About from '@/components/About';
 import ContactInfo from '@/components/ContactInfo';
 import Header from '@/components/Header';
+import { Post } from '@/types';
+import PostsSection from '@/components/PostsSection';
 import ProfileHeader from '@/components/ProfileHeader';
+import { SanityDocument } from 'next-sanity';
+import { client } from '@/lib/sanity';
 
-export default function Home() {
+const POSTS_QUERY = `*[
+  _type == "post" && defined(slug.current)
+] | order(publishedAt desc)[0...4]{
+  _id, title, slug, publishedAt, excerpt, image
+}`;
+
+const profile = {
+  name: 'Syazani Zulkhairi',
+  headline: 'Software Engineer',
+  profileUrl: '/acak.jpg',
+};
+
+const options = { next: { revalidate: 30 } };
+
+export default async function Home() {
+  const posts = await client.fetch<Post[]>(POSTS_QUERY, {}, options);
+
   return (
     <div className="relative min-h-screen bg-background transition-colors">
       <Header />
@@ -14,6 +32,7 @@ export default function Home() {
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
+            <PostsSection posts={posts} profile={profile} />
           </div>
           <div className="hidden lg:flex lg:flex-col">
             <ContactInfo />
