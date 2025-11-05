@@ -1,9 +1,9 @@
 import './globals.css';
 
+import { Messaging } from '@/components/Messaging';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { TooltipProvider } from '@/components/ui/tooltip';
-import { Messaging } from '@/components/Messaging';
 
 export const metadata: Metadata = {
   title: 'Syaz Solo - Software Engineer',
@@ -17,7 +17,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`antialiased`}>
+      <body className={`antialiased pb-16`}>
         <ThemeProvider>
           <TooltipProvider>
             {children}

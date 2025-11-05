@@ -42,6 +42,7 @@
   --secondary-text: #404040; /* Secondary text color */
   --header-bg: #ffffff; /* Header background - light mode */
   --hover-bg: #eef3f8; /* Hover background */
+  --header-divider: #d6d9dc; /* Header divider - light */
 }
 
 .dark {
@@ -81,6 +82,7 @@
   --secondary-text: #a1a1a1; /* Secondary text color */
   --header-bg: #1b1f23; /* Header background - dark mode (same as main background) */
   --hover-bg: #333333; /* Hover background */
+  --header-divider: #2f3337; /* Header divider - dark */
 }
 
 @theme inline {
@@ -117,6 +119,7 @@
   --color-card: var(--card);
   --color-secondary-text: var(--secondary-text);
   --color-header-bg: var(--header-bg);
+  --color-header-divider: var(--header-divider);
   --color-hover-bg: var(--hover-bg);
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
@@ -129,6 +132,7 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) var(--background);
+  overflow-x: hidden;
 }
 
 /* WebKit (Chromium, Safari, Edge) */
@@ -162,6 +166,7 @@ body {
     color 0.3s ease;
   font-size: 14px;
   line-height: 1.4;
+  overflow-x: hidden;
 }
 
 /* Ensure dark mode works with Tailwind v4 */
@@ -213,4 +218,28 @@ body {
 }
 .typing-dot:nth-child(3) {
   animation-delay: 300ms;
+}
+
+.container-width {
+  max-width: 560px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 770px) {
+  .container-width {
+    max-width: 780px;
+  }
+}
+
+@media (min-width: 995px) {
+  .container-width {
+    max-width: 990px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container-width {
+    max-width: 1170px;
+  }
 }

@@ -17,7 +17,18 @@
         "Consumed me as only hero work can.",
         "My best work, I must admit. Simple, elegant, yet bold. You will die."
       ]
+    },
+    {
+      "id": "projects",
+      "message": ["There are work projects & personal projects."]
     }
   ],
-  "edges": []
+  "edges": [
+    {
+      "from": "root",
+      "to": "projects",
+      "label": "Projects.",
+      "message": "What projects have you worked on?"
+    }
+  ]
 }
