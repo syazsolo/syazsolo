@@ -26,17 +26,17 @@ export default async function Home() {
   const posts = await client.fetch<Post[]>(POSTS_QUERY, {}, options);
 
   return (
-    <div className="relative min-h-screen bg-background transition-colors">
+    <div className="relative min-h-screen bg-background transition-colors pt-[52px]">
       <Header />
       <ScrollActionBar />
       <div className="container-width mx-auto md:px-6 py-3 md:py-6">
-        <div className="grid grid-cols-1 min-[690px]:grid-cols-[60%_40%] min-[895px]:grid-cols-[68%_32%] min-[1080px]:grid-cols-[73%_27%] gap-4">
+        <div className="grid grid-cols-1 min-[770px]:grid-cols-[60%_40%] min-[995px]:grid-cols-[65%_35%] min-[1200px]:grid-cols-[72%_28%] gap-4">
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
             <PostsSection posts={posts} profile={profile} />
           </div>
-          <div className="hidden min-[690px]:flex min-[690px]:flex-col">
+          <div className="hidden min-[770px]:flex min-[770px]:flex-col">
             <ContactInfo />
           </div>
         </div>

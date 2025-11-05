@@ -221,31 +221,25 @@ body {
 }
 
 .container-width {
-  max-width: 720px;
+  max-width: 560px;
   width: 100%;
   box-sizing: border-box;
 }
 
-@media (min-width: 550px) {
+@media (min-width: 770px) {
   .container-width {
-    max-width: 550px;
+    max-width: 780px;
   }
 }
 
-@media (min-width: 690px) {
+@media (min-width: 995px) {
   .container-width {
-    max-width: 680px;
+    max-width: 990px;
   }
 }
 
-@media (min-width: 895px) {
+@media (min-width: 1200px) {
   .container-width {
-    max-width: 900px;
-  }
-}
-
-@media (min-width: 1080px) {
-  .container-width {
-    max-width: 1050px;
+    max-width: 1170px;
   }
 }
