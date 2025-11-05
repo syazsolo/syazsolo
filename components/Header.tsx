@@ -12,7 +12,7 @@ const Header = () => {
 
   return (
     <header className="bg-header-bg text-foreground shadow-xs sticky top-0 z-40 border-b border-header-divider">
-      <div className="max-w-[960px] xl:max-w-[1180px]  mx-auto px-3 md:px-6">
+      <div className="container-width mx-auto px-3 md:px-6">
         <div className="flex items-center justify-between h-13">
           <div className="flex items-center">
             <Link href="/" className="cursor-pointer">

@@ -37,7 +37,7 @@ export default function ScrollActionBar({
       aria-hidden={!isVisible}
     >
       <div className="bg-header-bg/95 backdrop-blur supports-backdrop-filter:bg-header-bg/85 shadow-lg border-y border-header-divider">
-        <div className="max-w-[960px] xl:max-w-[1180px] mx-auto px-3 md:px-6 h-12 flex items-center justify-between">
+        <div className="container-width mx-auto px-3 md:px-6 h-12 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Avatar className="w-8 h-8">
               <AvatarImage

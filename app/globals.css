@@ -132,6 +132,7 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) var(--background);
+  overflow-x: hidden;
 }
 
 /* WebKit (Chromium, Safari, Edge) */
@@ -165,6 +166,7 @@ body {
     color 0.3s ease;
   font-size: 14px;
   line-height: 1.4;
+  overflow-x: hidden;
 }
 
 /* Ensure dark mode works with Tailwind v4 */
@@ -216,4 +218,34 @@ body {
 }
 .typing-dot:nth-child(3) {
   animation-delay: 300ms;
+}
+
+.container-width {
+  max-width: 720px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 550px) {
+  .container-width {
+    max-width: 550px;
+  }
+}
+
+@media (min-width: 690px) {
+  .container-width {
+    max-width: 680px;
+  }
+}
+
+@media (min-width: 895px) {
+  .container-width {
+    max-width: 900px;
+  }
+}
+
+@media (min-width: 1080px) {
+  .container-width {
+    max-width: 1050px;
+  }
 }

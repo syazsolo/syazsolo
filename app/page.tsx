@@ -29,14 +29,14 @@ export default async function Home() {
     <div className="relative min-h-screen bg-background transition-colors">
       <Header />
       <ScrollActionBar />
-      <div className="max-w-[960px] xl:max-w-[1180px] mx-auto md:px-6 py-3 md:py-6">
-        <div className="grid grid-cols-1 md:grid-cols-[72fr_28fr] gap-4 md:gap-6">
+      <div className="container-width mx-auto md:px-6 py-3 md:py-6">
+        <div className="grid grid-cols-1 min-[690px]:grid-cols-[60%_40%] min-[895px]:grid-cols-[68%_32%] min-[1080px]:grid-cols-[73%_27%] gap-4">
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
             <PostsSection posts={posts} profile={profile} />
           </div>
-          <div className="hidden lg:flex lg:flex-col">
+          <div className="hidden min-[690px]:flex min-[690px]:flex-col">
             <ContactInfo />
           </div>
         </div>
