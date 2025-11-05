@@ -10,15 +10,16 @@ interface SectionProps {
     text: string;
     href: string;
   };
+  className?: string;
 }
 
-const Section = ({ title, children, footer }: SectionProps) => {
+const Section = ({ title, children, footer, className }: SectionProps) => {
   return (
     <Card className="bg-card border-border transition-colors pl-2">
       <CardHeader className="pt-6">
         <CardTitle className="text-xl">{title}</CardTitle>
       </CardHeader>
-      <CardContent className="pb-6">{children}</CardContent>
+      <CardContent className={`pb-6 ${className ?? ''}`}>{children}</CardContent>
       {footer && (
         <div className="-ml-2 mr-0 w-[calc(100%+0.5rem)]">
           <div className="border-t border-border">

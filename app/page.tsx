@@ -5,6 +5,7 @@ import { Post } from '@/types';
 import PostsSection from '@/components/PostsSection';
 import ProfileHeader from '@/components/ProfileHeader';
 import { SanityDocument } from 'next-sanity';
+import ScrollActionBar from '@/components/ScrollActionBar';
 import { client } from '@/lib/sanity';
 
 const POSTS_QUERY = `*[
@@ -27,6 +28,7 @@ export default async function Home() {
   return (
     <div className="relative min-h-screen bg-background transition-colors">
       <Header />
+      <ScrollActionBar />
       <div className="max-w-[960px] xl:max-w-[1180px] mx-auto md:px-6 py-3 md:py-6">
         <div className="grid grid-cols-1 md:grid-cols-[72fr_28fr] gap-4 md:gap-6">
           <div className="flex flex-col gap-4 md:gap-2">
