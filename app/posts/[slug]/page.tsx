@@ -67,16 +67,7 @@ export default async function PostPage({
     : null;
 
   return (
-    <PostsLayout
-      leftSidebar={<PostsProfileSidebar />}
-      rightSidebar={
-        <Card className="bg-card border-border transition-colors p-4">
-          <p className="text-sm text-muted-foreground text-center">
-            More content coming soon
-          </p>
-        </Card>
-      }
-    >
+    <PostsLayout leftSidebar={<PostsProfileSidebar />}>
       <Card className="bg-card border-border transition-colors">
         <CardContent className="p-0">
           <div className="px-4 py-3 border-b border-border">

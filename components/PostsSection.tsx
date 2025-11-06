@@ -20,7 +20,7 @@ export default function PostsSection({ posts, profile }: PostsSectionProps) {
         href: '/posts',
       }}
     >
-      <div className="mt-3 overflow-x-auto [&::-webkit-scrollbar]:h-2.5 [&::-webkit-scrollbar-track]:bg-muted [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-primary [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-primary/80">
+      <div className="overflow-x-auto [&::-webkit-scrollbar]:h-2.5 [&::-webkit-scrollbar-track]:bg-muted [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-primary [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-primary/80">
         <div className="flex gap-3 pr-3 pb-3 snap-x snap-mandatory">
           {posts.map(post => (
             <div key={post._id} className="shrink-0 snap-start">

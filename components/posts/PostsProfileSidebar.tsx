@@ -15,9 +15,9 @@ const PostsProfileSidebar = () => {
         />
       </div>
 
-      <CardContent className="relative pb-4 pt-8">
-        <div className="absolute -top-10 left-1/2 -translate-x-1/2">
-          <Avatar className="w-20 h-20 border-4 border-card">
+      <CardContent className="relative pb-4 pt-8 px-4">
+        <div className="absolute -top-10 left-4">
+          <Avatar className="w-[72px] h-[72px] border-4 border-card">
             <AvatarImage src={profileData.profileUrl} alt={profileData.name} />
             <AvatarFallback>
               {profileData.name
@@ -28,14 +28,14 @@ const PostsProfileSidebar = () => {
           </Avatar>
         </div>
 
-        <div className="text-center">
+        <div className="text-left">
           <Link
             href="/"
-            className="text-[14px] leading-5 font-semibold text-foreground hover:underline"
+            className="text-[14px] leading-5 font-semibold text-foreground hover:underline block"
           >
             {profileData.name}
           </Link>
-          <p className="text-[12px] leading-4 text-muted-foreground mt-1">
+          <p className="text-[12px] leading-4 text-muted-foreground mt-0.5">
             {profileData.headline}
           </p>
         </div>

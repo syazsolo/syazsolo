@@ -1,8 +1,9 @@
-import Image from 'next/image';
-import imageUrlBuilder from '@sanity/image-url';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { dataset, projectId } from '@/lib/sanity';
+
+import Image from 'next/image';
 import type { PortableTextComponents } from 'next-sanity';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import imageUrlBuilder from '@sanity/image-url';
 
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
@@ -12,22 +13,22 @@ const urlFor = (source: SanityImageSource) =>
 export const portableTextComponents: PortableTextComponents = {
   block: {
     h1: ({ children }) => (
-      <h1 className="text-4xl font-bold text-foreground mt-8 mb-4 leading-tight">
+      <h1 className="text-3xl font-bold text-foreground mt-8 mb-4 leading-tight">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-3xl font-semibold text-foreground mt-6 mb-3 leading-snug">
+      <h2 className="text-2xl font-semibold text-foreground mt-6 mb-3 leading-snug">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-2xl font-semibold text-foreground mt-5 mb-2 leading-snug">
+      <h3 className="text-xl font-semibold text-foreground mt-5 mb-2 leading-snug">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="text-xl font-semibold text-foreground mt-4 mb-2">
+      <h4 className="text-lg font-semibold text-foreground mt-4 mb-2">
         {children}
       </h4>
     ),
@@ -120,4 +121,3 @@ export const portableTextComponents: PortableTextComponents = {
     },
   },
 };
-
