@@ -4,5 +4,7 @@ export interface Post {
   slug: { current: string };
   publishedAt?: string;
   excerpt?: string;
-  image?: any; // Or a more specific Sanity image type
+  image?: any;
+  body?: any[];
+  tags?: string[];
 }
