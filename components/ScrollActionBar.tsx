@@ -56,7 +56,7 @@ export default function ScrollActionBar({
             </div>
           </div>
           <Button size="sm" className="rounded-full">
-            contact Syazani
+            Contact
           </Button>
         </div>
       </div>
