@@ -1,5 +1,5 @@
-import { Post } from '@/types';
 import BasePostCard from '@/components/posts/BasePostCard';
+import { Post } from '@/types';
 import { VerticalCardStrategy } from '@/components/posts/strategies/CardRenderStrategy';
 
 type VerticalPostCardProps = {
@@ -13,13 +13,14 @@ type VerticalPostCardProps = {
 
 const VerticalPostCard = ({ post, profile }: VerticalPostCardProps) => {
   return (
-    <BasePostCard
-      post={post}
-      profile={profile}
-      strategy={new VerticalCardStrategy()}
-    />
+    <div className="w-[320px]">
+      <BasePostCard
+        post={post}
+        profile={profile}
+        strategy={new VerticalCardStrategy()}
+      />
+    </div>
   );
 };
 
 export default VerticalPostCard;
-

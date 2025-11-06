@@ -20,10 +20,14 @@ export default function PostsSection({ posts, profile }: PostsSectionProps) {
         href: '/posts',
       }}
     >
-      <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
-        {posts.slice(0, 2).map(post => (
-          <VerticalPostCard key={post._id} post={post} profile={profile} />
-        ))}
+      <div className="mt-3 overflow-x-auto [&::-webkit-scrollbar]:h-2.5 [&::-webkit-scrollbar-track]:bg-muted [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-primary [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-primary/80">
+        <div className="flex gap-3 pr-3 pb-3 snap-x snap-mandatory">
+          {posts.map(post => (
+            <div key={post._id} className="shrink-0 snap-start">
+              <VerticalPostCard post={post} profile={profile} />
+            </div>
+          ))}
+        </div>
       </div>
     </Section>
   );

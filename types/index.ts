@@ -5,6 +5,7 @@ export interface Post {
   publishedAt?: string;
   excerpt?: string;
   image?: any;
+  imageUrl?: string;
   body?: any[];
   tags?: string[];
 }

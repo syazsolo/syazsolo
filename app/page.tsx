@@ -11,7 +11,16 @@ import { profileData } from '@/lib/profile';
 const POSTS_QUERY = `*[
   _type == "post" && defined(slug.current)
 ] | order(publishedAt desc)[0...4]{
-  _id, title, slug, publishedAt, excerpt, image, body, tags
+  _id,
+  title,
+  slug,
+  publishedAt,
+  excerpt,
+  image,
+  // project a direct URL to avoid client-side builder issues
+  "imageUrl": image.asset->url,
+  body,
+  tags
 }`;
 
 const options = { next: { revalidate: 30 } };

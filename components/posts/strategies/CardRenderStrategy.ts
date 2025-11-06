@@ -13,8 +13,12 @@ export interface CardRenderStrategy {
   name: string;
   getDimensions(): CardDimensions;
   getLineClamps(): LineClampStrategy;
-  getImageClassName(): string;
   getCardClassName(): string;
+  getCardContentClassName(): string;
+  getPostContentWrapperClassName(hasImage: boolean): string;
+  getTextWrapperClassName(hasImage: boolean): string;
+  getImageWrapperClassName(hasImage: boolean): string;
+  getImageClassName(): string;
 }
 
 export class VerticalCardStrategy implements CardRenderStrategy {
@@ -35,12 +39,28 @@ export class VerticalCardStrategy implements CardRenderStrategy {
     };
   }
 
-  getImageClassName(): string {
-    return 'w-full h-full object-cover';
+  getCardClassName(): string {
+    return 'bg-card border-border transition-colors h-[500px] overflow-hidden';
   }
 
-  getCardClassName(): string {
-    return 'bg-card border-border transition-colors min-h-[460px]';
+  getCardContentClassName(): string {
+    return 'p-0 h-full flex flex-col pb-3';
+  }
+
+  getPostContentWrapperClassName(hasImage: boolean): string {
+    return 'px-3 mt-2 flex flex-col flex-1 min-h-0';
+  }
+
+  getTextWrapperClassName(hasImage: boolean): string {
+    return hasImage ? 'mb-2' : 'flex-1';
+  }
+
+  getImageWrapperClassName(hasImage: boolean): string {
+    return 'flex-1 overflow-hidden rounded-md relative min-h-0';
+  }
+
+  getImageClassName(): string {
+    return 'w-full h-full object-contain';
   }
 }
 
@@ -62,11 +82,27 @@ export class HorizontalCardStrategy implements CardRenderStrategy {
   }
 
   getImageClassName(): string {
-    return 'w-full aspect-video object-cover';
+    return 'w-full h-full object-contain';
   }
 
   getCardClassName(): string {
-    return 'bg-card border-border transition-colors';
+    return 'bg-card border-border transition-colors max-h-[600px] overflow-hidden';
+  }
+
+  getCardContentClassName(): string {
+    return 'p-0';
+  }
+
+  getPostContentWrapperClassName(hasImage: boolean): string {
+    return 'block';
+  }
+
+  getTextWrapperClassName(hasImage: boolean): string {
+    const padding = hasImage ? 'px-3 mt-2' : 'px-3 mt-2 pb-3';
+    return padding;
+  }
+
+  getImageWrapperClassName(hasImage: boolean): string {
+    return 'overflow-hidden mt-2 mb-3 aspect-video';
   }
 }
-

@@ -1,16 +1,16 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 import { dataset, projectId } from '@/lib/sanity';
-import { PortableText } from 'next-sanity';
 
+import { CardRenderStrategy } from '@/components/posts/strategies/CardRenderStrategy';
 import { Globe } from 'lucide-react';
 import Link from 'next/link';
+import { PortableText } from 'next-sanity';
 import { Post } from '@/types';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { compactPortableTextComponents } from '@/components/posts/CompactPortableText';
 import { formatDistanceToNow } from 'date-fns';
 import imageUrlBuilder from '@sanity/image-url';
-import { compactPortableTextComponents } from '@/components/posts/CompactPortableText';
-import { CardRenderStrategy } from '@/components/posts/strategies/CardRenderStrategy';
 
 type BasePostCardProps = {
   post: Post;
@@ -37,78 +37,51 @@ export default function BasePostCard({
     : null;
 
   const dimensions = strategy.getDimensions();
-  const imageUrl = post.image
-    ? urlFor(post.image)
-        ?.width(dimensions.imageWidth)
-        .height(dimensions.imageHeight)
-        .url()
-    : null;
+  const imageUrl = post.imageUrl
+    ? post.imageUrl
+    : post.image
+      ? urlFor(post.image)
+          ?.width(dimensions.imageWidth)
+          .height(dimensions.imageHeight)
+          .url()
+      : null;
 
   const hasImage = !!imageUrl;
+
   const bodyContent = post.body || [];
   const lineClamps = strategy.getLineClamps();
 
-  const renderContent = () => {
+  const renderTextContent = () => {
+    // Prefer excerpt for cards to avoid overflowing the card and hiding the image
+    if (post.excerpt) {
+      return (
+        <p className="text-[14px] text-foreground leading-6">{post.excerpt}</p>
+      );
+    }
+
     if (hasImage) {
       return (
-        <>
-          <div className={`line-clamp-${lineClamps.withImage}`}>
-            {bodyContent.length > 0 ? (
-              <PortableText
-                value={bodyContent}
-                components={compactPortableTextComponents}
-              />
-            ) : (
-              <p className="text-[14px] text-foreground leading-5">
-                {post.title}
-              </p>
-            )}
-          </div>
-          {strategy.name === 'vertical' ? (
-            <div className="mt-2 flex-1">
-              <img
-                src={imageUrl}
-                alt={post.title}
-                className={strategy.getImageClassName()}
-              />
-            </div>
-          ) : (
-            <img
-              src={imageUrl}
-              alt={post.title}
-              className={strategy.getImageClassName()}
-            />
-          )}
-        </>
+        <p className="text-[14px] text-foreground leading-5">{post.title}</p>
+      );
+    }
+
+    if (bodyContent.length > 0) {
+      return (
+        <PortableText
+          value={bodyContent}
+          components={compactPortableTextComponents}
+        />
       );
     }
 
     return (
-      <div className={`line-clamp-${lineClamps.withoutImage}`}>
-        {bodyContent.length > 0 ? (
-          <PortableText
-            value={bodyContent}
-            components={compactPortableTextComponents}
-          />
-        ) : (
-          <>
-            <h3 className="text-[16px] font-semibold text-foreground leading-6 mb-2">
-              {post.title}
-            </h3>
-            <p className="text-[14px] text-foreground leading-6">
-              {post.excerpt}
-            </p>
-          </>
-        )}
-      </div>
+      <p className="text-[14px] text-foreground leading-5">{post.title}</p>
     );
   };
 
   return (
     <Card className={strategy.getCardClassName()}>
-      <CardContent
-        className={`p-0 ${strategy.name === 'vertical' ? 'h-full flex flex-col' : ''}`}
-      >
+      <CardContent className={strategy.getCardContentClassName()}>
         <div className="px-3 pt-3 pb-2 flex items-start gap-3">
           <Avatar className="size-9">
             <AvatarImage src={profile.profileUrl} alt={profile.name} />
@@ -140,17 +113,24 @@ export default function BasePostCard({
 
         <Link
           href={`/posts/${post.slug.current}`}
-          className={
-            strategy.name === 'vertical'
-              ? 'px-3 mt-2 flex flex-col flex-1 overflow-hidden'
-              : 'block'
-          }
+          className={strategy.getPostContentWrapperClassName(hasImage)}
         >
-          {strategy.name === 'vertical' ? (
-            renderContent()
-          ) : (
-            <div className={hasImage ? 'px-3 mt-2 mb-3' : 'px-3 mt-2 pb-3'}>
-              {renderContent()}
+          <div className={strategy.getTextWrapperClassName(hasImage)}>
+            <div
+              className={`line-clamp-${hasImage ? lineClamps.withImage : lineClamps.withoutImage}`}
+            >
+              {renderTextContent()}
+            </div>
+            <span className="text-xs text-muted-foreground">... see more</span>
+          </div>
+          {hasImage && imageUrl && (
+            <div className={strategy.getImageWrapperClassName(hasImage)}>
+              <img
+                src={imageUrl}
+                alt={post.title}
+                className={strategy.getImageClassName()}
+                loading="lazy"
+              />
             </div>
           )}
         </Link>
@@ -158,4 +138,3 @@ export default function BasePostCard({
     </Card>
   );
 }
-
