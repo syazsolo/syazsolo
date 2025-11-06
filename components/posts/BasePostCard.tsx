@@ -61,7 +61,9 @@ export default function BasePostCard({
 
     if (hasImage) {
       return (
-        <p className="text-[14px] text-foreground leading-5">{post.title}</p>
+        <p className="text-[14px] text-foreground leading-5 font-semibold">
+          {post.title}
+        </p>
       );
     }
 
@@ -121,7 +123,7 @@ export default function BasePostCard({
             >
               {renderTextContent()}
             </div>
-            <span className="text-xs text-muted-foreground">... see more</span>
+            <p className="text-xs text-muted-foreground mt-1.5">... see more</p>
           </div>
           {hasImage && imageUrl && (
             <div className={strategy.getImageWrapperClassName(hasImage)}>
