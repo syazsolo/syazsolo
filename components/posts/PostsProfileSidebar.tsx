@@ -18,9 +18,12 @@ const PostsProfileSidebar = () => {
       <CardContent className="relative pb-4 pt-8 px-4">
         <div className="absolute -top-10 left-4">
           <Avatar className="w-[72px] h-[72px] border-4 border-card">
-            <AvatarImage src={profileData.profileUrl} alt={profileData.name} />
+            <AvatarImage
+              src={profileData.profileUrl}
+              alt={profileData.shortName}
+            />
             <AvatarFallback>
-              {profileData.name
+              {profileData.shortName
                 .split(' ')
                 .map(n => n[0])
                 .join('')}

@@ -83,10 +83,10 @@ export default async function PostPage({
             <Avatar className="size-12">
               <AvatarImage
                 src={profileData.profileUrl}
-                alt={profileData.name}
+                alt={profileData.shortName}
               />
               <AvatarFallback>
-                {profileData.name
+                {profileData.shortName
                   .split(' ')
                   .map(n => n[0])
                   .join('')}
