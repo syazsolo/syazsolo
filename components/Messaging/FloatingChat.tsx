@@ -31,7 +31,7 @@ export const FloatingChat = ({
   const isMobile = useIsMobile();
   const [isMaximized, setIsMaximized] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
-  const { isOpen, handleClose, setIsVisible } = useFloatingChat({
+  const { isOpen, isVisible, handleClose, setIsVisible } = useFloatingChat({
     conversationId,
     onClose,
   });
@@ -48,11 +48,17 @@ export const FloatingChat = ({
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
+  // Ensure visibility is turned on when opening (for both mobile and desktop)
+  useEffect(() => {
+    if (isOpen) {
+      setIsVisible(true);
+    }
+  }, [isOpen, setIsVisible]);
+
   useEffect(() => {
     if (!isMobile) return;
 
     if (isOpen) {
-      setIsVisible(true);
       document.body.style.overflow = 'hidden';
       document.body.style.position = 'fixed';
       document.body.style.width = '100%';
@@ -67,7 +73,7 @@ export const FloatingChat = ({
       document.body.style.position = '';
       document.body.style.width = '';
     };
-  }, [isOpen, setIsVisible, isMobile]);
+  }, [isOpen, isMobile]);
 
   const calculateRightOffset = () => {
     if (isMobile || isMaximized) return undefined;
@@ -123,7 +129,7 @@ export const FloatingChat = ({
 
   return (
     <AnimatePresence mode="wait">
-      {isOpen && (
+      {isVisible && (
         <motion.div
           className={`fixed flex flex-col overflow-hidden ${
             isChatMaximized
