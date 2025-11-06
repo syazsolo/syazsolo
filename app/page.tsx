@@ -4,21 +4,24 @@ import Header from '@/components/Header';
 import { Post } from '@/types';
 import PostsSection from '@/components/PostsSection';
 import ProfileHeader from '@/components/ProfileHeader';
-import { SanityDocument } from 'next-sanity';
 import ScrollActionBar from '@/components/ScrollActionBar';
 import { client } from '@/lib/sanity';
+import { profileData } from '@/lib/profile';
 
 const POSTS_QUERY = `*[
   _type == "post" && defined(slug.current)
 ] | order(publishedAt desc)[0...4]{
-  _id, title, slug, publishedAt, excerpt, image
+  _id,
+  title,
+  slug,
+  publishedAt,
+  excerpt,
+  image,
+  // project a direct URL to avoid client-side builder issues
+  "imageUrl": image.asset->url,
+  body,
+  tags
 }`;
-
-const profile = {
-  name: 'Syazani Zulkhairi',
-  headline: 'Software Engineer',
-  profileUrl: '/acak.jpg',
-};
 
 const options = { next: { revalidate: 30 } };
 
@@ -34,7 +37,14 @@ export default async function Home() {
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
-            <PostsSection posts={posts} profile={profile} />
+            <PostsSection
+              posts={posts}
+              profile={{
+                name: profileData.shortName,
+                headline: profileData.headline,
+                profileUrl: profileData.profileUrl,
+              }}
+            />
           </div>
           <div className="hidden min-[770px]:flex min-[770px]:flex-col">
             <ContactInfo />

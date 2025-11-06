@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import { profileData } from '@/lib/profile';
 
 interface ScrollActionBarProps {
   /** Pixels scrolled before showing the bar */
@@ -41,22 +42,27 @@ export default function ScrollActionBar({
           <div className="flex items-center gap-2">
             <Avatar className="w-8 h-8">
               <AvatarImage
-                src="/acak.jpg"
-                alt="Syazani (Syaz Solo) Zulkhairi"
+                src={profileData.profileUrl}
+                alt={profileData.name}
               />
-              <AvatarFallback>SZ</AvatarFallback>
+              <AvatarFallback>
+                {profileData.name
+                  .split(' ')
+                  .map(n => n[0])
+                  .join('')}
+              </AvatarFallback>
             </Avatar>
             <div className="flex flex-col">
               <span className="text-sm font-semibold text-foreground leading-tight">
-                Syazani (Syaz Solo) Zulkhairi
+                {profileData.name}
               </span>
               <span className="text-xs text-muted-foreground leading-tight">
-                Software Engineer
+                {profileData.headline}
               </span>
             </div>
           </div>
           <Button size="sm" className="rounded-full">
-            contact Syazani
+            Contact
           </Button>
         </div>
       </div>

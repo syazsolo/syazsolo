@@ -9,9 +9,9 @@ const About = () => {
 
       <p className="text-[14px] leading-6 text-foreground">
         I'm a software engineer—my job is to solve your software problems and
-        build what you need. My recent projects have been frontend work, so I
-        designed this site to mimic LinkedIn to show that if a designer hands me
-        a spec, I can replicate it as a website beautifully.
+        build what you need. My recent projects have been mostly frontend work,
+        so I designed this site to mimic LinkedIn to show that if a designer
+        hands me a spec, I can replicate it as a website beautifully.
       </p>
 
       <p className="text-[14px] leading-6 text-foreground">

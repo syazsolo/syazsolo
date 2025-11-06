@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { profileData } from '@/lib/profile';
 
 interface ContactInfoModalProps {
   open: boolean;
@@ -61,7 +62,7 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md pb-5">
         <DialogHeader className="relative">
-          <DialogTitle>Syazani Zulkhairi</DialogTitle>
+          <DialogTitle>{profileData.shortName}</DialogTitle>
         </DialogHeader>
         <p className="text-lg mt-1">Contact Info</p>
         <div className="space-y-3 pt-2">

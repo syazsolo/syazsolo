@@ -1,42 +1,54 @@
-import Link from 'next/link';
-import { type SanityDocument } from 'next-sanity';
-
+import HorizontalPostCard from '@/components/posts/HorizontalPostCard';
+import { Post } from '@/types';
+import PostsLayout from '@/components/layout/PostsLayout';
+import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
+import Section from '@/components/Section';
 import { client } from '@/lib/sanity';
+import { profileData } from '@/lib/profile';
 
 const POSTS_QUERY = `*[
   _type == "post"
   && defined(slug.current)
-]|order(publishedAt desc)[0...12]{_id, title, slug, publishedAt, excerpt}`;
+]|order(publishedAt desc)[0...12]{
+  _id,
+  title,
+  slug,
+  publishedAt,
+  excerpt,
+  image,
+  "imageUrl": image.asset->url,
+  body,
+  tags
+}`;
 
 const options = { next: { revalidate: 30 } };
 
 export default async function PostsPage() {
-  const posts = await client.fetch<SanityDocument[]>(POSTS_QUERY, {}, options);
+  const posts = await client.fetch<Post[]>(POSTS_QUERY, {}, options);
 
   return (
-    <main className="container mx-auto min-h-screen max-w-3xl p-8">
-      <h1 className="text-4xl font-bold mb-8">Posts</h1>
-      {posts.length === 0 ? (
-        <p className="text-muted-foreground">No posts found.</p>
-      ) : (
-        <ul className="flex flex-col gap-y-4">
-          {posts.map(post => (
-            <li className="hover:underline" key={post._id}>
-              <Link href={`/posts/${post.slug.current}`}>
-                <h2 className="text-xl font-semibold">{post.title}</h2>
-                {post.excerpt && (
-                  <p className="text-muted-foreground mt-1">{post.excerpt}</p>
-                )}
-                {post.publishedAt && (
-                  <p className="text-sm text-muted-foreground mt-1">
-                    {new Date(post.publishedAt).toLocaleDateString()}
-                  </p>
-                )}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
-    </main>
+    <PostsLayout leftSidebar={<PostsProfileSidebar />}>
+      <Section title="All Posts">
+        {posts.length === 0 ? (
+          <p className="text-muted-foreground text-center py-8">
+            No posts found.
+          </p>
+        ) : (
+          <div className="flex flex-col gap-2">
+            {posts.map(post => (
+              <HorizontalPostCard
+                key={post._id}
+                post={post}
+                profile={{
+                  name: profileData.shortName,
+                  headline: profileData.headline,
+                  profileUrl: profileData.profileUrl,
+                }}
+              />
+            ))}
+          </div>
+        )}
+      </Section>
+    </PostsLayout>
   );
 }
