@@ -1,7 +1,10 @@
 import { dataset, projectId } from '@/lib/sanity';
 
-import Image from 'next/image';
+import { CreatePasswordImproved } from '@/components/posts/CreatePasswordImproved';
+import { CreatePasswordMock } from '@/components/posts/CreatePasswordMock';
+import { Isolated } from '@/components/posts/Isolated';
 import type { PortableTextComponents } from 'next-sanity';
+import type { ReactElement } from 'react';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import imageUrlBuilder from '@sanity/image-url';
 
@@ -106,18 +109,56 @@ export const portableTextComponents: PortableTextComponents = {
       );
     },
     customComponent: ({ value }) => {
+      const componentMap: Record<string, ReactElement> = {
+        CreatePasswordMock: (
+          <MissingComponent
+            componentName="CreatePasswordMock"
+            caption="To be implemented"
+          />
+          // <Isolated>
+          //   <CreatePasswordMock />
+          // </Isolated>
+        ),
+        CreatePasswordImproved: (
+          <MissingComponent
+            componentName="CreatePasswordImproved"
+            caption="To be implemented"
+          />
+          // <Isolated>
+          //   <CreatePasswordImproved />
+          // </Isolated>
+        ),
+      };
+
+      const component = componentMap[value.componentName];
+
+      if (component) {
+        return component;
+      }
+
       return (
-        <div className="my-6 p-6 bg-muted rounded-lg border-2 border-dashed border-border">
-          <div className="text-center">
-            <p className="text-sm font-semibold text-foreground mb-2">
-              Custom Component: {value.componentName}
-            </p>
-            {value.caption && (
-              <p className="text-xs text-muted-foreground">{value.caption}</p>
-            )}
-          </div>
-        </div>
+        <MissingComponent
+          componentName={value.componentName}
+          caption={value.caption}
+        />
       );
     },
   },
 };
+
+const MissingComponent = ({
+  componentName,
+  caption,
+}: {
+  componentName?: string;
+  caption?: string;
+}) => (
+  <div className="my-6 p-6 bg-muted rounded-lg border-2 border-dashed border-border">
+    <div className="text-center">
+      <p className="text-sm font-semibold text-foreground mb-2">
+        Custom Component: {componentName || 'Unknown component'}
+      </p>
+      {caption && <p className="text-xs text-muted-foreground">{caption}</p>}
+    </div>
+  </div>
+);
