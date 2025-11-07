@@ -10,7 +10,7 @@ import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{

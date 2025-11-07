@@ -1,8 +1,8 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { QuickReply, type MessageNode } from '@/lib/conversations';
-import { parseFormattedText } from '@/lib/utils';
+import { QuickReply, type MessageNode } from '@/lib/chat/conversations';
+import { parseFormattedText } from '@/utils';
 
 interface QuickRepliesProps {
   quickReplies: QuickReply[];

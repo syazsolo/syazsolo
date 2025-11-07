@@ -1,7 +1,7 @@
 'use client';
 
-import { MessageNode, toEmbedSrc } from '@/lib/conversations';
-import { parseFormattedText } from '@/lib/utils';
+import { MessageNode, toEmbedSrc } from '@/lib/chat/conversations';
+import { parseFormattedText } from '@/utils';
 import React from 'react';
 
 interface RenderNodeProps {

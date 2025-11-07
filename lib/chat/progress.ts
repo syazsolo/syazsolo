@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useState } from 'react';
 
-import { conversationsData } from '@/lib/conversations';
-import { useCurrentState } from '@/lib/chat-state';
+import { conversationsData } from '@/lib/chat/conversations';
+import { useCurrentState } from '@/lib/chat/state';
 
 const STORAGE_PREFIX = 'chat.progress.visited.';
 

@@ -5,11 +5,11 @@ import {
   MessageNode,
   RandomNode,
   getConversationQuickReplies,
-} from '@/lib/conversations';
+} from '@/lib/chat/conversations';
 import { useEffect, useRef } from 'react';
 
-import { calculateTypingDelay } from '@/lib/typing-utils';
-import { useChatActions } from '@/lib/chat-state';
+import { calculateTypingDelay } from '@/utils/typing';
+import { useChatActions } from '@/lib/chat/state';
 
 export const useConversationFlow = (
   conversation: ConversationData,

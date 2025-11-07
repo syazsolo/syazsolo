@@ -4,7 +4,7 @@ import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
 import Section from '@/components/Section';
 import { client } from '@/lib/sanity';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
 
 const POSTS_QUERY = `*[
   _type == "post"

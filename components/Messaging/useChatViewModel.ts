@@ -1,6 +1,6 @@
 'use client';
 
-import { ConversationData, conversationsData } from '@/lib/conversations';
+import { ConversationData, conversationsData } from '@/lib/chat/conversations';
 import {
   useAreQuickRepliesVisible,
   useChatActions,
@@ -9,10 +9,10 @@ import {
   useIsUserTyping,
   useIsWaitingForResponse,
   useIsTerminal,
-} from '@/lib/chat-state';
+} from '@/lib/chat/state';
 import { useEffect, useRef } from 'react';
 
-import { isEndOfConversation } from '@/lib/chat-utils';
+import { isEndOfConversation } from '@/lib/chat/utils';
 import { useConversationFlow } from '@/components/Messaging/useConversationFlow';
 
 const SCROLL_DELAY = 50;

@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
 
 interface ScrollActionBarProps {
   /** Pixels scrolled before showing the bar */

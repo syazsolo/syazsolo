@@ -1,5 +1,5 @@
 import { Card, CardContent } from '@/components/ui/card';
-import { ContactItem, contactItems } from '@/lib/contactInfo';
+import { ContactItem, contactItems } from '@/data/contact-info';
 
 const renderContactItem = (item: ContactItem, index: number) => {
   const Icon = item.icon;

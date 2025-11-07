@@ -1,12 +1,13 @@
 import About from '@/components/About';
 import ContactInfo from '@/components/ContactInfo';
+import Experience from '@/components/Experience';
 import Header from '@/components/Header';
 import { Post } from '@/types';
 import PostsSection from '@/components/PostsSection';
 import ProfileHeader from '@/components/ProfileHeader';
 import ScrollActionBar from '@/components/ScrollActionBar';
-import { client } from '@/lib/sanity';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
+import { client as sanityClient } from '@/lib/sanity';
 
 const POSTS_QUERY = `*[
   _type == "post" && defined(slug.current)
@@ -23,10 +24,12 @@ const POSTS_QUERY = `*[
   tags
 }`;
 
-const options = { next: { revalidate: 30 } };
-
 export default async function Home() {
-  const posts = await client.fetch<Post[]>(POSTS_QUERY, {}, options);
+  const posts = await sanityClient.fetch<Post[]>(
+    POSTS_QUERY,
+    {},
+    { next: { revalidate: 30 } }
+  );
 
   return (
     <div className="relative min-h-screen bg-background transition-colors pt-[52px]">
@@ -37,6 +40,7 @@ export default async function Home() {
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
+            <Experience />
             <PostsSection
               posts={posts}
               profile={{

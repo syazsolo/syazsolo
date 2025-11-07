@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { useMemo } from 'react';
-import { MessageNode } from '@/lib/conversations';
+import { MessageNode } from '@/lib/chat/conversations';
 
 export type ChatMessage = {
   type: 'message';

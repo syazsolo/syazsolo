@@ -1,13 +1,13 @@
 'use client';
 
-import { ContactItem, contactItems } from '@/lib/contactInfo';
+import { ContactItem, contactItems } from '@/data/contact-info';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
 
 interface ContactInfoModalProps {
   open: boolean;

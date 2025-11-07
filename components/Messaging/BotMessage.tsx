@@ -1,6 +1,5 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ConversationData } from '@/lib/conversations';
-import { MessageNode } from '@/lib/conversations';
+import { ConversationData, MessageNode } from '@/lib/chat/conversations';
 import { RenderNode } from './RenderNode';
 
 interface BotMessageProps {
