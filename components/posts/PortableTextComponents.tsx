@@ -2,8 +2,8 @@ import { dataset, projectId } from '@/lib/sanity';
 
 import { CreatePasswordImproved } from '@/components/posts/CreatePasswordImproved';
 import { CreatePasswordMock } from '@/components/posts/CreatePasswordMock';
-import { Isolated } from '@/components/posts/Isolated';
 import type { PortableTextComponents } from 'next-sanity';
+import { QuoteBlock } from '@/components/posts/QuoteBlock';
 import type { ReactElement } from 'react';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import imageUrlBuilder from '@sanity/image-url';
@@ -88,7 +88,12 @@ export const portableTextComponents: PortableTextComponents = {
   types: {
     imageWithCaption: ({ value }) => {
       const imageUrl = value.image
-        ? urlFor(value.image)?.width(1200).height(800).url()
+        ? urlFor(value.image)
+            ?.ignoreImageParams()
+            .width(1200)
+            .fit('max')
+            .auto('format')
+            .url()
         : null;
 
       if (!imageUrl) return null;
@@ -143,6 +148,9 @@ export const portableTextComponents: PortableTextComponents = {
         />
       );
     },
+    quoteBlock: ({ value }) => (
+      <QuoteBlock quote={value?.quote} source={value?.source} />
+    ),
   },
 };
 

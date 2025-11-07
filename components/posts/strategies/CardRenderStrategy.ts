@@ -56,7 +56,7 @@ export class VerticalCardStrategy implements CardRenderStrategy {
   }
 
   getImageWrapperClassName(hasImage: boolean): string {
-    return 'flex-1 overflow-hidden rounded-md relative min-h-0';
+    return 'flex-1 overflow-hidden rounded-md relative min-h-0 border border-border/60 bg-muted/30 flex items-center justify-center';
   }
 
   getImageClassName(): string {
@@ -103,6 +103,6 @@ export class HorizontalCardStrategy implements CardRenderStrategy {
   }
 
   getImageWrapperClassName(hasImage: boolean): string {
-    return 'overflow-hidden mt-2 mb-3 aspect-video';
+    return 'overflow-hidden mt-2 mb-3 aspect-video border border-border/60 bg-muted/30 flex items-center justify-center';
   }
 }

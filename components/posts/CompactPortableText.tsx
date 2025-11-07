@@ -1,5 +1,7 @@
 import type { PortableTextComponents } from 'next-sanity';
 
+import { QuoteBlock } from '@/components/posts/QuoteBlock';
+
 export const compactPortableTextComponents: PortableTextComponents = {
   block: {
     h1: ({ children }) => (
@@ -75,6 +77,13 @@ export const compactPortableTextComponents: PortableTextComponents = {
   types: {
     imageWithCaption: () => null,
     customComponent: () => null,
+    quoteBlock: ({ value }) => (
+      <QuoteBlock
+        quote={value?.quote}
+        source={value?.source}
+        variant="compact"
+      />
+    ),
   },
 };
 
