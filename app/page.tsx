@@ -21,7 +21,8 @@ const POSTS_QUERY = `*[
   // project a direct URL to avoid client-side builder issues
   "imageUrl": image.asset->url,
   body,
-  tags
+  tags,
+  readingTimeMinutes
 }`;
 
 export default async function Home() {

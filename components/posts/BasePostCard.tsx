@@ -33,8 +33,15 @@ export default function BasePostCard({
   strategy,
 }: BasePostCardProps) {
   const relative = post.publishedAt
-    ? formatDistanceToNow(new Date(post.publishedAt), { addSuffix: false })
+    ? formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })
     : null;
+
+  const metadataItems = [
+    relative,
+    `${post.readingTimeMinutes} min read`,
+  ].filter(Boolean) as string[];
+
+  const metadataText = metadataItems.join(' · ');
 
   const dimensions = strategy.getDimensions();
   const imageUrl = post.imageUrl
@@ -103,10 +110,14 @@ export default function BasePostCard({
                 <div className="text-[12px] text-muted-foreground leading-4">
                   {profile.headline}
                 </div>
-                <div className="flex items-center gap-1 text-[12px] text-muted-foreground">
-                  {relative && <span>{relative}</span>}
-                  {relative && <span>·</span>}
-                  <Globe size={14} />
+                <div className="flex items-center gap-1 text-[12px] text-muted-foreground min-w-0">
+                  {metadataText && (
+                    <>
+                      <span className="truncate">{metadataText}</span>
+                      <span className="shrink-0">·</span>
+                    </>
+                  )}
+                  <Globe size={14} className="shrink-0" />
                 </div>
               </div>
             </div>

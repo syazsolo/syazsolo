@@ -18,7 +18,8 @@ const POSTS_QUERY = `*[
   image,
   "imageUrl": image.asset->url,
   body,
-  tags
+  tags,
+  readingTimeMinutes
 }`;
 
 const options = { next: { revalidate: 30 } };
