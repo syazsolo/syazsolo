@@ -1,5 +1,6 @@
 import About from '@/components/About';
 import ContactInfo from '@/components/ContactInfo';
+import Education from '@/components/Education';
 import Experience from '@/components/Experience';
 import Header from '@/components/Header';
 import { Post } from '@/types';
@@ -41,7 +42,6 @@ export default async function Home() {
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
-            <Experience />
             <PostsSection
               posts={posts}
               profile={{
@@ -50,6 +50,8 @@ export default async function Home() {
                 profileUrl: profileData.profileUrl,
               }}
             />
+            <Experience />
+            <Education />
           </div>
           <div className="hidden min-[770px]:flex min-[770px]:flex-col">
             <ContactInfo />
