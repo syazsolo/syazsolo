@@ -3,15 +3,17 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
-import { ConversationList } from '@/components/Messaging/ConversationList';
+import { ConversationList } from '@/components/Chatbot/ConversationList';
 import { getSharedAvatarUrl } from '@/utils/avatar';
 import { useState } from 'react';
 
-interface MessageBarProps {
+interface ChatbotLauncherProps {
   onSelectConversation: (conversationId: string) => void;
 }
 
-export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
+export const ChatbotLauncher = ({
+  onSelectConversation,
+}: ChatbotLauncherProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [avatarSrc] = useState(() => getSharedAvatarUrl());
 
@@ -20,7 +22,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="flex items-center h-12 px-2 bg-card hover:bg-accent border-l border-r border-t border-border rounded-t-lg shadow-lg transition-colors w-full text-left cursor-pointer text-foreground"
-        aria-label={isOpen ? 'Close messaging' : 'Open messaging'}
+        aria-label={isOpen ? 'Close chatbot' : 'Open chatbot'}
       >
         <div className="relative mr-2">
           <img
@@ -30,7 +32,7 @@ export const MessageBar = ({ onSelectConversation }: MessageBarProps) => {
           />
           <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
         </div>
-        <span className="text-sm font-semibold mr-1 flex-1">Chatbox</span>
+        <span className="text-sm font-semibold mr-1 flex-1">Chatbot</span>
         <div className="flex items-center gap-1">
           {isOpen ? (
             <ChevronDown size={16} className="text-muted-foreground" />

@@ -8,7 +8,7 @@ interface RenderNodeProps {
   node: MessageNode;
 }
 
-export const RenderNode = ({ node }: RenderNodeProps) => {
+export const MessageNodeRenderer = ({ node }: RenderNodeProps) => {
   if (typeof node === 'string') {
     return (
       <>
@@ -30,7 +30,7 @@ export const RenderNode = ({ node }: RenderNodeProps) => {
     return (
       <div className="flex flex-col space-y-2">
         {node.map((n, i) => (
-          <RenderNode key={i} node={n} />
+          <MessageNodeRenderer key={i} node={n} />
         ))}
       </div>
     );
@@ -57,7 +57,7 @@ export const RenderNode = ({ node }: RenderNodeProps) => {
   // This is a fallback, though it's better to avoid it in production.
   if (node.type === 'random') {
     const choice = node.items[Math.floor(Math.random() * node.items.length)];
-    return <RenderNode node={choice} />;
+    return <MessageNodeRenderer node={choice} />;
   }
 
   return null;

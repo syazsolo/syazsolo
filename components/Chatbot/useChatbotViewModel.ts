@@ -13,11 +13,11 @@ import {
 import { useEffect, useRef } from 'react';
 
 import { isEndOfConversation } from '@/lib/chat/utils';
-import { useConversationFlow } from '@/components/Messaging/useConversationFlow';
+import { useChatbotConversationFlow } from '@/components/Chatbot/useChatbotConversationFlow';
 
 const SCROLL_DELAY = 50;
 
-export const useChatViewModel = (conversationId: string = 'syazani') => {
+export const useChatbotViewModel = (conversationId: string = 'syazani') => {
   const conversation: ConversationData =
     conversationsData[conversationId] || conversationsData.syazani;
 
@@ -30,7 +30,7 @@ export const useChatViewModel = (conversationId: string = 'syazani') => {
   const { setAreQuickRepliesVisible, init } = useChatActions(conversationId);
 
   const { handleQuickReply, currentQuickReplies, restartConversation } =
-    useConversationFlow(conversation, currentState, conversationId);
+    useChatbotConversationFlow(conversation, currentState, conversationId);
 
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const lastUserMessageRef = useRef<HTMLDivElement>(null);

@@ -1,13 +1,17 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ConversationData, MessageNode } from '@/lib/chat/conversations';
-import { RenderNode } from './RenderNode';
 
-interface BotMessageProps {
+import { MessageNodeRenderer } from './MessageNodeRenderer';
+
+interface BotMessageBubbleProps {
   conversation: ConversationData;
   content: MessageNode;
 }
 
-export const BotMessage = ({ conversation, content }: BotMessageProps) => {
+export const BotMessageBubble = ({
+  conversation,
+  content,
+}: BotMessageBubbleProps) => {
   return (
     <div className="flex items-start gap-2">
       <Avatar className="w-6 h-6">
@@ -16,7 +20,7 @@ export const BotMessage = ({ conversation, content }: BotMessageProps) => {
       </Avatar>
       <div className="flex flex-col sm:max-w-[80%] max-w-[85%]">
         <div className="rounded-2xl px-3 py-2 text-sm bg-card text-foreground">
-          <RenderNode node={content} />
+          <MessageNodeRenderer node={content} />
         </div>
       </div>
     </div>

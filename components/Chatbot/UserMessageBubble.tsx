@@ -1,21 +1,22 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { MutableRefObject } from 'react';
 import { MessageNode } from '@/lib/chat/conversations';
-import { RenderNode } from './RenderNode';
 
-interface UserMessageProps {
+import { MessageNodeRenderer } from './MessageNodeRenderer';
+
+interface UserMessageBubbleProps {
   content: MessageNode;
   userAvatarSrc: string;
   isLastUserMessage: boolean;
   lastUserMessageRef: MutableRefObject<HTMLDivElement | null>;
 }
 
-export const UserMessage = ({
+export const UserMessageBubble = ({
   content,
   userAvatarSrc,
   isLastUserMessage,
   lastUserMessageRef,
-}: UserMessageProps) => {
+}: UserMessageBubbleProps) => {
   return (
     <div
       ref={isLastUserMessage ? lastUserMessageRef : null}
@@ -23,7 +24,7 @@ export const UserMessage = ({
     >
       <div className="flex flex-col sm:max-w-[80%] max-w-[85%]">
         <div className="rounded-2xl px-3 py-2 text-sm bg-primary text-primary-foreground">
-          <RenderNode node={content} />
+          <MessageNodeRenderer node={content} />
         </div>
       </div>
       <Avatar className="w-6 h-6">

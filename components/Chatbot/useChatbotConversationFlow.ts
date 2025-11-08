@@ -11,13 +11,12 @@ import { useEffect, useRef } from 'react';
 import { calculateTypingDelay } from '@/utils/typing';
 import { useChatActions } from '@/lib/chat/state';
 
-export const useConversationFlow = (
+export const useChatbotConversationFlow = (
   conversation: ConversationData,
   currentState: string,
   conversationId: string
 ) => {
   const {
-    setMessages,
     addMessage,
     setCurrentState,
     setIsWaitingForResponse,

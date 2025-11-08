@@ -1,16 +1,20 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { FloatingChat } from '@/components/Messaging/FloatingChat';
+
+import { ChatbotWindow } from '@/components/Chatbot/ChatbotWindow';
 import dynamic from 'next/dynamic';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
-const MessageBar = dynamic(
-  () => import('@/components/Messaging/MessageBar').then(mod => mod.MessageBar),
+const ChatbotLauncher = dynamic(
+  () =>
+    import('@/components/Chatbot/ChatbotLauncher').then(
+      mod => mod.ChatbotLauncher
+    ),
   { ssr: false }
 );
 
-export const Messaging = () => {
+export const Chatbot = () => {
   const [openConversations, setOpenConversations] = useState<string[]>([]);
   const [mounted, setMounted] = useState(false);
   const isSmallScreen = useIsMobile();
@@ -49,16 +53,16 @@ export const Messaging = () => {
 
   return (
     <>
-      <MessageBar onSelectConversation={openConversation} />
+      <ChatbotLauncher onSelectConversation={openConversation} />
 
       {isSmallScreen ? (
-        <FloatingChat
+        <ChatbotWindow
           conversationId={openConversations[0] ?? null}
           onClose={() => setOpenConversations([])}
         />
       ) : (
         openConversations.map((id, index) => (
-          <FloatingChat
+          <ChatbotWindow
             key={id}
             conversationId={id}
             onClose={() => closeConversation(id)}

@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { Messaging } from '@/components/Messaging';
+import { Chatbot } from '@/components/Chatbot';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -21,7 +21,7 @@ export default function RootLayout({
         <ThemeProvider>
           <TooltipProvider>
             {children}
-            <Messaging />
+            <Chatbot />
           </TooltipProvider>
         </ThemeProvider>
       </body>

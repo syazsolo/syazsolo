@@ -2,19 +2,19 @@
 
 import { motion } from 'framer-motion';
 
-interface ProgressCircleProps {
+interface ConversationProgressProps {
   size?: number;
   strokeWidth?: number;
   progress: number; // 0-100
   label?: string;
 }
 
-export const ProgressCircle = ({
+export const ConversationProgress = ({
   size = 28,
   strokeWidth = 3,
   progress,
   label,
-}: ProgressCircleProps) => {
+}: ConversationProgressProps) => {
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const clamped = Math.max(0, Math.min(100, progress));

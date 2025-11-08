@@ -3,9 +3,9 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
-import { Chat } from '@/components/Messaging/Chat';
-import { ChatHeader } from '@/components/Messaging/ChatHeader';
-import { useFloatingChat } from './useFloatingChat';
+import { ChatbotConversation } from '@/components/Chatbot/ChatbotConversation';
+import { ChatbotHeader } from '@/components/Chatbot/ChatbotHeader';
+import { useChatbotWindow } from './useChatbotWindow';
 import { useIsMobile } from '@/hooks/useIsMobile';
 
 const EASE_MOBILE: [number, number, number, number] = [0.25, 0.46, 0.45, 0.94];
@@ -13,25 +13,25 @@ const EASE_STANDARD: [number, number, number, number] = [0.4, 0.0, 0.2, 1];
 
 const CHAT_WIDTH = 320;
 const CHAT_GAP = 16;
-const MESSAGE_BAR_WIDTH = 320;
+const LAUNCHER_WIDTH = 320;
 
-interface FloatingChatProps {
+interface ChatbotWindowProps {
   conversationId: string | null;
   onClose: () => void;
   offsetIndex?: number;
   totalChats?: number;
 }
 
-export const FloatingChat = ({
+export const ChatbotWindow = ({
   conversationId,
   onClose,
   offsetIndex = 0,
   totalChats = 1,
-}: FloatingChatProps) => {
+}: ChatbotWindowProps) => {
   const isMobile = useIsMobile();
   const [isMaximized, setIsMaximized] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
-  const { isOpen, isVisible, handleClose, setIsVisible } = useFloatingChat({
+  const { isOpen, isVisible, handleClose, setIsVisible } = useChatbotWindow({
     conversationId,
     onClose,
   });
@@ -78,19 +78,19 @@ export const FloatingChat = ({
   const calculateRightOffset = () => {
     if (isMobile || isMaximized) return undefined;
     if (!windowWidth)
-      return MESSAGE_BAR_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
+      return LAUNCHER_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
 
-    const availableWidth = windowWidth - MESSAGE_BAR_WIDTH;
+    const availableWidth = windowWidth - LAUNCHER_WIDTH;
     const totalNeededWidth =
       totalChats * CHAT_WIDTH + (totalChats - 1) * CHAT_GAP;
 
     if (totalNeededWidth > availableWidth) {
       const adjustedGap =
         (availableWidth - totalChats * CHAT_WIDTH) / (totalChats - 1 || 1);
-      return MESSAGE_BAR_WIDTH + offsetIndex * (CHAT_WIDTH + adjustedGap);
+      return LAUNCHER_WIDTH + offsetIndex * (CHAT_WIDTH + adjustedGap);
     }
 
-    return MESSAGE_BAR_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
+    return LAUNCHER_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
   };
 
   if (!conversationId) {
@@ -150,7 +150,7 @@ export const FloatingChat = ({
           transition={motionVariants.transition}
           layout={!isMobile}
         >
-          <ChatHeader
+          <ChatbotHeader
             conversationId={conversationId}
             isMaximized={isChatMaximized}
             onClose={handleClose}
@@ -159,7 +159,7 @@ export const FloatingChat = ({
             onHeaderClick={isMobile ? handleClose : undefined}
           />
           <div className="grow h-full overflow-hidden">
-            <Chat conversationId={conversationId} />
+            <ChatbotConversation conversationId={conversationId} />
           </div>
         </motion.div>
       )}

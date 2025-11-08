@@ -9,19 +9,39 @@ const About = () => {
   const collapsedItemCount = 2;
 
   const shouldCollapse = aboutContent.length > collapsedItemCount;
+  const hasHiddenItems = shouldCollapse && !expanded;
 
   const itemsToRender =
     shouldCollapse && !expanded
       ? aboutContent.slice(0, collapsedItemCount)
       : aboutContent;
 
+  const lastItem = itemsToRender[itemsToRender.length - 1];
+  const canInlineToggle = typeof lastItem === 'string';
+
   return (
     <Section title="About" className="flex flex-col gap-3">
       {itemsToRender.map((item, index) => {
+        const isLastVisibleItem = index === itemsToRender.length - 1;
+        const showInlineToggle = hasHiddenItems && isLastVisibleItem && canInlineToggle;
+
         if (typeof item === 'string') {
           return (
             <p key={index} className="text-[14px] leading-6 text-foreground">
               {item}
+              {showInlineToggle && (
+                <>
+                  {' '}
+                  <button
+                    type="button"
+                    onClick={() => setExpanded(true)}
+                    className="inline-flex items-center text-[14px] leading-6 text-muted-foreground hover:text-foreground"
+                    aria-expanded={expanded}
+                  >
+                    ... see more
+                  </button>
+                </>
+              )}
             </p>
           );
         }
@@ -44,14 +64,14 @@ const About = () => {
         return null;
       })}
 
-      {shouldCollapse && !expanded && (
+      {hasHiddenItems && !canInlineToggle && (
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="self-end text-[14px] leading-6 text-muted-foreground hover:text-foreground -mt-6 pr-4"
+          className="text-left text-[14px] leading-6 text-muted-foreground hover:text-foreground"
           aria-expanded={expanded}
         >
-          ...see more
+          ... see more
         </button>
       )}
     </Section>
