@@ -1,13 +1,13 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { conversationsData, getNodePreview } from '@/lib/conversations';
+import { conversationsData, getNodePreview } from '@/lib/chat/conversations';
 import { useEffect, useState } from 'react';
 
 import { Input } from '@/components/ui/input';
 import { Search } from 'lucide-react';
-import { chatActivityStore } from '@/lib/chat-activity';
-import { cn } from '@/lib/utils';
+import { chatActivityStore } from '@/lib/chat/activity';
+import { cn } from '@/utils';
 
 type Conversation = {
   id: string;

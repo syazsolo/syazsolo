@@ -1,17 +1,16 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ConversationData, QuickReply } from '@/lib/conversations';
+import { ConversationData, MessageNode, QuickReply } from '@/lib/chat/conversations';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { BotMessage } from '@/components/Messaging/BotMessage';
 import { Button } from '@/components/ui/button';
-import { DisplayableMessage } from '@/lib/chat-state';
-import { MessageNode } from '@/lib/conversations';
+import { DisplayableMessage } from '@/lib/chat/state';
 import { QuickReplies } from '@/components/Messaging/QuickReplies';
 import { TypingIndicator } from '@/components/Messaging/TypingIndicator';
 import { UserMessage } from '@/components/Messaging/UserMessage';
-import { getSharedAvatarUrl } from '@/lib/avatar';
+import { getSharedAvatarUrl } from '@/utils/avatar';
 
 interface MessageAreaProps {
   messages: DisplayableMessage[];

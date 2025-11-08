@@ -1,46 +1,59 @@
+'use client';
+
 import Section from '@/components/Section';
+import { aboutContent } from '@/data/about';
+import { useState } from 'react';
 
 const About = () => {
+  const [expanded, setExpanded] = useState(false);
+  const collapsedItemCount = 2;
+
+  const shouldCollapse = aboutContent.length > collapsedItemCount;
+
+  const itemsToRender =
+    shouldCollapse && !expanded
+      ? aboutContent.slice(0, collapsedItemCount)
+      : aboutContent;
+
   return (
     <Section title="About" className="flex flex-col gap-3">
-      <p className="text-[14px] leading-6 text-foreground">
-        Hi, this is my portfolio website.
-      </p>
+      {itemsToRender.map((item, index) => {
+        if (typeof item === 'string') {
+          return (
+            <p key={index} className="text-[14px] leading-6 text-foreground">
+              {item}
+            </p>
+          );
+        }
 
-      <p className="text-[14px] leading-6 text-foreground">
-        I'm a software engineer—my job is to solve your software problems and
-        build what you need. My recent projects have been mostly frontend work,
-        so I designed this site to mimic LinkedIn to show that if a designer
-        hands me a spec, I can replicate it as a website beautifully.
-      </p>
+        if (Array.isArray(item)) {
+          return (
+            <ul key={index} className="list-disc pl-4">
+              {item.map(listItem => (
+                <li
+                  key={listItem.title}
+                  className="text-[14px] leading-6 text-foreground"
+                >
+                  <span className="font-medium">{listItem.title}</span> –{' '}
+                  {listItem.description}
+                </li>
+              ))}
+            </ul>
+          );
+        }
+        return null;
+      })}
 
-      <p className="text-[14px] leading-6 text-foreground">
-        But I can still do backend work. Remember: I build the software you
-        need. Whatever the scope is (even mobile apps, though I haven't studied
-        them yet), my job is to get it done.
-      </p>
-
-      <p className="text-[14px] leading-6 text-foreground">
-        Some interesting things on this site:
-      </p>
-
-      <ul className="list-disc pl-4">
-        <li className="text-[14px] leading-6 text-foreground">
-          <span className="font-medium">Chatbot</span> – You can talk to a
-          chatbot version of me. I've drafted questions and answers if you want
-          to get to know me. There's Han Solo (a script from Star Wars: A New
-          Hope), Edna where I talk about my projects and clean code, and others.
-        </li>
-        <li className="text-[14px] leading-6 text-foreground">
-          <span className="font-medium">Posts</span> – Content from my CMS
-          (Sanity). I talk about my ideas in software.
-        </li>
-        <li className="text-[14px] leading-6 text-foreground">
-          <span className="font-medium">Software Engineer Checklist</span> – I
-          list down the skills I value as a software engineer and my progress on
-          them.
-        </li>
-      </ul>
+      {shouldCollapse && !expanded && (
+        <button
+          type="button"
+          onClick={() => setExpanded(true)}
+          className="self-end text-[14px] leading-6 text-muted-foreground hover:text-foreground -mt-6 pr-4"
+          aria-expanded={expanded}
+        >
+          ...see more
+        </button>
+      )}
     </Section>
   );
 };

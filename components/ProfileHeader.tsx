@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
 import ContactInfoModal from '@/components/ContactInfoModal';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
 import { useState } from 'react';
 
 const ProfileHeader = () => {

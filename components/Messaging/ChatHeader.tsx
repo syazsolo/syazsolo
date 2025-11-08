@@ -3,9 +3,9 @@
 import { Maximize, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { chatActivityStore } from '@/lib/chat-activity';
-import { conversationsData } from '@/lib/conversations';
-import { useConversationProgress } from '@/lib/progress';
+import { chatActivityStore } from '@/lib/chat/activity';
+import { conversationsData } from '@/lib/chat/conversations';
+import { useConversationProgress } from '@/lib/chat/progress';
 import { ProgressCircle } from '@/components/Messaging/ProgressCircle';
 
 interface ChatHeaderProps {

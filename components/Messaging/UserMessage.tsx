@@ -1,7 +1,6 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { parseFormattedText } from '@/lib/utils';
 import { MutableRefObject } from 'react';
-import { MessageNode } from '@/lib/conversations';
+import { MessageNode } from '@/lib/chat/conversations';
 import { RenderNode } from './RenderNode';
 
 interface UserMessageProps {

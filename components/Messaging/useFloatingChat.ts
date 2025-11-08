@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 
-import { chatActivityStore } from '@/lib/chat-activity';
+import { chatActivityStore } from '@/lib/chat/activity';
 
 interface UseFloatingChatProps {
   conversationId: string | null;

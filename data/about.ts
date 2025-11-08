@@ -1,0 +1,23 @@
+export const aboutContent: (string | { title: string; description: string }[])[] = [
+  'Hi, this is my portfolio website.',
+  "I'm a software engineer—my job is to solve your software problems and build what you need. My recent projects have been mostly frontend work, so I designed this site to mimic LinkedIn to show that if a designer hands me a spec, I can replicate it as a website beautifully.",
+  "But I can still do backend work. Remember: I build the software you need. Whatever the scope is (even mobile apps, though I haven't studied them yet), my job is to get it done.",
+  'Some interesting things on this site:',
+  [
+    {
+      title: 'Chatbot',
+      description:
+        "You can talk to a chatbot version of me. I've drafted questions and answers if you want to get to know me. There's Han Solo (a script from Star Wars: A New Hope), Edna where I talk about my projects and clean code, and others.",
+    },
+    {
+      title: 'Posts',
+      description:
+        'Content from my CMS (Sanity). I talk about my ideas in software.',
+    },
+    {
+      title: 'Software Engineer Checklist',
+      description:
+        'I list down the skills I value as a software engineer and my progress on them.',
+    },
+  ],
+];

@@ -1,4 +1,4 @@
-import { PortableText, type SanityDocument } from 'next-sanity';
+import { PortableText } from 'next-sanity';
 import imageUrlBuilder from '@sanity/image-url';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { formatDistanceToNow } from 'date-fns';
@@ -10,8 +10,9 @@ import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { profileData } from '@/lib/profile';
+import { profileData } from '@/data/profile';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';
+import { Post } from '@/types';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id,
@@ -21,7 +22,8 @@ const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   excerpt,
   image,
   body,
-  tags
+  tags,
+  readingTimeMinutes
 }`;
 
 const urlFor = (source: SanityImageSource) =>
@@ -37,7 +39,7 @@ export default async function PostPage({
   params: Promise<{ slug: string }>;
 }) {
   const resolvedParams = await params;
-  const post = await client.fetch<SanityDocument>(
+  const post = await client.fetch<Post | null>(
     POST_QUERY,
     { slug: resolvedParams.slug },
     options
@@ -63,8 +65,15 @@ export default async function PostPage({
     : null;
 
   const relative = post.publishedAt
-    ? formatDistanceToNow(new Date(post.publishedAt), { addSuffix: false })
+    ? formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })
     : null;
+
+  const metadataItems = [
+    relative,
+    `${post.readingTimeMinutes} min read`,
+  ].filter(Boolean) as string[];
+
+  const metadataText = metadataItems.join(' · ');
 
   return (
     <PostsLayout leftSidebar={<PostsProfileSidebar />}>
@@ -99,14 +108,14 @@ export default async function PostPage({
               <div className="text-xs text-muted-foreground">
                 {profileData.headline}
               </div>
-              <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5">
-                {relative && (
+              <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5 min-w-0">
+                {metadataText && (
                   <>
-                    <span>{relative}</span>
-                    <span>•</span>
+                    <span className="truncate">{metadataText}</span>
+                    <span className="shrink-0">·</span>
                   </>
                 )}
-                <Globe size={12} />
+                <Globe size={12} className="shrink-0" />
               </div>
             </div>
           </div>

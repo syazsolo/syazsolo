@@ -8,4 +8,5 @@ export interface Post {
   imageUrl?: string;
   body?: any[];
   tags?: string[];
+  readingTimeMinutes: number;
 }

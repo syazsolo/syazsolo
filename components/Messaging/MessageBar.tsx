@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 import { ConversationList } from '@/components/Messaging/ConversationList';
-import { getSharedAvatarUrl } from '@/lib/avatar';
+import { getSharedAvatarUrl } from '@/utils/avatar';
 import { useState } from 'react';
 
 interface MessageBarProps {
