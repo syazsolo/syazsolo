@@ -11,14 +11,14 @@ export interface ContactItem {
 export const contactItems: ContactItem[] = [
   {
     icon: Linkedin,
-    label: 'Your Profile',
+    label: 'Linkedin',
     value: 'linkedin.com/in/syazani-zulkhairi-6649b4188',
     href: 'https://linkedin.com/in/syazani-zulkhairi-6649b4188',
     isLink: true,
   },
   {
     icon: Link2,
-    label: 'Website',
+    label: 'Portfolio',
     value: 'syazsolo.netlify.app',
     href: 'https://syazsolo.netlify.app/',
     isLink: true,

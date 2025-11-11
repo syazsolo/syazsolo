@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 
 import { chatActivityStore } from '@/lib/chat/activity';
 
-interface UseFloatingChatProps {
+interface UseChatbotWindowProps {
   conversationId: string | null;
   onClose: () => void;
 }
 
-export const useFloatingChat = ({
+export const useChatbotWindow = ({
   conversationId,
   onClose,
-}: UseFloatingChatProps) => {
+}: UseChatbotWindowProps) => {
   const [isVisible, setIsVisible] = useState(false);
   const isOpen = !!conversationId;
 

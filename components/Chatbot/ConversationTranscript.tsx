@@ -4,15 +4,15 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { ConversationData, MessageNode, QuickReply } from '@/lib/chat/conversations';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
-import { BotMessage } from '@/components/Messaging/BotMessage';
+import { BotMessageBubble } from '@/components/Chatbot/BotMessageBubble';
 import { Button } from '@/components/ui/button';
 import { DisplayableMessage } from '@/lib/chat/state';
-import { QuickReplies } from '@/components/Messaging/QuickReplies';
-import { TypingIndicator } from '@/components/Messaging/TypingIndicator';
-import { UserMessage } from '@/components/Messaging/UserMessage';
+import { QuickReplies } from '@/components/Chatbot/QuickReplies';
+import { TypingIndicator } from '@/components/Chatbot/TypingIndicator';
+import { UserMessageBubble } from '@/components/Chatbot/UserMessageBubble';
 import { getSharedAvatarUrl } from '@/utils/avatar';
 
-interface MessageAreaProps {
+interface ConversationTranscriptProps {
   messages: DisplayableMessage[];
   conversation: ConversationData;
   lastUserMessageRef: MutableRefObject<HTMLDivElement | null>;
@@ -30,7 +30,7 @@ interface MessageAreaProps {
   isEndOfConversation?: boolean;
 }
 
-export const MessageArea = ({
+export const ConversationTranscript = ({
   messages,
   conversation,
   lastUserMessageRef,
@@ -42,7 +42,7 @@ export const MessageArea = ({
   isUserTyping,
   areQuickRepliesVisible,
   isEndOfConversation,
-}: MessageAreaProps) => {
+}: ConversationTranscriptProps) => {
   const lastUserMessageIndex = messages.findLastIndex(
     m => m.type === 'message' && m.sender === 'user'
   );
@@ -103,7 +103,7 @@ export const MessageArea = ({
 
         if (isUser) {
           return (
-            <UserMessage
+            <UserMessageBubble
               key={index}
               content={msg.content}
               userAvatarSrc={userAvatarSrc}
@@ -114,7 +114,7 @@ export const MessageArea = ({
         }
 
         return (
-          <BotMessage
+          <BotMessageBubble
             key={index}
             conversation={conversation}
             content={msg.content}

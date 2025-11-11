@@ -5,7 +5,7 @@ import { Experience as ExperienceType, experiences } from '@/data/experiences';
 import Image from 'next/image';
 import Section from '@/components/Section';
 
-const FALLBACK_LOGO = '/companies/fallback.jpg';
+const FALLBACK_LOGO = '/fallback.jpg';
 
 export default function Experience() {
   return (

@@ -1,9 +1,9 @@
 'use client';
 
-import { MessageArea } from '@/components/Messaging/MessageArea';
-import { useChatViewModel } from '@/components/Messaging/useChatViewModel';
+import { ConversationTranscript } from '@/components/Chatbot/ConversationTranscript';
+import { useChatbotViewModel } from '@/components/Chatbot/useChatbotViewModel';
 
-export const Chat = ({
+export const ChatbotConversation = ({
   conversationId = 'syazani',
 }: {
   conversationId?: string;
@@ -20,11 +20,11 @@ export const Chat = ({
     handleQuickReply,
     endOfConversation,
     restartConversation,
-  } = useChatViewModel(conversationId);
+  } = useChatbotViewModel(conversationId);
 
   return (
     <div className="bg-background text-foreground h-full flex flex-col">
-      <MessageArea
+      <ConversationTranscript
         messages={messages}
         conversation={conversation}
         lastUserMessageRef={lastUserMessageRef}
