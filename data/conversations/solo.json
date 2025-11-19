@@ -640,7 +640,7 @@
     {
       "from": "hyperspace-jump",
       "to": "no-thanks",
-      "label": "__jump to hyperspace__"
+      "label": "__pull the lever__"
     },
     {
       "from": "no-thanks",
