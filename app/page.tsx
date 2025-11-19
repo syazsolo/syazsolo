@@ -1,14 +1,14 @@
-import About from "@/components/About";
-import ContactInfo from "@/components/ContactInfo";
-import Education from "@/components/Education";
-import Experience from "@/components/Experience";
-import Header from "@/components/Header";
-import { Post } from "@/types";
-import PostsSection from "@/components/PostsSection";
-import ProfileHeader from "@/components/ProfileHeader";
-import ScrollActionBar from "@/components/ScrollActionBar";
-import { profileData } from "@/data/profile";
-import { client as sanityClient } from "@/lib/sanity";
+import About from '@/components/About';
+import ContactInfo from '@/components/ContactInfo';
+import Education from '@/components/Education';
+import Experience from '@/components/Experience';
+import Header from '@/components/Header';
+import { Post } from '@/types';
+import PostsSection from '@/components/PostsSection';
+import ProfileHeader from '@/components/ProfileHeader';
+import ScrollActionBar from '@/components/ScrollActionBar';
+import { profileData } from '@/data/profile';
+import { client as sanityClient } from '@/lib/sanity';
 
 const POSTS_QUERY = `*[
   _type == "post" && defined(slug.current)
@@ -30,14 +30,14 @@ export default async function Home() {
   const posts = await sanityClient.fetch<Post[]>(
     POSTS_QUERY,
     {},
-    { next: { revalidate: 30 } },
+    { next: { revalidate: 30 } }
   );
 
   return (
     <div className="bg-background relative min-h-screen pt-[52px] transition-colors">
       <Header />
       <ScrollActionBar />
-      <div className="container-width mx-auto py-3 px-1.5 md:px-6 md:py-6">
+      <div className="container-width mx-auto px-1.5 py-3 md:px-6 md:py-6">
         <div className="grid grid-cols-1 gap-4 min-[770px]:grid-cols-[60%_40%] min-[995px]:grid-cols-[65%_35%] min-[1200px]:grid-cols-[72%_28%]">
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
