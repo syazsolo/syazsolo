@@ -34,11 +34,11 @@ export default async function Home() {
   );
 
   return (
-    <div className="relative min-h-screen bg-background transition-colors pt-[52px]">
+    <div className="bg-background relative min-h-screen pt-[52px] transition-colors">
       <Header />
       <ScrollActionBar />
-      <div className="container-width mx-auto md:px-6 py-3 md:py-6">
-        <div className="grid grid-cols-1 min-[770px]:grid-cols-[60%_40%] min-[995px]:grid-cols-[65%_35%] min-[1200px]:grid-cols-[72%_28%] gap-4">
+      <div className="container-width mx-auto py-3 md:px-6 md:py-6">
+        <div className="grid grid-cols-1 gap-4 min-[770px]:grid-cols-[60%_40%] min-[995px]:grid-cols-[65%_35%] min-[1200px]:grid-cols-[72%_28%]">
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />

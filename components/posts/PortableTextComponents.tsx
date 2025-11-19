@@ -16,42 +16,42 @@ const urlFor = (source: SanityImageSource) =>
 export const portableTextComponents: PortableTextComponents = {
   block: {
     h1: ({ children }) => (
-      <h1 className="text-3xl font-bold text-foreground mt-8 mb-4 leading-tight">
+      <h1 className="text-foreground mt-8 mb-4 text-3xl leading-tight font-bold">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-2xl font-semibold text-foreground mt-6 mb-3 leading-snug">
+      <h2 className="text-foreground mt-6 mb-3 text-2xl leading-snug font-semibold">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-xl font-semibold text-foreground mt-5 mb-2 leading-snug">
+      <h3 className="text-foreground mt-5 mb-2 text-xl leading-snug font-semibold">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="text-lg font-semibold text-foreground mt-4 mb-2">
+      <h4 className="text-foreground mt-4 mb-2 text-lg font-semibold">
         {children}
       </h4>
     ),
     normal: ({ children }) => (
-      <p className="text-[16px] text-foreground leading-7 mb-4">{children}</p>
+      <p className="text-foreground mb-4 text-[16px] leading-7">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-4 border-primary pl-4 py-2 my-4 italic text-muted-foreground">
+      <blockquote className="border-primary text-muted-foreground my-4 border-l-4 py-2 pl-4 italic">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-4 space-y-2 text-foreground">
+      <ul className="text-foreground mb-4 list-inside list-disc space-y-2">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-4 space-y-2 text-foreground">
+      <ol className="text-foreground mb-4 list-inside list-decimal space-y-2">
         {children}
       </ol>
     ),
@@ -66,11 +66,11 @@ export const portableTextComponents: PortableTextComponents = {
   },
   marks: {
     strong: ({ children }) => (
-      <strong className="font-bold text-foreground">{children}</strong>
+      <strong className="text-foreground font-bold">{children}</strong>
     ),
     em: ({ children }) => <em className="italic">{children}</em>,
     code: ({ children }) => (
-      <code className="bg-muted px-1.5 py-0.5 rounded text-sm font-mono">
+      <code className="bg-muted rounded px-1.5 py-0.5 font-mono text-sm">
         {children}
       </code>
     ),
@@ -106,7 +106,7 @@ export const portableTextComponents: PortableTextComponents = {
             className="w-full rounded-lg"
           />
           {value.caption && (
-            <figcaption className="text-sm text-muted-foreground mt-2 text-center italic">
+            <figcaption className="text-muted-foreground mt-2 text-center text-sm italic">
               {value.caption}
             </figcaption>
           )}
@@ -161,12 +161,12 @@ const MissingComponent = ({
   componentName?: string;
   caption?: string;
 }) => (
-  <div className="my-6 p-6 bg-muted rounded-lg border-2 border-dashed border-border">
+  <div className="bg-muted border-border my-6 rounded-lg border-2 border-dashed p-6">
     <div className="text-center">
-      <p className="text-sm font-semibold text-foreground mb-2">
+      <p className="text-foreground mb-2 text-sm font-semibold">
         Custom Component: {componentName || 'Unknown component'}
       </p>
-      {caption && <p className="text-xs text-muted-foreground">{caption}</p>}
+      {caption && <p className="text-muted-foreground text-xs">{caption}</p>}
     </div>
   </div>
 );

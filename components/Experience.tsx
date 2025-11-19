@@ -10,7 +10,7 @@ const FALLBACK_LOGO = '/fallback.jpg';
 export default function Experience() {
   return (
     <Section title="Experience">
-      <div className="flex flex-col -mt-2 divide-y divide-border">
+      <div className="divide-border -mt-2 flex flex-col divide-y">
         {experiences.map(experience => (
           <ExperienceItem key={experience.id} experience={experience} />
         ))}
@@ -21,9 +21,9 @@ export default function Experience() {
 
 const ExperienceItem = ({ experience }: { experience: ExperienceType }) => {
   return (
-    <div className="flex gap-3 p-3 -mx-3 text-left w-full">
+    <div className="-mx-3 flex w-full gap-3 p-3 text-left">
       <div className="shrink-0">
-        <div className="w-12 h-12 bg-muted overflow-hidden flex items-center justify-center">
+        <div className="bg-muted flex h-12 w-12 items-center justify-center overflow-hidden">
           <Image
             src={experience.logo ?? FALLBACK_LOGO}
             alt={`${experience.company} logo`}
@@ -40,18 +40,18 @@ const ExperienceItem = ({ experience }: { experience: ExperienceType }) => {
           />
         </div>
       </div>
-      <div className="flex-1 min-w-0">
-        <h3 className="font-semibold text-[15px] text-foreground">
+      <div className="min-w-0 flex-1">
+        <h3 className="text-foreground text-[15px] font-semibold">
           {experience.title}
         </h3>
-        <p className="text-[14px] text-foreground/80">
+        <p className="text-foreground/80 text-[14px]">
           {experience.company} · {experience.employmentType}
         </p>
-        <p className="text-[13px] text-muted-foreground">
+        <p className="text-muted-foreground text-[13px]">
           {experience.startDate} - {experience.endDate} · {experience.duration}
         </p>
         {experience.location && (
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-muted-foreground text-[13px]">
             {experience.location}
           </p>
         )}

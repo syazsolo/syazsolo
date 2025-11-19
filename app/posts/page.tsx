@@ -31,7 +31,7 @@ export default async function PostsPage() {
     <PostsLayout leftSidebar={<PostsProfileSidebar />}>
       <Section title="All Posts">
         {posts.length === 0 ? (
-          <p className="text-muted-foreground text-center py-8">
+          <p className="text-muted-foreground py-8 text-center">
             No posts found.
           </p>
         ) : (

@@ -26,9 +26,8 @@ export const ChatbotHeader = ({
 }: ChatbotHeaderProps) => {
   const conversation = conversationsData[conversationId];
   const [isOnline, setIsOnline] = useState(false);
-  const { percent, visitedCount, totalStates } = useConversationProgress(
-    conversationId
-  );
+  const { percent, visitedCount, totalStates } =
+    useConversationProgress(conversationId);
 
   useEffect(() => {
     const updateOnlineStatus = () => {
@@ -44,7 +43,7 @@ export const ChatbotHeader = ({
 
   return (
     <div
-      className={`flex items-center justify-between p-3 bg-card border-b border-border ${onHeaderClick ? 'cursor-pointer' : 'cursor-default'}`}
+      className={`bg-card border-border flex items-center justify-between border-b p-3 ${onHeaderClick ? 'cursor-pointer' : 'cursor-default'}`}
       onClick={onHeaderClick}
     >
       <div className="flex items-center gap-2">
@@ -52,13 +51,13 @@ export const ChatbotHeader = ({
           <img
             src={conversation.avatar}
             alt={conversation.name}
-            className="w-6 h-6 rounded-full"
+            className="h-6 w-6 rounded-full"
           />
           {isOnline && (
-            <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
+            <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500" />
           )}
         </div>
-        <span className="font-semibold text-sm">{conversation.name}</span>
+        <span className="text-sm font-semibold">{conversation.name}</span>
         <ConversationProgress
           progress={percent}
           label={`${visitedCount}/${totalStates} states visited`}
@@ -68,7 +67,7 @@ export const ChatbotHeader = ({
         {showMaximize && (
           <button
             onClick={onToggleMaximize}
-            className="p-1 hover:bg-accent rounded-full cursor-pointer"
+            className="hover:bg-accent cursor-pointer rounded-full p-1"
             aria-label="Maximize"
           >
             <Maximize size={14} />
@@ -79,7 +78,7 @@ export const ChatbotHeader = ({
             e.stopPropagation();
             onClose();
           }}
-          className="p-1 hover:bg-destructive/15 rounded-full cursor-pointer"
+          className="hover:bg-destructive/15 cursor-pointer rounded-full p-1"
           aria-label="Close"
         >
           <X size={14} />

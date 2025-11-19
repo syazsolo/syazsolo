@@ -12,18 +12,18 @@ const ProfileHeader = () => {
 
   return (
     <>
-      <Card className="bg-card border-border transition-colors overflow-hidden">
-        <div className="h-[110px] md:h-[196px] bg-secondary">
+      <Card className="bg-card border-border overflow-hidden transition-colors">
+        <div className="bg-secondary h-[110px] md:h-[196px]">
           <img
             src={profileData.bannerUrl}
             alt="Banner"
-            className="w-full h-full object-cover"
+            className="h-full w-full object-cover"
           />
         </div>
 
         <CardContent className="relative pb-6">
-          <div className="absolute -top-12 md:-top-28 left-4 md:left-6">
-            <Avatar className="w-28 h-28 md:w-40 md:h-40 border-4 border-card">
+          <div className="absolute -top-12 left-4 md:-top-28 md:left-6">
+            <Avatar className="border-card h-28 w-28 border-4 md:h-40 md:w-40">
               <AvatarImage
                 src={profileData.profileUrl}
                 alt={profileData.name}
@@ -37,14 +37,14 @@ const ProfileHeader = () => {
             </Avatar>
           </div>
 
-          <div className="mt-18 md:mt-16 px-2">
-            <h1 className="text-[24px] leading-[1.2] font-semibold text-foreground">
+          <div className="mt-18 px-2 md:mt-16">
+            <h1 className="text-foreground text-[24px] leading-[1.2] font-semibold">
               {profileData.name}
             </h1>
-            <p className="text-[14px] md:text-[16px] leading-5 md:leading-6 text-foreground mt-0.5">
+            <p className="text-foreground mt-0.5 text-[14px] leading-5 md:text-[16px] md:leading-6">
               {profileData.headline}
             </p>
-            <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-2 text-muted-foreground text-[14px]">
+            <div className="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
               <span>{profileData.location}</span>
               <button
                 onClick={() => setIsContactModalOpen(true)}

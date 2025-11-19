@@ -11,9 +11,9 @@ const Header = () => {
   const { isDark, toggleDarkMode } = useTheme();
 
   return (
-    <header className="bg-header-bg text-foreground shadow-xs fixed top-0 left-0 right-0 z-40 border-b border-header-divider">
+    <header className="bg-header-bg text-foreground border-header-divider fixed top-0 right-0 left-0 z-40 border-b shadow-xs">
       <div className="container-width mx-auto px-3 md:px-6">
-        <div className="flex items-center justify-between h-13">
+        <div className="flex h-13 items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="cursor-pointer">
               <Image

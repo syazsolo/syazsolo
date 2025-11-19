@@ -14,11 +14,11 @@ const EducationItem = ({ item }: { item: Education }) => {
   const [hasError, setHasError] = useState(false);
 
   return (
-    <div className="flex gap-3 p-3 -mx-3 text-left w-full">
+    <div className="-mx-3 flex w-full gap-3 p-3 text-left">
       <div className="shrink-0">
-        <div className="w-12 h-12 bg-muted overflow-hidden flex items-center justify-center">
+        <div className="bg-muted flex h-12 w-12 items-center justify-center overflow-hidden">
           {hasError ? (
-            <span className="text-lg font-semibold text-muted-foreground">
+            <span className="text-muted-foreground text-lg font-semibold">
               {item.institution.charAt(0)}
             </span>
           ) : (
@@ -33,16 +33,16 @@ const EducationItem = ({ item }: { item: Education }) => {
           )}
         </div>
       </div>
-      <div className="flex-1 min-w-0">
-        <h3 className="font-semibold text-[15px] text-foreground">
+      <div className="min-w-0 flex-1">
+        <h3 className="text-foreground text-[15px] font-semibold">
           {item.institution}
         </h3>
-        <p className="text-[14px] text-foreground/80">{item.program}</p>
-        <p className="text-[13px] text-muted-foreground">
+        <p className="text-foreground/80 text-[14px]">{item.program}</p>
+        <p className="text-muted-foreground text-[13px]">
           {item.startYear} - {item.endYear}
         </p>
         {item.grade && (
-          <p className="text-[13px] text-muted-foreground">
+          <p className="text-muted-foreground text-[13px]">
             Grade: {item.grade}
           </p>
         )}
@@ -54,7 +54,7 @@ const EducationItem = ({ item }: { item: Education }) => {
 const Education = () => {
   return (
     <Section title="Education">
-      <div className="flex flex-col -mt-2 divide-y divide-border">
+      <div className="divide-border -mt-2 flex flex-col divide-y">
         {educationHistory.map(item => (
           <EducationItem key={item.id} item={item} />
         ))}

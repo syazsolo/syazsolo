@@ -15,11 +15,11 @@ export default function PostsLayout({
   rightSidebar,
 }: PostsLayoutProps) {
   return (
-    <div className="relative min-h-screen bg-background transition-colors pt-[52px]">
+    <div className="bg-background relative min-h-screen pt-[52px] transition-colors">
       <Header />
       <ScrollActionBar />
-      <div className="container-width mx-auto md:px-6 py-3 md:py-6">
-        <div className="grid grid-cols-1 min-[770px]:grid-cols-[25%_75%] min-[995px]:grid-cols-[22%_53%_25%] gap-4">
+      <div className="container-width mx-auto py-3 md:px-6 md:py-6">
+        <div className="grid grid-cols-1 gap-4 min-[770px]:grid-cols-[25%_75%] min-[995px]:grid-cols-[22%_53%_25%]">
           {leftSidebar && (
             <div className="hidden min-[770px]:block">{leftSidebar}</div>
           )}

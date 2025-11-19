@@ -110,5 +110,3 @@ export const useChatbotViewModel = (conversationId: string = 'syazani') => {
     restartConversation,
   };
 };
-
-

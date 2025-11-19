@@ -133,9 +133,9 @@ export const ChatbotWindow = ({
         <motion.div
           className={`fixed flex flex-col overflow-hidden ${
             isChatMaximized
-              ? 'z-60 inset-x-0 inset-y-4 mx-auto my-auto w-full max-w-4xl h-[90vh] rounded-lg bg-card border border-border shadow-2xl text-foreground'
-              : 'z-50 bottom-0 w-80 h-96 rounded-lg bg-card border border-border shadow-2xl text-foreground'
-          } ${isMobile ? 'inset-0 z-50 bg-background text-foreground' : ''}`}
+              ? 'bg-card border-border text-foreground inset-x-0 inset-y-4 z-60 mx-auto my-auto h-[90vh] w-full max-w-4xl rounded-lg border shadow-2xl'
+              : 'bg-card border-border text-foreground bottom-0 z-50 h-96 w-80 rounded-lg border shadow-2xl'
+          } ${isMobile ? 'bg-background text-foreground inset-0 z-50' : ''}`}
           style={
             !isChatMaximized && !isMobile
               ? {
@@ -158,7 +158,7 @@ export const ChatbotWindow = ({
             showMaximize={!isMobile}
             onHeaderClick={isMobile ? handleClose : undefined}
           />
-          <div className="grow h-full overflow-hidden">
+          <div className="h-full grow overflow-hidden">
             <ChatbotConversation conversationId={conversationId} />
           </div>
         </motion.div>

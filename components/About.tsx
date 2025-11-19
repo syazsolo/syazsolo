@@ -23,11 +23,12 @@ const About = () => {
     <Section title="About" className="flex flex-col gap-3">
       {itemsToRender.map((item, index) => {
         const isLastVisibleItem = index === itemsToRender.length - 1;
-        const showInlineToggle = hasHiddenItems && isLastVisibleItem && canInlineToggle;
+        const showInlineToggle =
+          hasHiddenItems && isLastVisibleItem && canInlineToggle;
 
         if (typeof item === 'string') {
           return (
-            <p key={index} className="text-[14px] leading-6 text-foreground">
+            <p key={index} className="text-foreground text-[14px] leading-6">
               {item}
               {showInlineToggle && (
                 <>
@@ -35,7 +36,7 @@ const About = () => {
                   <button
                     type="button"
                     onClick={() => setExpanded(true)}
-                    className="inline-flex items-center text-[14px] leading-6 text-muted-foreground hover:text-foreground"
+                    className="text-muted-foreground hover:text-foreground inline-flex items-center text-[14px] leading-6"
                     aria-expanded={expanded}
                   >
                     ... see more
@@ -52,7 +53,7 @@ const About = () => {
               {item.map(listItem => (
                 <li
                   key={listItem.title}
-                  className="text-[14px] leading-6 text-foreground"
+                  className="text-foreground text-[14px] leading-6"
                 >
                   <span className="font-medium">{listItem.title}</span> –{' '}
                   {listItem.description}
@@ -68,7 +69,7 @@ const About = () => {
         <button
           type="button"
           onClick={() => setExpanded(true)}
-          className="text-left text-[14px] leading-6 text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground text-left text-[14px] leading-6"
           aria-expanded={expanded}
         >
           ... see more

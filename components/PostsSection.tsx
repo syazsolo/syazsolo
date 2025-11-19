@@ -20,8 +20,8 @@ export default function PostsSection({ posts, profile }: PostsSectionProps) {
         href: '/posts',
       }}
     >
-      <div className="overflow-x-auto [&::-webkit-scrollbar]:h-2.5 [&::-webkit-scrollbar-track]:bg-muted [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-primary [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb:hover]:bg-primary/80">
-        <div className="flex gap-3 pr-3 pb-3 snap-x snap-mandatory">
+      <div className="[&::-webkit-scrollbar-track]:bg-muted [&::-webkit-scrollbar-thumb]:bg-primary [&::-webkit-scrollbar-thumb:hover]:bg-primary/80 overflow-x-auto [&::-webkit-scrollbar]:h-2.5 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-track]:rounded-full">
+        <div className="flex snap-x snap-mandatory gap-3 pr-3 pb-3">
           {posts.map(post => (
             <div key={post._id} className="shrink-0 snap-start">
               <VerticalPostCard post={post} profile={profile} />

@@ -15,17 +15,19 @@ interface SectionProps {
 
 const Section = ({ title, children, footer, className }: SectionProps) => {
   return (
-    <Card className="bg-card border-border transition-colors pl-2">
+    <Card className="bg-card border-border pl-2 transition-colors">
       <CardHeader className="pt-6">
         <CardTitle className="text-xl">{title}</CardTitle>
       </CardHeader>
-      <CardContent className={`pb-6 ${className ?? ''}`}>{children}</CardContent>
+      <CardContent className={`pb-6 ${className ?? ''}`}>
+        {children}
+      </CardContent>
       {footer && (
-        <div className="-ml-2 mr-0 w-[calc(100%+0.5rem)]">
-          <div className="border-t border-border">
+        <div className="mr-0 -ml-2 w-[calc(100%+0.5rem)]">
+          <div className="border-border border-t">
             <Link
               href={footer.href}
-              className="flex items-center justify-center text-foreground/80 text-sm font-semibold hover:bg-muted dark:hover:bg-[#2c2f33] rounded transition-colors py-4"
+              className="text-foreground/80 hover:bg-muted flex items-center justify-center rounded py-4 text-sm font-semibold transition-colors dark:hover:bg-[#2c2f33]"
             >
               {footer.text} →
             </Link>

@@ -56,11 +56,11 @@ export const ConversationList = ({
   });
 
   return (
-    <div className="bg-card text-foreground h-full flex flex-col">
-      <div className="p-3 border-b border-border">
+    <div className="bg-card text-foreground flex h-full flex-col">
+      <div className="border-border border-b p-3">
         <div className="relative">
           <Search
-            className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
+            className="text-muted-foreground absolute top-1/2 left-3 -translate-y-1/2"
             size={16}
           />
           <Input
@@ -77,24 +77,24 @@ export const ConversationList = ({
             key={convo.id}
             onClick={() => handleSelect(convo.id)}
             className={cn(
-              'flex items-start gap-3 p-3 cursor-pointer hover:bg-accent',
+              'hover:bg-accent flex cursor-pointer items-start gap-3 p-3',
               {
                 'bg-accent': selected === convo.id,
               }
             )}
           >
             <div className="relative">
-              <Avatar className="w-10 h-10">
+              <Avatar className="h-10 w-10">
                 <AvatarImage src={convo.avatar} alt={convo.name} />
                 <AvatarFallback>{convo.name.charAt(0)}</AvatarFallback>
               </Avatar>
               {chatActivityStore.isActive(convo.id) && (
-                <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
+                <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500" />
               )}
             </div>
-            <div className="grow min-w-0">
-              <h3 className="font-semibold text-sm truncate">{convo.name}</h3>
-              <p className="text-xs text-muted-foreground truncate mt-1">
+            <div className="min-w-0 grow">
+              <h3 className="truncate text-sm font-semibold">{convo.name}</h3>
+              <p className="text-muted-foreground mt-1 truncate text-xs">
                 {convo.message}
               </p>
             </div>

@@ -44,20 +44,20 @@ export const CreatePasswordImproved = () => {
   };
 
   return (
-    <div className="bg-[#1c1c1e] p-8 min-h-[400px] flex flex-col items-center justify-center">
-      <h2 className="text-white text-2xl font-semibold mb-8">
+    <div className="flex min-h-[400px] flex-col items-center justify-center bg-[#1c1c1e] p-8">
+      <h2 className="mb-8 text-2xl font-semibold text-white">
         Enter New Password
       </h2>
 
       <div className="w-full max-w-[320px]">
-        <div className="bg-[#2c2c2e] rounded-lg overflow-hidden">
+        <div className="overflow-hidden rounded-lg bg-[#2c2c2e]">
           <div className="relative border-b border-[#3a3a3c]">
             <input
               type="password"
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               onFocus={() => setIsPasswordFocused(true)}
-              onBlur={(e) => {
+              onBlur={e => {
                 setIsPasswordFocused(false);
                 handlePasswordBlur();
               }}
@@ -67,11 +67,11 @@ export const CreatePasswordImproved = () => {
               id="improved-password-field-1"
               data-1p-ignore
               data-lpignore="true"
-              className={`w-full bg-transparent text-white px-4 py-3 border-none outline-none ${
+              className={`w-full border-none bg-transparent px-4 py-3 text-white outline-none ${
                 passwordTouched && !isPasswordValid
-                  ? 'ring-2 ring-red-500 rounded-t-lg'
+                  ? 'rounded-t-lg ring-2 ring-red-500'
                   : passwordTouched && isPasswordValid
-                    ? 'ring-2 ring-green-500 rounded-t-lg'
+                    ? 'rounded-t-lg ring-2 ring-green-500'
                     : ''
               }`}
             />
@@ -81,42 +81,39 @@ export const CreatePasswordImproved = () => {
             <input
               type="password"
               value={confirmPassword}
-              onChange={(e) => handleConfirmPasswordChange(e.target.value)}
+              onChange={e => handleConfirmPasswordChange(e.target.value)}
               onFocus={() => setIsConfirmFocused(true)}
-              onBlur={(e) => {
+              onBlur={e => {
                 setIsConfirmFocused(false);
                 handleConfirmPasswordBlur();
               }}
-              readOnly={!isConfirmFocused && isPasswordValid && !confirmPassword}
+              readOnly={
+                !isConfirmFocused && isPasswordValid && !confirmPassword
+              }
               disabled={!isPasswordValid}
               autoComplete="new-password"
               name="improved-password-field-2"
               id="improved-password-field-2"
               data-1p-ignore
               data-lpignore="true"
-              className="w-full bg-transparent text-white px-4 py-3 border-none outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+              className="w-full border-none bg-transparent px-4 py-3 text-white outline-none disabled:cursor-not-allowed disabled:opacity-50"
             />
           </div>
         </div>
 
         {passwordError && (
-          <p className="text-red-500 text-sm text-left mt-4">
-            {passwordError}
-          </p>
+          <p className="mt-4 text-left text-sm text-red-500">{passwordError}</p>
         )}
 
         {confirmError && (
-          <p className="text-red-500 text-sm text-left mt-4">
-            {confirmError}
-          </p>
+          <p className="mt-4 text-left text-sm text-red-500">{confirmError}</p>
         )}
 
-        <p className="text-gray-500 text-xs text-left leading-relaxed mt-6">
-          Your password must be at least 8 characters long, include a number,
-          an uppercase letter and a lowercase letter.
+        <p className="mt-6 text-left text-xs leading-relaxed text-gray-500">
+          Your password must be at least 8 characters long, include a number, an
+          uppercase letter and a lowercase letter.
         </p>
       </div>
     </div>
   );
 };
-

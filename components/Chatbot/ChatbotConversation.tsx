@@ -23,7 +23,7 @@ export const ChatbotConversation = ({
   } = useChatbotViewModel(conversationId);
 
   return (
-    <div className="bg-background text-foreground h-full flex flex-col">
+    <div className="bg-background text-foreground flex h-full flex-col">
       <ConversationTranscript
         messages={messages}
         conversation={conversation}

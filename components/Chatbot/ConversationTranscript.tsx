@@ -1,7 +1,11 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { ConversationData, MessageNode, QuickReply } from '@/lib/chat/conversations';
+import {
+  ConversationData,
+  MessageNode,
+  QuickReply,
+} from '@/lib/chat/conversations';
 import { MutableRefObject, useEffect, useRef, useState } from 'react';
 
 import { BotMessageBubble } from '@/components/Chatbot/BotMessageBubble';
@@ -86,14 +90,14 @@ export const ConversationTranscript = ({
   return (
     <div
       ref={containerRef}
-      className="grow px-3 pt-4 pb-[calc(env(safe-area-inset-bottom)+12px)] overflow-y-auto space-y-3"
+      className="grow space-y-3 overflow-y-auto px-3 pt-4 pb-[calc(env(safe-area-inset-bottom)+12px)]"
       style={{ scrollBehavior: 'smooth' }}
     >
       {messages.map((msg, index) => {
         if (msg.type === 'divider') {
           return (
             <div key={index} className="py-2">
-              <hr className="border-t border-border" />
+              <hr className="border-border border-t" />
             </div>
           );
         }
@@ -131,21 +135,21 @@ export const ConversationTranscript = ({
       )}
       {isWaitingForResponse && (
         <div className="flex items-start gap-2">
-          <Avatar className="w-6 h-6">
+          <Avatar className="h-6 w-6">
             <AvatarImage src={conversation.avatar} alt={conversation.name} />
             <AvatarFallback>{conversation.name.charAt(0)}</AvatarFallback>
           </Avatar>
-          <div className="rounded-2xl px-3 py-2 text-sm bg-card text-foreground">
+          <div className="bg-card text-foreground rounded-2xl px-3 py-2 text-sm">
             <TypingIndicator />
           </div>
         </div>
       )}
       {isUserTyping && (
-        <div className="flex items-start gap-2 justify-end">
-          <div className="rounded-2xl px-3 py-2 text-sm bg-primary text-primary-foreground">
+        <div className="flex items-start justify-end gap-2">
+          <div className="bg-primary text-primary-foreground rounded-2xl px-3 py-2 text-sm">
             <TypingIndicator />
           </div>
-          <Avatar className="w-6 h-6">
+          <Avatar className="h-6 w-6">
             <AvatarImage src={userAvatarSrc} alt="You" />
             <AvatarFallback>Y</AvatarFallback>
           </Avatar>

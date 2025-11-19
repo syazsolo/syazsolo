@@ -5,42 +5,42 @@ import { QuoteBlock } from '@/components/posts/QuoteBlock';
 export const compactPortableTextComponents: PortableTextComponents = {
   block: {
     h1: ({ children }) => (
-      <h1 className="text-[18px] font-bold text-foreground mb-2 leading-tight">
+      <h1 className="text-foreground mb-2 text-[18px] leading-tight font-bold">
         {children}
       </h1>
     ),
     h2: ({ children }) => (
-      <h2 className="text-[16px] font-semibold text-foreground mb-1.5 leading-tight">
+      <h2 className="text-foreground mb-1.5 text-[16px] leading-tight font-semibold">
         {children}
       </h2>
     ),
     h3: ({ children }) => (
-      <h3 className="text-[15px] font-semibold text-foreground mb-1 leading-tight">
+      <h3 className="text-foreground mb-1 text-[15px] leading-tight font-semibold">
         {children}
       </h3>
     ),
     h4: ({ children }) => (
-      <h4 className="text-[14px] font-semibold text-foreground mb-1 leading-snug">
+      <h4 className="text-foreground mb-1 text-[14px] leading-snug font-semibold">
         {children}
       </h4>
     ),
     normal: ({ children }) => (
-      <p className="text-[14px] text-foreground leading-5 mb-2">{children}</p>
+      <p className="text-foreground mb-2 text-[14px] leading-5">{children}</p>
     ),
     blockquote: ({ children }) => (
-      <blockquote className="border-l-2 border-primary pl-2 py-1 my-2 italic text-muted-foreground text-[13px]">
+      <blockquote className="border-primary text-muted-foreground my-2 border-l-2 py-1 pl-2 text-[13px] italic">
         {children}
       </blockquote>
     ),
   },
   list: {
     bullet: ({ children }) => (
-      <ul className="list-disc list-inside mb-2 space-y-1 text-foreground">
+      <ul className="text-foreground mb-2 list-inside list-disc space-y-1">
         {children}
       </ul>
     ),
     number: ({ children }) => (
-      <ol className="list-decimal list-inside mb-2 space-y-1 text-foreground">
+      <ol className="text-foreground mb-2 list-inside list-decimal space-y-1">
         {children}
       </ol>
     ),
@@ -55,11 +55,11 @@ export const compactPortableTextComponents: PortableTextComponents = {
   },
   marks: {
     strong: ({ children }) => (
-      <strong className="font-bold text-foreground">{children}</strong>
+      <strong className="text-foreground font-bold">{children}</strong>
     ),
     em: ({ children }) => <em className="italic">{children}</em>,
     code: ({ children }) => (
-      <code className="bg-muted px-1 py-0.5 rounded text-xs font-mono">
+      <code className="bg-muted rounded px-1 py-0.5 font-mono text-xs">
         {children}
       </code>
     ),
@@ -86,4 +86,3 @@ export const compactPortableTextComponents: PortableTextComponents = {
     ),
   },
 };
-
