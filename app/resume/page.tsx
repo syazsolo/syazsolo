@@ -196,10 +196,8 @@ function renderContactLink(
     'flex items-center gap-2 hover:text-slate-900 text-sm text-slate-500';
   const content = (
     <>
+      <span>{label}</span>
       {icon}
-      <span className={isExternal ? 'max-w-[200px] truncate' : ''}>
-        {label}
-      </span>
     </>
   );
 
@@ -252,7 +250,7 @@ function SectionHeader({
         {subtitle && (
           <>
             <div className="mx-2 h-px flex-1 bg-slate-300"></div>
-            <span className="relative top-0.5 shrink-0 text-xs text-slate-400">
+            <span className="relative top-[3px] shrink-0 text-xs text-slate-400">
               {subtitle}
             </span>
           </>
@@ -305,23 +303,23 @@ export default function ResumePage() {
                   profile.contact.email
                 )}
               {profile.contact.phone && (
-                <div className="flex items-center gap-2 text-slate-500">
+                <div className="flex items-center gap-2 text-slate-500 hover:text-slate-900">
+                  <span>{profile.contact.phone}</span>
                   <Phone className="h-4 w-4" />
-                  {profile.contact.phone}
                 </div>
               )}
-              {profile.contact.linkedin &&
-                renderContactLink(
-                  `https://${profile.contact.linkedin}`,
-                  <Linkedin className="h-4 w-4" />,
-                  profile.contact.linkedin,
-                  true
-                )}
               {profile.contact.portfolio &&
                 renderContactLink(
                   `https://${profile.contact.portfolio}`,
                   <LinkIcon className="h-4 w-4" />,
                   profile.contact.portfolio,
+                  true
+                )}
+              {profile.contact.linkedin &&
+                renderContactLink(
+                  `https://${profile.contact.linkedin}`,
+                  <Linkedin className="h-4 w-4" />,
+                  profile.contact.linkedin,
                   true
                 )}
               {profile.contact.github &&
@@ -464,6 +462,11 @@ export default function ResumePage() {
               </span>
             </div>
             <div className="mt-1 text-sm text-slate-600">{edu.program}</div>
+            {edu.description && (
+              <div className="mt-1 text-sm text-slate-500">
+                {edu.description}
+              </div>
+            )}
             {edu.grade && (
               <div className="mt-1 text-xs text-slate-400">
                 CGPA: {edu.grade}

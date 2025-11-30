@@ -8,16 +8,16 @@
     "profileUrl": "/acak.jpg",
     "contact": {
       "email": "syazanizul@gmail.com",
-      "phone": "0192089853",
-      "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
+      "phone": "0192099853",
       "portfolio": "syazsolo.netlify.app",
+      "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
       "github": "github.com/syazsolo"
     }
   },
   "about": [
     "Software engineer with 4 years of experience building web applications. I value simplicity in code and design, aiming for solutions that are both maintainable and delightful to use.",
-    "While I'm often utilized for frontend work, I'm comfortable across the full stack and work with whatever the project needs—and I believe in taking care of the codebase while doing it.",
-    "I'm a builder—I enjoy creating tools and solutions, whether it's what's needed at work or side projects that solve problems I care about."
+    "While I am often utilized for frontend work, I am comfortable across the full stack and work with whatever the project needs—and I believe in taking care of the codebase while doing it.",
+    "I am a builder—I enjoy creating tools and solutions, whether it is what is needed at work or side projects that solve problems I care about."
   ],
   "experience": [
     {
@@ -135,7 +135,8 @@
       "program": "Electronics Engineering, Robotics and Automation",
       "startYear": "2017",
       "endYear": "2021",
-      "grade": "3.65"
+      "grade": "3.65",
+      "description": "Yayasan Telekom Malaysia scholar"
     }
   ]
 }
