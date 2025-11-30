@@ -12,20 +12,8 @@
     }
   },
   "about": [
-    "Hi, I'm Syazani.",
-    "I'm a software engineer. I build web applications and solve technical problems.",
-    "Recently, I've been focused on frontend work — this site mimics LinkedIn's design to show I can replicate complex interfaces. But I'm comfortable across the stack: frontend, backend, APIs, whatever the project needs.",
-    "A few things on this site:",
-    [
-      {
-        "title": "Chatbot",
-        "description": "Talk to an Chatbot version of me. Ask about my work, my approach to clean code, or just chat about Star Wars."
-      },
-      {
-        "title": "Posts",
-        "description": "My thoughts on software engineering and building things."
-      }
-    ]
+    "Software engineer with a passion for building clean, user-centric web applications. Experienced in full-stack development with a focus on modern frontend frameworks like Vue, React, and Svelte, as well as backend technologies including Laravel and Node.js.",
+    "I value simplicity in code and design, aiming for solutions that are both maintainable and delightful to use."
   ],
   "experience": [
     {
@@ -34,9 +22,9 @@
       "title": "Developer",
       "startDate": "Jan 2025",
       "endDate": "Oct 2025",
-      "location": "Bangsar South, Kuala Lumpur, Malaysia",
-      "logo": "/companies/imt_tech_logo.jpg",
-      "description": ""
+      "location": "Bangsar South, Kuala Lumpur",
+      "description": "Developed and maintained web applications using Vue.js and Laravel. Collaborated with cross-functional teams to deliver high-quality software solutions.",
+      "skills": ["Vue", "Nuxt", "Laravel"]
     },
     {
       "id": "9loop",
@@ -44,9 +32,9 @@
       "title": "Software Engineer II",
       "startDate": "Jul 2023",
       "endDate": "May 2024",
-      "location": "PJ Trade Centre, Damansara Perdana, Petaling Jaya, Selangor",
-      "logo": "/companies/intex_networking_logo.jpg",
-      "description": ""
+      "location": "Petaling Jaya, Selangor",
+      "description": "Built interactive user interfaces with Svelte and developed automated Telegram bots for efficient communication workflows.",
+      "skills": ["Svelte", "Telegram Bot"]
     },
     {
       "id": "webcada",
@@ -54,8 +42,29 @@
       "title": "Junior PHP Developer",
       "startDate": "Oct 2021",
       "endDate": "Apr 2023",
-      "location": "Kuala Lumpur, Malaysia",
-      "description": ""
+      "location": "Kuala Lumpur",
+      "description": "Maintained and enhanced legacy PHP applications and Drupal-based websites. Assisted in troubleshooting and resolving backend issues.",
+      "skills": ["PHP", "Drupal"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Syazsolo",
+      "url": "syazsolo.netlify.app",
+      "description": "A personal portfolio and playground for experimenting with new web technologies and UI designs. Features a chatbot and blog.",
+      "skills": ["React", "Next.js"]
+    },
+    {
+      "title": "Atuk-Opah",
+      "url": "atuk-opah.netlify.app",
+      "description": "A private family tree application designed for family members to visualize and explore their lineage. Includes a secure login system.",
+      "skills": ["React", "Next.js", "Supabase"]
+    },
+    {
+      "title": "Infinite Days",
+      "url": "infinite-days.netlify.app",
+      "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
+      "skills": ["React", "Next.js", "PHP", "Laravel"]
     }
   ],
   "education": [
@@ -65,8 +74,7 @@
       "program": "Electronics Engineering, Robotics and Automation",
       "startYear": "2017",
       "endYear": "2021",
-      "grade": "3.65",
-      "logo": "/education/mmumalaysia_logo.jpg"
+      "grade": "3.65"
     }
   ]
 }

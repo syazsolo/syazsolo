@@ -1,193 +1,194 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Link as LinkIcon, Linkedin, Mail, Phone, Printer } from 'lucide-react';
 
+import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
+import { ResumePaginator } from '@/components/resume/ResumePaginator';
 import resumeData from '@/data/resume.json';
 
 export default function ResumePage() {
-  const { profile, about, experience, education } = resumeData;
+  const { profile, about, experience, projects, education } = resumeData;
 
   return (
-    <div className="flex min-h-screen justify-center bg-gray-100 py-12 print:bg-white print:p-0">
+    <div className="min-h-screen bg-gray-50 py-12 print:bg-white print:p-0">
       <PrintButton />
 
-      {/* A4 Paper Container */}
-      <div className="mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-black shadow-2xl md:p-[15mm] print:m-0 print:min-h-0 print:w-full print:p-0 print:shadow-none">
+      <ResumePaginator>
         {/* Header */}
-        <header className="mb-6 flex items-start justify-between border-b-2 border-gray-800 pb-6">
-          <div className="flex items-center gap-5">
-            <Avatar className="h-20 w-20 border border-gray-200 print:hidden">
-              <AvatarImage
-                src={profile.profileUrl}
-                alt={profile.name}
-                className="object-cover"
-              />
-              <AvatarFallback className="bg-gray-100 text-xl text-gray-600">
-                {profile.name
-                  .split(' ')
-                  .map(n => n[0])
-                  .join('')}
-              </AvatarFallback>
-            </Avatar>
-            <div>
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 uppercase print:text-black">
-                {profile.name}
-              </h1>
-              <p className="mt-0.5 text-lg font-medium text-gray-700 print:text-black">
-                {profile.headline}
-              </p>
-              <p className="mt-1 text-sm text-gray-500 print:text-gray-600">
-                {profile.location}
-              </p>
-            </div>
-          </div>
+        <header className="mb-8 border-b border-slate-200 pb-8">
+          <h1 className="text-4xl font-light tracking-tight text-slate-900 uppercase">
+            {profile.name}
+          </h1>
+          <p className="mt-2 text-lg font-medium text-slate-600">
+            {profile.headline}
+          </p>
 
-          <div className="space-y-1.5 text-right text-sm text-gray-600 print:text-black">
-            {profile.contact?.email && (
-              <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.contact.email}</span>
-                <Mail className="h-4 w-4 text-gray-400 print:text-black" />
+          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-500">
+            {profile.contact.email && (
+              <a
+                href={`mailto:${profile.contact.email}`}
+                className="flex items-center gap-2 hover:text-slate-900"
+              >
+                <Mail className="h-4 w-4" />
+                {profile.contact.email}
+              </a>
+            )}
+            {profile.contact.phone && (
+              <div className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                {profile.contact.phone}
               </div>
             )}
-            {profile.contact?.phone && (
-              <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.contact.phone}</span>
-                <Phone className="h-4 w-4 text-gray-400 print:text-black" />
-              </div>
+            {profile.contact.linkedin && (
+              <a
+                href={`https://${profile.contact.linkedin}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:text-slate-900"
+              >
+                <Linkedin className="h-4 w-4" />
+                <span className="truncate max-w-[200px]">{profile.contact.linkedin}</span>
+              </a>
             )}
-            {profile.contact?.linkedin && (
-              <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.contact.linkedin}</span>
-                <Linkedin className="h-4 w-4 text-gray-400 print:text-black" />
-              </div>
-            )}
-            {profile.contact?.portfolio && (
-              <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.contact.portfolio}</span>
-                <LinkIcon className="h-4 w-4 text-gray-400 print:text-black" />
-              </div>
+            {profile.contact.portfolio && (
+              <a
+                href={`https://${profile.contact.portfolio}`}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 hover:text-slate-900"
+              >
+                <LinkIcon className="h-4 w-4" />
+                {profile.contact.portfolio}
+              </a>
             )}
           </div>
         </header>
 
         {/* Summary */}
-        <section className="mb-6">
-          <h2 className="mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase print:text-gray-600">
-            Summary
+        <section className="mb-8">
+          <h2 className="mb-4 text-sm font-bold tracking-widest text-slate-400 uppercase">
+            About
           </h2>
-          <div className="space-y-2 text-sm leading-relaxed text-gray-800 print:text-black">
-            {about.map((item, index) => {
-              if (typeof item === 'string') {
-                return <p key={index}>{item}</p>;
-              }
-              if (Array.isArray(item)) {
-                return (
-                  <ul key={index} className="mt-1 list-disc space-y-1 pl-5">
-                    {item.map(listItem => (
-                      <li key={listItem.title}>
-                        <span className="font-semibold">{listItem.title}</span>{' '}
-                        – {listItem.description}
-                      </li>
-                    ))}
-                  </ul>
-                );
-              }
-              return null;
-            })}
+          <div className="space-y-3 text-sm leading-relaxed text-slate-700">
+            {about.map((paragraph, index) => (
+              <p key={index}>{paragraph}</p>
+            ))}
           </div>
         </section>
 
-        {/* Experience */}
-        <section className="mb-6">
-          <h2 className="mb-4 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase print:text-gray-600">
+        {/* Experience Header */}
+        <div className="mb-6">
+          <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">
             Experience
           </h2>
-          <div className="space-y-4">
-            {experience.map(exp => (
-              <div key={exp.id} className="flex break-inside-avoid gap-4">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded bg-gray-50 print:hidden">
-                  {exp.logo ? (
-                    <Image
-                      src={exp.logo}
-                      alt={exp.company}
-                      fill
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-xs font-bold text-gray-400">
-                      {exp.company[0]}
-                    </div>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="text-base font-bold text-gray-900 print:text-black">
-                      {exp.title}
-                    </h3>
-                    <span className="text-xs font-medium whitespace-nowrap text-gray-500 print:text-gray-600">
-                      {exp.startDate} – {exp.endDate}
-                    </span>
-                  </div>
-                  <div className="text-sm font-semibold text-gray-700 print:text-black">
-                    {exp.company}
-                  </div>
-                  <div className="mt-0.5 text-xs text-gray-500 print:text-gray-600">
-                    {exp.location}
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
+        </div>
 
-        {/* Education */}
-        <section className="mb-6">
-          <h2 className="mb-4 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase print:text-gray-600">
+        {/* Experience Items */}
+        {experience.map(exp => (
+          <div key={exp.id} className="mb-8 break-inside-avoid">
+            <div className="mb-2 flex items-baseline justify-between">
+              <h3 className="text-lg font-semibold text-slate-900">
+                {exp.company}
+              </h3>
+              <span className="text-sm text-slate-500">
+                {exp.startDate} – {exp.endDate}
+              </span>
+            </div>
+            <div className="mb-3 flex items-center justify-between">
+              <span className="text-sm font-medium text-slate-700 italic">
+                {exp.title}
+              </span>
+              <span className="text-xs text-slate-400">{exp.location}</span>
+            </div>
+            <p className="mb-3 text-sm leading-relaxed text-slate-600">
+              {exp.description}
+            </p>
+            {exp.skills && (
+              <div className="flex flex-wrap gap-2">
+                {exp.skills.map(skill => (
+                  <Badge
+                    key={skill}
+                    variant="secondary"
+                    className="rounded-sm bg-slate-100 px-2 py-0.5 text-xs font-normal text-slate-600 hover:bg-slate-200 print:border print:border-slate-200 print:bg-white"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Projects Header */}
+        <div className="mb-6">
+          <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">
+            Projects
+          </h2>
+        </div>
+
+        {/* Projects Items */}
+        {projects.map(project => (
+          <div key={project.title} className="mb-6 break-inside-avoid">
+            <div className="mb-2 flex items-baseline gap-3">
+              <h3 className="text-base font-semibold text-slate-900">
+                {project.title}
+              </h3>
+              <a
+                href={`https://${project.url}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-slate-500 hover:text-slate-900 hover:underline"
+              >
+                {project.url}
+              </a>
+            </div>
+            <p className="mb-3 text-sm leading-relaxed text-slate-600">
+              {project.description}
+            </p>
+            {project.skills && (
+              <div className="flex flex-wrap gap-2">
+                {project.skills.map(skill => (
+                  <Badge
+                    key={skill}
+                    variant="secondary"
+                    className="rounded-sm bg-slate-100 px-2 py-0.5 text-xs font-normal text-slate-600 hover:bg-slate-200 print:border print:border-slate-200 print:bg-white"
+                  >
+                    {skill}
+                  </Badge>
+                ))}
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Education Header */}
+        <div className="mb-6">
+          <h2 className="text-sm font-bold tracking-widest text-slate-400 uppercase">
             Education
           </h2>
-          <div className="space-y-4">
-            {education.map(edu => (
-              <div key={edu.id} className="flex break-inside-avoid gap-4">
-                <div className="relative h-10 w-10 shrink-0 overflow-hidden rounded bg-gray-50 print:hidden">
-                  {edu.logo ? (
-                    <Image
-                      src={edu.logo}
-                      alt={edu.institution}
-                      fill
-                      className="object-cover"
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-xs font-bold text-gray-400">
-                      {edu.institution[0]}
-                    </div>
-                  )}
-                </div>
-                <div className="flex-1">
-                  <div className="flex items-baseline justify-between">
-                    <h3 className="text-base font-bold text-gray-900 print:text-black">
-                      {edu.institution}
-                    </h3>
-                    <span className="text-xs font-medium whitespace-nowrap text-gray-500 print:text-gray-600">
-                      {edu.startYear} – {edu.endYear}
-                    </span>
-                  </div>
-                  <div className="text-sm text-gray-700 print:text-black">
-                    {edu.program}
-                  </div>
-                  {edu.grade && (
-                    <div className="mt-0.5 text-xs text-gray-500 print:text-gray-600">
-                      Grade: {edu.grade}
-                    </div>
-                  )}
-                </div>
+        </div>
+
+        {/* Education Items */}
+        {education.map(edu => (
+          <div key={edu.id} className="break-inside-avoid">
+            <div className="flex items-baseline justify-between">
+              <h3 className="text-base font-semibold text-slate-900">
+                {edu.institution}
+              </h3>
+              <span className="text-sm text-slate-500">
+                {edu.startYear} – {edu.endYear}
+              </span>
+            </div>
+            <div className="mt-1 text-sm text-slate-600">{edu.program}</div>
+            {edu.grade && (
+              <div className="mt-1 text-xs text-slate-400">
+                CGPA: {edu.grade}
               </div>
-            ))}
+            )}
           </div>
-        </section>
-      </div>
+        ))}
+      </ResumePaginator>
     </div>
   );
 }
