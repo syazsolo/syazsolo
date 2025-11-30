@@ -86,44 +86,46 @@
     {
       "title": "Syazsolo",
       "url": "syazsolo.netlify.app",
-      "status": "active",
-      "startDate": "Jan 2024",
+      "startDate": "Nov 2025",
       "endDate": "current",
-      "description": "A personal portfolio and playground for experimenting with new web technologies and UI designs. Features a chatbot and blog.",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Personal portfolio demonstrating frontend capabilities by replicating LinkedIn's interface",
+          "Features multiple specialized chatbots for project explanations, Clean Code summaries, and career discussions",
+          "Serves as a testing ground for developer tools and utilities I actively use"
+        ]
+      },
       "skills": ["React", "Next.js"]
     },
     {
       "title": "Atuk-Opah",
       "url": "atuk-opah.netlify.app",
-      "status": "active",
-      "startDate": "Mar 2024",
+      "startDate": "Nov 2025",
       "endDate": "current",
-      "description": "A private family tree application designed for family members to visualize and explore their lineage. Includes a secure login system.",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Private family tree application for 100+ family members to visualize and explore their lineage",
+          "Treated as a freelance project with a family member as client, gathering requirements and delivering features iteratively",
+          "Built with free hosting (Netlify, Supabase) as a core constraint; includes secure login system (demo available with password: 'demo')"
+        ]
+      },
       "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
     },
     {
       "title": "Infinite Days",
       "url": "infinite-days.netlify.app",
-      "status": "active",
-      "startDate": "Jun 2023",
+      "startDate": "Nov 2025",
       "endDate": "current",
-      "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
+      "description": {
+        "type": "ul",
+        "items": [
+          "A timeline-based todo app that visualizes all commitments on a single continuous stream",
+          "Built to track the gap between what I plan to do and what I actually do, revealing patterns in consistency and habit formation"
+        ]
+      },
       "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
-    },
-    {
-      "title": "Bigcampus",
-      "status": "on hold",
-      "startDate": "Sep 2024",
-      "endDate": "current",
-      "description": "Project description coming soon."
-    },
-    {
-      "title": "Studii",
-      "status": "archived",
-      "startDate": "Jan 2022",
-      "endDate": "Dec 2023",
-      "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
-      "skills": ["Vue", "Laravel", "PHP", "MySQL"]
     }
   ],
   "education": [

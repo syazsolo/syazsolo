@@ -406,24 +406,10 @@ export default function ResumePage() {
         {projects.map(project => (
           <div key={project.title} className="mb-6 break-inside-avoid">
             <div className="mb-2 flex items-baseline justify-between">
-              <div className="flex items-baseline gap-3">
+              <div className="flex flex-wrap items-baseline gap-3">
                 <h3 className="text-base font-semibold text-slate-900">
                   {project.title}
                 </h3>
-                {'status' in project && project.status && (
-                  <Badge
-                    variant="secondary"
-                    className={`rounded-sm px-1.5 py-0 text-xs font-normal ${
-                      project.status === 'active'
-                        ? 'border-green-200 bg-green-100 text-green-700'
-                        : project.status === 'on hold'
-                          ? 'border-amber-200 bg-amber-100 text-amber-700'
-                          : 'border-slate-200 bg-slate-100 text-slate-600'
-                    } print:border`}
-                  >
-                    {project.status}
-                  </Badge>
-                )}
                 {project.url && (
                   <a
                     href={`https://${project.url}`}
@@ -433,6 +419,11 @@ export default function ResumePage() {
                   >
                     {project.url}
                   </a>
+                )}
+                {project.skills && (
+                  <div className="flex flex-wrap gap-1.5">
+                    {project.skills.map(renderSkillBadge)}
+                  </div>
                 )}
               </div>
               {'startDate' in project &&
@@ -450,11 +441,6 @@ export default function ResumePage() {
             <div className="mb-3">
               {renderDescription(project.description as Description)}
             </div>
-            {project.skills && (
-              <div className="flex flex-wrap gap-1.5">
-                {project.skills.map(renderSkillBadge)}
-              </div>
-            )}
           </div>
         ))}
 
