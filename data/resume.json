@@ -1,0 +1,142 @@
+{
+  "profile": {
+    "name": "Syazani Zulkhairi",
+    "headline": "Software Engineer",
+    "location": "Kuala Lumpur, Selangor",
+    "birthday": "24/03/1998",
+    "age": 28,
+    "profileUrl": "/acak.jpg",
+    "contact": {
+      "email": "syazanizul@gmail.com",
+      "phone": "0192099853",
+      "portfolio": "syazsolo.netlify.app",
+      "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
+      "github": "github.com/syazsolo"
+    }
+  },
+  "about": [
+    "Software engineer with 4 years of experience building web applications. I value simplicity in code and design, aiming for solutions that are both maintainable and delightful to use.",
+    "While I am often utilized for frontend work, I am comfortable across the full stack and work with whatever the project needs—and I believe in taking care of the codebase while doing it.",
+    "I am a builder—I enjoy creating tools and solutions, whether it is what is needed at work or side projects that solve problems I care about."
+  ],
+  "experience": [
+    {
+      "id": "imttech",
+      "company": "IMT Tech Sdn Bhd",
+      "companyLogo": "/companies/imt_tech_logo.jpg",
+      "title": "Developer",
+      "startDate": "Jan 2025",
+      "endDate": "Oct 2025",
+      "location": "Bangsar South, Kuala Lumpur",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code",
+          "Delivered backend features in Laravel with zero reported bugs from account managers and clients, despite returning to Laravel after an extended break",
+          "Collaborated closely with account managers and stakeholders to understand system requirements and clarify implementation details"
+        ]
+      },
+      "skills": ["Vue", "Nuxt", "Laravel"],
+      "reference": {
+        "name": "Syahrul",
+        "title": "Senior Software Engineer",
+        "phone": "0122303273"
+      }
+    },
+    {
+      "id": "9loop",
+      "company": "9LOOP Software Sdn Bhd",
+      "companyLogo": "/companies/intex_networking_logo.jpg",
+      "title": "Software Engineer II",
+      "startDate": "Jul 2023",
+      "endDate": "May 2024",
+      "location": "Petaling Jaya, Selangor",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Built interactive user interfaces with Svelte/SvelteKit for a system revamp, including custom reusable components and a CRUD generator",
+          "Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests"
+        ]
+      },
+      "skills": ["Svelte", "Sveltekit", "Telegram Bot"],
+      "reference": {
+        "name": "Fung",
+        "title": "CTO",
+        "phone": "0164975573"
+      }
+    },
+    {
+      "id": "webcada",
+      "company": "Webcada Sdn Bhd",
+      "title": "Junior PHP Developer",
+      "startDate": "Oct 2021",
+      "endDate": "Apr 2023",
+      "location": "Kuala Lumpur",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Developed and maintained shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) for an e-commerce platform",
+          "Built FB Live feature for real-time product showcasing and sales"
+        ]
+      },
+      "skills": ["PHP", "Drupal"]
+    }
+  ],
+  "projects": [
+    {
+      "title": "Syazsolo",
+      "url": "syazsolo.netlify.app",
+      "startDate": "Nov 2025",
+      "endDate": "current",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Personal portfolio demonstrating frontend capabilities by replicating LinkedIn's interface",
+          "Features multiple specialized chatbots for project explanations, Clean Code summaries, and career discussions",
+          "Serves as a testing ground for developer tools and utilities I actively use"
+        ]
+      },
+      "skills": ["React", "Next.js"]
+    },
+    {
+      "title": "Atuk Opah",
+      "url": "atuk-opah.netlify.app",
+      "startDate": "Nov 2025",
+      "endDate": "current",
+      "description": {
+        "type": "ul",
+        "items": [
+          "Private family tree application for 100+ family members to visualize and explore their lineage",
+          "Treated as a freelance project with a family member as client, gathering requirements and delivering features iteratively",
+          "Built with free hosting (Netlify, Supabase) as a core constraint; includes secure login system (demo available with password: 'demo')"
+        ]
+      },
+      "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
+    },
+    {
+      "title": "Infinite Days",
+      "url": "infinite-days.netlify.app",
+      "startDate": "Nov 2025",
+      "endDate": "current",
+      "description": {
+        "type": "ul",
+        "items": [
+          "A timeline-based todo app that visualizes all commitments on a single continuous stream",
+          "Built to track the gap between what I plan to do and what I actually do, revealing patterns in consistency and habit formation"
+        ]
+      },
+      "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
+    }
+  ],
+  "education": [
+    {
+      "id": "mmu",
+      "institution": "Multimedia University",
+      "program": "Electronics Engineering, Robotics and Automation",
+      "startYear": "2017",
+      "endYear": "2021",
+      "grade": "3.65",
+      "description": "Yayasan Telekom Malaysia scholar"
+    }
+  ]
+}

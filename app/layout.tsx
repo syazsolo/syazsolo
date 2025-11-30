@@ -1,6 +1,6 @@
 import './globals.css';
 
-import { Chatbot } from '@/components/Chatbot';
+import { ConditionalChatbot } from '@/components/ConditionalChatbot';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { TooltipProvider } from '@/components/ui/tooltip';
@@ -16,12 +16,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`pb-16 antialiased`}>
+    <html lang="en" suppressHydrationWarning>
+      <body className="antialiased">
         <ThemeProvider>
           <TooltipProvider>
             {children}
-            <Chatbot />
+            <ConditionalChatbot />
           </TooltipProvider>
         </ThemeProvider>
       </body>

@@ -10,16 +10,15 @@ export const aboutContent: (
     {
       title: 'Chatbot',
       description:
-        'Talk to an AI version of me. Ask about my work, my approach to clean code, or just chat about Star Wars.',
+        'Talk to an Chatbot version of me. Ask about my work, my approach to clean code, or just chat about Star Wars.',
     },
     {
       title: 'Posts',
-      description:
-        'My thoughts on software engineering and building things right.',
+      description: 'My thoughts on software engineering and building things.',
     },
-    {
-      title: 'Skills Checklist',
-      description: "What I value as an engineer and where I'm growing.",
-    },
+    // {
+    //   title: 'Skills Checklist',
+    //   description: "What I value as an engineer and where I'm growing.",
+    // },
   ],
 ];

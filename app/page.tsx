@@ -34,7 +34,7 @@ export default async function Home() {
   );
 
   return (
-    <div className="bg-background relative min-h-screen pt-[52px] transition-colors">
+    <div className="bg-background relative min-h-screen pt-[52px] pb-16 transition-colors">
       <Header />
       <ScrollActionBar />
       <div className="container-width mx-auto px-1.5 py-3 md:px-6 md:py-6">
