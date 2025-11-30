@@ -3,7 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const A4_HEIGHT_MM = 297;
-const PADDING_MM = 40; // 20mm top + 20mm bottom
+const PADDING_MM = 30; // 15mm top + 15mm bottom
 const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - PADDING_MM;
 const MM_TO_PX = 3.7795275591; // 1mm = 3.78px (approx at 96 DPI)
 
@@ -58,7 +58,7 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
       {/* Measurement Container (Hidden) */}
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 -z-50 w-[210mm] p-[20mm] opacity-0 pointer-events-none"
+        className="fixed top-0 left-0 -z-50 w-[210mm] p-[15mm] opacity-0 pointer-events-none"
         aria-hidden="true"
       >
         {children}
@@ -70,7 +70,7 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
           {pages.map((pageContent, pageIndex) => (
             <div
               key={pageIndex}
-              className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[20mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:shadow-none print:break-after-page"
+              className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:shadow-none print:break-after-page"
             >
               {pageContent}
             </div>

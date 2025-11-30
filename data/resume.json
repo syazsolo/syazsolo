@@ -2,13 +2,16 @@
   "profile": {
     "name": "Syazani Zulkhairi",
     "headline": "Software Engineer",
-    "location": "Kuala Lumpur, Malaysia",
+    "location": "Kuala Lumpur, Selangor",
+    "birthday": "24/03/1998",
+    "age": 28,
     "profileUrl": "/acak.jpg",
     "contact": {
       "email": "syazanizul@gmail.com",
       "phone": "0192089853",
       "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
-      "portfolio": "syazsolo.netlify.app"
+      "portfolio": "syazsolo.netlify.app",
+      "github": "github.com/syazsolo"
     }
   },
   "about": [
@@ -19,22 +22,40 @@
     {
       "id": "imttech",
       "company": "IMT Tech Sdn Bhd",
+      "companyLogo": "/companies/imt_tech_logo.jpg",
       "title": "Developer",
       "startDate": "Jan 2025",
       "endDate": "Oct 2025",
       "location": "Bangsar South, Kuala Lumpur",
-      "description": "Developed and maintained web applications using Vue.js and Laravel. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-      "skills": ["Vue", "Nuxt", "Laravel"]
+      "description": {
+        "type": "ul",
+        "items": [
+          "Developed and maintained web applications using Vue.js and Laravel",
+          "Collaborated with cross-functional teams to deliver high-quality software solutions"
+        ]
+      },
+      "skills": ["Vue", "Nuxt", "Laravel"],
+      "reference": {
+        "name": "Syahrul",
+        "title": "Senior Software Engineer",
+        "phone": "0122303273"
+      }
     },
     {
       "id": "9loop",
       "company": "9LOOP Software Sdn Bhd",
+      "companyLogo": "/companies/intex_networking_logo.jpg",
       "title": "Software Engineer II",
       "startDate": "Jul 2023",
       "endDate": "May 2024",
       "location": "Petaling Jaya, Selangor",
       "description": "Built interactive user interfaces with Svelte and developed automated Telegram bots for efficient communication workflows.",
-      "skills": ["Svelte", "Telegram Bot"]
+      "skills": ["Svelte", "Telegram Bot"],
+      "reference": {
+        "name": "Fung",
+        "title": "CTO",
+        "phone": "0164975573"
+      }
     },
     {
       "id": "webcada",
@@ -51,20 +72,28 @@
     {
       "title": "Syazsolo",
       "url": "syazsolo.netlify.app",
+      "status": "active",
       "description": "A personal portfolio and playground for experimenting with new web technologies and UI designs. Features a chatbot and blog.",
       "skills": ["React", "Next.js"]
     },
     {
       "title": "Atuk-Opah",
       "url": "atuk-opah.netlify.app",
+      "status": "active",
       "description": "A private family tree application designed for family members to visualize and explore their lineage. Includes a secure login system.",
       "skills": ["React", "Next.js", "Supabase"]
     },
     {
       "title": "Infinite Days",
       "url": "infinite-days.netlify.app",
+      "status": "archived",
       "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
       "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
+    },
+    {
+      "title": "Studii",
+      "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
+      "skills": ["Vue", "Laravel", "MySQL"]
     }
   ],
   "education": [
