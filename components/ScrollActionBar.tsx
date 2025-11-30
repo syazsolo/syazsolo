@@ -61,9 +61,14 @@ export default function ScrollActionBar({
               </span>
             </div>
           </div>
-          <Button size="sm" className="rounded-full">
-            Contact
-          </Button>
+          <div className="flex items-center gap-2">
+            <Button size="sm" className="rounded-full" variant="secondary">
+              Print Resume
+            </Button>
+            <Button size="sm" className="rounded-full">
+              Contact
+            </Button>
+          </div>
         </div>
       </div>
     </div>
