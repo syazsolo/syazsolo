@@ -70,7 +70,7 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
           {pages.map((pageContent, pageIndex) => (
             <div
               key={pageIndex}
-              className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:shadow-none print:break-after-page"
+              className="resume-page-content relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:shadow-none print:break-after-page"
             >
               {pageContent}
             </div>
@@ -82,6 +82,12 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
       )}
 
       <style jsx global>{`
+        .resume-page-content > :first-child {
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          border-top: none !important;
+        }
+
         @media print {
           @page {
             size: A4;

@@ -275,64 +275,70 @@ export default function ResumePage() {
       <PrintButton />
 
       <ResumePaginator>
-        {/* Header Section */}
-        <header className="mb-6 border-b border-slate-200 pb-6">
-          <h1 className="text-4xl font-light tracking-tight text-slate-900 uppercase">
-            {profile.name}
-          </h1>
-          <p className="mt-2 text-lg font-medium text-slate-600">
-            {profile.headline}
-          </p>
-          <div className="mt-2 flex items-center gap-4 text-sm text-slate-500">
-            {profile.location && <span>{profile.location}</span>}
-            {profile.birthday && profile.age && (
-              <span>
-                {profile.birthday} ({profile.age} years old)
-              </span>
-            )}
-          </div>
-
-          <div className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
-            {profile.contact.email &&
-              renderContactLink(
-                `mailto:${profile.contact.email}`,
-                <Mail className="h-4 w-4" />,
-                profile.contact.email
-              )}
-            {profile.contact.phone && (
-              <div className="flex items-center gap-2 text-sm text-slate-500">
-                <Phone className="h-4 w-4" />
-                {profile.contact.phone}
+        {/* Split Header Section */}
+        <header className="mb-4 border-b border-slate-200 pb-4">
+          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start print:flex-row print:items-start">
+            {/* Left Side: Name & Info */}
+            <div className="flex-1">
+              <h1 className="text-3xl font-light tracking-tight text-slate-900 uppercase">
+                {profile.name}
+              </h1>
+              <p className="mt-1 text-lg font-medium text-slate-600">
+                {profile.headline}
+              </p>
+              <div className="mt-1 flex items-center gap-3 text-sm text-slate-500">
+                {profile.location && <span>{profile.location}</span>}
+                {profile.birthday && profile.age && (
+                  <span>
+                    {profile.birthday} ({profile.age} years old)
+                  </span>
+                )}
               </div>
-            )}
-            {profile.contact.linkedin &&
-              renderContactLink(
-                `https://${profile.contact.linkedin}`,
-                <Linkedin className="h-4 w-4" />,
-                profile.contact.linkedin,
-                true
+            </div>
+
+            {/* Right Side: Contact */}
+            <div className="flex flex-col items-start gap-1.5 text-sm md:items-end print:items-end">
+              {profile.contact.email &&
+                renderContactLink(
+                  `mailto:${profile.contact.email}`,
+                  <Mail className="h-4 w-4" />,
+                  profile.contact.email
+                )}
+              {profile.contact.phone && (
+                <div className="flex items-center gap-2 text-slate-500">
+                  <Phone className="h-4 w-4" />
+                  {profile.contact.phone}
+                </div>
               )}
-            {profile.contact.portfolio &&
-              renderContactLink(
-                `https://${profile.contact.portfolio}`,
-                <LinkIcon className="h-4 w-4" />,
-                profile.contact.portfolio,
-                true
-              )}
-            {profile.contact.github &&
-              renderContactLink(
-                `https://${profile.contact.github}`,
-                <Github className="h-4 w-4" />,
-                profile.contact.github,
-                true
-              )}
+              {profile.contact.linkedin &&
+                renderContactLink(
+                  `https://${profile.contact.linkedin}`,
+                  <Linkedin className="h-4 w-4" />,
+                  profile.contact.linkedin,
+                  true
+                )}
+              {profile.contact.portfolio &&
+                renderContactLink(
+                  `https://${profile.contact.portfolio}`,
+                  <LinkIcon className="h-4 w-4" />,
+                  profile.contact.portfolio,
+                  true
+                )}
+              {profile.contact.github &&
+                renderContactLink(
+                  `https://${profile.contact.github}`,
+                  <Github className="h-4 w-4" />,
+                  profile.contact.github,
+                  true
+                )}
+            </div>
           </div>
         </header>
 
         {/* About Section */}
         <section className="mb-6">
           <SectionHeader title="About" />
-          <div className="space-y-3 text-sm leading-relaxed text-slate-700">
+          <div className="space-y-2 text-sm leading-relaxed text-slate-700">
             {about.map((paragraph, index) => (
               <p key={index}>{paragraph}</p>
             ))}
