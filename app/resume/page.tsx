@@ -77,6 +77,29 @@ function calculateDuration(startDate: string, endDate: string): string {
   return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
 }
 
+function calculateProjectDuration(startDate: string, endDate: string): string {
+  if (endDate === 'current') {
+    const start = parseDate(startDate);
+    const end = new Date();
+    const months = differenceInMonths(end, start) + 1;
+
+    if (months < 12) {
+      return `${months} ${months === 1 ? 'month' : 'months'}`;
+    }
+
+    const years = Math.floor(months / 12);
+    const remainingMonths = months % 12;
+
+    if (remainingMonths === 0) {
+      return `${years} ${years === 1 ? 'year' : 'years'}`;
+    }
+
+    return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
+  }
+
+  return calculateDuration(startDate, endDate);
+}
+
 function calculateTotalDuration(
   experiences: typeof resumeData.experience
 ): string {
@@ -127,8 +150,8 @@ function renderDescriptionItem(item: Description): React.ReactNode {
   const ListTag = item.type === 'ul' ? 'ul' : 'ol';
   const listStyle =
     item.type === 'ul'
-      ? 'list-disc list-inside space-y-1 ml-4'
-      : 'list-decimal list-inside space-y-1 ml-4';
+      ? 'list-disc list-outside space-y-1 ml-6 pl-1'
+      : 'list-decimal list-outside space-y-1 ml-6 pl-1';
 
   return (
     <ListTag className={`text-sm leading-relaxed text-slate-600 ${listStyle}`}>
@@ -151,8 +174,8 @@ function renderDescription(description: Description): React.ReactNode {
   const ListTag = description.type === 'ul' ? 'ul' : 'ol';
   const listStyle =
     description.type === 'ul'
-      ? 'list-disc list-inside space-y-1 mb-3'
-      : 'list-decimal list-inside space-y-1 mb-3';
+      ? 'list-disc list-outside space-y-1 mb-3 ml-6 pl-1'
+      : 'list-decimal list-outside space-y-1 mb-3 ml-6 pl-1';
 
   return (
     <ListTag className={`text-sm leading-relaxed text-slate-600 ${listStyle}`}>
@@ -382,32 +405,47 @@ export default function ResumePage() {
 
         {projects.map(project => (
           <div key={project.title} className="mb-6 break-inside-avoid">
-            <div className="mb-2 flex items-baseline gap-3">
-              <h3 className="text-base font-semibold text-slate-900">
-                {project.title}
-              </h3>
-              {'status' in project && project.status && (
-                <Badge
-                  variant="secondary"
-                  className={`rounded-sm px-1.5 py-0 text-xs font-normal ${
-                    project.status === 'active'
-                      ? 'border-green-200 bg-green-100 text-green-700'
-                      : 'border-slate-200 bg-slate-100 text-slate-600'
-                  } print:border`}
-                >
-                  {project.status}
-                </Badge>
-              )}
-              {project.url && (
-                <a
-                  href={`https://${project.url}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs text-slate-500 hover:text-slate-900 hover:underline"
-                >
-                  {project.url}
-                </a>
-              )}
+            <div className="mb-2 flex items-baseline justify-between">
+              <div className="flex items-baseline gap-3">
+                <h3 className="text-base font-semibold text-slate-900">
+                  {project.title}
+                </h3>
+                {'status' in project && project.status && (
+                  <Badge
+                    variant="secondary"
+                    className={`rounded-sm px-1.5 py-0 text-xs font-normal ${
+                      project.status === 'active'
+                        ? 'border-green-200 bg-green-100 text-green-700'
+                        : project.status === 'on hold'
+                          ? 'border-amber-200 bg-amber-100 text-amber-700'
+                          : 'border-slate-200 bg-slate-100 text-slate-600'
+                    } print:border`}
+                  >
+                    {project.status}
+                  </Badge>
+                )}
+                {project.url && (
+                  <a
+                    href={`https://${project.url}`}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-xs text-slate-500 hover:text-slate-900 hover:underline"
+                  >
+                    {project.url}
+                  </a>
+                )}
+              </div>
+              {'startDate' in project &&
+                project.startDate &&
+                'endDate' in project &&
+                project.endDate && (
+                  <span className="text-sm text-slate-500">
+                    {project.startDate} –{' '}
+                    {project.endDate === 'current'
+                      ? 'ongoing'
+                      : project.endDate}
+                  </span>
+                )}
             </div>
             <div className="mb-3">
               {renderDescription(project.description as Description)}
