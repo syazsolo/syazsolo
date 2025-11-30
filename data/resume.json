@@ -50,7 +50,7 @@
       "endDate": "May 2024",
       "location": "Petaling Jaya, Selangor",
       "description": "Built interactive user interfaces with Svelte and developed automated Telegram bots for efficient communication workflows.",
-      "skills": ["Svelte", "Telegram Bot"],
+      "skills": ["Svelte", "Sveltekit", "Telegram Bot"],
       "reference": {
         "name": "Fung",
         "title": "CTO",
@@ -81,19 +81,20 @@
       "url": "atuk-opah.netlify.app",
       "status": "active",
       "description": "A private family tree application designed for family members to visualize and explore their lineage. Includes a secure login system.",
-      "skills": ["React", "Next.js", "Supabase"]
+      "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
     },
     {
       "title": "Infinite Days",
       "url": "infinite-days.netlify.app",
-      "status": "archived",
+      "status": "active",
       "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
       "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
     },
     {
       "title": "Studii",
+      "status": "archived",
       "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
-      "skills": ["Vue", "Laravel", "MySQL"]
+      "skills": ["Vue", "Laravel", "PHP", "MySQL"]
     }
   ],
   "education": [

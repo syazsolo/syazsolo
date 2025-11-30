@@ -31,12 +31,14 @@ const skillColors: Record<
   React: { bg: '#61DAFB', text: '#000000', border: '#61DAFB' },
   'Next.js': { bg: '#000000', text: '#FFFFFF', border: '#000000' },
   Svelte: { bg: '#FF3E00', text: '#FFFFFF', border: '#FF3E00' },
+  Sveltekit: { bg: '#FF3E00', text: '#FFFFFF', border: '#FF3E00' },
   // Backend Technologies
   Laravel: { bg: '#FF2D20', text: '#FFFFFF', border: '#FF2D20' },
   PHP: { bg: '#777BB4', text: '#FFFFFF', border: '#777BB4' },
   Drupal: { bg: '#0678BE', text: '#FFFFFF', border: '#0678BE' },
   // Database & Services
   MySQL: { bg: '#4479A1', text: '#FFFFFF', border: '#4479A1' },
+  PostgreSQL: { bg: '#336791', text: '#FFFFFF', border: '#336791' },
   Supabase: { bg: '#3ECF8E', text: '#FFFFFF', border: '#3ECF8E' },
   // Other
   'Telegram Bot': { bg: '#0088cc', text: '#FFFFFF', border: '#0088cc' },
