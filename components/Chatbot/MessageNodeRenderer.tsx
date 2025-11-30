@@ -39,14 +39,14 @@ export const MessageNodeRenderer = ({ node }: RenderNodeProps) => {
   if (node.type === 'embed' && node.provider === 'youtube') {
     const src = toEmbedSrc(node);
     return (
-      <div className="rounded-2xl overflow-hidden bg-card text-foreground">
+      <div className="bg-card text-foreground overflow-hidden rounded-2xl">
         <div className="w-full" style={{ aspectRatio: '16 / 9' }}>
           <iframe
             src={src}
             title="YouTube video"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowFullScreen
-            className="w-full h-full border-0"
+            className="h-full w-full border-0"
           />
         </div>
       </div>

@@ -20,14 +20,14 @@ export const UserMessageBubble = ({
   return (
     <div
       ref={isLastUserMessage ? lastUserMessageRef : null}
-      className="flex items-start gap-2 scroll-mt-2 justify-end"
+      className="flex scroll-mt-2 items-start justify-end gap-2"
     >
-      <div className="flex flex-col sm:max-w-[80%] max-w-[85%]">
-        <div className="rounded-2xl px-3 py-2 text-sm bg-primary text-primary-foreground">
+      <div className="flex max-w-[85%] flex-col sm:max-w-[80%]">
+        <div className="bg-primary text-primary-foreground rounded-2xl px-3 py-2 text-sm">
           <MessageNodeRenderer node={content} />
         </div>
       </div>
-      <Avatar className="w-6 h-6">
+      <Avatar className="h-6 w-6">
         <AvatarImage src={userAvatarSrc} alt="You" />
         <AvatarFallback>Y</AvatarFallback>
       </Avatar>

@@ -50,7 +50,7 @@ export default async function PostPage({
       <PostsLayout leftSidebar={<PostsProfileSidebar />}>
         <Card className="bg-card border-border transition-colors">
           <CardContent className="p-8">
-            <h1 className="text-2xl font-bold mb-4">Post not found</h1>
+            <h1 className="mb-4 text-2xl font-bold">Post not found</h1>
             <Link href="/posts" className="text-primary hover:underline">
               ← Back to all posts
             </Link>
@@ -79,16 +79,16 @@ export default async function PostPage({
     <PostsLayout leftSidebar={<PostsProfileSidebar />}>
       <Card className="bg-card border-border transition-colors">
         <CardContent className="p-0">
-          <div className="px-4 py-3 border-b border-border">
+          <div className="border-border border-b px-4 py-3">
             <Link
               href="/posts"
-              className="text-sm text-primary hover:underline inline-flex items-center gap-1"
+              className="text-primary inline-flex items-center gap-1 text-sm hover:underline"
             >
               ← Back to all posts
             </Link>
           </div>
 
-          <div className="px-4 pt-3 pb-2 flex items-start gap-3 border-b border-border">
+          <div className="border-border flex items-start gap-3 border-b px-4 pt-3 pb-2">
             <Avatar className="size-12">
               <AvatarImage
                 src={profileData.profileUrl}
@@ -101,14 +101,14 @@ export default async function PostPage({
                   .join('')}
               </AvatarFallback>
             </Avatar>
-            <div className="flex-1 min-w-0">
-              <div className="font-semibold text-sm text-foreground">
+            <div className="min-w-0 flex-1">
+              <div className="text-foreground text-sm font-semibold">
                 {profileData.name}
               </div>
-              <div className="text-xs text-muted-foreground">
+              <div className="text-muted-foreground text-xs">
                 {profileData.headline}
               </div>
-              <div className="flex items-center gap-1 text-xs text-muted-foreground mt-0.5 min-w-0">
+              <div className="text-muted-foreground mt-0.5 flex min-w-0 items-center gap-1 text-xs">
                 {metadataText && (
                   <>
                     <span className="truncate">{metadataText}</span>
@@ -125,20 +125,20 @@ export default async function PostPage({
               <img
                 src={postImageUrl}
                 alt={post.title}
-                className="w-full aspect-video object-cover rounded-lg mb-6"
+                className="mb-6 aspect-video w-full rounded-lg object-cover"
               />
             )}
 
-            <h1 className="text-3xl font-bold text-foreground mb-6 leading-tight">
+            <h1 className="text-foreground mb-6 text-3xl leading-tight font-bold">
               {post.title}
             </h1>
 
             {post.tags && post.tags.length > 0 && (
-              <div className="flex gap-2 mb-6">
+              <div className="mb-6 flex gap-2">
                 {post.tags.map((tag: string) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 text-xs font-medium bg-muted text-foreground rounded-full"
+                    className="bg-muted text-foreground rounded-full px-3 py-1 text-xs font-medium"
                   >
                     #{tag}
                   </span>

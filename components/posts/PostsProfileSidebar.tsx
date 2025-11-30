@@ -6,18 +6,18 @@ import { profileData } from '@/data/profile';
 
 const PostsProfileSidebar = () => {
   return (
-    <Card className="bg-card border-border transition-colors overflow-hidden">
-      <div className="h-[54px] bg-secondary">
+    <Card className="bg-card border-border overflow-hidden transition-colors">
+      <div className="bg-secondary h-[54px]">
         <img
           src={profileData.bannerUrl}
           alt="Banner"
-          className="w-full h-full object-cover"
+          className="h-full w-full object-cover"
         />
       </div>
 
-      <CardContent className="relative pb-4 pt-8 px-4">
+      <CardContent className="relative px-4 pt-8 pb-4">
         <div className="absolute -top-10 left-4">
-          <Avatar className="w-[72px] h-[72px] border-4 border-card">
+          <Avatar className="border-card h-[72px] w-[72px] border-4">
             <AvatarImage
               src={profileData.profileUrl}
               alt={profileData.shortName}
@@ -34,11 +34,11 @@ const PostsProfileSidebar = () => {
         <div className="text-left">
           <Link
             href="/"
-            className="text-[14px] leading-5 font-semibold text-foreground hover:underline block"
+            className="text-foreground block text-[14px] leading-5 font-semibold hover:underline"
           >
             {profileData.name}
           </Link>
-          <p className="text-[12px] leading-4 text-muted-foreground mt-0.5">
+          <p className="text-muted-foreground mt-0.5 text-[12px] leading-4">
             {profileData.headline}
           </p>
         </div>

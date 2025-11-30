@@ -50,7 +50,7 @@ export const ConversationProgress = ({
           transition={{ type: 'spring', stiffness: 120, damping: 20 }}
         />
       </svg>
-      <span className="absolute text-[9px] font-semibold select-none text-foreground">
+      <span className="text-foreground absolute text-[9px] font-semibold select-none">
         {clamped}%
       </span>
     </div>

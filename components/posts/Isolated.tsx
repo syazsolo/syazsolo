@@ -9,10 +9,9 @@ interface IsolatedProps {
 export const Isolated = ({ children }: IsolatedProps) => {
   return (
     <div className="my-6 flex justify-center">
-      <div className="w-full max-w-[375px] rounded-lg border border-border shadow-lg overflow-hidden">
+      <div className="border-border w-full max-w-[375px] overflow-hidden rounded-lg border shadow-lg">
         {children}
       </div>
     </div>
   );
 };
-

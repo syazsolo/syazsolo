@@ -27,7 +27,7 @@ export const QuickReplies = ({
 
   return (
     <div className="flex w-full flex-col items-end gap-2">
-      <div className="text-[11px] uppercase tracking-wide text-muted-foreground/70 pr-1">
+      <div className="text-muted-foreground/70 pr-1 text-[11px] tracking-wide uppercase">
         Quick reply
       </div>
       <div className="flex w-full flex-wrap justify-end gap-2">
@@ -36,7 +36,7 @@ export const QuickReplies = ({
             key={`${reply.nextState}-${index}`}
             variant="outline"
             size="sm"
-            className="border-dashed bg-accent/60 hover:bg-accent text-foreground max-w-full sm:max-w-[75%] h-auto min-h-8 whitespace-normal wrap-break-word text-left leading-snug px-4 py-2"
+            className="bg-accent/60 hover:bg-accent text-foreground h-auto min-h-8 max-w-full border-dashed px-4 py-2 text-left leading-snug wrap-break-word whitespace-normal sm:max-w-[75%]"
             onClick={() => handleQuickReply(reply)}
           >
             {parseFormattedText(reply.text).map((part, i) => (

@@ -18,21 +18,21 @@ export const ChatbotLauncher = ({
   const [avatarSrc] = useState(() => getSharedAvatarUrl());
 
   return (
-    <div className="fixed bottom-0 z-40 w-full sm:w-72 left-0 right-0 sm:left-auto sm:right-4 px-2 sm:px-0">
+    <div className="fixed right-0 bottom-0 left-0 z-40 w-full px-2 sm:right-4 sm:left-auto sm:w-72 sm:px-0">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center h-12 px-2 bg-card hover:bg-accent border-l border-r border-t border-border rounded-t-lg shadow-lg transition-colors w-full text-left cursor-pointer text-foreground"
+        className="bg-card hover:bg-accent border-border text-foreground flex h-12 w-full cursor-pointer items-center rounded-t-lg border-t border-r border-l px-2 text-left shadow-lg transition-colors"
         aria-label={isOpen ? 'Close chatbot' : 'Open chatbot'}
       >
         <div className="relative mr-2">
           <img
             src={avatarSrc}
             alt="random user avatar"
-            className="w-8 h-8 rounded-full bg-background"
+            className="bg-background h-8 w-8 rounded-full"
           />
-          <span className="absolute -right-0.5 -bottom-0.5 block w-3 h-3 rounded-full bg-green-500 border-2 border-background" />
+          <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500" />
         </div>
-        <span className="text-sm font-semibold mr-1 flex-1">Chatbot</span>
+        <span className="mr-1 flex-1 text-sm font-semibold">Chatbot</span>
         <div className="flex items-center gap-1">
           {isOpen ? (
             <ChevronDown size={16} className="text-muted-foreground" />
@@ -45,7 +45,7 @@ export const ChatbotLauncher = ({
       <AnimatePresence>
         {isOpen && (
           <motion.div
-            className="sm:w-72 sm:h-96 w-full h-[min(70vh,24rem)] bg-card border-l border-r border-b border-border shadow-lg"
+            className="bg-card border-border h-[min(70vh,24rem)] w-full border-r border-b border-l shadow-lg sm:h-96 sm:w-72"
             initial={{
               height: 0,
               opacity: 0,

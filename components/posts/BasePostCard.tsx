@@ -62,13 +62,13 @@ export default function BasePostCard({
     // Prefer excerpt for cards to avoid overflowing the card and hiding the image
     if (post.excerpt) {
       return (
-        <p className="text-[14px] text-foreground leading-6">{post.excerpt}</p>
+        <p className="text-foreground text-[14px] leading-6">{post.excerpt}</p>
       );
     }
 
     if (hasImage) {
       return (
-        <p className="text-[14px] text-foreground leading-5 font-semibold">
+        <p className="text-foreground text-[14px] leading-5 font-semibold">
           {post.title}
         </p>
       );
@@ -84,14 +84,14 @@ export default function BasePostCard({
     }
 
     return (
-      <p className="text-[14px] text-foreground leading-5">{post.title}</p>
+      <p className="text-foreground text-[14px] leading-5">{post.title}</p>
     );
   };
 
   return (
     <Card className={strategy.getCardClassName()}>
       <CardContent className={strategy.getCardContentClassName()}>
-        <div className="px-3 pt-3 pb-2 flex items-start gap-3">
+        <div className="flex items-start gap-3 px-3 pt-3 pb-2">
           <Avatar className="size-9">
             <AvatarImage src={profile.profileUrl} alt={profile.name} />
             <AvatarFallback>
@@ -104,13 +104,13 @@ export default function BasePostCard({
           <div className="min-w-0 flex-1">
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0 flex-1">
-                <div className="text-[14px] leading-5 font-semibold text-foreground truncate">
+                <div className="text-foreground truncate text-[14px] leading-5 font-semibold">
                   {profile.name}
                 </div>
-                <div className="text-[12px] text-muted-foreground leading-4">
+                <div className="text-muted-foreground text-[12px] leading-4">
                   {profile.headline}
                 </div>
-                <div className="flex items-center gap-1 text-[12px] text-muted-foreground min-w-0">
+                <div className="text-muted-foreground flex min-w-0 items-center gap-1 text-[12px]">
                   {metadataText && (
                     <>
                       <span className="truncate">{metadataText}</span>
@@ -134,7 +134,7 @@ export default function BasePostCard({
             >
               {renderTextContent()}
             </div>
-            <p className="text-xs text-muted-foreground mt-1.5">... see more</p>
+            <p className="text-muted-foreground mt-1.5 text-xs">... see more</p>
           </div>
           {hasImage && imageUrl && (
             <div className={strategy.getImageWrapperClassName(hasImage)}>
