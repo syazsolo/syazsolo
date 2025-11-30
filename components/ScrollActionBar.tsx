@@ -68,7 +68,7 @@ export default function ScrollActionBar({
               variant="secondary"
               onClick={() => window.open('/resume', '_blank')}
             >
-              Print Resume
+              Resume
             </Button>
             <Button size="sm" className="rounded-full">
               Contact

@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const A4_HEIGHT_MM = 297;
 const PADDING_MM = 40; // 20mm top + 20mm bottom
@@ -14,6 +14,7 @@ interface ResumePaginatorProps {
 export function ResumePaginator({ children }: ResumePaginatorProps) {
   const [pages, setPages] = useState<React.ReactNode[][]>([]);
   const containerRef = useRef<HTMLDivElement>(null);
+  const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -50,12 +51,7 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
     }
 
     setPages(newPages);
-  }, [children]);
-
-  // We need to render children first to measure them
-  // But we can't just render them hidden because we need their real layout dimensions
-  // So we render them in a hidden container that mimics the page width
-  const childrenArray = React.Children.toArray(children);
+  }, [childrenArray]);
 
   return (
     <>
@@ -74,7 +70,7 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
           {pages.map((pageContent, pageIndex) => (
             <div
               key={pageIndex}
-              className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[20mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:p-0 print:shadow-none print:break-after-page"
+              className="relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[20mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:shadow-none print:break-after-page"
             >
               {pageContent}
             </div>

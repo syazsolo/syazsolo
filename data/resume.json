@@ -64,7 +64,7 @@
       "title": "Infinite Days",
       "url": "infinite-days.netlify.app",
       "description": "A continuous timeline application for managing commitments and tracking habits, visualizing work and life on a single stream.",
-      "skills": ["React", "Next.js", "PHP", "Laravel"]
+      "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
     }
   ],
   "education": [
