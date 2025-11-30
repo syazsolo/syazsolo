@@ -1,0 +1,67 @@
+{
+  "profile": {
+    "name": "Syazani (Syaz Solo) Zulkhairi",
+    "headline": "Software Engineer",
+    "location": "Kuala Lumpur, Malaysia",
+    "profileUrl": "/acak.jpg",
+    "email": "syazanizul@gmail.com",
+    "phone": "0192089853",
+    "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
+    "portfolio": "syazsolo.netlify.app"
+  },
+  "about": [
+    "Hi, I'm Syazani.",
+    "I'm a software engineer. I build web applications and solve technical problems.",
+    "Recently, I've been focused on frontend work — this site mimics LinkedIn's design to show I can replicate complex interfaces. But I'm comfortable across the stack: frontend, backend, APIs, whatever the project needs.",
+    "A few things on this site:",
+    [
+      {
+        "title": "Chatbot",
+        "description": "Talk to an Chatbot version of me. Ask about my work, my approach to clean code, or just chat about Star Wars."
+      },
+      {
+        "title": "Posts",
+        "description": "My thoughts on software engineering and building things."
+      }
+    ]
+  ],
+  "experience": [
+    {
+      "id": "imttech",
+      "company": "IMT Tech Sdn Bhd",
+      "title": "Developer",
+      "startDate": "Jan 2025",
+      "endDate": "Oct 2025",
+      "location": "Bangsar South, Kuala Lumpur, Malaysia",
+      "logo": "/companies/imt_tech_logo.jpg"
+    },
+    {
+      "id": "9loop",
+      "company": "9LOOP Software Sdn Bhd",
+      "title": "Software Engineer II",
+      "startDate": "Jul 2023",
+      "endDate": "May 2024",
+      "location": "PJ Trade Centre, Damansara Perdana, Petaling Jaya, Selangor",
+      "logo": "/companies/intex_networking_logo.jpg"
+    },
+    {
+      "id": "webcada",
+      "company": "Webcada Sdn Bhd",
+      "title": "Junior PHP Developer",
+      "startDate": "Oct 2021",
+      "endDate": "Apr 2023",
+      "location": "Kuala Lumpur, Malaysia"
+    }
+  ],
+  "education": [
+    {
+      "id": "mmu",
+      "institution": "Multimedia University",
+      "program": "Electronics Engineering, Robotics and Automation",
+      "startYear": "2017",
+      "endYear": "2021",
+      "grade": "3.65",
+      "logo": "/education/mmumalaysia_logo.jpg"
+    }
+  ]
+}

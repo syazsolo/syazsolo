@@ -62,7 +62,12 @@ export default function ScrollActionBar({
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <Button size="sm" className="rounded-full" variant="secondary">
+            <Button
+              size="sm"
+              className="rounded-full"
+              variant="secondary"
+              onClick={() => window.open('/resume', '_blank')}
+            >
               Print Resume
             </Button>
             <Button size="sm" className="rounded-full">
