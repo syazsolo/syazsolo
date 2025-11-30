@@ -106,7 +106,8 @@
         "items": [
           "Private family tree application for 100+ family members to visualize and explore their lineage",
           "Treated as a freelance project with a family member as client, gathering requirements and delivering features iteratively",
-          "Built with free hosting (Netlify, Supabase) as a core constraint; includes secure login system (demo available with password: 'demo')"
+          "Built with free hosting (Netlify, Supabase) as a core technical constraint",
+          "Includes password protection (demo password: \"demo\" to view sample data)"
         ]
       },
       "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
