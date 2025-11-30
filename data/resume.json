@@ -1,13 +1,15 @@
 {
   "profile": {
-    "name": "Syazani (Syaz Solo) Zulkhairi",
+    "name": "Syazani Zulkhairi",
     "headline": "Software Engineer",
     "location": "Kuala Lumpur, Malaysia",
     "profileUrl": "/acak.jpg",
-    "email": "syazanizul@gmail.com",
-    "phone": "0192089853",
-    "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
-    "portfolio": "syazsolo.netlify.app"
+    "contact": {
+      "email": "syazanizul@gmail.com",
+      "phone": "0192089853",
+      "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188",
+      "portfolio": "syazsolo.netlify.app"
+    }
   },
   "about": [
     "Hi, I'm Syazani.",
@@ -33,7 +35,8 @@
       "startDate": "Jan 2025",
       "endDate": "Oct 2025",
       "location": "Bangsar South, Kuala Lumpur, Malaysia",
-      "logo": "/companies/imt_tech_logo.jpg"
+      "logo": "/companies/imt_tech_logo.jpg",
+      "description": ""
     },
     {
       "id": "9loop",
@@ -42,7 +45,8 @@
       "startDate": "Jul 2023",
       "endDate": "May 2024",
       "location": "PJ Trade Centre, Damansara Perdana, Petaling Jaya, Selangor",
-      "logo": "/companies/intex_networking_logo.jpg"
+      "logo": "/companies/intex_networking_logo.jpg",
+      "description": ""
     },
     {
       "id": "webcada",
@@ -50,7 +54,8 @@
       "title": "Junior PHP Developer",
       "startDate": "Oct 2021",
       "endDate": "Apr 2023",
-      "location": "Kuala Lumpur, Malaysia"
+      "location": "Kuala Lumpur, Malaysia",
+      "description": ""
     }
   ],
   "education": [

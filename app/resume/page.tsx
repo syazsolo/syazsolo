@@ -1,7 +1,5 @@
 'use client';
 
-import './print.css';
-
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Link as LinkIcon, Linkedin, Mail, Phone, Printer } from 'lucide-react';
 
@@ -35,39 +33,41 @@ export default function ResumePage() {
               </AvatarFallback>
             </Avatar>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight text-gray-900 uppercase">
+              <h1 className="text-3xl font-bold tracking-tight text-gray-900 uppercase print:text-black">
                 {profile.name}
               </h1>
-              <p className="mt-0.5 text-lg font-medium text-gray-700">
+              <p className="mt-0.5 text-lg font-medium text-gray-700 print:text-black">
                 {profile.headline}
               </p>
-              <p className="mt-1 text-sm text-gray-500">{profile.location}</p>
+              <p className="mt-1 text-sm text-gray-500 print:text-gray-600">
+                {profile.location}
+              </p>
             </div>
           </div>
 
-          <div className="space-y-1.5 text-right text-sm text-gray-600">
-            {profile.email && (
+          <div className="space-y-1.5 text-right text-sm text-gray-600 print:text-black">
+            {profile.contact?.email && (
               <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.email}</span>
-                <Mail className="h-4 w-4 text-gray-400" />
+                <span className="text-black">{profile.contact.email}</span>
+                <Mail className="h-4 w-4 text-gray-400 print:text-black" />
               </div>
             )}
-            {profile.phone && (
+            {profile.contact?.phone && (
               <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.phone}</span>
-                <Phone className="h-4 w-4 text-gray-400" />
+                <span className="text-black">{profile.contact.phone}</span>
+                <Phone className="h-4 w-4 text-gray-400 print:text-black" />
               </div>
             )}
-            {profile.linkedin && (
+            {profile.contact?.linkedin && (
               <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.linkedin}</span>
-                <Linkedin className="h-4 w-4 text-gray-400" />
+                <span className="text-black">{profile.contact.linkedin}</span>
+                <Linkedin className="h-4 w-4 text-gray-400 print:text-black" />
               </div>
             )}
-            {profile.portfolio && (
+            {profile.contact?.portfolio && (
               <div className="flex items-center justify-end gap-2">
-                <span className="text-black">{profile.portfolio}</span>
-                <LinkIcon className="h-4 w-4 text-gray-400" />
+                <span className="text-black">{profile.contact.portfolio}</span>
+                <LinkIcon className="h-4 w-4 text-gray-400 print:text-black" />
               </div>
             )}
           </div>
@@ -75,10 +75,10 @@ export default function ResumePage() {
 
         {/* Summary */}
         <section className="mb-6">
-          <h2 className="mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase">
+          <h2 className="mb-3 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase print:text-gray-600">
             Summary
           </h2>
-          <div className="space-y-2 text-sm leading-relaxed text-gray-800">
+          <div className="space-y-2 text-sm leading-relaxed text-gray-800 print:text-black">
             {about.map((item, index) => {
               if (typeof item === 'string') {
                 return <p key={index}>{item}</p>;
@@ -102,7 +102,7 @@ export default function ResumePage() {
 
         {/* Experience */}
         <section className="mb-6">
-          <h2 className="mb-4 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase">
+          <h2 className="mb-4 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase print:text-gray-600">
             Experience
           </h2>
           <div className="space-y-4">
@@ -124,17 +124,17 @@ export default function ResumePage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-baseline justify-between">
-                    <h3 className="text-base font-bold text-gray-900">
+                    <h3 className="text-base font-bold text-gray-900 print:text-black">
                       {exp.title}
                     </h3>
-                    <span className="text-xs font-medium whitespace-nowrap text-gray-500">
+                    <span className="text-xs font-medium whitespace-nowrap text-gray-500 print:text-gray-600">
                       {exp.startDate} – {exp.endDate}
                     </span>
                   </div>
-                  <div className="text-sm font-semibold text-gray-700">
+                  <div className="text-sm font-semibold text-gray-700 print:text-black">
                     {exp.company}
                   </div>
-                  <div className="mt-0.5 text-xs text-gray-500">
+                  <div className="mt-0.5 text-xs text-gray-500 print:text-gray-600">
                     {exp.location}
                   </div>
                 </div>
@@ -145,7 +145,7 @@ export default function ResumePage() {
 
         {/* Education */}
         <section className="mb-6">
-          <h2 className="mb-4 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase">
+          <h2 className="mb-4 border-b border-gray-200 pb-1 text-sm font-bold tracking-wider text-gray-500 uppercase print:text-gray-600">
             Education
           </h2>
           <div className="space-y-4">
@@ -167,16 +167,18 @@ export default function ResumePage() {
                 </div>
                 <div className="flex-1">
                   <div className="flex items-baseline justify-between">
-                    <h3 className="text-base font-bold text-gray-900">
+                    <h3 className="text-base font-bold text-gray-900 print:text-black">
                       {edu.institution}
                     </h3>
-                    <span className="text-xs font-medium whitespace-nowrap text-gray-500">
+                    <span className="text-xs font-medium whitespace-nowrap text-gray-500 print:text-gray-600">
                       {edu.startYear} – {edu.endYear}
                     </span>
                   </div>
-                  <div className="text-sm text-gray-700">{edu.program}</div>
+                  <div className="text-sm text-gray-700 print:text-black">
+                    {edu.program}
+                  </div>
                   {edu.grade && (
-                    <div className="mt-0.5 text-xs text-gray-500">
+                    <div className="mt-0.5 text-xs text-gray-500 print:text-gray-600">
                       Grade: {edu.grade}
                     </div>
                   )}
