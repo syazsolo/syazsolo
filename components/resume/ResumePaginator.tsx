@@ -3,6 +3,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const A4_HEIGHT_MM = 297;
+const A4_WIDTH_MM = 210;
 const PADDING_MM = 30; // 15mm top + 15mm bottom
 const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - PADDING_MM;
 const MM_TO_PX = 3.7795275591; // 1mm = 3.78px (approx at 96 DPI)
@@ -13,8 +14,31 @@ interface ResumePaginatorProps {
 
 export function ResumePaginator({ children }: ResumePaginatorProps) {
   const [pages, setPages] = useState<React.ReactNode[][]>([]);
+  const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
-  const childrenArray = useMemo(() => React.Children.toArray(children), [children]);
+  const childrenArray = useMemo(
+    () => React.Children.toArray(children),
+    [children]
+  );
+
+  useEffect(() => {
+    const handleResize = () => {
+      const screenWidth = window.innerWidth;
+      const a4WidthPx = A4_WIDTH_MM * MM_TO_PX;
+      // Add some padding/margin for mobile view
+      const targetWidth = screenWidth - 32; // 16px padding on each side
+
+      if (targetWidth < a4WidthPx) {
+        setScale(targetWidth / a4WidthPx);
+      } else {
+        setScale(1);
+      }
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -66,13 +90,25 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
 
       {/* Rendered Pages */}
       {pages.length > 0 ? (
-        <div className="flex flex-col gap-8 print:block print:gap-0">
+        <div className="flex flex-col items-center gap-8 print:block print:gap-0">
           {pages.map((pageContent, pageIndex) => (
             <div
               key={pageIndex}
-              className="resume-page-content relative mx-auto min-h-[297mm] w-[210mm] bg-white p-[15mm] text-slate-900 shadow-xl print:min-h-0 print:w-full print:shadow-none print:break-after-page"
+              style={{
+                width: `calc(210mm * ${scale})`,
+                height: `calc(297mm * ${scale})`,
+              }}
+              className="relative print:!h-auto print:!w-full"
             >
-              {pageContent}
+              <div
+                style={{
+                  transform: `scale(${scale})`,
+                  transformOrigin: 'top left',
+                }}
+                className="resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white p-[15mm] text-slate-900 shadow-xl print:static print:min-h-0 print:w-full print:shadow-none print:break-after-page print:!scale-100 print:!m-0"
+              >
+                {pageContent}
+              </div>
             </div>
           ))}
         </div>

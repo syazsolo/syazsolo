@@ -275,7 +275,7 @@ export default function ResumePage() {
       <ResumePaginator>
         {/* Split Header Section */}
         <header className="mb-4 border-b border-slate-200 pb-4">
-          <div className="flex flex-col justify-between gap-4 md:flex-row md:items-start print:flex-row print:items-start">
+          <div className="flex flex-row items-start justify-between gap-4">
             {/* Left Side: Name & Info */}
             <div className="flex-1">
               <h1 className="text-3xl font-light tracking-tight text-slate-900 uppercase">
@@ -295,7 +295,7 @@ export default function ResumePage() {
             </div>
 
             {/* Right Side: Contact */}
-            <div className="flex flex-col items-start gap-1.5 text-sm md:items-end print:items-end">
+            <div className="flex flex-col items-end gap-1.5 text-sm">
               {profile.contact.email &&
                 renderContactLink(
                   `mailto:${profile.contact.email}`,
