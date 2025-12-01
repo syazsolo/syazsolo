@@ -451,7 +451,7 @@ function PrintButton() {
         size="lg"
       >
         <Printer className="h-4 w-4" />
-        Print / Save as PDF
+        Print PDF
       </Button>
     </div>
   );
