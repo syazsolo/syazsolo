@@ -12,21 +12,21 @@
       "github": "github.com/syazsolo"
     }
   },
-  "about": "Software engineer with over 3 years of experience building web applications. I value simplicity in code and design, aiming for solutions that are both maintainable and delightful. While I am most utilized for frontend work, I am comfortable across the full stack. I believe in responsible development—building whatever the project needs while actively taking care of the codebase to ensure its long-term health.",
+  "about": "Software engineer with over 3 years of experience building web applications. I value simplicity in code and design, aiming for solutions that are both maintainable and delightful to use. While I am most utilized for frontend work, I am comfortable across the full stack. I view development as a form of stewardship—building whatever the project needs while actively maintaining the health and clarity of the codebase.",
   "experience": [
     {
       "id": "imttech",
       "company": "IMT Tech Sdn Bhd",
       "companyLogo": "/companies/imt_tech_logo.jpg",
-      "title": "Developer",
+      "title": "Software Engineer",
       "startDate": "Jan 2025",
       "endDate": "Oct 2025",
       "location": "Bangsar South, Kuala Lumpur",
       "description": {
         "type": "ul",
         "items": [
-          "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code",
-          "Delivered backend features in Laravel and maintained a near-zero defect rate from account managers and clients, despite returning to Laravel after an extended break",
+          "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code by 70%",
+          "Delivered backend features in Laravel with zero reported bugs from account managers and clients",
           "Collaborated closely with account managers and stakeholders to understand system requirements and clarify implementation details"
         ]
       },
@@ -59,8 +59,8 @@
       "description": {
         "type": "ul",
         "items": [
-          "Developed and maintained shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) via REST APIs for an e-commerce platform",
-          "Built FB Live feature for real-time product showcasing and sales"
+          "Built and maintained shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) via REST APIs for an e-commerce platform",
+          "Built Facebook Live feature for real-time product showcasing and sales"
         ]
       },
       "skills": ["PHP", "Drupal", "MySQL"]
@@ -71,7 +71,7 @@
       "title": "Syazsolo",
       "url": "syazsolo.netlify.app",
       "startDate": "Nov 2025",
-      "endDate": "current",
+      "endDate": "Present",
       "description": {
         "type": "ul",
         "items": [
@@ -86,14 +86,13 @@
       "title": "Atuk Opah",
       "url": "atuk-opah.netlify.app",
       "startDate": "Nov 2025",
-      "endDate": "current",
+      "endDate": "Present",
       "description": {
         "type": "ul",
         "items": [
           "Private family tree application for 100+ family members to visualize and explore their lineage",
           "Treated as a freelance project with a family member as client, gathering requirements and delivering features iteratively",
-          "Built with free hosting (Netlify, Supabase) as a core technical constraint",
-          "Includes password protection (demo password: \"demo\" to view sample data)"
+          "Built with free hosting (Netlify, Supabase) as a core constraint; password-protected (use \"demo\" to view sample data)"
         ]
       },
       "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
@@ -102,12 +101,25 @@
       "title": "Infinite Days",
       "url": "infinite-days.netlify.app",
       "startDate": "Nov 2025",
-      "endDate": "current",
+      "endDate": "Present",
       "description": {
         "type": "ul",
         "items": [
           "A timeline-based todo app that visualizes all commitments on a single continuous stream",
           "Built to track the gap between what I plan to do and what I actually do, revealing patterns in consistency and habit formation"
+        ]
+      },
+      "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
+    },
+    {
+      "title": "Bigcampus",
+      "startDate": "Jan 2025",
+      "endDate": "Present",
+      "description": {
+        "type": "ul",
+        "items": [
+          "A social platform for organizing group activities through user-created clubs, where club creators define their own formats, membership rules, and governance structures to solve the 'finding friends to hang out' problem",
+          "Currently on hold while prioritizing other projects; foundational architecture and theme completed"
         ]
       },
       "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
@@ -135,7 +147,15 @@
     "Docker": { "bg": "#2496ED", "text": "#FFFFFF", "border": "#2496ED" }
   },
   "skills": {
-    "Frontend": ["Next.js", "Nuxt", "React", "Vue", "Svelte", "Sveltekit", "TypeScript"],
+    "Frontend": [
+      "Next.js",
+      "Nuxt",
+      "React",
+      "Vue",
+      "Svelte",
+      "Sveltekit",
+      "TypeScript"
+    ],
     "Backend": ["Laravel", "Node.js", "PHP"],
     "Database": ["MySQL", "PostgreSQL", "Supabase", "Redis"],
     "Other": ["Jest", "Playwright", "Telegraf", "Docker"]

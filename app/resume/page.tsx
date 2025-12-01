@@ -11,10 +11,10 @@ import {
 } from 'lucide-react';
 import { differenceInMonths, format, parse } from 'date-fns';
 
+import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import { A4Paginator } from '@/components/ui/A4Paginator';
 import { cn } from '@/utils';
 import { experiences } from '@/data/experiences';
 import resumeData from '@/data/resume.json';
@@ -82,8 +82,6 @@ function calculateProjectDuration(startDate: string, endDate: string): string {
 
   return calculateDuration(startDate, endDate);
 }
-
-
 
 // ============================================================================
 // Component Helper Functions
@@ -350,7 +348,6 @@ export default function ResumePage() {
             <div className="mb-1">
               {renderDescription(exp.description as Description)}
             </div>
-
           </div>
         ))}
 
@@ -385,10 +382,7 @@ export default function ResumePage() {
                 'endDate' in project &&
                 project.endDate && (
                   <span className="text-sm text-slate-500">
-                    {project.startDate} –{' '}
-                    {project.endDate === 'current'
-                      ? 'ongoing'
-                      : project.endDate}
+                    {project.startDate} – {project.endDate}
                   </span>
                 )}
             </div>
