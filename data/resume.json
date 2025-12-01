@@ -14,9 +14,7 @@
       "github": "github.com/syazsolo"
     }
   },
-  "about": [
-    "Software engineer with 4 years of experience building web applications, with a focus on simplicity and maintainability. While my expertise leans toward the frontend, I am comfortable across the full stack and adapt to whatever the project demands. I view development as a form of stewardship—building delightful tools for users while actively maintaining the health and clarity of the codebase."
-  ],
+  "about": "Software engineer with over 3 years of experience building web applications. I value simplicity in code and design, aiming for solutions that are both maintainable and delightful. While I am most utilized for frontend work, I am comfortable across the full stack. I believe in responsible development—building whatever the project needs while actively taking care of the codebase to ensure its long-term health.",
   "experience": [
     {
       "id": "imttech",

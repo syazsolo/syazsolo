@@ -88,22 +88,25 @@ function calculateTotalDuration(
 ): string {
   if (experiences.length === 0) return '';
 
-  const sorted = [...experiences].sort((a, b) => {
-    const dateA = parseDate(a.startDate);
-    const dateB = parseDate(b.startDate);
-    return dateA.getTime() - dateB.getTime();
-  });
+  const totalMonths = experiences.reduce((sum, exp) => {
+    const start = parseDate(exp.startDate);
+    const end = exp.endDate === 'current' ? new Date() : parseDate(exp.endDate);
+    const months = differenceInMonths(end, start) + 1;
+    return sum + months;
+  }, 0);
 
-  const earliestStart = parseDate(sorted[0].startDate);
-  const latestEnd = sorted.reduce((latest, exp) => {
-    const end = parseDate(exp.endDate);
-    return end > latest ? end : latest;
-  }, parseDate(sorted[0].endDate));
+  if (totalMonths < 12) {
+    return `${totalMonths} ${totalMonths === 1 ? 'month' : 'months'}`;
+  }
 
-  const startStr = format(earliestStart, 'MMM yyyy');
-  const endStr = format(latestEnd, 'MMM yyyy');
+  const years = Math.floor(totalMonths / 12);
+  const remainingMonths = totalMonths % 12;
 
-  return calculateDuration(startStr, endStr);
+  if (remainingMonths === 0) {
+    return `${years} ${years === 1 ? 'year' : 'years'}`;
+  }
+
+  return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
 }
 
 // ============================================================================
@@ -322,11 +325,7 @@ export default function ResumePage() {
         {/* About Section */}
         <section className="mb-4">
           <SectionHeader title="About" />
-          <div className="space-y-2 text-sm leading-relaxed text-slate-700">
-            {about.map((paragraph, index) => (
-              <p key={index}>{paragraph}</p>
-            ))}
-          </div>
+          <p className="text-sm leading-relaxed text-slate-700">{about}</p>
         </section>
 
         {/* Experience Section */}
