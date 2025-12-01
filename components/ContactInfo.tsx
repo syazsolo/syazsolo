@@ -1,4 +1,7 @@
+'use client';
+
 import { Card, CardContent } from '@/components/ui/card';
+import { Button } from '@/components/ui/button';
 import { ContactItem, contactItems } from '@/data/contact-info';
 
 const renderContactItem = (item: ContactItem, index: number) => {
@@ -48,6 +51,26 @@ const ContactInfo = () => {
       <CardContent className="px-3 pt-4 pb-6">
         <div className="space-y-4">
           {contactItems.map((item, index) => renderContactItem(item, index))}
+        </div>
+        <div className="border-border mt-4 border-t pt-4">
+          <div className="flex flex-col gap-2">
+            <Button
+              size="sm"
+              className="rounded-full"
+              variant="default"
+              onClick={() => window.open('/resume', '_blank')}
+            >
+              Resume
+            </Button>
+            <Button
+              size="sm"
+              className="rounded-full"
+              variant="default"
+              disabled
+            >
+              Cover Letter
+            </Button>
+          </div>
         </div>
       </CardContent>
     </Card>
