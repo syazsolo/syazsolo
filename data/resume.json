@@ -44,7 +44,7 @@
         "type": "ul",
         "items": [
           "Built interactive user interfaces with Svelte/SvelteKit for a system revamp, including custom reusable components and a CRUD generator",
-          "Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests"
+          "Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests, significantly reducing production bug reports"
         ]
       },
       "skills": ["Svelte", "Sveltekit", "PostgreSQL", "Telegraf", "Redis"]
