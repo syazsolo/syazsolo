@@ -14,7 +14,7 @@ import { differenceInMonths, format, parse } from 'date-fns';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import { ResumePaginator } from '@/components/resume/ResumePaginator';
+import { A4Paginator } from '@/components/ui/A4Paginator';
 import { cn } from '@/utils';
 import { experiences } from '@/data/experiences';
 import resumeData from '@/data/resume.json';
@@ -236,7 +236,7 @@ export default function ResumePage() {
     <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
       <PrintButton />
 
-      <ResumePaginator>
+      <A4Paginator>
         {/* Split Header Section */}
         <header className="mb-5 border-b border-slate-200 pb-5">
           <div className="flex flex-row items-start justify-between gap-4">
@@ -439,7 +439,7 @@ export default function ResumePage() {
             )}
           </div>
         ))}
-      </ResumePaginator>
+      </A4Paginator>
     </div>
   );
 }

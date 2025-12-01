@@ -66,7 +66,7 @@ const ContactInfo = () => {
               size="sm"
               className="rounded-full"
               variant="default"
-              disabled
+              onClick={() => window.open('/cover-letter', '_blank')}
             >
               Cover Letter
             </Button>
