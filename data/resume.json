@@ -27,7 +27,7 @@
         "items": [
           "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code by 70%",
           "Delivered backend features in Laravel with zero reported bugs from account managers and clients",
-          "Collaborated with stakeholders to clarify requirements and ensure smooth project delivery."
+          "Collaborated with stakeholders to clarify requirements and ensure smooth project delivery"
         ]
       },
       "skills": ["Vue", "Nuxt", "Laravel", "MySQL"]
@@ -44,7 +44,7 @@
         "type": "ul",
         "items": [
           "Built interactive user interfaces with Svelte/SvelteKit for a system revamp, including custom reusable components and a CRUD generator",
-          "Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests, significantly reducing production bug reports"
+          "Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests, reducing production bug reports by over 80%"
         ]
       },
       "skills": ["Svelte", "Sveltekit", "PostgreSQL", "Telegraf", "Redis"]
@@ -59,7 +59,7 @@
       "description": {
         "type": "ul",
         "items": [
-          "Developed shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) via REST APIs for an e-commerce platform",
+          "Built & maintained critical shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) that served as the operational backbone for key clients",
           "Built a real-time sales dashboard for Facebook Live integrations using webhooks and WebSockets to surface live order and revenue data during streams"
         ]
       },
@@ -69,6 +69,7 @@
   "projects": [
     {
       "title": "Syazsolo",
+      "status": "maintained",
       "url": "syazsolo.netlify.app",
       "startDate": "Nov 2025",
       "endDate": "Present",
@@ -84,6 +85,7 @@
     },
     {
       "title": "Atuk Opah",
+      "status": "maintained",
       "url": "atuk-opah.netlify.app",
       "startDate": "Nov 2025",
       "endDate": "Present",
@@ -99,6 +101,7 @@
     },
     {
       "title": "Infinite Days",
+      "status": "active",
       "url": "infinite-days.netlify.app",
       "startDate": "Nov 2025",
       "endDate": "Present",
@@ -113,6 +116,7 @@
     },
     {
       "title": "Bigcampus",
+      "status": "on hold",
       "startDate": "Jan 2025",
       "endDate": "Present",
       "description": {

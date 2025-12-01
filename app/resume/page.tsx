@@ -60,29 +60,6 @@ function calculateDuration(startDate: string, endDate: string): string {
   return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
 }
 
-function calculateProjectDuration(startDate: string, endDate: string): string {
-  if (endDate === 'current') {
-    const start = parseDate(startDate);
-    const end = new Date();
-    const months = differenceInMonths(end, start) + 1;
-
-    if (months < 12) {
-      return `${months} ${months === 1 ? 'month' : 'months'}`;
-    }
-
-    const years = Math.floor(months / 12);
-    const remainingMonths = months % 12;
-
-    if (remainingMonths === 0) {
-      return `${years} ${years === 1 ? 'year' : 'years'}`;
-    }
-
-    return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
-  }
-
-  return calculateDuration(startDate, endDate);
-}
-
 // ============================================================================
 // Component Helper Functions
 // ============================================================================
@@ -132,13 +109,16 @@ function renderDescription(description: Description): React.ReactNode {
   }
 
   const ListTag = description.type === 'ul' ? 'ul' : 'ol';
-  const listStyle =
-    description.type === 'ul'
-      ? 'list-disc list-outside space-y-0.5 mb-3 ml-6 pl-1'
-      : 'list-decimal list-outside space-y-0.5 mb-3 ml-6 pl-1';
+  const baseListClass = 'list-outside space-y-0.5 mb-4 ml-6 pl-1';
+  const listStyle = cn(
+    baseListClass,
+    description.type === 'ul' ? 'list-disc' : 'list-decimal'
+  );
 
   return (
-    <ListTag className={`text-sm leading-relaxed text-slate-600 ${listStyle}`}>
+    <ListTag
+      className={cn('text-sm leading-relaxed text-slate-600', listStyle)}
+    >
       {description.items.map((item, index) => (
         <li key={index}>{renderDescriptionItem(item)}</li>
       ))}
@@ -206,7 +186,7 @@ function SectionHeader({
   return (
     <div className={cn('mt-6 mb-3 break-after-avoid first:mt-0', className)}>
       <div className="flex items-baseline justify-between gap-3">
-        <h2 className="border-b-2 border-slate-900 pb-1.5 text-lg font-bold tracking-wide text-slate-900 uppercase">
+        <h2 className="border-b-2 border-slate-900 pb-1.5 text-lg font-bold tracking-wide text-slate-800 uppercase">
           {title}
         </h2>
         {subtitle && (
@@ -240,7 +220,7 @@ export default function ResumePage() {
           <div className="flex flex-row items-start justify-between gap-4">
             {/* Left Side: Name & Info */}
             <div className="flex-1">
-              <h1 className="text-3xl font-light tracking-tight text-slate-900 uppercase">
+              <h1 className="text-3xl font-light tracking-tight uppercase">
                 {profile.name}
               </h1>
               <p className="mt-1 text-lg font-medium text-slate-600">
@@ -361,6 +341,7 @@ export default function ResumePage() {
                 <h3 className="text-base font-semibold text-slate-900">
                   {project.title}
                 </h3>
+
                 {project.url && (
                   <a
                     href={`https://${project.url}`}
@@ -377,14 +358,23 @@ export default function ResumePage() {
                   </div>
                 )}
               </div>
-              {'startDate' in project &&
-                project.startDate &&
-                'endDate' in project &&
-                project.endDate && (
-                  <span className="text-sm text-slate-500">
-                    {project.startDate} – {project.endDate}
+              <div className="flex flex-col items-end gap-1 sm:flex-row sm:items-baseline sm:gap-2">
+                {'status' in project && (
+                  <span className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600 capitalize">
+                    {project.status as string}
                   </span>
                 )}
+                {'startDate' in project &&
+                  project.startDate &&
+                  'endDate' in project &&
+                  project.endDate && (
+                    <span className="text-sm text-slate-500">
+                      {project.endDate === 'Present'
+                        ? `Started ${project.startDate}`
+                        : `${project.startDate} – ${project.endDate}`}
+                    </span>
+                  )}
+              </div>
             </div>
             <div className="mb-2">
               {renderDescription(project.description as Description)}

@@ -110,7 +110,9 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
                   transformOrigin: 'top left',
                   padding: `${paddingMM}mm`,
                 }}
-                className="resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white text-slate-900 shadow-xl print:static print:min-h-[297mm] print:w-full print:shadow-none print:break-after-page print:!scale-100 print:!m-0"
+                className={`resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white text-slate-900 shadow-xl print:static print:min-h-[297mm] print:w-full print:shadow-none print:!scale-100 print:!m-0 ${
+                pageIndex < pages.length - 1 ? 'print:break-after-page' : ''
+              }`}
               >
                 {pageContent}
               </div>
@@ -136,9 +138,12 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
           }
           html, body {
             width: 210mm;
-            height: 297mm;
+            height: auto !important;
+            min-height: 100%;
+            background-color: white !important;
             margin: 0 !important;
             padding: 0 !important;
+            overflow: visible !important;
             print-color-adjust: exact;
             -webkit-print-color-adjust: exact;
           }
