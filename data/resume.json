@@ -27,7 +27,7 @@
         "items": [
           "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code by 70%",
           "Delivered backend features in Laravel with zero reported bugs from account managers and clients",
-          "Collaborated closely with account stakeholders to clarify requirements and ensure smooth project delivery."
+          "Collaborated closely with stakeholders to clarify requirements and ensure smooth project delivery."
         ]
       },
       "skills": ["Vue", "Nuxt", "Laravel", "MySQL"]
@@ -60,7 +60,7 @@
         "type": "ul",
         "items": [
           "Developed shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) via REST APIs for an e-commerce platform",
-          "Built a real-time sales dashboard for Facebook Live integrations using webhooks and WebSockets to surface live order and revenue data during streams."
+          "Built a real-time sales dashboard for Facebook Live integrations using webhooks and WebSockets to surface live order and revenue data during streams"
         ]
       },
       "skills": ["PHP", "Drupal", "MySQL"]
