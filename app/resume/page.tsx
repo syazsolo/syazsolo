@@ -83,31 +83,7 @@ function calculateProjectDuration(startDate: string, endDate: string): string {
   return calculateDuration(startDate, endDate);
 }
 
-function calculateTotalDuration(
-  experiences: typeof resumeData.experience
-): string {
-  if (experiences.length === 0) return '';
 
-  const totalMonths = experiences.reduce((sum, exp) => {
-    const start = parseDate(exp.startDate);
-    const end = exp.endDate === 'current' ? new Date() : parseDate(exp.endDate);
-    const months = differenceInMonths(end, start) + 1;
-    return sum + months;
-  }, 0);
-
-  if (totalMonths < 12) {
-    return `${totalMonths} ${totalMonths === 1 ? 'month' : 'months'}`;
-  }
-
-  const years = Math.floor(totalMonths / 12);
-  const remainingMonths = totalMonths % 12;
-
-  if (remainingMonths === 0) {
-    return `${years} ${years === 1 ? 'year' : 'years'}`;
-  }
-
-  return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
-}
 
 // ============================================================================
 // Component Helper Functions
@@ -230,7 +206,7 @@ function SectionHeader({
   className?: string;
 }) {
   return (
-    <div className={cn('mt-6 mb-2 first:mt-0', className)}>
+    <div className={cn('mt-6 mb-3 break-after-avoid first:mt-0', className)}>
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="border-b-2 border-slate-900 pb-1.5 text-lg font-bold tracking-wide text-slate-900 uppercase">
           {title}
@@ -255,7 +231,6 @@ function SectionHeader({
 export default function ResumePage() {
   const { profile, about, experience, projects, education, skills } =
     resumeData;
-  const totalDuration = calculateTotalDuration(experience);
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
@@ -263,7 +238,7 @@ export default function ResumePage() {
 
       <ResumePaginator>
         {/* Split Header Section */}
-        <header className="mb-4 border-b border-slate-200 pb-4">
+        <header className="mb-5 border-b border-slate-200 pb-5">
           <div className="flex flex-row items-start justify-between gap-4">
             {/* Left Side: Name & Info */}
             <div className="flex-1">
@@ -275,11 +250,6 @@ export default function ResumePage() {
               </p>
               <div className="mt-1 flex items-center gap-3 text-sm text-slate-500">
                 {profile.location && <span>{profile.location}</span>}
-                {profile.birthday && profile.age && (
-                  <span>
-                    {profile.birthday} ({profile.age} years old)
-                  </span>
-                )}
               </div>
             </div>
 
@@ -323,18 +293,18 @@ export default function ResumePage() {
         </header>
 
         {/* About Section */}
-        <section className="mb-4">
+        <section className="mb-5">
           <SectionHeader title="About" />
           <p className="text-sm leading-relaxed text-slate-700">{about}</p>
         </section>
 
         {/* Experience Section */}
-        <SectionHeader title="Experience" subtitle={totalDuration} />
+        <SectionHeader title="Experience" />
 
         {experience.map((exp, index) => (
           <div
             key={exp.id}
-            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-3' : 'mb-3'}`}
+            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-4' : 'mb-4'}`}
           >
             <div className="mb-1 flex items-baseline justify-between">
               <div className="flex items-center gap-2">
@@ -380,12 +350,7 @@ export default function ResumePage() {
             <div className="mb-1">
               {renderDescription(exp.description as Description)}
             </div>
-            {exp.reference && (
-              <div className="text-xs text-slate-500">
-                Reference: {exp.reference.name}, {exp.reference.title} •{' '}
-                {exp.reference.phone}
-              </div>
-            )}
+
           </div>
         ))}
 
@@ -434,7 +399,7 @@ export default function ResumePage() {
         ))}
 
         {/* Skills Section */}
-        <section className="mb-6 break-inside-avoid">
+        <section className="mb-5 break-inside-avoid">
           <SectionHeader title="Skills" />
           <div className="grid grid-cols-1 gap-y-3 text-sm sm:grid-cols-[100px_1fr] sm:gap-x-2">
             {Object.entries(skills).map(([category, categorySkills]) => (
