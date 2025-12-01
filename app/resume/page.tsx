@@ -13,44 +13,27 @@ import { differenceInMonths, format, parse } from 'date-fns';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import React from 'react';
 import { ResumePaginator } from '@/components/resume/ResumePaginator';
+import { cn } from '@/utils';
 import { experiences } from '@/data/experiences';
 import resumeData from '@/data/resume.json';
-
-// ============================================================================
-// Constants & Configuration
-// ============================================================================
-
-const skillColors: Record<
-  string,
-  { bg: string; text: string; border: string }
-> = {
-  // Frontend Frameworks
-  Vue: { bg: '#4FC08D', text: '#FFFFFF', border: '#4FC08D' },
-  Nuxt: { bg: '#00DC82', text: '#FFFFFF', border: '#00DC82' },
-  React: { bg: '#61DAFB', text: '#000000', border: '#61DAFB' },
-  'Next.js': { bg: '#000000', text: '#FFFFFF', border: '#000000' },
-  Svelte: { bg: '#FF3E00', text: '#FFFFFF', border: '#FF3E00' },
-  Sveltekit: { bg: '#FF3E00', text: '#FFFFFF', border: '#FF3E00' },
-  // Backend Technologies
-  Laravel: { bg: '#FF2D20', text: '#FFFFFF', border: '#FF2D20' },
-  PHP: { bg: '#777BB4', text: '#FFFFFF', border: '#777BB4' },
-  Drupal: { bg: '#0678BE', text: '#FFFFFF', border: '#0678BE' },
-  // Database & Services
-  MySQL: { bg: '#4479A1', text: '#FFFFFF', border: '#4479A1' },
-  PostgreSQL: { bg: '#336791', text: '#FFFFFF', border: '#336791' },
-  Supabase: { bg: '#3ECF8E', text: '#FFFFFF', border: '#3ECF8E' },
-  // Other
-  'Telegram Bot': { bg: '#0088cc', text: '#FFFFFF', border: '#0088cc' },
-};
 
 // ============================================================================
 // Utility Functions
 // ============================================================================
 
 function getSkillColor(skill: string) {
+  const skillMetadata = resumeData.skillMetadata as Record<
+    string,
+    { bg: string; text: string; border: string }
+  >;
   return (
-    skillColors[skill] || { bg: '#E2E8F0', text: '#475569', border: '#CBD5E1' }
+    skillMetadata[skill] || {
+      bg: '#E2E8F0',
+      text: '#475569',
+      border: '#CBD5E1',
+    }
   );
 }
 
@@ -150,8 +133,8 @@ function renderDescriptionItem(item: Description): React.ReactNode {
   const ListTag = item.type === 'ul' ? 'ul' : 'ol';
   const listStyle =
     item.type === 'ul'
-      ? 'list-disc list-outside space-y-1 ml-6 pl-1'
-      : 'list-decimal list-outside space-y-1 ml-6 pl-1';
+      ? 'list-disc list-outside space-y-0.5 ml-6 pl-1'
+      : 'list-decimal list-outside space-y-0.5 ml-6 pl-1';
 
   return (
     <ListTag className={`text-sm leading-relaxed text-slate-600 ${listStyle}`}>
@@ -165,7 +148,7 @@ function renderDescriptionItem(item: Description): React.ReactNode {
 function renderDescription(description: Description): React.ReactNode {
   if (typeof description === 'string') {
     return (
-      <p className="mb-3 text-sm leading-relaxed text-slate-600">
+      <p className="mb-1 text-sm leading-relaxed text-slate-600">
         {description}
       </p>
     );
@@ -174,8 +157,8 @@ function renderDescription(description: Description): React.ReactNode {
   const ListTag = description.type === 'ul' ? 'ul' : 'ol';
   const listStyle =
     description.type === 'ul'
-      ? 'list-disc list-outside space-y-1 mb-3 ml-6 pl-1'
-      : 'list-decimal list-outside space-y-1 mb-3 ml-6 pl-1';
+      ? 'list-disc list-outside space-y-0.5 mb-3 ml-6 pl-1'
+      : 'list-decimal list-outside space-y-0.5 mb-3 ml-6 pl-1';
 
   return (
     <ListTag className={`text-sm leading-relaxed text-slate-600 ${listStyle}`}>
@@ -237,12 +220,14 @@ function renderSkillBadge(skill: string) {
 function SectionHeader({
   title,
   subtitle,
+  className,
 }: {
   title: string;
   subtitle?: string;
+  className?: string;
 }) {
   return (
-    <div className="mt-6 mb-4 first:mt-0">
+    <div className={cn('mt-6 mb-2 first:mt-0', className)}>
       <div className="flex items-baseline justify-between gap-3">
         <h2 className="border-b-2 border-slate-900 pb-1.5 text-lg font-bold tracking-wide text-slate-900 uppercase">
           {title}
@@ -265,11 +250,12 @@ function SectionHeader({
 // ============================================================================
 
 export default function ResumePage() {
-  const { profile, about, experience, projects, education } = resumeData;
+  const { profile, about, experience, projects, education, skills } =
+    resumeData;
   const totalDuration = calculateTotalDuration(experience);
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12 print:bg-white print:p-0">
+    <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
       <PrintButton />
 
       <ResumePaginator>
@@ -334,7 +320,7 @@ export default function ResumePage() {
         </header>
 
         {/* About Section */}
-        <section className="mb-6">
+        <section className="mb-4">
           <SectionHeader title="About" />
           <div className="space-y-2 text-sm leading-relaxed text-slate-700">
             {about.map((paragraph, index) => (
@@ -349,9 +335,9 @@ export default function ResumePage() {
         {experience.map((exp, index) => (
           <div
             key={exp.id}
-            className={`break-inside-avoid ${index > 0 ? 'mt-8 border-t border-slate-200 pt-6' : 'mb-6'}`}
+            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-3' : 'mb-3'}`}
           >
-            <div className="mb-2 flex items-baseline justify-between">
+            <div className="mb-1 flex items-baseline justify-between">
               <div className="flex items-center gap-2">
                 <Avatar className="h-6 w-6 shrink-0 rounded">
                   <AvatarImage
@@ -382,7 +368,7 @@ export default function ResumePage() {
                 </span>
               </div>
             </div>
-            <div className="mb-3 flex flex-wrap items-center gap-2">
+            <div className="mb-1 flex flex-wrap items-center gap-2">
               <span className="text-sm font-medium text-slate-700 italic">
                 {exp.title}
               </span>
@@ -392,7 +378,7 @@ export default function ResumePage() {
                 </div>
               )}
             </div>
-            <div className="mb-3">
+            <div className="mb-1">
               {renderDescription(exp.description as Description)}
             </div>
             {exp.reference && (
@@ -408,7 +394,7 @@ export default function ResumePage() {
         <SectionHeader title="Projects" />
 
         {projects.map(project => (
-          <div key={project.title} className="mb-6 break-inside-avoid">
+          <div key={project.title} className="mb-4 break-inside-avoid">
             <div className="mb-2 flex items-baseline justify-between">
               <div className="flex flex-wrap items-baseline gap-3">
                 <h3 className="text-base font-semibold text-slate-900">
@@ -442,11 +428,26 @@ export default function ResumePage() {
                   </span>
                 )}
             </div>
-            <div className="mb-3">
+            <div className="mb-2">
               {renderDescription(project.description as Description)}
             </div>
           </div>
         ))}
+
+        {/* Skills Section */}
+        <section className="mb-6 break-inside-avoid">
+          <SectionHeader title="Skills" />
+          <div className="grid grid-cols-1 gap-y-3 text-sm sm:grid-cols-[100px_1fr] sm:gap-x-2">
+            {Object.entries(skills).map(([category, categorySkills]) => (
+              <React.Fragment key={category}>
+                <div className="font-semibold text-slate-900">{category}</div>
+                <div className="flex flex-wrap gap-1.5">
+                  {categorySkills.map(renderSkillBadge)}
+                </div>
+              </React.Fragment>
+            ))}
+          </div>
+        </section>
 
         {/* Education Section */}
         <SectionHeader title="Education" />
