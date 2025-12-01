@@ -5,8 +5,8 @@ import { extractFields, replaceFields } from '@/lib/cover-letter-utils';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import CoverLetterForm from '@/components/cover-letter/CoverLetterForm';
-import CoverLetterPreview from '@/components/cover-letter/CoverLetterPreview';
+import CoverLetterForm from './CoverLetterForm';
+import CoverLetterPreview from './CoverLetterPreview';
 import { saveCoverLetterHistory } from '@/app/actions/cover-letter';
 import templatesData from '@/data/cover-letter-templates.json';
 import { v4 as uuidv4 } from 'uuid';
@@ -19,7 +19,7 @@ interface Template {
   content: string;
 }
 
-export default function CoverLetterPage() {
+export default function CoverLetterFlow() {
   const [step, setStep] = useState<Step>('select');
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [fields, setFields] = useState<string[]>([]);
@@ -78,29 +78,27 @@ export default function CoverLetterPage() {
 
   if (step === 'select') {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <div className="container mx-auto max-w-4xl py-12">
-          <h1 className="mb-8 text-3xl font-bold text-slate-900">
-            Select a Template
-          </h1>
-          <div className="grid gap-6 md:grid-cols-2">
-            {templatesData.map((template) => (
-              <Card
-                key={template.id}
-                className="cursor-pointer bg-white transition-all hover:border-slate-400 hover:shadow-md"
-                onClick={() => handleSelectTemplate(template)}
-              >
-                <CardHeader>
-                  <CardTitle className="text-slate-900">{template.name}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="line-clamp-3 text-sm text-slate-500">
-                    {template.content}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+      <div className="container mx-auto max-w-4xl py-12">
+        <h1 className="mb-8 text-3xl font-bold text-slate-900">
+          Select a Template
+        </h1>
+        <div className="grid gap-6 md:grid-cols-2">
+          {templatesData.map((template) => (
+            <Card
+              key={template.id}
+              className="cursor-pointer bg-white transition-all hover:border-slate-400 hover:shadow-md"
+              onClick={() => handleSelectTemplate(template)}
+            >
+              <CardHeader>
+                <CardTitle className="text-slate-900">{template.name}</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <p className="line-clamp-3 text-sm text-slate-500">
+                  {template.content}
+                </p>
+              </CardContent>
+            </Card>
+          ))}
         </div>
       </div>
     );
@@ -108,28 +106,24 @@ export default function CoverLetterPage() {
 
   if (step === 'form') {
     return (
-      <div className="min-h-screen bg-slate-50">
-        <div className="container mx-auto max-w-4xl py-12">
-          <Button
-            variant="ghost"
-            onClick={() => setStep('select')}
-            className="mb-6"
-          >
-            ← Back to Templates
-          </Button>
-          <CoverLetterForm fields={fields} onSubmit={handleFormSubmit} />
-        </div>
+      <div className="container mx-auto max-w-4xl py-12">
+        <Button
+          variant="ghost"
+          onClick={() => setStep('select')}
+          className="mb-6"
+        >
+          ← Back to Templates
+        </Button>
+        <CoverLetterForm fields={fields} onSubmit={handleFormSubmit} />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
-      <CoverLetterPreview
-        content={finalContent}
-        onEdit={handleEdit}
-        onSave={handleSaveHistory}
-      />
-    </div>
+    <CoverLetterPreview
+      content={finalContent}
+      onEdit={handleEdit}
+      onSave={handleSaveHistory}
+    />
   );
 }
