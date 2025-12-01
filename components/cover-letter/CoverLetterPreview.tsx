@@ -1,9 +1,8 @@
 'use client';
 
-import { Printer } from 'lucide-react';
-
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
+import { Printer } from 'lucide-react';
 import React from 'react';
 import resumeData from '@/data/resume.json';
 
@@ -19,6 +18,8 @@ export default function CoverLetterPreview({
   onSave,
 }: CoverLetterPreviewProps) {
   const { profile } = resumeData;
+  const [fontSizeScale, setFontSizeScale] = React.useState(1);
+  const contentRef = React.useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
     onSave();
@@ -27,7 +28,7 @@ export default function CoverLetterPreview({
 
   // Split content into paragraphs
   const paragraphs = content.split('\n\n');
-  
+
   let salutation = '';
   let bodyParagraphs: string[] = [];
   let signOff = '';
@@ -49,7 +50,7 @@ export default function CoverLetterPreview({
       <div className="absolute top-0 left-0 w-[35%] pt-8">
         {/* Name & Title */}
         <div className="mb-8">
-          <h1 className="text-5xl font-bold leading-none tracking-tight text-slate-900">
+          <h1 className="text-5xl leading-none font-bold tracking-tight text-slate-900">
             {profile.name.split(' ').map((namePart, i) => (
               <span key={i} className="block">
                 {namePart}
@@ -72,7 +73,7 @@ export default function CoverLetterPreview({
           <div className="flex flex-col gap-4 text-sm text-slate-700">
             {profile.location && (
               <div>
-                <p className="whitespace-pre-line leading-relaxed">
+                <p className="leading-relaxed whitespace-pre-line">
                   {profile.location}
                 </p>
               </div>
@@ -97,9 +98,9 @@ export default function CoverLetterPreview({
           </div>
         </div>
       </div>
-      
+
       {/* Vertical Line */}
-      <div className="absolute top-8 bottom-0 left-[35%] w-px bg-slate-900 h-[250mm]" />
+      <div className="absolute top-8 bottom-0 left-[35%] h-[250mm] w-px bg-slate-900" />
     </div>
   );
 
@@ -107,16 +108,64 @@ export default function CoverLetterPreview({
   const ContentRow = ({
     children,
     className = '',
+    scale = 1,
   }: {
     children: React.ReactNode;
     className?: string;
+    scale?: number;
   }) => (
-    <div className={`ml-[35%] pl-8 ${className}`}>
-      <div className="text-base leading-relaxed text-slate-800 whitespace-pre-wrap">
+    <div
+      className={`ml-[35%] pl-8 ${className}`}
+      style={{ fontSize: `${scale}rem` }}
+    >
+      <div className="leading-relaxed whitespace-pre-wrap text-slate-800">
         {children}
       </div>
     </div>
   );
+
+  const renderCoverLetterContent = (scale: number) => [
+    /* Salutation */
+    <ContentRow key="salutation" scale={scale} className="pt-8 pb-6">
+      {salutation}
+    </ContentRow>,
+
+    /* Body Paragraphs */
+    ...bodyParagraphs.map((para, index) => (
+      <ContentRow key={`para-${index}`} scale={scale} className="pb-6">
+        {para}
+      </ContentRow>
+    )),
+
+    /* Sign Off */
+    <ContentRow key="signoff" scale={scale} className="mt-8">
+      {signOff}
+    </ContentRow>,
+  ];
+
+  // Auto-fit logic
+  React.useLayoutEffect(() => {
+    if (!contentRef.current) return;
+
+    const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
+    const MM_TO_PX = 3.7795275591;
+    const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
+
+    // Measure the unscaled content
+    const contentHeight = contentRef.current.scrollHeight;
+
+    if (contentHeight > maxHeightPx) {
+      // Calculate ratio to fit
+      // Use a smaller safety factor to ensure content fits comfortably on a single page
+      const SAFETY_FACTOR = 0.9;
+      const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
+      // Don't scale up, only down. Allow a bit more shrink if needed.
+      const newScale = Math.max(0.4, Math.min(1, ratio));
+      setFontSizeScale(newScale);
+    } else {
+      setFontSizeScale(1);
+    }
+  }, [content]);
 
   return (
     <div className="mx-auto max-w-[210mm] print:max-w-none">
@@ -131,27 +180,29 @@ export default function CoverLetterPreview({
         </Button>
       </div>
 
+      {/* Hidden Measurement Container */}
+      <div
+        className="pointer-events-none fixed -z-50 w-[210mm] bg-white opacity-0"
+        style={{ padding: '12mm' }}
+        aria-hidden="true"
+      >
+        {/* 
+            We need to replicate the structure exactly to get accurate height.
+            The Sidebar takes 0 height, so it doesn't contribute to the flow height 
+            except for the vertical line which is absolute.
+            The main content flow is what matters.
+            We render with scale=1 to get the natural height.
+         */}
+        <div ref={contentRef}>{renderCoverLetterContent(1)}</div>
+      </div>
+
       {/* A4 Paginator Wrapper */}
       <A4Paginator paddingMM={12}>
         {/* Sidebar (Absolute, on Page 1) */}
         <Sidebar />
 
-        {/* Salutation */}
-        <ContentRow className="pb-6 pt-8">
-          {salutation}
-        </ContentRow>
-
-        {/* Body Paragraphs */}
-        {bodyParagraphs.map((para, index) => (
-          <ContentRow key={index} className="pb-6">
-            {para}
-          </ContentRow>
-        ))}
-
-        {/* Sign Off */}
-        <ContentRow className="mt-8">
-          {signOff}
-        </ContentRow>
+        {/* Scaled Content */}
+        {renderCoverLetterContent(fontSizeScale)}
       </A4Paginator>
     </div>
   );
