@@ -4,9 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 
 import { ConversationList } from '@/components/Chatbot/ConversationList';
+import Image from 'next/image';
 import { getSharedAvatarUrl } from '@/utils/avatar';
 import { useState } from 'react';
-import Image from 'next/image';
 
 interface ChatbotLauncherProps {
   onSelectConversation: (conversationId: string) => void;
@@ -32,8 +32,9 @@ export const ChatbotLauncher = ({
             className="bg-background rounded-full object-cover"
             fill
             sizes="32px"
+            unoptimized
           />
-          <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500 z-10" />
+          <span className="border-background absolute -right-0.5 -bottom-0.5 z-10 block h-3 w-3 rounded-full border-2 bg-green-500" />
         </div>
         <span className="mr-1 flex-1 text-sm font-semibold">Chatbot</span>
         <div className="flex items-center gap-1">

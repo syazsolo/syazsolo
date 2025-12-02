@@ -1,3 +1,5 @@
+import type { TypedObject } from '@portabletext/types';
+
 export interface Post {
   _id: string;
   title: string;
@@ -6,7 +8,7 @@ export interface Post {
   excerpt?: string;
   image?: unknown;
   imageUrl?: string;
-  body?: unknown[];
+  body?: TypedObject[];
   tags?: string[];
   readingTimeMinutes: number;
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { startTransition, useEffect, useMemo, useState } from 'react';
 
 import { conversationsData } from '@/lib/chat/conversations';
 import { useCurrentState } from '@/lib/chat/state';
@@ -60,7 +60,7 @@ export const useConversationProgress = (conversationId: string) => {
 
   useEffect(() => {
     // when conversation data changes (e.g., new states added), prune persisted visited
-    React.startTransition(() => {
+    startTransition(() => {
       setVisited(prev => {
         const next = new Set(Array.from(prev).filter(id => allStates.has(id)));
         if (next.size !== prev.size) {
@@ -78,7 +78,7 @@ export const useConversationProgress = (conversationId: string) => {
     if (!allStates.has(currentState)) {
       return;
     }
-    React.startTransition(() => {
+    startTransition(() => {
       setVisited(prev => {
         if (prev.has(currentState)) {
           return prev;
