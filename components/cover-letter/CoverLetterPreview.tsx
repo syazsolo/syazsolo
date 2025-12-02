@@ -2,18 +2,21 @@
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
+import { ContentItem } from '@/lib/cover-letter-utils';
 import { Printer } from 'lucide-react';
 import React from 'react';
 import resumeData from '@/data/resume.json';
 
 interface CoverLetterPreviewProps {
-  content: string;
+  content: ContentItem[];
+  regards?: ContentItem[];
   onEdit: () => void;
   onSave: () => void;
 }
 
 export default function CoverLetterPreview({
   content,
+  regards = [],
   onEdit,
   onSave,
 }: CoverLetterPreviewProps) {
@@ -25,24 +28,6 @@ export default function CoverLetterPreview({
     onSave();
     window.print();
   };
-
-  // Split content into paragraphs
-  const paragraphs = content.split('\n\n');
-
-  let salutation = '';
-  let bodyParagraphs: string[] = [];
-  let signOff = '';
-
-  if (paragraphs.length === 1) {
-    salutation = paragraphs[0];
-  } else if (paragraphs.length === 2) {
-    salutation = paragraphs[0];
-    signOff = paragraphs[1];
-  } else {
-    salutation = paragraphs[0];
-    bodyParagraphs = paragraphs.slice(1, -1);
-    signOff = paragraphs[paragraphs.length - 1];
-  }
 
   // Sidebar Component (Zero height wrapper to not affect flow)
   const Sidebar = () => (
@@ -124,24 +109,73 @@ export default function CoverLetterPreview({
     </div>
   );
 
-  const renderCoverLetterContent = (scale: number) => [
-    /* Salutation */
-    <ContentRow key="salutation" scale={scale} className="pt-8 pb-6">
-      {salutation}
-    </ContentRow>,
+  const renderContentItem = (
+    item: ContentItem,
+    scale: number,
+    key: string | number
+  ): React.ReactNode => {
+    if (typeof item === 'string') {
+      return (
+        <ContentRow key={key} scale={scale} className="pb-6">
+          {item}
+        </ContentRow>
+      );
+    }
 
-    /* Body Paragraphs */
-    ...bodyParagraphs.map((para, index) => (
-      <ContentRow key={`para-${index}`} scale={scale} className="pb-6">
-        {para}
+    const ListTag = item.type === 'ul' ? 'ul' : 'ol';
+    const listStyle = item.type === 'ul' ? 'list-disc' : 'list-decimal';
+
+    return (
+      <ContentRow key={key} scale={scale} className="pb-6">
+        <ListTag className={`ml-4 ${listStyle} space-y-2`}>
+          {item.items.map((subItem, index) => (
+            <li key={index} className="pl-1">
+              {typeof subItem === 'string' ? (
+                subItem
+              ) : (
+                // Recursive rendering for nested lists if needed, though simple string items are expected for now
+                <div className="mt-2">
+                  {renderContentItem(subItem, scale, `nested-${index}`)}
+                </div>
+              )}
+            </li>
+          ))}
+        </ListTag>
       </ContentRow>
-    )),
+    );
+  };
 
-    /* Sign Off */
-    <ContentRow key="signoff" scale={scale} className="mt-8">
-      {signOff}
-    </ContentRow>,
-  ];
+  const renderCoverLetterContent = (scale: number) => {
+    const renderedContent = content.map((item, index) => {
+      const isFirst = index === 0;
+
+      // Apply specific spacing for salutation
+      if (isFirst && typeof item === 'string') {
+        return (
+          <ContentRow key={`content-${index}`} scale={scale} className="pt-8 pb-6">
+            {item}
+          </ContentRow>
+        );
+      }
+
+      return renderContentItem(item, scale, `content-${index}`);
+    });
+
+    const renderedRegards = regards.map((item, index) => {
+      const isFirst = index === 0;
+      return (
+        <ContentRow 
+          key={`regards-${index}`} 
+          scale={scale} 
+          className={isFirst ? "mt-12" : ""}
+        >
+          {typeof item === 'string' ? item : renderContentItem(item, scale, `regards-${index}`)}
+        </ContentRow>
+      );
+    });
+
+    return [...renderedContent, ...renderedRegards];
+  };
 
   // Auto-fit logic
   React.useLayoutEffect(() => {

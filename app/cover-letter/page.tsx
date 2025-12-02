@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { extractFields, replaceFields } from '@/lib/cover-letter-utils';
+import { ContentItem, extractFields, replaceFields } from '@/lib/cover-letter-utils';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
@@ -11,12 +11,16 @@ import { saveCoverLetterHistory } from '@/app/actions/cover-letter';
 import templatesData from '@/data/cover-letter-templates.json';
 import { v4 as uuidv4 } from 'uuid';
 
+// Force cast the JSON data to the correct type since JSON imports are loosely typed or inferred as simple types
+const templates = templatesData as unknown as Template[];
+
 type Step = 'select' | 'form' | 'preview';
 
 interface Template {
   id: string;
   name: string;
-  content: string;
+  content: ContentItem[];
+  regards?: ContentItem[];
 }
 
 export default function CoverLetterPage() {
@@ -24,7 +28,8 @@ export default function CoverLetterPage() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [fields, setFields] = useState<string[]>([]);
   const [formValues, setFormValues] = useState<Record<string, string>>({});
-  const [finalContent, setFinalContent] = useState<string>('');
+  const [finalContent, setFinalContent] = useState<ContentItem[]>([]);
+  const [finalRegards, setFinalRegards] = useState<ContentItem[]>([]);
 
   const handleSelectTemplate = (template: Template) => {
     setSelectedTemplate(template);
@@ -36,6 +41,7 @@ export default function CoverLetterPage() {
     } else {
       // No fields, skip to preview
       setFinalContent(template.content);
+      setFinalRegards(template.regards || []);
       setStep('preview');
     }
   };
@@ -52,7 +58,12 @@ export default function CoverLetterPage() {
       });
 
       const content = replaceFields(selectedTemplate.content, dataWithDefaults);
+      const regards = selectedTemplate.regards 
+        ? replaceFields(selectedTemplate.regards, dataWithDefaults)
+        : [];
+
       setFinalContent(content);
+      setFinalRegards(regards);
       setStep('preview');
     }
   };
@@ -84,7 +95,7 @@ export default function CoverLetterPage() {
             Select a Template
           </h1>
           <div className="grid gap-6 md:grid-cols-2">
-            {templatesData.map((template) => (
+            {templates.map((template) => (
               <Card
                 key={template.id}
                 className="cursor-pointer bg-white transition-all hover:border-slate-400 hover:shadow-md"
@@ -95,7 +106,7 @@ export default function CoverLetterPage() {
                 </CardHeader>
                 <CardContent>
                   <p className="line-clamp-3 text-sm text-slate-500">
-                    {template.content}
+                    {JSON.stringify(template.content)}
                   </p>
                 </CardContent>
               </Card>
@@ -127,6 +138,7 @@ export default function CoverLetterPage() {
     <div className="min-h-screen bg-slate-50">
       <CoverLetterPreview
         content={finalContent}
+        regards={finalRegards}
         onEdit={handleEdit}
         onSave={handleSaveHistory}
       />
