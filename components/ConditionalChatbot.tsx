@@ -6,7 +6,7 @@ import { Chatbot } from '@/components/Chatbot';
 export function ConditionalChatbot() {
   const pathname = usePathname();
 
-  if (pathname === '/resume') {
+  if (pathname === '/resume' || pathname === '/cover-letter') {
     return null;
   }
 

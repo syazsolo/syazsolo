@@ -4,15 +4,14 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 
 const A4_HEIGHT_MM = 297;
 const A4_WIDTH_MM = 210;
-const PADDING_MM = 30; // 15mm top + 15mm bottom
-const CONTENT_HEIGHT_MM = A4_HEIGHT_MM - PADDING_MM;
 const MM_TO_PX = 3.7795275591; // 1mm = 3.78px (approx at 96 DPI)
 
-interface ResumePaginatorProps {
+interface A4PaginatorProps {
   children: React.ReactNode;
+  paddingMM?: number;
 }
 
-export function ResumePaginator({ children }: ResumePaginatorProps) {
+export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
   const [pages, setPages] = useState<React.ReactNode[][]>([]);
   const [scale, setScale] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -47,7 +46,11 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
     const newPages: React.ReactNode[][] = [];
     let currentPage: React.ReactNode[] = [];
     let currentHeight = 0;
-    const contentHeightPx = CONTENT_HEIGHT_MM * MM_TO_PX;
+    
+    // Calculate content height based on dynamic padding
+    const verticalPaddingMM = paddingMM * 2;
+    const contentHeightMM = A4_HEIGHT_MM - verticalPaddingMM;
+    const contentHeightPx = contentHeightMM * MM_TO_PX;
 
     contentNodes.forEach((node, index) => {
       const element = node as HTMLElement;
@@ -75,14 +78,15 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
     }
 
     setPages(newPages);
-  }, [childrenArray]);
+  }, [childrenArray, paddingMM]);
 
   return (
     <>
       {/* Measurement Container (Hidden) */}
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 -z-50 w-[210mm] p-[15mm] opacity-0 pointer-events-none"
+        className="fixed top-0 left-0 -z-50 w-[210mm] opacity-0 pointer-events-none"
+        style={{ padding: `${paddingMM}mm` }}
         aria-hidden="true"
       >
         {children}
@@ -104,8 +108,11 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
                 style={{
                   transform: `scale(${scale})`,
                   transformOrigin: 'top left',
+                  padding: `${paddingMM}mm`,
                 }}
-                className="resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white p-[15mm] text-slate-900 shadow-xl print:static print:min-h-0 print:w-full print:shadow-none print:break-after-page print:!scale-100 print:!m-0"
+                className={`resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white text-slate-900 shadow-xl print:static print:min-h-[297mm] print:w-full print:shadow-none print:!scale-100 print:!m-0 ${
+                pageIndex < pages.length - 1 ? 'print:break-after-page' : ''
+              }`}
               >
                 {pageContent}
               </div>
@@ -127,11 +134,22 @@ export function ResumePaginator({ children }: ResumePaginatorProps) {
         @media print {
           @page {
             size: A4;
-            margin: 0;
+            margin: 0 !important;
           }
-          body {
+          html, body {
+            width: 210mm;
+            height: auto !important;
+            min-height: 100%;
+            background-color: white !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: visible !important;
             print-color-adjust: exact;
             -webkit-print-color-adjust: exact;
+          }
+          /* Ensure no other margins interfere */
+          * {
+            box-sizing: border-box;
           }
         }
       `}</style>

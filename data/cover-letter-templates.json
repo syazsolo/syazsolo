@@ -1,0 +1,39 @@
+[
+  {
+    "id": "ml-engineer",
+    "name": "Machine Learning Software Engineer",
+    "summary": "Emphasizes the pivot from Electronics/Robotics to ML, highlighting transferrable engineering skills and a rigorous learning mindset.",
+    "content": [
+      "Dear {{dear who}} at {{dear at where}},",
+      "I am applying for this role because I see a clear intersection between your engineering needs and my strengths. While I am new to the professional AI domain, I am not starting from zero. My background is in Electronics Engineering (Robotics & Automation), which gave me my foundational understanding of control systems and logic.",
+      "I approach my career with a philosophy of living passionately and following where my curiosity leads. Right now, I am deeply fascinated by the mechanics of learning. I recently realized that the way I train for football—making random movements, observing the impact, and iterating to replicate positive outcomes—is essentially Reinforcement Learning in practice. I am excited about the future and eager to see where applying this rigorous, inquisitive mindset to your ML pipelines will take me.",
+      "Regarding the job description: the engineering fundamentals are already solved on my end.",
+      "My professional career at IMT Tech and Webcada involved linking diverse systems, managing complex API integrations (Webhooks/WebSockets), and architecting maintainable codebases. I can immediately handle the \"backend infrastructure\" and \"service integration\" required. Additionally, I am well-versed in the frontend technologies you listed (React, Next.js), allowing me to deliver immediate value across the stack while I get up to speed on your specific ML model implementations.",
+      "I am looking for a team where I can contribute stable, high-quality engineering while exploring this new field. I learn fast, build reliably, and am excited to see what we can build together."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "software-engineer-efficiency",
+    "name": "Software Engineer - Efficiency & Tools",
+    "summary": "Focuses on architectural excellence, automation, and efficiency. Showcases the cover letter generator itself as proof of work.",
+    "content": [
+      "Dear {{dear who}} at {{dear at where}},",
+      "I am writing this cover letter to apply for the {{job role}} position. {{dear at where}}'s reputation for high-caliber engineering and code quality is highly appealing; I seek an environment where I can focus on architectural excellence, building, and learning, rather than fixing foundational instability.",
+      "My approach to software engineering is defined by efficiency and tool utilization. I view complexity as a problem to solve through automation, not manual effort. To illustrate this commitment, I want to share the personal, automated generation workflow that produced this document:",
+      {
+        "type": "ol",
+        "items": [
+          "Template Creation: I maintain multiple comprehensive cover letter templates (for example, one emphasizing architectural strength and one for pivoting into ML engineering) to accurately match my skills to specific job requirements.",
+          "Integration: I copy the relevant template and integrate it into my custom cover letter generator tool on syazsolo.netlify.app, storing it as reusable JSON data.",
+          "Rapid Recycling: When I need to apply to a new company, I do not manually update a text file or a Google Doc. I revisit my portfolio, select the template, fill in the required fields (like company name and role), and a new, perfectly formatted PDF is generated instantly.",
+          "The Result: I can quickly recycle and tailor applications while eliminating the risk of manual errors and formatting drift."
+        ]
+      },
+      "This habit of turning repetitive tasks into reliable, scalable processes is central to my professional output:",
+      "Architectural Efficiency: In a previous role, I led a frontend architecture redesign using Nuxt.js, where implementing reusable abstractions enabled efficient development and reduced boilerplate code by 70%.",
+      "I am an engineer who excels at building robust, maintainable systems. I am excited by the opportunity to contribute my skills in systems optimization and code stewardship to your talented team."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  }
+]

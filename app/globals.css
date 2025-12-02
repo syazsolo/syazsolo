@@ -45,6 +45,48 @@
   --header-divider: #d6d9dc; /* Header divider - light */
 }
 
+.light {
+  /* LinkedIn Color Scheme - Forced Light Mode */
+  --radius: 0.5rem;
+  --background: #f3f2ef;
+  --foreground: #191919;
+  --card: #ffffff;
+  --card-foreground: #191919;
+  --popover: #ffffff;
+  --popover-foreground: #191919;
+  --primary: #0a66c2;
+  --primary-foreground: #ffffff;
+  --secondary: #f3f2ef;
+  --secondary-foreground: #191919;
+  --muted: #f3f2ef;
+  --muted-foreground: #666d74;
+  --accent: #eef3f8;
+  --accent-foreground: #191919;
+  --destructive: #d32f2f;
+  --border: #d6d9dc;
+  --input: #d6d9dc;
+  --ring: #0a66c2;
+  --chart-1: #0a66c2;
+  --chart-2: #666d74;
+  --chart-3: #404040;
+  --chart-4: #191919;
+  --chart-5: #a1a1a1;
+  --sidebar: #ffffff;
+  --sidebar-foreground: #191919;
+  --sidebar-primary: #0a66c2;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #f3f2ef;
+  --sidebar-accent-foreground: #191919;
+  --sidebar-border: #d6d9dc;
+  --sidebar-ring: #0a66c2;
+
+  /* Additional semantic colors */
+  --secondary-text: #404040;
+  --header-bg: #ffffff;
+  --hover-bg: #eef3f8;
+  --header-divider: #d6d9dc;
+}
+
 .dark {
   --background: #0a0a0a; /* LinkedIn dark background */
   --foreground: #ffffff; /* Light text */
@@ -245,10 +287,6 @@ body {
 }
 
 @media print {
-  @page {
-    margin: 12mm 15mm;
-    size: auto;
-  }
   body {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

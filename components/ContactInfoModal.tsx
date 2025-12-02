@@ -7,6 +7,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { Button } from '@/components/ui/button';
 import { profileData } from '@/data/profile';
 
 interface ContactInfoModalProps {
@@ -67,6 +68,26 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
         <p className="mt-1 text-lg">Contact Info</p>
         <div className="space-y-3 pt-2">
           {contactItems.map((item, index) => renderContactItem(item, index))}
+        </div>
+        <div className="border-border mt-4 border-t pt-4">
+          <div className="flex flex-col gap-2">
+            <Button
+              size="sm"
+              className="rounded-full"
+              variant="default"
+              onClick={() => window.open('/resume', '_blank')}
+            >
+              Resume
+            </Button>
+            <Button
+              size="sm"
+              className="rounded-full"
+              variant="default"
+              disabled
+            >
+              Cover Letter
+            </Button>
+          </div>
         </div>
       </DialogContent>
     </Dialog>
