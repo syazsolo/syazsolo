@@ -283,7 +283,7 @@ export default function ResumePage() {
         {experience.map((exp, index) => (
           <div
             key={exp.id}
-            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-4' : 'mb-4'}`}
+            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-4' : 'mb-5'}`}
           >
             <div className="mb-1 flex items-baseline justify-between">
               <div className="flex items-center gap-2">
@@ -318,7 +318,7 @@ export default function ResumePage() {
                 </span>
               </div>
             </div>
-            <div className="mb-1 flex flex-wrap items-center gap-2">
+            <div className="mt-1.5 mb-1 flex flex-wrap items-center gap-2">
               <span className="text-sm font-medium text-slate-700 italic">
                 {exp.title}
               </span>
