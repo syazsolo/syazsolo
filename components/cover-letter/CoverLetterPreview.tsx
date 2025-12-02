@@ -200,13 +200,20 @@ export default function CoverLetterPreview({
   }, [content]);
 
   return (
-    <div className="mx-auto max-w-[210mm] print:max-w-none">
+    <div className="mx-auto max-w-[210mm] bg-white text-slate-900 dark:bg-white dark:text-slate-900 print:max-w-none">
       {/* Action Buttons (Hidden in Print) */}
       <div className="fixed top-8 right-8 flex flex-col gap-4 print:hidden">
-        <Button onClick={onEdit} variant="outline" className="shadow-lg">
+        <Button
+          onClick={onEdit}
+          variant="outline"
+          className="shadow-lg bg-white text-slate-900 border border-slate-300 hover:bg-slate-100 dark:bg-white dark:text-slate-900 dark:border-slate-300 dark:hover:bg-slate-100"
+        >
           Edit Details
         </Button>
-        <Button onClick={handlePrint} className="gap-2 shadow-lg">
+        <Button
+          onClick={handlePrint}
+          className="gap-2 shadow-lg bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+        >
           <Printer className="h-4 w-4" />
           Print / Save PDF
         </Button>

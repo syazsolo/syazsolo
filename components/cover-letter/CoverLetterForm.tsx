@@ -64,7 +64,11 @@ export default function CoverLetterForm({
             ))}
           </div>
 
-          <Button type="submit" size="lg" className="mt-4 w-full text-base">
+          <Button
+            type="submit"
+            size="lg"
+            className="mt-4 w-full text-base bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+          >
             Generate Preview
           </Button>
         </form>

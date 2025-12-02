@@ -212,7 +212,7 @@ export default function ResumePage() {
     resumeData;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
+    <div className="min-h-screen bg-gray-50 py-8 dark:bg-white dark:text-slate-900 print:bg-white print:p-0">
       <PrintButton />
 
       <A4Paginator>
@@ -443,7 +443,7 @@ function PrintButton() {
     <div className="fixed right-8 bottom-8 z-50 print:hidden">
       <Button
         onClick={() => window.print()}
-        className="gap-2 shadow-xl"
+        className="gap-2 shadow-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
         size="lg"
       >
         <Printer className="h-4 w-4" />

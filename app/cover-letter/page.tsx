@@ -108,7 +108,7 @@ export default function CoverLetterPage() {
 
   if (step === 'select') {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
         <div className="container mx-auto max-w-4xl py-12">
           <h1 className="mb-8 text-3xl font-bold text-slate-900">
             Select a Template
@@ -140,7 +140,7 @@ export default function CoverLetterPage() {
 
   if (step === 'form') {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
         <div className="container mx-auto max-w-4xl py-12">
           <Button
             variant="ghost"
@@ -160,7 +160,7 @@ export default function CoverLetterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
       <CoverLetterPreview
         content={finalContent}
         regards={finalRegards}
