@@ -2,7 +2,7 @@
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
-import { ContentItem } from '@/lib/cover-letter-utils';
+import { ContentItem } from '@/types/cover-letter';
 import { Printer } from 'lucide-react';
 import React from 'react';
 import resumeData from '@/data/resume.json';
@@ -10,7 +10,7 @@ import resumeData from '@/data/resume.json';
 interface CoverLetterPreviewProps {
   content: ContentItem[];
   regards?: ContentItem[];
-  onEdit: () => void;
+  onBack: () => void;
 }
 
 const { profile } = resumeData;
@@ -130,7 +130,7 @@ const ContentRow = ({
 export default function CoverLetterPreview({
   content,
   regards = [],
-  onEdit,
+  onBack,
 }: CoverLetterPreviewProps) {
   const [fontSizeScale, setFontSizeScale] = React.useState(1);
   const contentRef = React.useRef<HTMLDivElement>(null);
@@ -158,7 +158,7 @@ export default function CoverLetterPreview({
     return (
       <ContentRow key={key} scale={scale} className="pb-6">
         <ListTag className={`ml-4 ${listStyle} space-y-2`}>
-          {item.items.map((subItem, index) => (
+          {(item.items || []).map((subItem, index) => (
             <li key={index} className="pl-1">
               {typeof subItem === 'string' ? (
                 renderBoldText(subItem)
@@ -250,11 +250,11 @@ export default function CoverLetterPreview({
       {/* Action Buttons (Hidden in Print) */}
       <div className="fixed top-8 right-8 flex flex-col gap-4 print:hidden">
         <Button
-          onClick={onEdit}
+          onClick={onBack}
           variant="outline"
           className="border border-slate-300 bg-white text-slate-900 shadow-lg hover:bg-slate-100 dark:border-slate-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
         >
-          Edit Details
+          ← Back to List
         </Button>
         <Button
           onClick={handlePrint}

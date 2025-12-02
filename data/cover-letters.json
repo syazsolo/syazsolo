@@ -1,10 +1,11 @@
 [
   {
     "id": "ml-engineer",
-    "name": "Machine Learning Software Engineer",
-    "summary": "Emphasizes the pivot from Electronics/Robotics to ML, highlighting transferrable engineering skills and a rigorous learning mindset.",
+    "company": "Company Name",
+    "role": "Machine Learning Software Engineer",
+    "date": "2025-12-03",
     "content": [
-      "Dear {{dear who}} at {{dear at where}},",
+      "Dear Hiring Manager at Company Name,",
       "I am applying for this role because I see a clear intersection between your engineering needs and my strengths. While I am new to the professional AI domain, I am not starting from zero. My background is in Electronics Engineering (Robotics & Automation), which gave me my foundational understanding of control systems and logic.",
       "I approach my career with a philosophy of living passionately and following where my curiosity leads. Right now, I am deeply fascinated by the mechanics of learning. I recently realized that the way I train for football—making random movements, observing the impact, and iterating to replicate positive outcomes—is essentially Reinforcement Learning in practice. I am excited about the future and eager to see where applying this rigorous, inquisitive mindset to your ML pipelines will take me.",
       "Regarding the job description: the engineering fundamentals are already solved on my end.",
@@ -15,11 +16,12 @@
   },
   {
     "id": "software-engineer-efficiency",
-    "name": "Software Engineer - Efficiency & Tools",
-    "summary": "Focuses on architectural excellence, automation, and efficiency. Showcases the cover letter generator itself as proof of work.",
+    "company": "Company Name",
+    "role": "Software Engineer - Efficiency & Tools",
+    "date": "2025-12-03",
     "content": [
-      "Dear {{dear who}} at {{dear at where}},",
-      "I am writing this cover letter to apply for the {{job role}} position. {{dear at where}}'s reputation for high-caliber engineering and code quality is highly appealing; I seek an environment where I can focus on architectural excellence, building, and learning, rather than fixing foundational instability.",
+      "Dear Hiring Manager at Company Name,",
+      "I am writing this cover letter to apply for the Software Engineer position. Company Name's reputation for high-caliber engineering and code quality is highly appealing; I seek an environment where I can focus on architectural excellence, building, and learning, rather than fixing foundational instability.",
       "My approach to software engineering is defined by efficiency and tool utilization. I view complexity as a problem to solve through automation, not manual effort. To illustrate this commitment, I want to share the personal, automated generation workflow that produced this document:",
       {
         "type": "ol",
@@ -38,10 +40,11 @@
   },
   {
     "id": "ai-engineer-pivot",
-    "name": "AI Engineer (Pivot from Full-Stack)",
-    "summary": "Adapts the ML template to address V-Work's need for end-to-end solution building and enterprise integration. It counters the '1-year AI experience' requirement by highlighting transferrable expertise in complex system architecture, API integrations, and robotics logic.",
+    "company": "Company Name",
+    "role": "AI Engineer (Pivot from Full-Stack)",
+    "date": "2025-12-03",
     "content": [
-      "Dear {{dear who}} at {{dear at where}},",
+      "Dear Hiring Manager at Company Name,",
       "I am applying for the AI Engineer role because I see a clear intersection between your need for robust, end-to-end solution building and my engineering strengths. While I am pivoting into the professional AI domain, I am not starting from zero. My background is in **Electronics Engineering (Robotics & Automation)**, which gave me my foundational understanding of control systems and logic.",
       "I approach my career with a philosophy of living passionately and following where my curiosity leads. I am deeply fascinated by the mechanics of learning and have realized that the rigorous, iterative mindset I apply to software architecture parallels the tuning of ML pipelines. I am eager to apply this inquisitive mindset to your LLM and RAG solutions.",
       "Regarding the job requirements: the engineering fundamentals are already solved on my end.",
@@ -53,10 +56,11 @@
   },
   {
     "id": "genai-robotics-homecoming",
-    "name": "GenAI Engineer (Robotics Homecoming)",
-    "summary": "Tailored for Senserbot. Explains the pivot away from robotics due to the past market landscape and frames the application as an exciting return to the user's academic roots.",
+    "company": "Senserbot",
+    "role": "GenAI Engineer (Robotics Homecoming)",
+    "date": "2025-12-03",
     "content": [
-      "Dear {{dear who}} at {{dear at where}},",
+      "Dear Hiring Manager at Senserbot,",
       "I am writing to apply for the **Generative AI Engineer** role. This application represents a significant personal milestone for me: a chance to combine my professional expertise in software engineering with my academic roots in robotics.",
       "When I graduated with my degree in **Electronics Engineering (Robotics & Automation)** in 2021, the robotics landscape in Malaysia was relatively quiet. To build a sustainable career, I pivoted to Software Engineering, focusing on building robust, scalable web applications. However, seeing the industry enter a new age with pioneers like Senserbot, I am thrilled by the possibility of 'coming back' to the field I originally fell in love with.",
       "I believe my unique blend of high-level software discipline and low-level engineering intuition makes me an ideal fit for building your GenAI-powered Concierge and Tour Guide robots:",
@@ -74,8 +78,9 @@
   },
   {
     "id": "cet-developer-natural-mechanic",
-    "name": "CET Developer (Natural Mechanic)",
-    "summary": "Tailored for Expogain. Combines the 'AI Architect' narrative with a personal anecdote about 'Engineering Mechanics' to prove innate aptitude for 3D logic.",
+    "company": "Expogain International Inc.",
+    "role": "CET Configura Software Developer",
+    "date": "2025-12-03",
     "content": [
       "Dear Hiring Manager at Expogain International Inc.,",
       "I am applying for the **CET Configura Software Developer** role specifically because your job description prioritizes candidates who **'augment their workflow with AI.'**",
@@ -94,5 +99,26 @@
       "I am looking for a team that values this meta-engineering approach. I am ready to translate my 'tool-builder' attitude into building robust CET extensions for your US clients."
     ],
     "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "ai-engineer-airasia",
+    "company": "AirAsia",
+    "role": "Artificial Intelligence Engineer",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at AirAsia,",
+      "I am writing to apply for the AI Engineer role at AirAsia. While I have 3 years of experience, I approach my work with the discipline and architectural stewardship expected of a senior engineer.",
+      "My edge is simple: I am an AI-native engineer.",
+      "I don't just use AI tools; I architect my entire workflow around them. At IMT Tech, I led a frontend architecture redesign specifically to build reusable abstractions that enabled efficient AI-assisted development. I write code designed to be easily understood by both humans and LLMs, creating a feedback loop where my tooling amplifies my output. This allows me to tackle complex \"0-1\" projects—like the Agent-to-Agent workflows you are building—with the speed of a startup founder and the rigor of an enterprise architect.",
+      "You are looking for a champion of engineering excellence. To me, that means stewardship. My career hasn't just been about following orders; it's been about raising standards. At 9LOOP, I learned that code must be treated with care; I took ownership of refactoring our critical legacy Telegram bot to TypeScript, reducing production bugs by 80%. Later, at IMT Tech, I didn't just patch features; I designed high-level abstractions that the entire team—and our AI tools—could rely on. I view seniority not as a title, but as a daily practice of ownership. I refused to accept a culture where developers offloaded testing to stakeholders, instead elevating the standard by guaranteeing my code was bug-free before it ever left my hands. Simply put, I possess the relentless drive to improve systems that defines the role.",
+      "I am eager to bring this \"AI-first\" mindset to AirAsia's BrandCo. I am confident that I can rapidly adapt to your specific GCP and Vertex AI stack, leveraging my ability to build whatever is needed to drive retrieval accuracy and system performance.",
+      "I am ready to prove that my approach to AI-augmented engineering can accelerate your team's roadmap."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      "syazsolo.netlify.app",
+      "019-209 9853"
+    ]
   }
 ]
