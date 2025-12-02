@@ -2,6 +2,7 @@
   {
     "id": "ml-engineer",
     "name": "Machine Learning Software Engineer",
+    "summary": "Emphasizes the pivot from Electronics/Robotics to ML, highlighting transferrable engineering skills and a rigorous learning mindset.",
     "content": [
       "Subject: Application for {{job role}} - Syazani Zulkhairi",
       "Dear {{dear who}} at {{dear at where}},",
@@ -21,6 +22,7 @@
   {
     "id": "software-engineer-efficiency",
     "name": "Software Engineer - Efficiency & Tools",
+    "summary": "Focuses on architectural excellence, automation, and efficiency. Showcases the cover letter generator itself as proof of work.",
     "content": [
       "Subject: Application for {{job role}} - Syazani Zulkhairi",
       "Dear {{dear who}} at {{dear at where}},",

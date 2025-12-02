@@ -10,18 +10,22 @@ import { useForm } from 'react-hook-form';
 
 interface CoverLetterFormProps {
   fields: string[];
+  initialValues?: Record<string, string>;
   onSubmit: (data: Record<string, string>) => void;
 }
 
 export default function CoverLetterForm({
   fields,
+  initialValues = {},
   onSubmit,
 }: CoverLetterFormProps) {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<Record<string, string>>();
+  } = useForm<Record<string, string>>({
+    defaultValues: initialValues,
+  });
 
   const onFormSubmit = (data: Record<string, string>) => {
     onSubmit(data);
