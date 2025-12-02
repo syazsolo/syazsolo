@@ -35,5 +35,64 @@
       "I am an engineer who excels at building robust, maintainable systems. I am excited by the opportunity to contribute my skills in systems optimization and code stewardship to your talented team."
     ],
     "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "ai-engineer-pivot",
+    "name": "AI Engineer (Pivot from Full-Stack)",
+    "summary": "Adapts the ML template to address V-Work's need for end-to-end solution building and enterprise integration. It counters the '1-year AI experience' requirement by highlighting transferrable expertise in complex system architecture, API integrations, and robotics logic.",
+    "content": [
+      "Dear {{dear who}} at {{dear at where}},",
+      "I am applying for the AI Engineer role because I see a clear intersection between your need for robust, end-to-end solution building and my engineering strengths. While I am pivoting into the professional AI domain, I am not starting from zero. My background is in **Electronics Engineering (Robotics & Automation)**, which gave me my foundational understanding of control systems and logic.",
+      "I approach my career with a philosophy of living passionately and following where my curiosity leads. I am deeply fascinated by the mechanics of learning and have realized that the rigorous, iterative mindset I apply to software architecture parallels the tuning of ML pipelines. I am eager to apply this inquisitive mindset to your LLM and RAG solutions.",
+      "Regarding the job requirements: the engineering fundamentals are already solved on my end.",
+      "Your description emphasizes 'integration with enterprise infrastructure' and 'clarifying business challenges.' My professional career at **IMT Tech** and **Webcada** involved exactly this—linking diverse systems and managing complex API integrations (Webhooks/WebSockets). At IMT Tech, I led architecture redesigns that reduced boilerplate by 70%, proving I can contribute to the 'shared components and templates' requirement immediately.",
+      "I am well-versed in the full stack (Laravel, Next.js, Cloud deployments), allowing me to deliver immediate value on the 'application' side of your AI solutions while I rapidly integrate with your specific LLM/agent workflows.",
+      "I am looking for a multidisciplinary team where I can contribute stable, high-quality engineering while exploring this field. I learn fast, build reliably, and am excited to see what we can build together."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "genai-robotics-homecoming",
+    "name": "GenAI Engineer (Robotics Homecoming)",
+    "summary": "Tailored for Senserbot. Explains the pivot away from robotics due to the past market landscape and frames the application as an exciting return to the user's academic roots.",
+    "content": [
+      "Dear {{dear who}} at {{dear at where}},",
+      "I am writing to apply for the **Generative AI Engineer** role. This application represents a significant personal milestone for me: a chance to combine my professional expertise in software engineering with my academic roots in robotics.",
+      "When I graduated with my degree in **Electronics Engineering (Robotics & Automation)** in 2021, the robotics landscape in Malaysia was relatively quiet. To build a sustainable career, I pivoted to Software Engineering, focusing on building robust, scalable web applications. However, seeing the industry enter a new age with pioneers like Senserbot, I am thrilled by the possibility of 'coming back' to the field I originally fell in love with.",
+      "I believe my unique blend of high-level software discipline and low-level engineering intuition makes me an ideal fit for building your GenAI-powered Concierge and Tour Guide robots:",
+      {
+        "type": "ul",
+        "items": [
+          "**Engineering Rigor & Deployment:** Unlike a pure researcher, I have 3+ years of experience in production software environments. I understand the full lifecycle of deployment (CI/CD, Docker) and maintaining health in complex codebases—skills I currently apply using **Laravel** and **Nuxt**.",
+          "**Conversational Logic:** I have practical experience engineering conversational flows. At 9LOOP, I refactored and maintained complex **Telegram bots**, migrating them to TypeScript and drastically reducing bugs. I understand that a robot's 'brain' is only as good as the logic structures that guide it.",
+          "**The Robotics Context:** Because of my background, I understand the constraints of physical hardware and real-time processing. I am comfortable bridging the gap between abstract LLM responses and the concrete actions a robot must perform."
+        ]
+      },
+      "I am eager to bring my 'software stewardship' mindset to your AI team, helping you build systems that are not just intelligent, but also maintainable and reliable."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "cet-developer-natural-mechanic",
+    "name": "CET Developer (Natural Mechanic)",
+    "summary": "Tailored for Expogain. Combines the 'AI Architect' narrative with a personal anecdote about 'Engineering Mechanics' to prove innate aptitude for 3D logic.",
+    "content": [
+      "Dear Hiring Manager at Expogain International Inc.,",
+      "I am applying for the **CET Configura Software Developer** role specifically because your job description prioritizes candidates who **'augment their workflow with AI.'**",
+      "I don't just use AI tools; I build the architecture that makes them useful. To demonstrate this, I want to disclose that this cover letter was not written manually—it was generated by a custom automation engine I architected to solve the 'job application' problem.",
+      "Instead of treating applications as static text, I treat them as a data engineering challenge. I built a system that decouples content from presentation, storing my professional history as modular JSON data. When I saw your requirement for AI augmentation, I updated my data payload to dynamically inject that context into this template.",
+      "I didn't build this to be flashy. I built it because I believe engineering time is valuable. This habit of creating reliable, reusable systems to solve foundational problems is central to how I work.",
+      "Regarding the technical fit for CET:",
+      {
+        "type": "ul",
+        "items": [
+          "**The Language Gap vs. Engineering Fundamentals:** While I am new to the Configura CM language, the underlying physics are second nature to me. During my degree in **Electronics Engineering (Robotics & Automation)**, 'Engineering Mechanics' was the subject where I instinctively outperformed the curve—surpassing the top students even when I wasn't trying—simply because the logic of 3D space is in my blood. I don't need to learn how geometry works; I only need to learn the syntax to describe it.",
+          "**Architecting for AI:** At IMT Tech, I led a frontend revamp with a specific goal: creating an architecture that AI could natively understand. I built composables and abstractions that were so elegant and consistent that they removed the ambiguity that usually trips up LLMs. My specialty is creating these 'AI-readable' environments—where the tools are so logical that AI agents can generate high-quality code without errors.",
+          "**Remote & Communication:** I have significant experience working remotely with distributed teams, handling complex API integrations, and delivering stable software without constant supervision."
+        ]
+      },
+      "I am looking for a team that values this meta-engineering approach. I am ready to translate my 'tool-builder' attitude into building robust CET extensions for your US clients."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
   }
 ]

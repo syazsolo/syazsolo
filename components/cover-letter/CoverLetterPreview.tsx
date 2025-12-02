@@ -227,17 +227,17 @@ export default function CoverLetterPreview({
       // Measure the unscaled content
       const contentHeight = contentRef.current.scrollHeight;
 
-      if (contentHeight > maxHeightPx) {
-        // Calculate ratio to fit
-        // Use a smaller safety factor to ensure content fits comfortably on a single page
-        const SAFETY_FACTOR = 0.9;
-        const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
-        // Don't scale up, only down. Allow a bit more shrink if needed.
-        const newScale = Math.max(0.4, Math.min(1, ratio));
-        setFontSizeScale(newScale);
-      } else {
-        setFontSizeScale(1);
-      }
+      // Calculate ratio to fit
+      // Use a larger safety factor to utilize more of the page height (0.95)
+      const SAFETY_FACTOR = 0.95;
+      const ratio = (maxHeightPx / contentHeight);
+      
+      // Allow scaling up to 1.15x if there's space, and shrink down to 0.35x if needed
+      const MAX_SCALE = 1.15;
+      const MIN_SCALE = 0.35;
+      
+      const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, ratio * SAFETY_FACTOR));
+      setFontSizeScale(newScale);
     };
 
     calculateScale();
