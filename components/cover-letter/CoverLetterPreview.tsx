@@ -11,21 +11,18 @@ interface CoverLetterPreviewProps {
   content: ContentItem[];
   regards?: ContentItem[];
   onEdit: () => void;
-  onSave: () => void;
 }
 
 export default function CoverLetterPreview({
   content,
   regards = [],
   onEdit,
-  onSave,
 }: CoverLetterPreviewProps) {
   const { profile } = resumeData;
   const [fontSizeScale, setFontSizeScale] = React.useState(1);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
-    onSave();
     window.print();
   };
 

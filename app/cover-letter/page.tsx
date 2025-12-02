@@ -11,10 +11,8 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import CoverLetterForm from '@/components/cover-letter/CoverLetterForm';
 import CoverLetterPreview from '@/components/cover-letter/CoverLetterPreview';
-import { saveCoverLetterHistory } from '@/app/actions/cover-letter';
 import templatesData from '@/data/cover-letter-templates.json';
 import { useCoverLetterState } from '@/hooks/useCoverLetterState';
-import { v4 as uuidv4 } from 'uuid';
 
 // Force cast the JSON data to the correct type since JSON imports are loosely typed or inferred as simple types
 const templates = templatesData as unknown as Template[];
@@ -93,16 +91,7 @@ export default function CoverLetterPage() {
     setStep('preview');
   };
 
-  const handleSaveHistory = async () => {
-    if (!selectedTemplate) return;
 
-    await saveCoverLetterHistory({
-      id: uuidv4(),
-      date: new Date().toISOString(),
-      templateId: selectedTemplate.id,
-      fields: formValues,
-    });
-  };
 
   const handleEdit = () => {
     if (fields.length > 0) {
@@ -183,7 +172,6 @@ export default function CoverLetterPage() {
         content={finalContent}
         regards={finalRegards}
         onEdit={handleEdit}
-        onSave={handleSaveHistory}
       />
     </div>
   );
