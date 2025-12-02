@@ -1,4 +1,3 @@
-import { Card } from '@/components/ui/card';
 import Header from '@/components/Header';
 import { ReactNode } from 'react';
 import ScrollActionBar from '@/components/ScrollActionBar';

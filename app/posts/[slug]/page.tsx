@@ -10,6 +10,7 @@ import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import Image from 'next/image';
 import { profileData } from '@/data/profile';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';
 import { Post } from '@/types';
@@ -122,11 +123,15 @@ export default async function PostPage({
 
           <article className="px-4 py-4">
             {postImageUrl && (
-              <img
-                src={postImageUrl}
-                alt={post.title}
-                className="mb-6 aspect-video w-full rounded-lg object-cover"
-              />
+              <div className="mb-6 aspect-video w-full relative">
+                <Image
+                  src={postImageUrl}
+                  alt={post.title}
+                  className="rounded-lg object-cover"
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
             )}
 
             <h1 className="text-foreground mb-6 text-3xl leading-tight font-bold">

@@ -47,7 +47,7 @@ export class VerticalCardStrategy implements CardRenderStrategy {
     return 'p-0 h-full flex flex-col pb-3';
   }
 
-  getPostContentWrapperClassName(hasImage: boolean): string {
+  getPostContentWrapperClassName(_hasImage: boolean): string {
     return 'px-3 mt-2 flex flex-col flex-1 min-h-0';
   }
 
@@ -55,7 +55,7 @@ export class VerticalCardStrategy implements CardRenderStrategy {
     return hasImage ? 'mb-2' : 'flex-1';
   }
 
-  getImageWrapperClassName(hasImage: boolean): string {
+  getImageWrapperClassName(_hasImage: boolean): string {
     return 'flex-1 overflow-hidden rounded-md relative min-h-0 border border-border/60 bg-muted/30 flex items-center justify-center';
   }
 
@@ -93,7 +93,7 @@ export class HorizontalCardStrategy implements CardRenderStrategy {
     return 'p-0';
   }
 
-  getPostContentWrapperClassName(hasImage: boolean): string {
+  getPostContentWrapperClassName(_hasImage: boolean): string {
     return 'block';
   }
 
@@ -102,7 +102,7 @@ export class HorizontalCardStrategy implements CardRenderStrategy {
     return padding;
   }
 
-  getImageWrapperClassName(hasImage: boolean): string {
+  getImageWrapperClassName(_hasImage: boolean): string {
     return 'overflow-hidden mt-2 mb-3 aspect-video border border-border/60 bg-muted/30 flex items-center justify-center';
   }
 }

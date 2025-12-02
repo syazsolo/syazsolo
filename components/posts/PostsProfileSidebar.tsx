@@ -3,15 +3,18 @@ import { Card, CardContent } from '@/components/ui/card';
 
 import Link from 'next/link';
 import { profileData } from '@/data/profile';
+import Image from 'next/image';
 
 const PostsProfileSidebar = () => {
   return (
     <Card className="bg-card border-border overflow-hidden transition-colors">
-      <div className="bg-secondary h-[54px]">
-        <img
+      <div className="bg-secondary h-[54px] relative">
+        <Image
           src={profileData.bannerUrl}
           alt="Banner"
-          className="h-full w-full object-cover"
+          className="object-cover"
+          fill
+          sizes="(max-width: 768px) 100vw, 300px"
         />
       </div>
 

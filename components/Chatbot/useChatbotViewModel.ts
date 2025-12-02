@@ -89,10 +89,6 @@ export const useChatbotViewModel = (conversationId: string = 'syazani') => {
     currentQuickRepliesCount: currentQuickReplies.length,
     isWaitingForResponse,
     isUserTyping,
-    lastMessageSender:
-      messages[messages.length - 1]?.type === 'message'
-        ? (messages[messages.length - 1] as any).sender
-        : undefined,
   });
   const effectiveEndOfConversation = isTerminal || endOfConversation;
 

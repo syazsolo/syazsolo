@@ -1,12 +1,11 @@
 import { dataset, projectId } from '@/lib/sanity';
 
-import { CreatePasswordImproved } from '@/components/posts/CreatePasswordImproved';
-import { CreatePasswordMock } from '@/components/posts/CreatePasswordMock';
 import type { PortableTextComponents } from 'next-sanity';
 import { QuoteBlock } from '@/components/posts/QuoteBlock';
 import type { ReactElement } from 'react';
 import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import imageUrlBuilder from '@sanity/image-url';
+import Image from 'next/image';
 
 const urlFor = (source: SanityImageSource) =>
   projectId && dataset
@@ -96,17 +95,21 @@ export const portableTextComponents: PortableTextComponents = {
             .url()
         : null;
 
-      if (!imageUrl) return null;
+      if (!imageUrl) {
+        return null;
+      }
 
       return (
-        <figure className="my-6">
-          <img
+        <figure className="my-6 relative w-full aspect-video">
+          <Image
             src={imageUrl}
             alt={value.alt || value.caption || ''}
-            className="w-full rounded-lg"
+            className="rounded-lg object-contain"
+            fill
+            sizes="(max-width: 768px) 100vw, 800px"
           />
           {value.caption && (
-            <figcaption className="text-muted-foreground mt-2 text-center text-sm italic">
+            <figcaption className="text-muted-foreground mt-2 text-center text-sm italic absolute -bottom-8 w-full">
               {value.caption}
             </figcaption>
           )}

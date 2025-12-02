@@ -22,7 +22,6 @@ export default function CoverLetterForm({
   const {
     register,
     handleSubmit,
-    formState: { errors },
   } = useForm<Record<string, string>>({
     defaultValues: initialValues,
   });

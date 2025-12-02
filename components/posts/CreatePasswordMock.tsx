@@ -10,10 +10,18 @@ export const CreatePasswordMock = () => {
   const [isConfirmFocused, setIsConfirmFocused] = useState(false);
 
   const validatePassword = (pwd: string) => {
-    if (pwd.length < 8) return false;
-    if (!/\d/.test(pwd)) return false;
-    if (!/[A-Z]/.test(pwd)) return false;
-    if (!/[a-z]/.test(pwd)) return false;
+    if (pwd.length < 8) {
+      return false;
+    }
+    if (!/\d/.test(pwd)) {
+      return false;
+    }
+    if (!/[A-Z]/.test(pwd)) {
+      return false;
+    }
+    if (!/[a-z]/.test(pwd)) {
+      return false;
+    }
     return true;
   };
 
@@ -53,7 +61,7 @@ export const CreatePasswordMock = () => {
               value={password}
               onChange={e => handlePasswordChange(e.target.value)}
               onFocus={() => setIsPasswordFocused(true)}
-              onBlur={e => {
+              onBlur={_e => {
                 setIsPasswordFocused(false);
                 handleBlur();
               }}
@@ -73,7 +81,7 @@ export const CreatePasswordMock = () => {
               value={confirmPassword}
               onChange={e => handleConfirmPasswordChange(e.target.value)}
               onFocus={() => setIsConfirmFocused(true)}
-              onBlur={e => {
+              onBlur={_e => {
                 setIsConfirmFocused(false);
                 handleBlur();
               }}

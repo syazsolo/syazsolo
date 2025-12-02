@@ -2,14 +2,12 @@ export interface EndConversationParams {
   currentQuickRepliesCount: number;
   isWaitingForResponse: boolean;
   isUserTyping: boolean;
-  lastMessageSender?: 'user' | 'bot';
 }
 
 export function isEndOfConversation({
   currentQuickRepliesCount,
   isWaitingForResponse,
   isUserTyping,
-  lastMessageSender,
 }: EndConversationParams): boolean {
   if (isWaitingForResponse || isUserTyping) {
     return false;

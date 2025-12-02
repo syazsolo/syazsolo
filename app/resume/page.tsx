@@ -9,11 +9,12 @@ import {
   Phone,
   Printer,
 } from 'lucide-react';
-import { differenceInMonths, format, parse } from 'date-fns';
+import { differenceInMonths, parse } from 'date-fns';
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import React from 'react';
 import { cn } from '@/utils';
 import { experiences } from '@/data/experiences';
@@ -292,10 +293,12 @@ export default function ResumePage() {
                     alt={`${exp.company} logo`}
                   />
                   <AvatarFallback>
-                    <img
+                    <Image
                       src="/fallback.jpg"
                       alt=""
                       className="h-full w-full object-cover"
+                      width={40}
+                      height={40}
                     />
                   </AvatarFallback>
                 </Avatar>

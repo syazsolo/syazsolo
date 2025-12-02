@@ -37,15 +37,16 @@ export const ChatbotWindow = ({
   });
 
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    setWindowWidth(window.innerWidth);
-
-    const handleResize = () => {
+    if (typeof window === 'undefined') {
+      return;
+    }
+    const updateWidth = () => {
       setWindowWidth(window.innerWidth);
     };
+    updateWidth();
 
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener('resize', updateWidth);
+    return () => window.removeEventListener('resize', updateWidth);
   }, []);
 
   // Ensure visibility is turned on when opening (for both mobile and desktop)
@@ -56,7 +57,9 @@ export const ChatbotWindow = ({
   }, [isOpen, setIsVisible]);
 
   useEffect(() => {
-    if (!isMobile) return;
+    if (!isMobile) {
+      return;
+    }
 
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -76,9 +79,12 @@ export const ChatbotWindow = ({
   }, [isOpen, isMobile]);
 
   const calculateRightOffset = () => {
-    if (isMobile || isMaximized) return undefined;
-    if (!windowWidth)
+    if (isMobile || isMaximized) {
+      return undefined;
+    }
+    if (!windowWidth) {
       return LAUNCHER_WIDTH + offsetIndex * (CHAT_WIDTH + CHAT_GAP);
+    }
 
     const availableWidth = windowWidth - LAUNCHER_WIDTH;
     const totalNeededWidth =

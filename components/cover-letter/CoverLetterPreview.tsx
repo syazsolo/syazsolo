@@ -13,21 +13,9 @@ interface CoverLetterPreviewProps {
   onEdit: () => void;
 }
 
-export default function CoverLetterPreview({
-  content,
-  regards = [],
-  onEdit,
-}: CoverLetterPreviewProps) {
-  const { profile } = resumeData;
-  const [fontSizeScale, setFontSizeScale] = React.useState(1);
-  const contentRef = React.useRef<HTMLDivElement>(null);
+const { profile } = resumeData;
 
-  const handlePrint = () => {
-    window.print();
-  };
-
-  // Sidebar Component (Zero height wrapper to not affect flow)
-  const Sidebar = () => (
+const Sidebar = () => (
     <div className="relative h-0 w-full">
       <div className="absolute top-0 left-0 w-[35%] pt-8">
         {/* Name & Title */}
@@ -86,8 +74,7 @@ export default function CoverLetterPreview({
     </div>
   );
 
-  // Content Row Component
-  const ContentRow = ({
+const ContentRow = ({
     children,
     className = '',
     scale = 1,
@@ -105,6 +92,18 @@ export default function CoverLetterPreview({
       </div>
     </div>
   );
+
+export default function CoverLetterPreview({
+  content,
+  regards = [],
+  onEdit,
+}: CoverLetterPreviewProps) {
+  const [fontSizeScale, setFontSizeScale] = React.useState(1);
+  const contentRef = React.useRef<HTMLDivElement>(null);
+
+  const handlePrint = () => {
+    window.print();
+  };
 
   const renderContentItem = (
     item: ContentItem,
@@ -176,7 +175,9 @@ export default function CoverLetterPreview({
 
   // Auto-fit logic
   React.useLayoutEffect(() => {
-    if (!contentRef.current) return;
+    if (!contentRef.current) {
+      return;
+    }
 
     const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
     const MM_TO_PX = 3.7795275591;

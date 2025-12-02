@@ -40,7 +40,9 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
   }, []);
 
   useEffect(() => {
-    if (!containerRef.current) return;
+    if (!containerRef.current) {
+      return;
+    }
 
     const contentNodes = Array.from(containerRef.current.children);
     const newPages: React.ReactNode[][] = [];
@@ -77,7 +79,10 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
       newPages.push(currentPage);
     }
 
-    setPages(newPages);
+    // Use startTransition to avoid synchronous setState in effect
+    React.startTransition(() => {
+      setPages(newPages);
+    });
   }, [childrenArray, paddingMM]);
 
   return (

@@ -4,9 +4,9 @@ export interface Post {
   slug: { current: string };
   publishedAt?: string;
   excerpt?: string;
-  image?: any;
+  image?: unknown;
   imageUrl?: string;
-  body?: any[];
+  body?: unknown[];
   tags?: string[];
   readingTimeMinutes: number;
 }

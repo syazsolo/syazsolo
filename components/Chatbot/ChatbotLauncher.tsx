@@ -6,6 +6,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import { ConversationList } from '@/components/Chatbot/ConversationList';
 import { getSharedAvatarUrl } from '@/utils/avatar';
 import { useState } from 'react';
+import Image from 'next/image';
 
 interface ChatbotLauncherProps {
   onSelectConversation: (conversationId: string) => void;
@@ -24,13 +25,15 @@ export const ChatbotLauncher = ({
         className="bg-card hover:bg-accent border-border text-foreground flex h-12 w-full cursor-pointer items-center rounded-t-lg border-t border-r border-l px-2 text-left shadow-lg transition-colors"
         aria-label={isOpen ? 'Close chatbot' : 'Open chatbot'}
       >
-        <div className="relative mr-2">
-          <img
+        <div className="relative mr-2 h-8 w-8">
+          <Image
             src={avatarSrc}
             alt="random user avatar"
-            className="bg-background h-8 w-8 rounded-full"
+            className="bg-background rounded-full object-cover"
+            fill
+            sizes="32px"
           />
-          <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500" />
+          <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500 z-10" />
         </div>
         <span className="mr-1 flex-1 text-sm font-semibold">Chatbot</span>
         <div className="flex items-center gap-1">

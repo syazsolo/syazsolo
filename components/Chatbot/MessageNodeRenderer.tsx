@@ -56,9 +56,16 @@ export const MessageNodeRenderer = ({ node }: RenderNodeProps) => {
   // Note: RandomNode should be resolved in the conversation flow hook before rendering.
   // This is a fallback, though it's better to avoid it in production.
   if (node.type === 'random') {
-    const choice = node.items[Math.floor(Math.random() * node.items.length)];
-    return <MessageNodeRenderer node={choice} />;
+    return <RandomMessageRenderer node={node} />;
   }
 
   return null;
+};
+
+const RandomMessageRenderer = ({ node }: { node: import('@/lib/chat/conversations').RandomNode }) => {
+  const [choice] = React.useState(() => {
+    return node.items[Math.floor(Math.random() * node.items.length)];
+  });
+
+  return <MessageNodeRenderer node={choice} />;
 };

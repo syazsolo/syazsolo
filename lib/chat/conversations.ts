@@ -57,11 +57,21 @@ export interface GraphConversationData {
   edges: GraphEdge[];
 }
 
-const isGraphConversation = (data: any): data is GraphConversationData =>
-  !!data && Array.isArray(data.nodes) && Array.isArray(data.edges);
+const isGraphConversation = (data: unknown): data is GraphConversationData => {
+  return (
+    !!data &&
+    typeof data === 'object' &&
+    'nodes' in data &&
+    'edges' in data &&
+    Array.isArray((data as { nodes?: unknown }).nodes) &&
+    Array.isArray((data as { edges?: unknown }).edges)
+  );
+};
 
-const normalizeConversation = (data: any): ConversationData => {
-  if (!isGraphConversation(data)) return data as ConversationData;
+const normalizeConversation = (data: unknown): ConversationData => {
+  if (!isGraphConversation(data)) {
+    return data as ConversationData;
+  }
 
   const states: Record<string, ConversationState> = {};
 
@@ -80,7 +90,9 @@ const normalizeConversation = (data: any): ConversationData => {
     };
     for (const fromNode of fromNodes) {
       const fromState = states[fromNode];
-      if (!fromState) continue;
+      if (!fromState) {
+        continue;
+      }
       fromState.quickReplies = [...(fromState.quickReplies ?? []), reply];
     }
   }
@@ -99,8 +111,12 @@ export const isEmbedNode = (n: unknown): n is EmbedNode => {
   const e = n as EmbedNode | null;
   return (
     !!e &&
-    (e as any).type === 'embed' &&
-    (e as any).provider === 'youtube' &&
+    typeof e === 'object' &&
+    'type' in e &&
+    e.type === 'embed' &&
+    'provider' in e &&
+    e.provider === 'youtube' &&
+    'url' in e &&
     typeof e.url === 'string' &&
     e.url.length > 0
   );
@@ -108,26 +124,42 @@ export const isEmbedNode = (n: unknown): n is EmbedNode => {
 
 export const toEmbedSrc = (node: EmbedNode): string => {
   const url = node.url.trim();
-  if (url.includes('embed')) return url;
+  if (url.includes('embed')) {
+    return url;
+  }
   const short = url.match(/https?:\/\/youtu\.be\/([\w-]{6,})/i);
-  if (short) return `https://www.youtube.com/embed/${short[1]}`;
+  if (short) {
+    return `https://www.youtube.com/embed/${short[1]}`;
+  }
   const id = url.match(/[?&]v=([\w-]{6,})/i);
-  if (id) return `https://www.youtube.com/embed/${id[1]}`;
+  if (id) {
+    return `https://www.youtube.com/embed/${id[1]}`;
+  }
   return url;
 };
 
 export const validateMessageNode = (node: unknown): node is MessageNode => {
-  const validate = (n: any): boolean => {
-    if (typeof n === 'string') return n.length > 0;
-    if (isEmbedNode(n)) return true;
+  const validate = (n: unknown): boolean => {
+    if (typeof n === 'string') {
+      return n.length > 0;
+    }
+    if (isEmbedNode(n)) {
+      return true;
+    }
     if (
       n &&
+      typeof n === 'object' &&
+      'type' in n &&
       n.type === 'random' &&
+      'items' in n &&
       Array.isArray(n.items) &&
       n.items.length > 0
-    )
+    ) {
       return n.items.every(validate);
-    if (Array.isArray(n)) return n.length > 0 && n.every(validate);
+    }
+    if (Array.isArray(n)) {
+      return n.length > 0 && n.every(validate);
+    }
     return false;
   };
   return validate(node);
@@ -135,11 +167,15 @@ export const validateMessageNode = (node: unknown): node is MessageNode => {
 
 export const getNodePreview = (node: MessageNode): string => {
   const previewOf = (n: MessageNode): string => {
-    if (typeof n === 'string') return n;
+    if (typeof n === 'string') {
+      return n;
+    }
     if (Array.isArray(n)) {
       for (const child of n) {
         const p = previewOf(child);
-        if (p) return p;
+        if (p) {
+          return p;
+        }
       }
       return '';
     }
@@ -149,7 +185,9 @@ export const getNodePreview = (node: MessageNode): string => {
     if ('type' in n && n.type === 'random') {
       for (const child of n.items) {
         const p = previewOf(child);
-        if (p) return p;
+        if (p) {
+          return p;
+        }
       }
       return '';
     }
