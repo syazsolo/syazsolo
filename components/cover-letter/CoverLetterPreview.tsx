@@ -15,6 +15,40 @@ interface CoverLetterPreviewProps {
 
 const { profile } = resumeData;
 
+function renderBoldText(text: string): React.ReactNode {
+  const segments: React.ReactNode[] = [];
+  const regex = /\*\*(.+?)\*\*/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [fullMatch, boldText] = match;
+    const startIndex = match.index;
+
+    if (startIndex > lastIndex) {
+      segments.push(text.slice(lastIndex, startIndex));
+    }
+
+    segments.push(
+      <span key={segments.length} className="font-bold">
+        {boldText}
+      </span>
+    );
+
+    lastIndex = startIndex + fullMatch.length;
+  }
+
+  if (lastIndex < text.length) {
+    segments.push(text.slice(lastIndex));
+  }
+
+  if (segments.length === 0) {
+    return text;
+  }
+
+  return <>{segments}</>;
+}
+
 const Sidebar = () => (
     <div className="relative h-0 w-full">
       <div className="absolute top-0 left-0 w-[35%] pt-8">
@@ -113,7 +147,7 @@ export default function CoverLetterPreview({
     if (typeof item === 'string') {
       return (
         <ContentRow key={key} scale={scale} className="pb-6">
-          {item}
+          {renderBoldText(item)}
         </ContentRow>
       );
     }
@@ -127,7 +161,7 @@ export default function CoverLetterPreview({
           {item.items.map((subItem, index) => (
             <li key={index} className="pl-1">
               {typeof subItem === 'string' ? (
-                subItem
+                renderBoldText(subItem)
               ) : (
                 // Recursive rendering for nested lists if needed, though simple string items are expected for now
                 <div className="mt-2">
@@ -149,7 +183,7 @@ export default function CoverLetterPreview({
       if (isFirst && typeof item === 'string') {
         return (
           <ContentRow key={`content-${index}`} scale={scale} className="pt-8 pb-6">
-            {item}
+            {renderBoldText(item)}
           </ContentRow>
         );
       }
@@ -163,9 +197,11 @@ export default function CoverLetterPreview({
         <ContentRow 
           key={`regards-${index}`} 
           scale={scale} 
-          className={isFirst ? "mt-12" : ""}
+          className={isFirst ? "mt-8" : ""}
         >
-          {typeof item === 'string' ? item : renderContentItem(item, scale, `regards-${index}`)}
+          {typeof item === 'string'
+            ? renderBoldText(item)
+            : renderContentItem(item, scale, `regards-${index}`)}
         </ContentRow>
       );
     });
