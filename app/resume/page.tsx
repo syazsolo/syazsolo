@@ -360,7 +360,10 @@ export default function ResumePage() {
               </div>
               <div className="flex flex-col items-end gap-1 sm:flex-row sm:items-baseline sm:gap-2">
                 {'status' in project && (
-                  <span className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600 capitalize">
+                  <span
+                    suppressHydrationWarning
+                    className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600 capitalize"
+                  >
                     {project.status as string}
                   </span>
                 )}

@@ -4,27 +4,20 @@
     "name": "Machine Learning Software Engineer",
     "summary": "Emphasizes the pivot from Electronics/Robotics to ML, highlighting transferrable engineering skills and a rigorous learning mindset.",
     "content": [
-      "Subject: Application for {{job role}} - Syazani Zulkhairi",
       "Dear {{dear who}} at {{dear at where}},",
-      "I am applying for this role because I see a clear intersection between your needs and my engineering strengths. While I am currently pivoting into the AI domain, I am not starting from zero. My background is in Electronics Engineering (Robotics & Automation), where I first studied AI concepts and control systems.",
-      "I am deeply fascinated by the mechanics of learning. I recently realized that the way I train for football—making random movements, observing the impact, and iterating to replicate positive outcomes—is essentially Reinforcement Learning in practice. This connection between human intuition, my robotics background, and machine logic is what draws me to this field. I am eager to apply this rigorous mindset to building and scaling your ML pipelines.",
+      "I am applying for this role because I see a clear intersection between your engineering needs and my strengths. While I am new to the professional AI domain, I am not starting from zero. My background is in Electronics Engineering (Robotics & Automation), which gave me my foundational understanding of control systems and logic.",
+      "I approach my career with a philosophy of living passionately and following where my curiosity leads. Right now, I am deeply fascinated by the mechanics of learning. I recently realized that the way I train for football—making random movements, observing the impact, and iterating to replicate positive outcomes—is essentially Reinforcement Learning in practice. I am excited about the future and eager to see where applying this rigorous, inquisitive mindset to your ML pipelines will take me.",
       "Regarding the job description: the engineering fundamentals are already solved on my end.",
-      "My professional career at IMT Tech and Webcada involved linking diverse systems, managing complex API integrations (Webhooks/WebSockets), and architecting maintainable codebases. I can immediately handle the \"backend infrastructure,\" \"service integration,\" and \"frontend systems\" mentioned in your requirements. This allows me to deliver immediate value while I refresh my academic knowledge on specific ML model implementations.",
-      "I am looking for a team where I can contribute stable, high-quality engineering while immersing myself in the AI field. I learn fast, build reliably, and am ready to work."
+      "My professional career at IMT Tech and Webcada involved linking diverse systems, managing complex API integrations (Webhooks/WebSockets), and architecting maintainable codebases. I can immediately handle the \"backend infrastructure\" and \"service integration\" required. Additionally, I am well-versed in the frontend technologies you listed (React, Next.js), allowing me to deliver immediate value across the stack while I get up to speed on your specific ML model implementations.",
+      "I am looking for a team where I can contribute stable, high-quality engineering while exploring this new field. I learn fast, build reliably, and am excited to see what we can build together."
     ],
-    "regards": [
-      "Best regards,",
-      "Syazani Zulkhairi",
-      "syazsolo.netlify.app",
-      "019-209 9853"
-    ]
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
   },
   {
     "id": "software-engineer-efficiency",
     "name": "Software Engineer - Efficiency & Tools",
     "summary": "Focuses on architectural excellence, automation, and efficiency. Showcases the cover letter generator itself as proof of work.",
     "content": [
-      "Subject: Application for {{job role}} - Syazani Zulkhairi",
       "Dear {{dear who}} at {{dear at where}},",
       "I am writing this cover letter to apply for the {{job role}} position. {{dear at where}}'s reputation for high-caliber engineering and code quality is highly appealing; I seek an environment where I can focus on architectural excellence, building, and learning, rather than fixing foundational instability.",
       "My approach to software engineering is defined by efficiency and tool utilization. I view complexity as a problem to solve through automation, not manual effort. To illustrate this commitment, I want to share the personal, automated generation workflow that produced this document:",
@@ -41,10 +34,6 @@
       "Architectural Efficiency: In a previous role, I led a frontend architecture redesign using Nuxt.js, where implementing reusable abstractions enabled efficient development and reduced boilerplate code by 70%.",
       "I am an engineer who excels at building robust, maintainable systems. I am excited by the opportunity to contribute my skills in systems optimization and code stewardship to your talented team."
     ],
-    "regards": [
-      "Best regards,",
-      "Syazani Zulkhairi",
-      "019-209 9853"
-    ]
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
   }
 ]
