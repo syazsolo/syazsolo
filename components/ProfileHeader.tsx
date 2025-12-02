@@ -14,7 +14,7 @@ const ProfileHeader = () => {
   return (
     <>
       <Card className="bg-card border-border overflow-hidden transition-colors">
-        <div className="bg-secondary h-[110px] md:h-[196px] relative">
+        <div className="bg-secondary relative h-[110px] md:h-[196px]">
           <Image
             src={profileData.bannerUrl}
             alt="Banner"

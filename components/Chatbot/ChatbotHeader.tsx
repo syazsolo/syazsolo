@@ -57,7 +57,7 @@ export const ChatbotHeader = ({
             sizes="24px"
           />
           {isOnline && (
-            <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500 z-10" />
+            <span className="border-background absolute -right-0.5 -bottom-0.5 z-10 block h-3 w-3 rounded-full border-2 bg-green-500" />
           )}
         </div>
         <span className="text-sm font-semibold">{conversation.name}</span>

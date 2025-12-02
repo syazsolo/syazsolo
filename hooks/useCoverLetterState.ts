@@ -9,8 +9,8 @@ export interface CoverLetterState {
   formValues: Record<string, string>;
   // We don't persist finalContent/regards as they can be re-derived from template + formValues
   // But for "improving the preview (the code)" mentioned by user, maybe they edit the text directly?
-  // The current implementation doesn't seem to support direct text editing in preview, 
-  // but the user said "I improve the preview (the code)". 
+  // The current implementation doesn't seem to support direct text editing in preview,
+  // but the user said "I improve the preview (the code)".
   // If they mean they edit the code *of the app*, then state loss is expected on HMR.
   // If they mean they edit the text in the preview (if that feature existed), we'd need to save it.
   // Looking at the code, `CoverLetterPreview` has `onEdit` which goes back to form.
@@ -24,7 +24,9 @@ const STORAGE_KEY = 'cover-letter-state';
 export function useCoverLetterState() {
   const [isInitialized, setIsInitialized] = useState(false);
   const [step, setStep] = useState<Step>('select');
-  const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(null);
+  const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(
+    null
+  );
   const [formValues, setFormValues] = useState<Record<string, string>>({});
 
   // Load from storage on mount

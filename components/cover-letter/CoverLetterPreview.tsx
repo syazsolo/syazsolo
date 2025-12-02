@@ -50,82 +50,82 @@ function renderBoldText(text: string): React.ReactNode {
 }
 
 const Sidebar = () => (
-    <div className="relative h-0 w-full">
-      <div className="absolute top-0 left-0 w-[35%] pt-8">
-        {/* Name & Title */}
-        <div className="mb-8">
-          <h1 className="text-5xl leading-none font-bold tracking-tight text-slate-900">
-            {profile.name.split(' ').map((namePart, i) => (
-              <span key={i} className="block">
-                {namePart}
-              </span>
-            ))}
-          </h1>
-          <p className="mt-4 text-xl font-light text-slate-600">
-            {profile.headline}
-          </p>
-        </div>
-
-        {/* Divider */}
-        <hr className="mb-8 border-t-2 border-slate-900" />
-
-        {/* Contact Details */}
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-slate-900">
-            Contact Details
-          </h3>
-          <div className="flex flex-col gap-4 text-sm text-slate-700">
-            {profile.location && (
-              <div>
-                <p className="leading-relaxed whitespace-pre-line">
-                  {profile.location}
-                </p>
-              </div>
-            )}
-
-            {profile.contact.phone && (
-              <div>
-                <p>{profile.contact.phone}</p>
-              </div>
-            )}
-
-            {profile.contact.email && (
-              <div>
-                <a
-                  href={`mailto:${profile.contact.email}`}
-                  className="underline decoration-slate-400 underline-offset-4"
-                >
-                  {profile.contact.email}
-                </a>
-              </div>
-            )}
-          </div>
-        </div>
+  <div className="relative h-0 w-full">
+    <div className="absolute top-0 left-0 w-[35%] pt-8">
+      {/* Name & Title */}
+      <div className="mb-8">
+        <h1 className="text-5xl leading-none font-bold tracking-tight text-slate-900">
+          {profile.name.split(' ').map((namePart, i) => (
+            <span key={i} className="block">
+              {namePart}
+            </span>
+          ))}
+        </h1>
+        <p className="mt-4 text-xl font-light text-slate-600">
+          {profile.headline}
+        </p>
       </div>
 
-      {/* Vertical Line */}
-      <div className="absolute top-8 bottom-0 left-[35%] h-[250mm] w-px bg-slate-900" />
+      {/* Divider */}
+      <hr className="mb-8 border-t-2 border-slate-900" />
+
+      {/* Contact Details */}
+      <div>
+        <h3 className="mb-4 text-lg font-bold text-slate-900">
+          Contact Details
+        </h3>
+        <div className="flex flex-col gap-4 text-sm text-slate-700">
+          {profile.location && (
+            <div>
+              <p className="leading-relaxed whitespace-pre-line">
+                {profile.location}
+              </p>
+            </div>
+          )}
+
+          {profile.contact.phone && (
+            <div>
+              <p>{profile.contact.phone}</p>
+            </div>
+          )}
+
+          {profile.contact.email && (
+            <div>
+              <a
+                href={`mailto:${profile.contact.email}`}
+                className="underline decoration-slate-400 underline-offset-4"
+              >
+                {profile.contact.email}
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
     </div>
-  );
+
+    {/* Vertical Line */}
+    <div className="absolute top-8 bottom-0 left-[35%] h-[250mm] w-px bg-slate-900" />
+  </div>
+);
 
 const ContentRow = ({
-    children,
-    className = '',
-    scale = 1,
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    scale?: number;
-  }) => (
-    <div
-      className={`ml-[35%] pl-8 ${className}`}
-      style={{ fontSize: `${scale}rem` }}
-    >
-      <div className="leading-relaxed whitespace-pre-wrap text-slate-800">
-        {children}
-      </div>
+  children,
+  className = '',
+  scale = 1,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  scale?: number;
+}) => (
+  <div
+    className={`ml-[35%] pl-8 ${className}`}
+    style={{ fontSize: `${scale}rem` }}
+  >
+    <div className="leading-relaxed whitespace-pre-wrap text-slate-800">
+      {children}
     </div>
-  );
+  </div>
+);
 
 export default function CoverLetterPreview({
   content,
@@ -182,7 +182,11 @@ export default function CoverLetterPreview({
       // Apply specific spacing for salutation
       if (isFirst && typeof item === 'string') {
         return (
-          <ContentRow key={`content-${index}`} scale={scale} className="pt-8 pb-6">
+          <ContentRow
+            key={`content-${index}`}
+            scale={scale}
+            className="pt-8 pb-6"
+          >
             {renderBoldText(item)}
           </ContentRow>
         );
@@ -194,10 +198,10 @@ export default function CoverLetterPreview({
     const renderedRegards = regards.map((item, index) => {
       const isFirst = index === 0;
       return (
-        <ContentRow 
-          key={`regards-${index}`} 
-          scale={scale} 
-          className={isFirst ? "mt-8" : ""}
+        <ContentRow
+          key={`regards-${index}`}
+          scale={scale}
+          className={isFirst ? 'mt-8' : ''}
         >
           {typeof item === 'string'
             ? renderBoldText(item)
@@ -215,14 +219,14 @@ export default function CoverLetterPreview({
       if (!contentRef.current) {
         return;
       }
-  
+
       const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
       const MM_TO_PX = 3.7795275591;
       const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
-  
+
       // Measure the unscaled content
       const contentHeight = contentRef.current.scrollHeight;
-  
+
       if (contentHeight > maxHeightPx) {
         // Calculate ratio to fit
         // Use a smaller safety factor to ensure content fits comfortably on a single page
@@ -248,13 +252,13 @@ export default function CoverLetterPreview({
         <Button
           onClick={onEdit}
           variant="outline"
-          className="shadow-lg bg-white text-slate-900 border border-slate-300 hover:bg-slate-100 dark:bg-white dark:text-slate-900 dark:border-slate-300 dark:hover:bg-slate-100"
+          className="border border-slate-300 bg-white text-slate-900 shadow-lg hover:bg-slate-100 dark:border-slate-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
         >
           Edit Details
         </Button>
         <Button
           onClick={handlePrint}
-          className="gap-2 shadow-lg bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+          className="gap-2 bg-slate-900 text-white shadow-lg hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
         >
           <Printer className="h-4 w-4" />
           Print / Save PDF

@@ -37,48 +37,54 @@ export const useChatbotConversationFlow = (
     return clearTimeouts;
   }, []);
 
-  const processNode = useCallback((node: MessageNode) => {
-    setIsWaitingForResponse(true);
+  const processNode = useCallback(
+    (node: MessageNode) => {
+      setIsWaitingForResponse(true);
 
-    const schedule = (n: MessageNode, baseDelay: number): number => {
-      if (typeof n === 'string' || (n as { type?: string }).type === 'embed') {
-        const text = typeof n === 'string' ? n : ''; // No typing delay for embeds
-        const delay = calculateTypingDelay(text);
-        const totalDelay = baseDelay + delay;
-        const id = window.setTimeout(() => {
-          addMessage({ type: 'message', sender: 'bot', content: n });
-        }, totalDelay);
-        timeoutsRef.current.push(id);
-        return delay;
-      }
-
-      if (Array.isArray(n)) {
-        let accumulatedSequenceDelay = 0;
-        for (const subNode of n) {
-          accumulatedSequenceDelay += schedule(
-            subNode,
-            baseDelay + accumulatedSequenceDelay
-          );
+      const schedule = (n: MessageNode, baseDelay: number): number => {
+        if (
+          typeof n === 'string' ||
+          (n as { type?: string }).type === 'embed'
+        ) {
+          const text = typeof n === 'string' ? n : ''; // No typing delay for embeds
+          const delay = calculateTypingDelay(text);
+          const totalDelay = baseDelay + delay;
+          const id = window.setTimeout(() => {
+            addMessage({ type: 'message', sender: 'bot', content: n });
+          }, totalDelay);
+          timeoutsRef.current.push(id);
+          return delay;
         }
-        return accumulatedSequenceDelay;
-      }
 
-      if ((n as { type?: string }).type === 'random') {
-        const choice = (n as RandomNode).items[
-          Math.floor(Math.random() * (n as RandomNode).items.length)
-        ];
-        return schedule(choice, baseDelay);
-      }
-      return 0;
-    };
+        if (Array.isArray(n)) {
+          let accumulatedSequenceDelay = 0;
+          for (const subNode of n) {
+            accumulatedSequenceDelay += schedule(
+              subNode,
+              baseDelay + accumulatedSequenceDelay
+            );
+          }
+          return accumulatedSequenceDelay;
+        }
 
-    const totalDuration = schedule(node, 0);
+        if ((n as { type?: string }).type === 'random') {
+          const choice = (n as RandomNode).items[
+            Math.floor(Math.random() * (n as RandomNode).items.length)
+          ];
+          return schedule(choice, baseDelay);
+        }
+        return 0;
+      };
 
-    const finalTimeoutId = window.setTimeout(() => {
-      setIsWaitingForResponse(false);
-    }, totalDuration);
-    timeoutsRef.current.push(finalTimeoutId);
-  }, [addMessage, setIsWaitingForResponse]);
+      const totalDuration = schedule(node, 0);
+
+      const finalTimeoutId = window.setTimeout(() => {
+        setIsWaitingForResponse(false);
+      }, totalDuration);
+      timeoutsRef.current.push(finalTimeoutId);
+    },
+    [addMessage, setIsWaitingForResponse]
+  );
 
   useEffect(() => {
     reset();
@@ -89,7 +95,15 @@ export const useChatbotConversationFlow = (
       setCurrentState(initialState);
       processNode(state.message);
     }
-  }, [conversation.id, conversation.initialState, conversation.states, reset, setCurrentState, setIsTerminal, processNode]);
+  }, [
+    conversation.id,
+    conversation.initialState,
+    conversation.states,
+    reset,
+    setCurrentState,
+    setIsTerminal,
+    processNode,
+  ]);
 
   const handleQuickReply = (
     replyText: string,

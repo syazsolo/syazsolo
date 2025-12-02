@@ -443,7 +443,7 @@ function PrintButton() {
     <div className="fixed right-8 bottom-8 z-50 print:hidden">
       <Button
         onClick={() => window.print()}
-        className="gap-2 shadow-xl bg-slate-900 text-white hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+        className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
         size="lg"
       >
         <Printer className="h-4 w-4" />

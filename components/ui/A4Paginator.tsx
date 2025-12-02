@@ -35,7 +35,7 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
       } else {
         setScale(1);
       }
-      
+
       // Trigger recalculation
       setResizeTrigger(prev => prev + 1);
     };
@@ -54,7 +54,7 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
     const newPages: React.ReactNode[][] = [];
     let currentPage: React.ReactNode[] = [];
     let currentHeight = 0;
-    
+
     // Calculate content height based on dynamic padding
     const verticalPaddingMM = paddingMM * 2;
     const contentHeightMM = A4_HEIGHT_MM - verticalPaddingMM;
@@ -96,7 +96,7 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
       {/* Measurement Container (Hidden) */}
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 -z-50 w-[210mm] opacity-0 pointer-events-none"
+        className="pointer-events-none fixed top-0 left-0 -z-50 w-[210mm] opacity-0"
         style={{ padding: `${paddingMM}mm` }}
         aria-hidden="true"
       >
@@ -121,9 +121,9 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
                   transformOrigin: 'top left',
                   padding: `${paddingMM}mm`,
                 }}
-                className={`resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white text-slate-900 shadow-xl print:static print:min-h-[297mm] print:w-full print:shadow-none print:!scale-100 print:!m-0 ${
-                pageIndex < pages.length - 1 ? 'print:break-after-page' : ''
-              }`}
+                className={`resume-page-content absolute top-0 left-0 min-h-[297mm] w-[210mm] bg-white text-slate-900 shadow-xl print:static print:!m-0 print:min-h-[297mm] print:w-full print:!scale-100 print:shadow-none ${
+                  pageIndex < pages.length - 1 ? 'print:break-after-page' : ''
+                }`}
               >
                 {pageContent}
               </div>
@@ -147,7 +147,8 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
             size: A4;
             margin: 0 !important;
           }
-          html, body {
+          html,
+          body {
             width: 210mm;
             height: auto !important;
             min-height: 100%;

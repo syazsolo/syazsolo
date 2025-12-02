@@ -138,7 +138,9 @@ export default function BasePostCard({
             <p className="text-muted-foreground mt-1.5 text-xs">... see more</p>
           </div>
           {hasImage && imageUrl && (
-            <div className={`relative ${strategy.getImageWrapperClassName(hasImage)}`}>
+            <div
+              className={`relative ${strategy.getImageWrapperClassName(hasImage)}`}
+            >
               <Image
                 src={imageUrl}
                 alt={post.title}

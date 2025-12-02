@@ -62,7 +62,11 @@ export const MessageNodeRenderer = ({ node }: RenderNodeProps) => {
   return null;
 };
 
-const RandomMessageRenderer = ({ node }: { node: import('@/lib/chat/conversations').RandomNode }) => {
+const RandomMessageRenderer = ({
+  node,
+}: {
+  node: import('@/lib/chat/conversations').RandomNode;
+}) => {
   const [choice] = React.useState(() => {
     return node.items[Math.floor(Math.random() * node.items.length)];
   });

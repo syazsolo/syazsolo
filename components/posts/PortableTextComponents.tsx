@@ -100,7 +100,7 @@ export const portableTextComponents: PortableTextComponents = {
       }
 
       return (
-        <figure className="my-6 relative w-full aspect-video">
+        <figure className="relative my-6 aspect-video w-full">
           <Image
             src={imageUrl}
             alt={value.alt || value.caption || ''}
@@ -109,7 +109,7 @@ export const portableTextComponents: PortableTextComponents = {
             sizes="(max-width: 768px) 100vw, 800px"
           />
           {value.caption && (
-            <figcaption className="text-muted-foreground mt-2 text-center text-sm italic absolute -bottom-8 w-full">
+            <figcaption className="text-muted-foreground absolute -bottom-8 mt-2 w-full text-center text-sm italic">
               {value.caption}
             </figcaption>
           )}

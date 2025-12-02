@@ -42,9 +42,7 @@ export default function CoverLetterPage() {
 
   // Derive fields from selected template
   const fields = React.useMemo(() => {
-    return selectedTemplate
-      ? extractFields(selectedTemplate.content)
-      : [];
+    return selectedTemplate ? extractFields(selectedTemplate.content) : [];
   }, [selectedTemplate]);
 
   // Derive final content when in preview mode
@@ -83,8 +81,6 @@ export default function CoverLetterPage() {
     setFormValues(data);
     setStep('preview');
   };
-
-
 
   const handleEdit = () => {
     if (fields.length > 0) {

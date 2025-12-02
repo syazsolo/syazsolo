@@ -8,7 +8,7 @@ import Image from 'next/image';
 const PostsProfileSidebar = () => {
   return (
     <Card className="bg-card border-border overflow-hidden transition-colors">
-      <div className="bg-secondary h-[54px] relative">
+      <div className="bg-secondary relative h-[54px]">
         <Image
           src={profileData.bannerUrl}
           alt="Banner"

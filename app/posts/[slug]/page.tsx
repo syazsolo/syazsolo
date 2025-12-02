@@ -123,7 +123,7 @@ export default async function PostPage({
 
           <article className="px-4 py-4">
             {postImageUrl && (
-              <div className="mb-6 aspect-video w-full relative">
+              <div className="relative mb-6 aspect-video w-full">
                 <Image
                   src={postImageUrl}
                   alt={post.title}

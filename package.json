@@ -14,7 +14,8 @@
     "fix": "npm run lint:fix && npm run format",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:coverage": "jest --coverage"
+    "test:coverage": "jest --coverage",
+    "premerge": "npm run check && npm test && npx playwright test"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.2.2",
