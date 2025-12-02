@@ -57,7 +57,9 @@ export const ConversationTranscript = ({
 
   useEffect(() => {
     const el = containerRef.current;
-    if (!el) return;
+    if (!el) {
+      return;
+    }
     const onScroll = () => {
       const distanceFromBottom =
         el.scrollHeight - el.scrollTop - el.clientHeight;
@@ -75,11 +77,21 @@ export const ConversationTranscript = ({
   }, [messages, isWaitingForResponse, messagesEndRef]);
 
   useEffect(() => {
-    setShowBackToTop(false);
     if (isEndOfConversation && !isWaitingForResponse && !isUserTyping) {
-      const id = window.setTimeout(() => setShowBackToTop(true), 1000);
-      return () => clearTimeout(id);
+      const id = window.setTimeout(() => {
+        setShowBackToTop(true);
+      }, 1000);
+      return () => {
+        clearTimeout(id);
+        setShowBackToTop(false);
+      };
     }
+    // Use startTransition to avoid synchronous setState warning
+    // when transitioning from end state to active state
+    const id = setTimeout(() => {
+      setShowBackToTop(false);
+    }, 0);
+    return () => clearTimeout(id);
   }, [
     messages.length,
     isEndOfConversation,

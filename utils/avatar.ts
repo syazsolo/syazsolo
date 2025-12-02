@@ -45,7 +45,9 @@ export const generateRandomAvatar = (
 let cachedSharedAvatarUrl: string | null = null;
 
 export const getSharedAvatarUrl = (): string => {
-  if (cachedSharedAvatarUrl !== null) return cachedSharedAvatarUrl;
+  if (cachedSharedAvatarUrl !== null) {
+    return cachedSharedAvatarUrl;
+  }
 
   cachedSharedAvatarUrl = generateRandomAvatar();
   return cachedSharedAvatarUrl;

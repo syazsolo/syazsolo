@@ -6,7 +6,7 @@ import {
   RandomNode,
   getConversationQuickReplies,
 } from '@/lib/chat/conversations';
-import { useEffect, useRef } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 import { calculateTypingDelay } from '@/utils/typing';
 import { useChatActions } from '@/lib/chat/state';
@@ -37,48 +37,54 @@ export const useChatbotConversationFlow = (
     return clearTimeouts;
   }, []);
 
-  const processNode = (node: MessageNode) => {
-    setIsWaitingForResponse(true);
+  const processNode = useCallback(
+    (node: MessageNode) => {
+      setIsWaitingForResponse(true);
 
-    const schedule = (n: MessageNode, baseDelay: number): number => {
-      if (typeof n === 'string' || (n as any).type === 'embed') {
-        const text = typeof n === 'string' ? n : ''; // No typing delay for embeds
-        const delay = calculateTypingDelay(text);
-        const totalDelay = baseDelay + delay;
-        const id = window.setTimeout(() => {
-          addMessage({ type: 'message', sender: 'bot', content: n });
-        }, totalDelay);
-        timeoutsRef.current.push(id);
-        return delay;
-      }
-
-      if (Array.isArray(n)) {
-        let accumulatedSequenceDelay = 0;
-        for (const subNode of n) {
-          accumulatedSequenceDelay += schedule(
-            subNode,
-            baseDelay + accumulatedSequenceDelay
-          );
+      const schedule = (n: MessageNode, baseDelay: number): number => {
+        if (
+          typeof n === 'string' ||
+          (n as { type?: string }).type === 'embed'
+        ) {
+          const text = typeof n === 'string' ? n : ''; // No typing delay for embeds
+          const delay = calculateTypingDelay(text);
+          const totalDelay = baseDelay + delay;
+          const id = window.setTimeout(() => {
+            addMessage({ type: 'message', sender: 'bot', content: n });
+          }, totalDelay);
+          timeoutsRef.current.push(id);
+          return delay;
         }
-        return accumulatedSequenceDelay;
-      }
 
-      if ((n as any).type === 'random') {
-        const choice = (n as RandomNode).items[
-          Math.floor(Math.random() * (n as RandomNode).items.length)
-        ];
-        return schedule(choice, baseDelay);
-      }
-      return 0;
-    };
+        if (Array.isArray(n)) {
+          let accumulatedSequenceDelay = 0;
+          for (const subNode of n) {
+            accumulatedSequenceDelay += schedule(
+              subNode,
+              baseDelay + accumulatedSequenceDelay
+            );
+          }
+          return accumulatedSequenceDelay;
+        }
 
-    const totalDuration = schedule(node, 0);
+        if ((n as { type?: string }).type === 'random') {
+          const choice = (n as RandomNode).items[
+            Math.floor(Math.random() * (n as RandomNode).items.length)
+          ];
+          return schedule(choice, baseDelay);
+        }
+        return 0;
+      };
 
-    const finalTimeoutId = window.setTimeout(() => {
-      setIsWaitingForResponse(false);
-    }, totalDuration);
-    timeoutsRef.current.push(finalTimeoutId);
-  };
+      const totalDuration = schedule(node, 0);
+
+      const finalTimeoutId = window.setTimeout(() => {
+        setIsWaitingForResponse(false);
+      }, totalDuration);
+      timeoutsRef.current.push(finalTimeoutId);
+    },
+    [addMessage, setIsWaitingForResponse]
+  );
 
   useEffect(() => {
     reset();
@@ -89,14 +95,24 @@ export const useChatbotConversationFlow = (
       setCurrentState(initialState);
       processNode(state.message);
     }
-  }, [conversation.id, reset, setCurrentState, setIsTerminal]);
+  }, [
+    conversation.id,
+    conversation.initialState,
+    conversation.states,
+    reset,
+    setCurrentState,
+    setIsTerminal,
+    processNode,
+  ]);
 
   const handleQuickReply = (
     replyText: string,
     nextState: string | undefined,
     message?: string | string[] | MessageNode
   ) => {
-    if (isProcessingRef.current) return;
+    if (isProcessingRef.current) {
+      return;
+    }
     isProcessingRef.current = true;
 
     setAreQuickRepliesVisible(false);
@@ -148,8 +164,10 @@ export const useChatbotConversationFlow = (
 
   const restartConversation = () => {
     const initialState = conversation.initialState;
-    const state = (conversation as any).states?.[initialState];
-    if (!state?.message) return;
+    const state = conversation.states?.[initialState];
+    if (!state?.message) {
+      return;
+    }
 
     addMessage({ type: 'divider' });
     setCurrentState(initialState);

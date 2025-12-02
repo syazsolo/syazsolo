@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { startTransition, useEffect, useMemo, useState } from 'react';
 
 import { conversationsData } from '@/lib/chat/conversations';
 import { useCurrentState } from '@/lib/chat/state';
@@ -14,10 +14,14 @@ const loadVisited = (
   conversationId: string,
   validStates: Set<string>
 ): Set<string> => {
-  if (typeof window === 'undefined') return new Set();
+  if (typeof window === 'undefined') {
+    return new Set();
+  }
   try {
     const raw = window.localStorage.getItem(getStorageKey(conversationId));
-    if (!raw) return new Set();
+    if (!raw) {
+      return new Set();
+    }
     const parsed = JSON.parse(raw) as string[];
     const filtered = parsed.filter(id => validStates.has(id));
     return new Set(filtered);
@@ -27,7 +31,9 @@ const loadVisited = (
 };
 
 const saveVisited = (conversationId: string, visited: Set<string>) => {
-  if (typeof window === 'undefined') return;
+  if (typeof window === 'undefined') {
+    return;
+  }
   try {
     window.localStorage.setItem(
       getStorageKey(conversationId),
@@ -54,23 +60,34 @@ export const useConversationProgress = (conversationId: string) => {
 
   useEffect(() => {
     // when conversation data changes (e.g., new states added), prune persisted visited
-    setVisited(prev => {
-      const next = new Set(Array.from(prev).filter(id => allStates.has(id)));
-      if (next.size !== prev.size) saveVisited(conversationId, next);
-      return next;
+    startTransition(() => {
+      setVisited(prev => {
+        const next = new Set(Array.from(prev).filter(id => allStates.has(id)));
+        if (next.size !== prev.size) {
+          saveVisited(conversationId, next);
+        }
+        return next;
+      });
     });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [conversationId, allStates]);
 
   useEffect(() => {
-    if (!currentState) return;
-    if (!allStates.has(currentState)) return;
-    setVisited(prev => {
-      if (prev.has(currentState)) return prev;
-      const next = new Set(prev);
-      next.add(currentState);
-      saveVisited(conversationId, next);
-      return next;
+    if (!currentState) {
+      return;
+    }
+    if (!allStates.has(currentState)) {
+      return;
+    }
+    startTransition(() => {
+      setVisited(prev => {
+        if (prev.has(currentState)) {
+          return prev;
+        }
+        const next = new Set(prev);
+        next.add(currentState);
+        saveVisited(conversationId, next);
+        return next;
+      });
     });
   }, [currentState, allStates, conversationId]);
 

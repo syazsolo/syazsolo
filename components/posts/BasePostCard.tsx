@@ -11,6 +11,7 @@ import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
 import { compactPortableTextComponents } from '@/components/posts/CompactPortableText';
 import { formatDistanceToNow } from 'date-fns';
 import imageUrlBuilder from '@sanity/image-url';
+import Image from 'next/image';
 
 type BasePostCardProps = {
   post: Post;
@@ -137,12 +138,15 @@ export default function BasePostCard({
             <p className="text-muted-foreground mt-1.5 text-xs">... see more</p>
           </div>
           {hasImage && imageUrl && (
-            <div className={strategy.getImageWrapperClassName(hasImage)}>
-              <img
+            <div
+              className={`relative ${strategy.getImageWrapperClassName(hasImage)}`}
+            >
+              <Image
                 src={imageUrl}
                 alt={post.title}
                 className={strategy.getImageClassName()}
-                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
               />
             </div>
           )}

@@ -6,7 +6,7 @@ import {
   extractFields,
   replaceFields,
 } from '@/lib/cover-letter-utils';
-import { useEffect, useState } from 'react';
+import React from 'react';
 
 import { Button } from '@/components/ui/button';
 import CoverLetterForm from '@/components/cover-letter/CoverLetterForm';
@@ -36,26 +36,17 @@ export default function CoverLetterPage() {
     isInitialized,
   } = useCoverLetterState();
 
-  const [finalContent, setFinalContent] = useState<ContentItem[]>([]);
-  const [finalRegards, setFinalRegards] = useState<ContentItem[]>([]);
-  const [fields, setFields] = useState<string[]>([]);
-
   // Derive selected template from ID
   const selectedTemplate =
     templates.find(t => t.id === selectedTemplateId) || null;
 
-  // Effect to update fields when template changes
-  useEffect(() => {
-    if (selectedTemplate) {
-      const extractedFields = extractFields(selectedTemplate.content);
-      setFields(extractedFields);
-    } else {
-      setFields([]);
-    }
+  // Derive fields from selected template
+  const fields = React.useMemo(() => {
+    return selectedTemplate ? extractFields(selectedTemplate.content) : [];
   }, [selectedTemplate]);
 
-  // Effect to generate content when in preview mode
-  useEffect(() => {
+  // Derive final content when in preview mode
+  const { finalContent, finalRegards } = React.useMemo(() => {
     if (step === 'preview' && selectedTemplate) {
       const dataWithDefaults = { ...formValues };
       fields.forEach(field => {
@@ -69,9 +60,9 @@ export default function CoverLetterPage() {
         ? replaceFields(selectedTemplate.regards, dataWithDefaults)
         : [];
 
-      setFinalContent(content);
-      setFinalRegards(regards);
+      return { finalContent: content, finalRegards: regards };
     }
+    return { finalContent: [], finalRegards: [] };
   }, [step, selectedTemplate, formValues, fields]);
 
   const handleSelectTemplate = (template: Template) => {
@@ -90,8 +81,6 @@ export default function CoverLetterPage() {
     setFormValues(data);
     setStep('preview');
   };
-
-
 
   const handleEdit = () => {
     if (fields.length > 0) {
@@ -115,7 +104,7 @@ export default function CoverLetterPage() {
 
   if (step === 'select') {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
         <div className="container mx-auto max-w-4xl py-12">
           <h1 className="mb-8 text-3xl font-bold text-slate-900">
             Select a Template
@@ -147,7 +136,7 @@ export default function CoverLetterPage() {
 
   if (step === 'form') {
     return (
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
         <div className="container mx-auto max-w-4xl py-12">
           <Button
             variant="ghost"
@@ -167,7 +156,7 @@ export default function CoverLetterPage() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
       <CoverLetterPreview
         content={finalContent}
         regards={finalRegards}

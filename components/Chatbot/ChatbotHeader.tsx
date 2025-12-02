@@ -2,6 +2,7 @@
 
 import { Maximize, X } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import { chatActivityStore } from '@/lib/chat/activity';
 import { conversationsData } from '@/lib/chat/conversations';
@@ -47,14 +48,16 @@ export const ChatbotHeader = ({
       onClick={onHeaderClick}
     >
       <div className="flex items-center gap-2">
-        <div className="relative">
-          <img
+        <div className="relative h-6 w-6">
+          <Image
             src={conversation.avatar}
             alt={conversation.name}
-            className="h-6 w-6 rounded-full"
+            className="rounded-full object-cover"
+            fill
+            sizes="24px"
           />
           {isOnline && (
-            <span className="border-background absolute -right-0.5 -bottom-0.5 block h-3 w-3 rounded-full border-2 bg-green-500" />
+            <span className="border-background absolute -right-0.5 -bottom-0.5 z-10 block h-3 w-3 rounded-full border-2 bg-green-500" />
           )}
         </div>
         <span className="text-sm font-semibold">{conversation.name}</span>

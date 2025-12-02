@@ -5,11 +5,11 @@ export function extractFields(content: ContentItem[]): string[] {
   const regex = /{{(.*?)}}/g;
 
   function traverse(items: ContentItem[]) {
-    items.forEach((item) => {
+    items.forEach(item => {
       if (typeof item === 'string') {
         const matches = item.match(regex);
         if (matches) {
-          matches.forEach((match) =>
+          matches.forEach(match =>
             fields.add(match.replace(/{{|}}/g, '').trim())
           );
         }
@@ -28,7 +28,7 @@ export function replaceFields(
   values: Record<string, string>
 ): ContentItem[] {
   function traverse(items: ContentItem[]): ContentItem[] {
-    return items.map((item) => {
+    return items.map(item => {
       if (typeof item === 'string') {
         let result = item;
         Object.entries(values).forEach(([key, value]) => {

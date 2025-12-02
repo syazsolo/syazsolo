@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { ChatbotWindow } from '@/components/Chatbot/ChatbotWindow';
 import dynamic from 'next/dynamic';
@@ -16,12 +16,7 @@ const ChatbotLauncher = dynamic(
 
 export const Chatbot = () => {
   const [openConversations, setOpenConversations] = useState<string[]>([]);
-  const [mounted, setMounted] = useState(false);
   const isSmallScreen = useIsMobile();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const openConversation = (conversationId: string) => {
     setOpenConversations(prev => {
@@ -46,10 +41,6 @@ export const Chatbot = () => {
   const closeConversation = (conversationId: string) => {
     setOpenConversations(prev => prev.filter(id => id !== conversationId));
   };
-
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <>

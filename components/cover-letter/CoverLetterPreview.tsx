@@ -13,98 +13,131 @@ interface CoverLetterPreviewProps {
   onEdit: () => void;
 }
 
+const { profile } = resumeData;
+
+function renderBoldText(text: string): React.ReactNode {
+  const segments: React.ReactNode[] = [];
+  const regex = /\*\*(.+?)\*\*/g;
+  let lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = regex.exec(text)) !== null) {
+    const [fullMatch, boldText] = match;
+    const startIndex = match.index;
+
+    if (startIndex > lastIndex) {
+      segments.push(text.slice(lastIndex, startIndex));
+    }
+
+    segments.push(
+      <span key={segments.length} className="font-bold">
+        {boldText}
+      </span>
+    );
+
+    lastIndex = startIndex + fullMatch.length;
+  }
+
+  if (lastIndex < text.length) {
+    segments.push(text.slice(lastIndex));
+  }
+
+  if (segments.length === 0) {
+    return text;
+  }
+
+  return <>{segments}</>;
+}
+
+const Sidebar = () => (
+  <div className="relative h-0 w-full">
+    <div className="absolute top-0 left-0 w-[35%] pt-8">
+      {/* Name & Title */}
+      <div className="mb-8">
+        <h1 className="text-5xl leading-none font-bold tracking-tight text-slate-900">
+          {profile.name.split(' ').map((namePart, i) => (
+            <span key={i} className="block">
+              {namePart}
+            </span>
+          ))}
+        </h1>
+        <p className="mt-4 text-xl font-light text-slate-600">
+          {profile.headline}
+        </p>
+      </div>
+
+      {/* Divider */}
+      <hr className="mb-8 border-t-2 border-slate-900" />
+
+      {/* Contact Details */}
+      <div>
+        <h3 className="mb-4 text-lg font-bold text-slate-900">
+          Contact Details
+        </h3>
+        <div className="flex flex-col gap-4 text-sm text-slate-700">
+          {profile.location && (
+            <div>
+              <p className="leading-relaxed whitespace-pre-line">
+                {profile.location}
+              </p>
+            </div>
+          )}
+
+          {profile.contact.phone && (
+            <div>
+              <p>{profile.contact.phone}</p>
+            </div>
+          )}
+
+          {profile.contact.email && (
+            <div>
+              <a
+                href={`mailto:${profile.contact.email}`}
+                className="underline decoration-slate-400 underline-offset-4"
+              >
+                {profile.contact.email}
+              </a>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+
+    {/* Vertical Line */}
+    <div className="absolute top-8 bottom-0 left-[35%] h-[250mm] w-px bg-slate-900" />
+  </div>
+);
+
+const ContentRow = ({
+  children,
+  className = '',
+  scale = 1,
+}: {
+  children: React.ReactNode;
+  className?: string;
+  scale?: number;
+}) => (
+  <div
+    className={`ml-[35%] pl-8 ${className}`}
+    style={{ fontSize: `${scale}rem` }}
+  >
+    <div className="leading-relaxed whitespace-pre-wrap text-slate-800">
+      {children}
+    </div>
+  </div>
+);
+
 export default function CoverLetterPreview({
   content,
   regards = [],
   onEdit,
 }: CoverLetterPreviewProps) {
-  const { profile } = resumeData;
   const [fontSizeScale, setFontSizeScale] = React.useState(1);
   const contentRef = React.useRef<HTMLDivElement>(null);
 
   const handlePrint = () => {
     window.print();
   };
-
-  // Sidebar Component (Zero height wrapper to not affect flow)
-  const Sidebar = () => (
-    <div className="relative h-0 w-full">
-      <div className="absolute top-0 left-0 w-[35%] pt-8">
-        {/* Name & Title */}
-        <div className="mb-8">
-          <h1 className="text-5xl leading-none font-bold tracking-tight text-slate-900">
-            {profile.name.split(' ').map((namePart, i) => (
-              <span key={i} className="block">
-                {namePart}
-              </span>
-            ))}
-          </h1>
-          <p className="mt-4 text-xl font-light text-slate-600">
-            {profile.headline}
-          </p>
-        </div>
-
-        {/* Divider */}
-        <hr className="mb-8 border-t-2 border-slate-900" />
-
-        {/* Contact Details */}
-        <div>
-          <h3 className="mb-4 text-lg font-bold text-slate-900">
-            Contact Details
-          </h3>
-          <div className="flex flex-col gap-4 text-sm text-slate-700">
-            {profile.location && (
-              <div>
-                <p className="leading-relaxed whitespace-pre-line">
-                  {profile.location}
-                </p>
-              </div>
-            )}
-
-            {profile.contact.phone && (
-              <div>
-                <p>{profile.contact.phone}</p>
-              </div>
-            )}
-
-            {profile.contact.email && (
-              <div>
-                <a
-                  href={`mailto:${profile.contact.email}`}
-                  className="underline decoration-slate-400 underline-offset-4"
-                >
-                  {profile.contact.email}
-                </a>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-
-      {/* Vertical Line */}
-      <div className="absolute top-8 bottom-0 left-[35%] h-[250mm] w-px bg-slate-900" />
-    </div>
-  );
-
-  // Content Row Component
-  const ContentRow = ({
-    children,
-    className = '',
-    scale = 1,
-  }: {
-    children: React.ReactNode;
-    className?: string;
-    scale?: number;
-  }) => (
-    <div
-      className={`ml-[35%] pl-8 ${className}`}
-      style={{ fontSize: `${scale}rem` }}
-    >
-      <div className="leading-relaxed whitespace-pre-wrap text-slate-800">
-        {children}
-      </div>
-    </div>
-  );
 
   const renderContentItem = (
     item: ContentItem,
@@ -114,7 +147,7 @@ export default function CoverLetterPreview({
     if (typeof item === 'string') {
       return (
         <ContentRow key={key} scale={scale} className="pb-6">
-          {item}
+          {renderBoldText(item)}
         </ContentRow>
       );
     }
@@ -128,7 +161,7 @@ export default function CoverLetterPreview({
           {item.items.map((subItem, index) => (
             <li key={index} className="pl-1">
               {typeof subItem === 'string' ? (
-                subItem
+                renderBoldText(subItem)
               ) : (
                 // Recursive rendering for nested lists if needed, though simple string items are expected for now
                 <div className="mt-2">
@@ -149,8 +182,12 @@ export default function CoverLetterPreview({
       // Apply specific spacing for salutation
       if (isFirst && typeof item === 'string') {
         return (
-          <ContentRow key={`content-${index}`} scale={scale} className="pt-8 pb-6">
-            {item}
+          <ContentRow
+            key={`content-${index}`}
+            scale={scale}
+            className="pt-8 pb-6"
+          >
+            {renderBoldText(item)}
           </ContentRow>
         );
       }
@@ -161,12 +198,14 @@ export default function CoverLetterPreview({
     const renderedRegards = regards.map((item, index) => {
       const isFirst = index === 0;
       return (
-        <ContentRow 
-          key={`regards-${index}`} 
-          scale={scale} 
-          className={isFirst ? "mt-12" : ""}
+        <ContentRow
+          key={`regards-${index}`}
+          scale={scale}
+          className={isFirst ? 'mt-8' : ''}
         >
-          {typeof item === 'string' ? item : renderContentItem(item, scale, `regards-${index}`)}
+          {typeof item === 'string'
+            ? renderBoldText(item)
+            : renderContentItem(item, scale, `regards-${index}`)}
         </ContentRow>
       );
     });
@@ -176,36 +215,51 @@ export default function CoverLetterPreview({
 
   // Auto-fit logic
   React.useLayoutEffect(() => {
-    if (!contentRef.current) return;
+    const calculateScale = () => {
+      if (!contentRef.current) {
+        return;
+      }
 
-    const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
-    const MM_TO_PX = 3.7795275591;
-    const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
+      const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
+      const MM_TO_PX = 3.7795275591;
+      const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
 
-    // Measure the unscaled content
-    const contentHeight = contentRef.current.scrollHeight;
+      // Measure the unscaled content
+      const contentHeight = contentRef.current.scrollHeight;
 
-    if (contentHeight > maxHeightPx) {
-      // Calculate ratio to fit
-      // Use a smaller safety factor to ensure content fits comfortably on a single page
-      const SAFETY_FACTOR = 0.9;
-      const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
-      // Don't scale up, only down. Allow a bit more shrink if needed.
-      const newScale = Math.max(0.4, Math.min(1, ratio));
-      setFontSizeScale(newScale);
-    } else {
-      setFontSizeScale(1);
-    }
+      if (contentHeight > maxHeightPx) {
+        // Calculate ratio to fit
+        // Use a smaller safety factor to ensure content fits comfortably on a single page
+        const SAFETY_FACTOR = 0.9;
+        const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
+        // Don't scale up, only down. Allow a bit more shrink if needed.
+        const newScale = Math.max(0.4, Math.min(1, ratio));
+        setFontSizeScale(newScale);
+      } else {
+        setFontSizeScale(1);
+      }
+    };
+
+    calculateScale();
+    window.addEventListener('resize', calculateScale);
+    return () => window.removeEventListener('resize', calculateScale);
   }, [content]);
 
   return (
-    <div className="mx-auto max-w-[210mm] print:max-w-none">
+    <div className="mx-auto max-w-[210mm] bg-white text-slate-900 dark:bg-white dark:text-slate-900 print:max-w-none">
       {/* Action Buttons (Hidden in Print) */}
       <div className="fixed top-8 right-8 flex flex-col gap-4 print:hidden">
-        <Button onClick={onEdit} variant="outline" className="shadow-lg">
+        <Button
+          onClick={onEdit}
+          variant="outline"
+          className="border border-slate-300 bg-white text-slate-900 shadow-lg hover:bg-slate-100 dark:border-slate-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
+        >
           Edit Details
         </Button>
-        <Button onClick={handlePrint} className="gap-2 shadow-lg">
+        <Button
+          onClick={handlePrint}
+          className="gap-2 bg-slate-900 text-white shadow-lg hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+        >
           <Printer className="h-4 w-4" />
           Print / Save PDF
         </Button>

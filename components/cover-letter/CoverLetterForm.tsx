@@ -19,11 +19,7 @@ export default function CoverLetterForm({
   initialValues = {},
   onSubmit,
 }: CoverLetterFormProps) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Record<string, string>>({
+  const { register, handleSubmit } = useForm<Record<string, string>>({
     defaultValues: initialValues,
   });
 
@@ -41,13 +37,17 @@ export default function CoverLetterForm({
       <CardContent className="p-8 pt-0">
         <form onSubmit={handleSubmit(onFormSubmit)} className="space-y-8">
           <div className="grid gap-8 md:grid-cols-2">
-            {fields.map((field) => (
+            {fields.map(field => (
               <div key={field} className="space-y-3">
-                <Label htmlFor={field} className="text-base capitalize text-slate-700">
+                <Label
+                  htmlFor={field}
+                  className="text-base text-slate-700 capitalize"
+                >
                   {field}
                 </Label>
-                {field.toLowerCase().includes('address') || field.toLowerCase().includes('description') ? (
-                   <Textarea
+                {field.toLowerCase().includes('address') ||
+                field.toLowerCase().includes('description') ? (
+                  <Textarea
                     id={field}
                     placeholder={`Enter ${field} (Optional)`}
                     className="min-h-[100px] bg-white text-base text-slate-900"
@@ -65,7 +65,11 @@ export default function CoverLetterForm({
             ))}
           </div>
 
-          <Button type="submit" size="lg" className="mt-4 w-full text-base">
+          <Button
+            type="submit"
+            size="lg"
+            className="mt-4 w-full bg-slate-900 text-base text-white hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+          >
             Generate Preview
           </Button>
         </form>

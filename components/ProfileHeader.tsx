@@ -6,6 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import ContactInfoModal from '@/components/ContactInfoModal';
 import { profileData } from '@/data/profile';
 import { useState } from 'react';
+import Image from 'next/image';
 
 const ProfileHeader = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -13,11 +14,14 @@ const ProfileHeader = () => {
   return (
     <>
       <Card className="bg-card border-border overflow-hidden transition-colors">
-        <div className="bg-secondary h-[110px] md:h-[196px]">
-          <img
+        <div className="bg-secondary relative h-[110px] md:h-[196px]">
+          <Image
             src={profileData.bannerUrl}
             alt="Banner"
-            className="h-full w-full object-cover"
+            className="object-cover"
+            fill
+            sizes="(max-width: 768px) 100vw, 100vw"
+            priority
           />
         </div>
 

@@ -9,11 +9,12 @@ import {
   Phone,
   Printer,
 } from 'lucide-react';
-import { differenceInMonths, format, parse } from 'date-fns';
+import { differenceInMonths, parse } from 'date-fns';
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
+import Image from 'next/image';
 import React from 'react';
 import { cn } from '@/utils';
 import { experiences } from '@/data/experiences';
@@ -211,7 +212,7 @@ export default function ResumePage() {
     resumeData;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
+    <div className="min-h-screen bg-gray-50 py-8 dark:bg-white dark:text-slate-900 print:bg-white print:p-0">
       <PrintButton />
 
       <A4Paginator>
@@ -282,7 +283,7 @@ export default function ResumePage() {
         {experience.map((exp, index) => (
           <div
             key={exp.id}
-            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-4' : 'mb-4'}`}
+            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-4' : 'mb-5'}`}
           >
             <div className="mb-1 flex items-baseline justify-between">
               <div className="flex items-center gap-2">
@@ -292,10 +293,12 @@ export default function ResumePage() {
                     alt={`${exp.company} logo`}
                   />
                   <AvatarFallback>
-                    <img
+                    <Image
                       src="/fallback.jpg"
                       alt=""
                       className="h-full w-full object-cover"
+                      width={40}
+                      height={40}
                     />
                   </AvatarFallback>
                 </Avatar>
@@ -315,7 +318,7 @@ export default function ResumePage() {
                 </span>
               </div>
             </div>
-            <div className="mb-1 flex flex-wrap items-center gap-2">
+            <div className="mt-1.5 mb-1 flex flex-wrap items-center gap-2">
               <span className="text-sm font-medium text-slate-700 italic">
                 {exp.title}
               </span>
@@ -440,7 +443,7 @@ function PrintButton() {
     <div className="fixed right-8 bottom-8 z-50 print:hidden">
       <Button
         onClick={() => window.print()}
-        className="gap-2 shadow-xl"
+        className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
         size="lg"
       >
         <Printer className="h-4 w-4" />
