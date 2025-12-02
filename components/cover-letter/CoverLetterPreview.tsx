@@ -211,28 +211,34 @@ export default function CoverLetterPreview({
 
   // Auto-fit logic
   React.useLayoutEffect(() => {
-    if (!contentRef.current) {
-      return;
-    }
+    const calculateScale = () => {
+      if (!contentRef.current) {
+        return;
+      }
+  
+      const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
+      const MM_TO_PX = 3.7795275591;
+      const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
+  
+      // Measure the unscaled content
+      const contentHeight = contentRef.current.scrollHeight;
+  
+      if (contentHeight > maxHeightPx) {
+        // Calculate ratio to fit
+        // Use a smaller safety factor to ensure content fits comfortably on a single page
+        const SAFETY_FACTOR = 0.9;
+        const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
+        // Don't scale up, only down. Allow a bit more shrink if needed.
+        const newScale = Math.max(0.4, Math.min(1, ratio));
+        setFontSizeScale(newScale);
+      } else {
+        setFontSizeScale(1);
+      }
+    };
 
-    const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
-    const MM_TO_PX = 3.7795275591;
-    const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
-
-    // Measure the unscaled content
-    const contentHeight = contentRef.current.scrollHeight;
-
-    if (contentHeight > maxHeightPx) {
-      // Calculate ratio to fit
-      // Use a smaller safety factor to ensure content fits comfortably on a single page
-      const SAFETY_FACTOR = 0.9;
-      const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
-      // Don't scale up, only down. Allow a bit more shrink if needed.
-      const newScale = Math.max(0.4, Math.min(1, ratio));
-      setFontSizeScale(newScale);
-    } else {
-      setFontSizeScale(1);
-    }
+    calculateScale();
+    window.addEventListener('resize', calculateScale);
+    return () => window.removeEventListener('resize', calculateScale);
   }, [content]);
 
   return (

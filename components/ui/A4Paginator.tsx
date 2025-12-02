@@ -20,6 +20,9 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
     [children]
   );
 
+  // Add a state to trigger recalculation on resize
+  const [resizeTrigger, setResizeTrigger] = useState(0);
+
   useEffect(() => {
     const handleResize = () => {
       const screenWidth = window.innerWidth;
@@ -32,6 +35,9 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
       } else {
         setScale(1);
       }
+      
+      // Trigger recalculation
+      setResizeTrigger(prev => prev + 1);
     };
 
     handleResize();
@@ -83,7 +89,7 @@ export function A4Paginator({ children, paddingMM = 15 }: A4PaginatorProps) {
     React.startTransition(() => {
       setPages(newPages);
     });
-  }, [childrenArray, paddingMM]);
+  }, [childrenArray, paddingMM, resizeTrigger]);
 
   return (
     <>
