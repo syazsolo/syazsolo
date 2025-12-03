@@ -177,5 +177,29 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "metacloud-software-developer",
+    "company": "Metacloud Sdn Bhd",
+    "role": "Software Developer",
+    "date": "2025-12-05",
+    "content": [
+      "To the Hiring Team at Metacloud Sdn Bhd,",
+      "I am writing to express my sincere interest in the software developer position. As a mid-level engineer with three years of experience, my core value lies in the deliberate cultivation of a senior-level mindset—focused on stewardship, ownership, and architectural clarity. This framework drives how I approach development and is reflected in my most recent work.",
+      "Professionally, this mindset translated into concrete outcomes at IMT Tech. I led a frontend architecture redesign using Nuxt (Vue), building reusable abstractions that reduced boilerplate by 70%. On the Laravel backend, I maintained personal testing standards so disciplined that my delivered features resulted in zero post-release bugs. This systematic, full-cycle approach aligns with the end-to-end responsibilities outlined in your role, from analysis and development to deployment and support.",
+      "My exposure at IMT Tech to property technology also provides relevant industry context, helping me appreciate the business challenges your systems aim to solve.",
+      "On a personal note, Sunway left a strong and lasting impression on me. I was interviewed by two people at your Geo Avenue office, and what stood out was not just the vibrant workspace, but the genuine humanity of the process. One of the interviewers even called me personally after the decision to offer feedback—a gesture I deeply respected and still remember. If given the opportunity to join Metacloud, I would be proud to return—and to thank them in person.",
+      "I recognize that seniority is a role built on trust and scaled contribution. While I may not carry the title yet, I operate with the ownership and architectural intent required to grow into it quickly. I am confident I can deliver immediate value within your Laravel, Vue, and full-stack environment while evolving alongside a team that values quality and collaboration.",
+      "Thank you for your consideration. I look forward to the possibility of contributing to Sunway's continued innovation."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
