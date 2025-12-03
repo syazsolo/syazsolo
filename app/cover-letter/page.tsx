@@ -25,7 +25,7 @@ export default function CoverLetterPage() {
 
   // Sort by date descending
   const sortedLetters = React.useMemo(() => {
-    return [...coverLetters].sort((a, b) => {
+    return [...coverLetters].reverse().sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
     });
   }, []);
