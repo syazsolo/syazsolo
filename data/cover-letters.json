@@ -132,7 +132,7 @@
     "regards": ["Best regards,", "Syazani Zulkhairi"]
   },
   {
-    "id": "full-stack-senior-velocity",
+    "id": "beyondsoft-full-stack-engineer",
     "company": "BEYONDSOFT (MALAYSIA) SDN. BHD",
     "role": "Full Stack Software Engineer - CE&S BI Project",
     "date": "2025-12-03",
@@ -144,6 +144,14 @@
       "I move with purpose but learn with humility. While I am confident in my output and high agency, I am intentional about seeking environments where I can contribute to and learn from complex systems. I want to join a team where architectural decisions are debated and standards are high.",
       "I am ready to bring this blend of velocity, ownership, and collaborative drive to your team. I welcome the opportunity to discuss how my approach can contribute to your project's success."
     ],
-    "regards": ["Best,", "Syazani Zulkhairi", "syazsolo.netlify.app"]
+    "regards": [
+      "Best,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]

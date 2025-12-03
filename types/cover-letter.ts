@@ -1,6 +1,8 @@
 export type ContentItem = string | {
   type?: string;
   items?: ContentItem[];
+  text?: string;
+  to?: string;
   [key: string]: any;
 };
 

@@ -203,9 +203,20 @@ export default function CoverLetterPreview({
           scale={scale}
           className={isFirst ? 'mt-8' : ''}
         >
-          {typeof item === 'string'
-            ? renderBoldText(item)
-            : renderContentItem(item, scale, `regards-${index}`)}
+          {typeof item === 'string' ? (
+            renderBoldText(item)
+          ) : item.type === 'link' ? (
+            <a
+              href={item.to}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-slate-400 underline-offset-4"
+            >
+              {item.text || item.to}
+            </a>
+          ) : (
+            renderContentItem(item, scale, `regards-${index}`)
+          )}
         </ContentRow>
       );
     });
