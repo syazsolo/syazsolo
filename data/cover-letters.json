@@ -153,5 +153,29 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "carro-senior-software-engineer",
+    "company": "CARRO",
+    "role": "Senior Software Engineer (FullStack)",
+    "date": "2025-12-04",
+    "content": [
+      "To the Hiring Team at Carro,",
+      "As a mid-level engineer with three years of experience, my core value lies in the deliberate cultivation of a senior-level mindset—focused on stewardship, ownership, and architectural clarity. My time at IMT Tech serves as the clearest testament to this approach, where I was able to translate that mindset into concrete, high-impact work.",
+      "At IMT Tech, I led the frontend architecture redesign of a critical application using Nuxt (Vue). My primary objective was to build a system defined by clarity and reusability. I developed a suite of composables and abstractions so logical that they reduced boilerplate by 70% and, as noted by a senior colleague, were immediately usable by LLMs. This wasn't just about writing code; it was about creating a foundation for AI-native, high-velocity development.",
+      "More importantly, IMT Tech is where I fully embraced the principle of developer-owned quality. When assigned backend deliverables in Laravel, I instituted a personal testing standard so rigorous that the features I shipped resulted in zero bugs reported by clients or account managers. In a culture where early testing was often deferred, I made it my responsibility to ensure my code was production-ready upon handoff. This experience crystallized my belief that true seniority is demonstrated through merging strong technical output with comprehensive end-to-end ownership.",
+      "I recognize that seniority is more than a mindset—it's a role earned through trust, scaled responsibility, and guidance within a team. I may not carry the title yet, but I operate from the same principles. I am confident that with the opportunity to contribute within your environment, I will grow rapidly into the scope and impact you expect, bringing both disciplined execution and a commitment to collective success.",
+      "I am eager to bring this blend of craftsmanship and systematic ownership to your full-stack environment at Carro. I am confident I can contribute effectively across your Laravel, Next.js/Vue, and AWS stack, while growing within a team that values high standards and collaborative problem-solving.",
+      "I look forward to discussing how I can help build and scale your platforms."
+    ],
+    "regards": [
+      "Best,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
