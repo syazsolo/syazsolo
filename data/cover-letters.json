@@ -114,11 +114,36 @@
       "I am eager to bring this \"AI-first\" mindset to AirAsia's BrandCo. I am confident that I can rapidly adapt to your specific GCP and Vertex AI stack, leveraging my ability to build whatever is needed to drive retrieval accuracy and system performance.",
       "I am ready to prove that my approach to AI-augmented engineering can accelerate your team's roadmap."
     ],
-    "regards": [
-      "Best regards,",
-      "Syazani Zulkhairi",
-      "syazsolo.netlify.app",
-      "019-209 9853"
-    ]
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "software-engineer-arkmind",
+    "company": "ARKMIND SDN. BHD.",
+    "role": "Software Engineer (Javascript)",
+    "date": "2025-12-03",
+    "content": [
+      "To the Hiring Manager of Arkmind Sdn. Bhd.,",
+      "I am a Software Engineer with 3 years of experience, using an AI-native workflow to maximize velocity. I don't just write code; I design clean, self-documenting abstractions that allow me to collaborate seamlessly with LLMs. This frees me to focus on the complexity of business problems rather than syntax.",
+      "You need deep proficiency in JavaScript and TypeScript. This ecosystem is my home. Whether building complex productivity tools in Next.js or re-architecting legacy systems, strict TypeScript is my default mode. At IMT Tech, I leveraged this fluency to build composables that reduced boilerplate by 70%, creating a codebase so logical that our AI tools could interpret it instantly. I bring this same architectural clarity to your stack.",
+      "Regardless of my official level, I operate with a senior mindset: stewardship. I noticed your requirement for \"minimal supervision.\" In my last role, the culture relied on Account Managers to test developer code—a back-and-forth cycle they despised. I broke that pattern. I held myself to a zero-bug standard, ensuring my handoffs were flawless so the team could keep moving. I don't rely on others to catch my mistakes; I own my quality.",
+      "I am conscious that I am not the finished product. While I take pride in my delivery, I want to join your company to be challenged by the deep technical knowledge that comes from solving scale problems I haven't seen yet.",
+      "I am ready to bring this velocity and stewardship to your team."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi"]
+  },
+  {
+    "id": "full-stack-senior-velocity",
+    "company": "BEYONDSOFT (MALAYSIA) SDN. BHD",
+    "role": "Full Stack Software Engineer - CE&S BI Project",
+    "date": "2025-12-03",
+    "content": [
+      "To the Hiring Team at Beyondsoft (Malaysia) Sdn. Bhd.,",
+      "While my experience totals three years, I approach development with the standards and velocity of a senior engineer. I achieve this by architecting AI-native workflows that accelerate the delivery of high-quality, maintainable code.",
+      "I was drawn to your posting for a Full Stack Engineer with a focus on React, Next.js, and Laravel. At IMT Tech, I led the frontend architecture redesign of a Nuxt application, building reusable abstractions that cut boilerplate by 70% and were crafted to be as clear for LLM-assisted development as for human engineers. This focus on clean, intentional architecture is how I ensure quality and velocity, whether the stack is Vue or React.",
+      "My view of seniority is defined by stewardship. At IMT Tech, this meant enforcing personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. At 9LOOP, refactoring a critical Telegram bot to TypeScript and adding automated tests reduced production bug reports by over 80%. I believe developers must own the quality and health of their code.",
+      "I move with purpose but learn with humility. While I am confident in my output and high agency, I am intentional about seeking environments where I can contribute to and learn from complex systems. I want to join a team where architectural decisions are debated and standards are high.",
+      "I am ready to bring this blend of velocity, ownership, and collaborative drive to your team. I welcome the opportunity to discuss how my approach can contribute to your project's success."
+    ],
+    "regards": ["Best,", "Syazani Zulkhairi", "syazsolo.netlify.app"]
   }
 ]
