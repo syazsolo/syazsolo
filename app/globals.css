@@ -175,6 +175,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: var(--muted-foreground) var(--background);
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
 /* WebKit (Chromium, Safari, Edge) */
@@ -209,6 +210,8 @@ body {
   font-size: 14px;
   line-height: 1.4;
   overflow-x: hidden;
+  max-width: 100vw;
+  position: relative;
 }
 
 /* Ensure dark mode works with Tailwind v4 */
@@ -283,6 +286,19 @@ body {
 @media (min-width: 1200px) {
   .container-width {
     max-width: 1170px;
+  }
+}
+
+@media (max-width: 768px) {
+  html,
+  body {
+    overflow-x: hidden;
+    max-width: 100vw;
+    width: 100%;
+  }
+  body > * {
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 }
 
