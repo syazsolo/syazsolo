@@ -5,15 +5,14 @@ import * as React from 'react';
 import { Input } from '@/components/ui/input';
 import { cn } from '@/utils';
 
-export interface InputPasswordProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
+export type InputPasswordProps = React.InputHTMLAttributes<HTMLInputElement>;
 
 const maskedPasswordStyle = {
   WebkitTextSecurity: 'disc',
 } as React.CSSProperties;
 
 const InputPassword = React.forwardRef<HTMLInputElement, InputPasswordProps>(
-  ({ className, type, style, autoComplete, name, ...props }, ref) => {
+  ({ className, type: _type, style, autoComplete, name, ...props }, ref) => {
     return (
       <Input
         ref={ref}

@@ -132,10 +132,12 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
       if (response.ok) {
         window.open('/resume.pdf', '_blank');
       } else {
-        setError('Mobile PDF not found. Please save resume.pdf to public folder.');
+        setError(
+          'Mobile PDF not found. Please save resume.pdf to public folder.'
+        );
         setTimeout(() => setError(null), 3000);
       }
-    } catch (err) {
+    } catch (_err) {
       setError('Error checking for PDF.');
       setTimeout(() => setError(null), 3000);
     }
@@ -173,7 +175,9 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
             >
               Resume
             </Button>
-            {error && <p className="text-xs text-red-500 text-center">{error}</p>}
+            {error && (
+              <p className="text-center text-xs text-red-500">{error}</p>
+            )}
             <Button
               size="sm"
               className="rounded-full"

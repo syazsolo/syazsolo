@@ -8,7 +8,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Lock, ShieldCheck } from 'lucide-react';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { Button } from '@/components/ui/button';
 import { InputPassword } from '@/components/InputPassword';
@@ -28,24 +28,20 @@ const PasswordDialog = ({
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const { isOwner, login, logout } = useAuth();
-  const [dialogIsOwner, setDialogIsOwner] = useState(isOwner);
 
-  useEffect(() => {
-    if (open) {
-      setDialogIsOwner(isOwner);
-    } else {
+  const handleOpenChange = (newOpen: boolean) => {
+    if (!newOpen) {
       setPassword('');
       setError(false);
     }
-  }, [open, isOwner]);
+    onOpenChange(newOpen);
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === 'falcon') {
       login();
-      onOpenChange(false);
-      setPassword('');
-      setError(false);
+      handleOpenChange(false);
     } else {
       setError(true);
     }
@@ -53,19 +49,19 @@ const PasswordDialog = ({
 
   const handleLock = () => {
     logout();
-    onOpenChange(false);
+    handleOpenChange(false);
   };
 
-  if (dialogIsOwner) {
+  if (isOwner) {
     return (
-      <Dialog open={open} onOpenChange={onOpenChange}>
+      <Dialog open={open} onOpenChange={handleOpenChange}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
               <ShieldCheck className="h-5 w-5 text-green-500" />
-              It's You
+              It&apos;s You
             </DialogTitle>
-            <DialogDescription>You're me.</DialogDescription>
+            <DialogDescription>You&apos;re me.</DialogDescription>
           </DialogHeader>
           <div className="flex justify-end pt-4">
             <Button onClick={handleLock} variant="destructive">
@@ -78,16 +74,16 @@ const PasswordDialog = ({
   }
 
   return (
-    <Dialog open={open} onOpenChange={onOpenChange}>
+    <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lock className="h-5 w-5" />
-            It's Me
+            It&apos;s Me
           </DialogTitle>
           <DialogDescription>
-            You've found my private control panel. Visitors can ignore this and
-            keep wandering around the site.
+            You&apos;ve found my private control panel. Visitors can ignore this
+            and keep wandering around the site.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">

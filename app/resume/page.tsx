@@ -440,7 +440,9 @@ export default function ResumePage() {
 // ============================================================================
 
 function ResumeActions() {
-  const [status, setStatus] = React.useState<'idle' | 'loading' | 'success' | 'error'>('idle');
+  const [status, setStatus] = React.useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
   const [message, setMessage] = React.useState('');
 
   const handleSaveForMobile = async () => {
@@ -458,7 +460,7 @@ function ResumeActions() {
         setStatus('error');
         setMessage(data.message || 'Failed to save');
       }
-    } catch (error) {
+    } catch (_error) {
       setStatus('error');
       setMessage('Network error');
     }

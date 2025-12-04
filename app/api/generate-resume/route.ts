@@ -25,11 +25,17 @@ export async function POST() {
 
     await fs.writeFile(pdfPath, pdfBuffer);
 
-    return NextResponse.json({ success: true, message: 'PDF saved to public/resume.pdf' });
+    return NextResponse.json({
+      success: true,
+      message: 'PDF saved to public/resume.pdf',
+    });
   } catch (error) {
     console.error('PDF generation error:', error);
     return NextResponse.json(
-      { success: false, message: error instanceof Error ? error.message : 'Unknown error' },
+      {
+        success: false,
+        message: error instanceof Error ? error.message : 'Unknown error',
+      },
       { status: 500 }
     );
   } finally {
