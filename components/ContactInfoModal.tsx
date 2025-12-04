@@ -1,7 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Copy, Check } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 import { ContactItem, contactItems } from '@/data/contact-info';
 import {
   Dialog,
@@ -9,6 +8,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { useEffect, useState } from 'react';
+
 import { Button } from '@/components/ui/button';
 import { profileData } from '@/data/profile';
 

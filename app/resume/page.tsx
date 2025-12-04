@@ -19,18 +19,19 @@ import Image from 'next/image';
 import React from 'react';
 import { cn } from '@/utils';
 import resumeData from '@/data/resume.json';
+import skillMetadata from '@/data/skillMetadata.json';
 
 // ============================================================================
 // Utility Functions
 // ============================================================================
 
 function getSkillColor(skill: string) {
-  const skillMetadata = resumeData.skillMetadata as Record<
+  const metadata = skillMetadata as Record<
     string,
     { bg: string; text: string; border: string }
   >;
   return (
-    skillMetadata[skill] || {
+    metadata[skill] || {
       bg: '#E2E8F0',
       text: '#475569',
       border: '#CBD5E1',

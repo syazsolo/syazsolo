@@ -1,6 +1,7 @@
 'use client';
 
 import Section from '@/components/Section';
+import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 import { aboutContent } from '@/data/about';
 import { useState } from 'react';
 
@@ -33,14 +34,11 @@ const About = () => {
               {showInlineToggle && (
                 <>
                   {' '}
-                  <button
-                    type="button"
+                  <SeeMoreButton
                     onClick={() => setExpanded(true)}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center text-[14px] leading-6"
-                    aria-expanded={expanded}
-                  >
-                    ... see more
-                  </button>
+                    expanded={expanded}
+                    className="inline-flex items-center"
+                  />
                 </>
               )}
             </p>
@@ -66,14 +64,11 @@ const About = () => {
       })}
 
       {hasHiddenItems && !canInlineToggle && (
-        <button
-          type="button"
+        <SeeMoreButton
           onClick={() => setExpanded(true)}
-          className="text-muted-foreground hover:text-foreground text-left text-[14px] leading-6"
-          aria-expanded={expanded}
-        >
-          ... see more
-        </button>
+          expanded={expanded}
+          className="text-left"
+        />
       )}
     </Section>
   );

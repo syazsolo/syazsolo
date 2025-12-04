@@ -1,11 +1,29 @@
 'use client';
 
 import { Experience as ExperienceType, experiences } from '@/data/experiences';
+import skillMetadata from '@/data/skillMetadata.json';
+import { useState } from 'react';
 
 import Image from 'next/image';
 import Section from '@/components/Section';
+import { Badge } from '@/components/ui/badge';
+import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 
 const FALLBACK_LOGO = '/fallback.jpg';
+
+function getSkillColor(skill: string) {
+  const metadata = skillMetadata as Record<
+    string,
+    { bg: string; text: string; border: string }
+  >;
+  return (
+    metadata[skill] || {
+      bg: '#E2E8F0',
+      text: '#475569',
+      border: '#CBD5E1',
+    }
+  );
+}
 
 export default function Experience() {
   return (
@@ -20,6 +38,8 @@ export default function Experience() {
 }
 
 const ExperienceItem = ({ experience }: { experience: ExperienceType }) => {
+  const [expanded, setExpanded] = useState(false);
+
   return (
     <div className="-mx-3 flex w-full gap-3 p-3 text-left">
       <div className="shrink-0">
@@ -41,19 +61,63 @@ const ExperienceItem = ({ experience }: { experience: ExperienceType }) => {
         </div>
       </div>
       <div className="min-w-0 flex-1">
-        <h3 className="text-foreground text-[15px] font-semibold">
-          {experience.title}
-        </h3>
-        <p className="text-foreground/80 text-[14px]">
-          {experience.company} · {experience.employmentType}
-        </p>
-        <p className="text-muted-foreground text-[13px]">
-          {experience.startDate} - {experience.endDate} · {experience.duration}
-        </p>
-        {experience.location && (
-          <p className="text-muted-foreground text-[13px]">
-            {experience.location}
-          </p>
+        <div className="flex items-start justify-between gap-4">
+          <div className="min-w-0 flex-1">
+            <h3 className="text-foreground text-[15px] font-semibold">
+              {experience.title}
+            </h3>
+            <p className="text-foreground/80 text-[14px]">
+              {experience.company} · {experience.employmentType}
+            </p>
+            <p className="text-muted-foreground text-[13px]">
+              {experience.startDate} - {experience.endDate} ·{' '}
+              {experience.duration}
+            </p>
+            {experience.location && (
+              <p className="text-muted-foreground text-[13px]">
+                {experience.location}
+              </p>
+            )}
+          </div>
+          {experience.skills && experience.skills.length > 0 && (
+            <div className="flex flex-wrap justify-end gap-1.5">
+              {experience.skills.map(skill => {
+                const colors = getSkillColor(skill);
+                return (
+                  <Badge
+                    key={skill}
+                    className="border text-[12px] font-normal"
+                    style={{
+                      backgroundColor: colors.bg,
+                      color: colors.text,
+                      borderColor: colors.border,
+                    }}
+                  >
+                    {skill}
+                  </Badge>
+                );
+              })}
+            </div>
+          )}
+        </div>
+        {experience.description && (
+          <>
+            {!expanded && (
+              <div className="mt-3">
+                <SeeMoreButton
+                  onClick={() => setExpanded(true)}
+                  expanded={expanded}
+                />
+              </div>
+            )}
+            {expanded && (
+              <ul className="text-foreground/90 mt-3 ml-5 list-outside list-disc space-y-1.5 pl-1 text-[14px] leading-relaxed">
+                {experience.description.items.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            )}
+          </>
         )}
       </div>
     </div>
