@@ -5,10 +5,8 @@ import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 import aboutContentData from '@/data/about.json';
 import { useState } from 'react';
 
-const aboutContent: (
-  | string
-  | { title: string; description: string }[]
-)[] = aboutContentData;
+const aboutContent: (string | { title: string; description: string }[])[] =
+  aboutContentData;
 
 const About = () => {
   const [expanded, setExpanded] = useState(false);

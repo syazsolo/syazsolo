@@ -1,5 +1,9 @@
 'use client';
 
+import { Badge } from '@/components/ui/badge';
+import Image from 'next/image';
+import Section from '@/components/Section';
+import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 import experiencesData from '@/data/experiences.json';
 import skillMetadata from '@/data/skillMetadata.json';
 import { useState } from 'react';
@@ -22,11 +26,6 @@ interface Experience {
 }
 
 const experiences: Experience[] = experiencesData;
-
-import Image from 'next/image';
-import Section from '@/components/Section';
-import { Badge } from '@/components/ui/badge';
-import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 
 const FALLBACK_LOGO = '/fallback.jpg';
 

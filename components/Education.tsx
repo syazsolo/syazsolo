@@ -1,11 +1,9 @@
 'use client';
 
-import { useState } from 'react';
-
 import Image from 'next/image';
-
 import Section from '@/components/Section';
 import educationData from '@/data/education.json';
+import { useState } from 'react';
 
 interface Education {
   id: string;

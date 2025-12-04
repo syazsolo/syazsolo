@@ -1,19 +1,19 @@
-import { PortableText } from 'next-sanity';
-import imageUrlBuilder from '@sanity/image-url';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
-import { formatDistanceToNow } from 'date-fns';
-import { Globe } from 'lucide-react';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Card, CardContent } from '@/components/ui/card';
+import { client, dataset, projectId } from '@/lib/sanity';
 
-import { client, projectId, dataset } from '@/lib/sanity';
+import { Globe } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
+import { PortableText } from 'next-sanity';
+import { Post } from '@/types';
 import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
-import { Card, CardContent } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import Image from 'next/image';
-import profileData from '@/data/profile.json';
+import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import { formatDistanceToNow } from 'date-fns';
+import imageUrlBuilder from '@sanity/image-url';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';
-import { Post } from '@/types';
+import profileData from '@/data/profile.json';
 
 const POST_QUERY = `*[_type == "post" && slug.current == $slug][0]{
   _id,

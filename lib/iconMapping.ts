@@ -1,4 +1,5 @@
 import { Github, Link2, Linkedin, Mail, Phone } from 'lucide-react';
+
 import { ComponentType } from 'react';
 
 const iconMap: Record<string, ComponentType<{ className?: string }>> = {
@@ -9,7 +10,9 @@ const iconMap: Record<string, ComponentType<{ className?: string }>> = {
   Github,
 };
 
-export function getIcon(iconName: string): ComponentType<{ className?: string }> {
+export function getIcon(
+  iconName: string
+): ComponentType<{ className?: string }> {
   const Icon = iconMap[iconName];
   if (!Icon) {
     console.warn(`Icon "${iconName}" not found in iconMap`);
@@ -17,4 +20,3 @@ export function getIcon(iconName: string): ComponentType<{ className?: string }>
   }
   return Icon;
 }
-

@@ -1,9 +1,9 @@
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
+import Image from 'next/image';
 import Link from 'next/link';
 import profileData from '@/data/profile.json';
-import Image from 'next/image';
 
 const PostsProfileSidebar = () => {
   return (

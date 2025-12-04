@@ -1,12 +1,11 @@
 'use client';
 
+import { Badge } from '@/components/ui/badge';
+import Section from '@/components/Section';
+import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 import projectsData from '@/data/projects.json';
 import skillMetadata from '@/data/skillMetadata.json';
 import { useState } from 'react';
-
-import Section from '@/components/Section';
-import { Badge } from '@/components/ui/badge';
-import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
 
 interface Project {
   id: string;
@@ -58,7 +57,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
       <div className="min-w-0 flex-1">
         <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="min-w-0 flex-1">
-            <div className="flex items-baseline gap-2 flex-wrap">
+            <div className="flex flex-wrap items-baseline gap-2">
               <h3 className="text-foreground text-[15px] font-semibold">
                 {project.title}
               </h3>
@@ -76,7 +75,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
                 href={`https://${project.url}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-foreground/80 hover:text-foreground hover:underline text-[14px]"
+                className="text-foreground/80 hover:text-foreground text-[14px] hover:underline"
               >
                 {project.url}
               </a>
@@ -127,4 +126,3 @@ const ProjectItem = ({ project }: { project: Project }) => {
     </div>
   );
 };
-

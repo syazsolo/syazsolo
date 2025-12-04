@@ -1,8 +1,6 @@
 'use client';
 
 import { Check, Copy } from 'lucide-react';
-import contactInfoData from '@/data/contact-info.json';
-import { getIcon } from '@/lib/iconMapping';
 import {
   Dialog,
   DialogContent,
@@ -12,6 +10,8 @@ import {
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import contactInfoData from '@/data/contact-info.json';
+import { getIcon } from '@/lib/iconMapping';
 import profileData from '@/data/profile.json';
 
 interface ContactItem {
