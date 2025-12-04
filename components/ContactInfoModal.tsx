@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Copy, Check } from 'lucide-react';
 import { ContactItem, contactItems } from '@/data/contact-info';
 import {
@@ -110,6 +110,36 @@ const renderContactItem = (
 
 const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const [isMobile, setIsMobile] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  const handleResumeClick = async () => {
+    setError(null);
+    if (!isMobile) {
+      window.open('/resume', '_blank');
+      return;
+    }
+
+    try {
+      const response = await fetch('/resume.pdf', { method: 'HEAD' });
+      if (response.ok) {
+        window.open('/resume.pdf', '_blank');
+      } else {
+        setError('Mobile PDF not found. Please save resume.pdf to public folder.');
+        setTimeout(() => setError(null), 3000);
+      }
+    } catch (err) {
+      setError('Error checking for PDF.');
+      setTimeout(() => setError(null), 3000);
+    }
+  };
 
   const handleCopy = async (index: number, text: string) => {
     try {
@@ -139,10 +169,11 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
               size="sm"
               className="rounded-full"
               variant="default"
-              onClick={() => window.open('/resume', '_blank')}
+              onClick={handleResumeClick}
             >
               Resume
             </Button>
+            {error && <p className="text-xs text-red-500 text-center">{error}</p>}
             <Button
               size="sm"
               className="rounded-full"
