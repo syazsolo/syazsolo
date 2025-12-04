@@ -8,6 +8,7 @@ import {
   Mail,
   Phone,
   Printer,
+  Smartphone,
 } from 'lucide-react';
 import { differenceInMonths, parse } from 'date-fns';
 
@@ -213,7 +214,7 @@ export default function ResumePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 dark:bg-white dark:text-slate-900 print:bg-white print:p-0">
-      <PrintButton />
+      <ResumeActions />
 
       <A4Paginator>
         {/* Split Header Section */}
@@ -438,17 +439,70 @@ export default function ResumePage() {
 // Sub-components
 // ============================================================================
 
-function PrintButton() {
+function ResumeActions() {
+  const [status, setStatus] = React.useState<
+    'idle' | 'loading' | 'success' | 'error'
+  >('idle');
+  const [message, setMessage] = React.useState('');
+
+  const handleSaveForMobile = async () => {
+    setStatus('loading');
+    setMessage('');
+
+    try {
+      const response = await fetch('/api/generate-resume', { method: 'POST' });
+      const data = await response.json();
+
+      if (data.success) {
+        setStatus('success');
+        setMessage('Saved for mobile!');
+      } else {
+        setStatus('error');
+        setMessage(data.message || 'Failed to save');
+      }
+    } catch (_error) {
+      setStatus('error');
+      setMessage('Network error');
+    }
+
+    setTimeout(() => {
+      setStatus('idle');
+      setMessage('');
+    }, 3000);
+  };
+
   return (
-    <div className="fixed right-8 bottom-8 z-50 print:hidden">
-      <Button
-        onClick={() => window.print()}
-        className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
-        size="lg"
-      >
-        <Printer className="h-4 w-4" />
-        Print PDF
-      </Button>
+    <div className="fixed right-8 bottom-8 z-50 flex flex-col items-end gap-2 print:hidden">
+      {message && (
+        <div
+          className={cn(
+            'rounded-lg px-4 py-2 text-sm font-medium shadow-lg',
+            status === 'success' && 'bg-green-500 text-white',
+            status === 'error' && 'bg-red-500 text-white'
+          )}
+        >
+          {message}
+        </div>
+      )}
+      <div className="flex gap-2">
+        <Button
+          onClick={handleSaveForMobile}
+          disabled={status === 'loading'}
+          className="gap-2 bg-slate-700 text-white shadow-xl hover:bg-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+          size="lg"
+        >
+          <Smartphone className="h-4 w-4" />
+          {status === 'loading' ? 'Saving...' : 'Save for Mobile'}
+        </Button>
+        <Button
+          onClick={() => window.print()}
+          className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+          size="lg"
+        >
+          <Printer className="h-4 w-4" />
+          Print PDF
+        </Button>
+      </div>
     </div>
   );
 }

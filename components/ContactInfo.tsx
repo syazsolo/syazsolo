@@ -3,8 +3,15 @@
 import { Card, CardContent } from '@/components/ui/card';
 import { Check, Copy } from 'lucide-react';
 import { ContactItem, contactItems } from '@/data/contact-info';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 
 import { Button } from '@/components/ui/button';
+import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 
 const renderContactItem = (
@@ -103,6 +110,7 @@ const renderContactItem = (
 
 const ContactInfo = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
+  const { isOwner } = useAuth();
 
   const handleCopy = async (index: number, text: string) => {
     try {
@@ -132,14 +140,36 @@ const ContactInfo = () => {
             >
               Resume
             </Button>
-            <Button
-              size="sm"
-              className="rounded-full"
-              variant="default"
-              onClick={() => window.open('/cover-letter', '_blank')}
-            >
-              Cover Letter
-            </Button>
+            {isOwner ? (
+              <Button
+                size="sm"
+                className="rounded-full"
+                variant="default"
+                onClick={() => window.open('/cover-letter', '_blank')}
+              >
+                Cover Letter
+              </Button>
+            ) : (
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <span tabIndex={0} className="w-full">
+                      <Button
+                        size="sm"
+                        className="w-full rounded-full opacity-50"
+                        variant="default"
+                        disabled
+                      >
+                        Cover Letter
+                      </Button>
+                    </span>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom">
+                    <p>Only for me</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
+            )}
           </div>
         </div>
       </CardContent>

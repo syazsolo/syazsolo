@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
 import ContactInfoModal from '@/components/ContactInfoModal';
+import ItsMeButton from '@/components/ItsMeButton';
 import { profileData } from '@/data/profile';
 import { useState } from 'react';
 import Image from 'next/image';
@@ -42,9 +43,12 @@ const ProfileHeader = () => {
           </div>
 
           <div className="mt-18 px-2 md:mt-16">
-            <h1 className="text-foreground text-[24px] leading-[1.2] font-semibold">
-              {profileData.name}
-            </h1>
+            <div className="flex items-center gap-2">
+              <h1 className="text-foreground text-[24px] leading-[1.2] font-semibold">
+                {profileData.name}
+              </h1>
+              <ItsMeButton />
+            </div>
             <p className="text-foreground mt-0.5 text-[14px] leading-5 md:text-[16px] md:leading-6">
               {profileData.headline}
             </p>

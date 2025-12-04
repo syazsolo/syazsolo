@@ -1,5 +1,6 @@
 import './globals.css';
 
+import { AuthProvider } from '@/context/AuthContext';
 import { ConditionalChatbot } from '@/components/ConditionalChatbot';
 import type { Metadata } from 'next';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -20,8 +21,10 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeProvider>
           <TooltipProvider>
-            {children}
-            <ConditionalChatbot />
+            <AuthProvider>
+              {children}
+              <ConditionalChatbot />
+            </AuthProvider>
           </TooltipProvider>
         </ThemeProvider>
       </body>

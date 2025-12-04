@@ -1,13 +1,13 @@
 'use client';
 
-import { Input } from '@/components/ui/input';
 import React, { useState } from 'react';
 
+import { CoverLetterEntry } from '@/types/cover-letter';
 import CoverLetterPreview from '@/components/cover-letter/CoverLetterPreview';
+import { Input } from '@/components/ui/input';
+import { Search } from 'lucide-react';
 import coverLettersData from '@/data/cover-letters.json';
 import { useCoverLetterState } from '@/hooks/useCoverLetterState';
-import { CoverLetterEntry } from '@/types/cover-letter';
-import { Search } from 'lucide-react';
 
 // Force cast the JSON data
 const coverLetters = coverLettersData as unknown as CoverLetterEntry[];
