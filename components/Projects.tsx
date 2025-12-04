@@ -21,7 +21,7 @@ interface Project {
   skills?: string[];
 }
 
-const projects: Project[] = projectsData;
+const projects: Project[] = projectsData as Project[];
 
 function getSkillColor(skill: string) {
   const metadata = skillMetadata as Record<
