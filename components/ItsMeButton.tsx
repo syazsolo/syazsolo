@@ -1,16 +1,17 @@
 'use client';
 
-import { Button } from '@/components/ui/button';
-import { ShieldCheck, Shield } from 'lucide-react';
-import { useState } from 'react';
-import PasswordDialog from './PasswordDialog';
-import { useAuth } from '@/context/AuthContext';
+import { Shield, ShieldCheck } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from '@/components/ui/tooltip';
+
+import { Button } from '@/components/ui/button';
+import PasswordDialog from './PasswordDialog';
+import { useAuth } from '@/context/AuthContext';
+import { useState } from 'react';
 
 const ItsMeButton = () => {
   const [open, setOpen] = useState(false);
@@ -39,11 +40,15 @@ const ItsMeButton = () => {
             </Button>
           </TooltipTrigger>
           <TooltipContent>
-            <p>{isOwner ? 'Manage Access' : "It's Me"}</p>
+            <p>{isOwner ? "It's You" : "It's Me"}</p>
           </TooltipContent>
         </Tooltip>
       </TooltipProvider>
-      <PasswordDialog open={open} onOpenChange={setOpen} />
+      <PasswordDialog
+        open={open}
+        onOpenChange={setOpen}
+        errorMessage="No, you're not me."
+      />
     </>
   );
 };

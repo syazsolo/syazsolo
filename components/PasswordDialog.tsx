@@ -8,21 +8,36 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Lock, ShieldCheck } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
+import { InputPassword } from '@/components/InputPassword';
 import { useAuth } from '@/context/AuthContext';
-import { useState } from 'react';
 
 interface PasswordDialogProps {
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  errorMessage?: string;
 }
 
-const PasswordDialog = ({ open, onOpenChange }: PasswordDialogProps) => {
+const PasswordDialog = ({
+  open,
+  onOpenChange,
+  errorMessage = 'Incorrect password',
+}: PasswordDialogProps) => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
   const { isOwner, login, logout } = useAuth();
+  const [dialogIsOwner, setDialogIsOwner] = useState(isOwner);
+
+  useEffect(() => {
+    if (open) {
+      setDialogIsOwner(isOwner);
+    } else {
+      setPassword('');
+      setError(false);
+    }
+  }, [open, isOwner]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,7 +56,7 @@ const PasswordDialog = ({ open, onOpenChange }: PasswordDialogProps) => {
     onOpenChange(false);
   };
 
-  if (isOwner) {
+  if (dialogIsOwner) {
     return (
       <Dialog open={open} onOpenChange={onOpenChange}>
         <DialogContent className="sm:max-w-md">
@@ -68,17 +83,16 @@ const PasswordDialog = ({ open, onOpenChange }: PasswordDialogProps) => {
         <DialogHeader>
           <DialogTitle className="flex items-center gap-2">
             <Lock className="h-5 w-5" />
-            It&apos;s Me
+            It's Me
           </DialogTitle>
           <DialogDescription>
-            This feature is for the site owner. If you are a visitor, you can
-            safely ignore this.
+            You've found my private control panel. Visitors can ignore this and
+            keep wandering around the site.
           </DialogDescription>
         </DialogHeader>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
-            <Input
-              type="password"
+            <InputPassword
               placeholder="Enter password"
               value={password}
               onChange={e => {
@@ -86,9 +100,10 @@ const PasswordDialog = ({ open, onOpenChange }: PasswordDialogProps) => {
                 setError(false);
               }}
               className={error ? 'border-destructive' : ''}
+              autoComplete="off"
             />
             {error && (
-              <p className="text-destructive text-sm">Incorrect password</p>
+              <p className="text-destructive text-sm">{errorMessage}</p>
             )}
           </div>
           <div className="flex justify-end">

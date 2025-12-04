@@ -2,7 +2,7 @@ export const aboutContent: (
   | string
   | { title: string; description: string }[]
 )[] = [
-  "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and I try to show that standard in my code: clean, intentional, and built to last.",
+  "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's (Star Wars) boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and I try to show that standard in my code: clean, intentional, and built to last.",
   "This site is my digital workshop, where I put that philosophy into practice. I recreated LinkedIn's interface to build a portfolio that's creative, unique, and professional—a fun, challenging way to demonstrate frontend mastery using a design everyone recognizes.",
   'A few things here:',
   [
