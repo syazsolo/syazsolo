@@ -7,6 +7,11 @@ export interface Experience {
   endDate: string;
   duration: string;
   location?: string;
+  description?: {
+    type: 'ul' | 'ol';
+    items: string[];
+  };
+  skills?: string[];
   logo?: string;
 }
 
@@ -14,12 +19,21 @@ export const experiences: Experience[] = [
   {
     id: 'imttech',
     company: 'IMT Tech Sdn Bhd',
-    title: 'Developer',
+    title: 'Software Engineer',
     employmentType: 'Full Time',
     startDate: 'Jan 2025',
     endDate: 'Oct 2025',
     duration: '10 mos',
-    location: 'Bangsar South, Kuala Lumpur, Malaysia',
+    location: 'Bangsar South, Kuala Lumpur',
+    description: {
+      type: 'ul',
+      items: [
+        'Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code by 70%',
+        'Delivered backend features in Laravel with near-zero reported bugs from account managers and clients',
+        'Collaborated with stakeholders to clarify requirements and ensure smooth project delivery',
+      ],
+    },
+    skills: ['Vue', 'Nuxt', 'Laravel', 'MySQL'],
     logo: '/companies/imt_tech_logo.jpg',
   },
   {
@@ -30,7 +44,15 @@ export const experiences: Experience[] = [
     startDate: 'Jul 2023',
     endDate: 'May 2024',
     duration: '11 mos',
-    location: 'PJ Trade Centre, Damansara Perdana, Petaling Jaya, Selangor',
+    location: 'Petaling Jaya, Selangor',
+    description: {
+      type: 'ul',
+      items: [
+        'Built interactive user interfaces with Svelte/SvelteKit for a system revamp, including custom reusable components and a CRUD generator',
+        'Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests, reducing production bug reports by over 80%',
+      ],
+    },
+    skills: ['Svelte', 'Sveltekit', 'PostgreSQL', 'Telegraf', 'Redis'],
     logo: '/companies/intex_networking_logo.jpg',
   },
   {
@@ -42,5 +64,13 @@ export const experiences: Experience[] = [
     endDate: 'Apr 2023',
     duration: '1 yr 7 mos',
     location: 'Kuala Lumpur, Malaysia',
+    description: {
+      type: 'ul',
+      items: [
+        'Built & maintained critical shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) that served as the operational backbone for key clients',
+        'Built a real-time sales dashboard for Facebook Live integrations using webhooks and WebSockets to surface live order and revenue data during streams',
+      ],
+    },
+    skills: ['PHP', 'Drupal', 'MySQL'],
   },
 ];

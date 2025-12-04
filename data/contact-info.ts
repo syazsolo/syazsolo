@@ -1,4 +1,4 @@
-import { Link2, Linkedin, Mail, Phone } from 'lucide-react';
+import { Github, Link2, Linkedin, Mail, Phone } from 'lucide-react';
 
 export interface ContactItem {
   icon: React.ComponentType<{ className?: string }>;
@@ -35,6 +35,13 @@ export const contactItems: ContactItem[] = [
     label: 'Email',
     value: 'syazanizul@gmail.com',
     href: 'mailto:syazanizul@gmail.com',
+    isLink: true,
+  },
+  {
+    icon: Github,
+    label: 'GitHub',
+    value: 'github.com/syazsolo',
+    href: 'https://github.com/syazsolo',
     isLink: true,
   },
 ];

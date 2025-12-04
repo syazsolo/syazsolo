@@ -5,6 +5,7 @@ export interface Education {
   startYear: string;
   endYear: string;
   grade?: string;
+  description?: string;
   logo?: string;
 }
 
@@ -16,6 +17,7 @@ export const educationHistory: Education[] = [
     startYear: '2017',
     endYear: '2021',
     grade: '3.65',
+    description: 'Yayasan Telekom Malaysia scholar',
     logo: '/education/mmumalaysia_logo.jpg',
   },
 ];

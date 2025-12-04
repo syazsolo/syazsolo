@@ -137,7 +137,10 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
 
       setTimeout(() => {
         try {
-          const blocked = !popupWindow || popupWindow.closed || typeof popupWindow.closed === 'undefined';
+          const blocked =
+            !popupWindow ||
+            popupWindow.closed ||
+            typeof popupWindow.closed === 'undefined';
           resolve(blocked);
         } catch {
           resolve(true);
@@ -154,9 +157,11 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
       if (!isMobile) {
         const popupWindow = window.open('/resume', '_blank');
         const isBlocked = await checkPopupBlocked(popupWindow);
-        
+
         if (isBlocked) {
-          setError('Popup blocked. Please allow popups for this site in your browser settings.');
+          setError(
+            'Popup blocked. Please allow popups for this site in your browser settings.'
+          );
         }
         return;
       }
@@ -165,9 +170,11 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
       if (response.ok) {
         const popupWindow = window.open('/resume.pdf', '_blank');
         const isBlocked = await checkPopupBlocked(popupWindow);
-        
+
         if (isBlocked) {
-          setError('Popup blocked. Please allow popups for this site in your browser settings.');
+          setError(
+            'Popup blocked. Please allow popups for this site in your browser settings.'
+          );
         }
       } else {
         setError(
@@ -215,7 +222,7 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
               {isLoading ? 'Opening...' : 'Resume'}
             </Button>
             {error && (
-              <p className="text-center text-xs text-red-500 animate-in fade-in duration-200">
+              <p className="animate-in fade-in text-center text-xs text-red-500 duration-200">
                 {error}
               </p>
             )}
