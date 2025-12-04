@@ -20,8 +20,6 @@ const renderContactItem = (
   const valueClasses = `text-sm truncate ${
     isLink ? 'text-primary hover:underline' : 'text-muted-foreground'
   }`;
-
-  const copyText = isLink ? item.href : item.value;
   const copyValue =
     isLink && item.href.startsWith('mailto:')
       ? item.value

@@ -31,11 +31,12 @@ const renderContactItem = (
     isLink ? 'text-primary hover:underline' : 'text-muted-foreground'
   }`;
 
-  const copyValue = isLink && item.href.startsWith('mailto:') 
-    ? item.value 
-    : isLink 
-    ? item.href 
-    : item.value;
+  const copyValue =
+    isLink && item.href.startsWith('mailto:')
+      ? item.value
+      : isLink
+        ? item.href
+        : item.value;
 
   const handleCopy = (e: React.MouseEvent) => {
     e.preventDefault();

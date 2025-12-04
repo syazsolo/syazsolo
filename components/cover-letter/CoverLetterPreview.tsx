@@ -241,13 +241,16 @@ export default function CoverLetterPreview({
       // Calculate ratio to fit
       // Use a larger safety factor to utilize more of the page height (0.95)
       const SAFETY_FACTOR = 0.95;
-      const ratio = (maxHeightPx / contentHeight);
-      
+      const ratio = maxHeightPx / contentHeight;
+
       // Allow scaling up to 1.15x if there's space, and shrink down to 0.35x if needed
       const MAX_SCALE = 1.15;
       const MIN_SCALE = 0.35;
-      
-      const newScale = Math.min(MAX_SCALE, Math.max(MIN_SCALE, ratio * SAFETY_FACTOR));
+
+      const newScale = Math.min(
+        MAX_SCALE,
+        Math.max(MIN_SCALE, ratio * SAFETY_FACTOR)
+      );
       setFontSizeScale(newScale);
     };
 
