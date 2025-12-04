@@ -25,7 +25,7 @@ interface Experience {
   logo?: string;
 }
 
-const experiences: Experience[] = experiencesData;
+const experiences: Experience[] = experiencesData as Experience[];
 
 const FALLBACK_LOGO = '/fallback.jpg';
 
