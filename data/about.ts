@@ -3,7 +3,7 @@ export const aboutContent: (
   | { title: string; description: string }[]
 )[] = [
   "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and that standard shows in my code: clean, intentional, and built to last.",
-  "This site is my digital workshop, where I put that philosophy into practice. I rebuilt LinkedIn's UI from scratch because I wanted a creative, professional portfolio to showcase my work — and because it's a fun, challenging way to demonstrate frontend mastery on a design everyone knows.",
+  "This site is my digital workshop, where I put that philosophy into practice. I recreated LinkedIn's interface to build a portfolio that's creative, unique, and professional—a fun, challenging way to demonstrate frontend mastery using a design everyone recognizes.",
   'A few things you can poke around in:',
   [
     {
@@ -19,8 +19,8 @@ export const aboutContent: (
     {
       title: 'See my projects',
       description:
-        'Things I build to solve real problems. Each one is a playground for clean architecture and new patterns.',
+        'I build to solve my own problems first. If others find them useful, I share them — and who knows, some may grow into something more. Each project is a playground for clean architecture and new patterns.',
     },
   ],
-  "If you want to reach out, there’s a lovely contact form where you can tell me how to reach you — I'll get in touch with you myself. I'm always delighted to talk!",
+  "If you want to reach out, there's a lovely contact form where you can tell me how to reach you — I'll get in touch with you myself. I'm always delighted to talk!",
 ];
