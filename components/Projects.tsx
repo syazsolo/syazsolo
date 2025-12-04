@@ -56,7 +56,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
   return (
     <div className="-mx-3 flex w-full gap-3 p-3 text-left">
       <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="min-w-0 flex-1">
             <div className="flex items-baseline gap-2 flex-wrap">
               <h3 className="text-foreground text-[15px] font-semibold">
@@ -86,7 +86,7 @@ const ProjectItem = ({ project }: { project: Project }) => {
             </p>
           </div>
           {project.skills && project.skills.length > 0 && (
-            <div className="flex flex-wrap justify-end gap-1.5">
+            <div className="flex flex-wrap gap-1.5 sm:justify-end">
               {project.skills.map(skill => {
                 const colors = getSkillColor(skill);
                 return (
@@ -108,14 +108,6 @@ const ProjectItem = ({ project }: { project: Project }) => {
         </div>
         {project.description && (
           <>
-            {!expanded && (
-              <div className="mt-3">
-                <SeeMoreButton
-                  onClick={() => setExpanded(true)}
-                  expanded={expanded}
-                />
-              </div>
-            )}
             {expanded && (
               <ul className="text-foreground/90 mt-3 ml-5 list-outside list-disc space-y-1.5 pl-1 text-[14px] leading-relaxed">
                 {project.description.items.map((item, index) => (
@@ -123,6 +115,12 @@ const ProjectItem = ({ project }: { project: Project }) => {
                 ))}
               </ul>
             )}
+            <div className="mt-3">
+              <SeeMoreButton
+                onClick={() => setExpanded(!expanded)}
+                expanded={expanded}
+              />
+            </div>
           </>
         )}
       </div>

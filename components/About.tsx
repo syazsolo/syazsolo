@@ -15,7 +15,6 @@ const About = () => {
   const collapsedItemCount = 2;
 
   const shouldCollapse = aboutContent.length > collapsedItemCount;
-  const hasHiddenItems = shouldCollapse && !expanded;
 
   const itemsToRender =
     shouldCollapse && !expanded
@@ -30,19 +29,20 @@ const About = () => {
       {itemsToRender.map((item, index) => {
         const isLastVisibleItem = index === itemsToRender.length - 1;
         const showInlineToggle =
-          hasHiddenItems && isLastVisibleItem && canInlineToggle;
+          shouldCollapse && isLastVisibleItem && canInlineToggle;
 
         if (typeof item === 'string') {
           return (
             <p key={index} className="text-foreground text-[14px] leading-6">
               {item}
-              {showInlineToggle && (
+              {showInlineToggle && !expanded && (
                 <>
                   {' '}
                   <SeeMoreButton
-                    onClick={() => setExpanded(true)}
+                    onClick={() => setExpanded(!expanded)}
                     expanded={expanded}
                     className="inline-flex items-center"
+                    collapsible={false}
                   />
                 </>
               )}
@@ -68,11 +68,12 @@ const About = () => {
         return null;
       })}
 
-      {hasHiddenItems && !canInlineToggle && (
+      {shouldCollapse && !canInlineToggle && !expanded && (
         <SeeMoreButton
-          onClick={() => setExpanded(true)}
+          onClick={() => setExpanded(!expanded)}
           expanded={expanded}
           className="text-left"
+          collapsible={false}
         />
       )}
     </Section>

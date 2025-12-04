@@ -80,7 +80,7 @@ const ExperienceItem = ({ experience }: { experience: Experience }) => {
         </div>
       </div>
       <div className="min-w-0 flex-1">
-        <div className="flex items-start justify-between gap-4">
+        <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between sm:gap-4">
           <div className="min-w-0 flex-1">
             <h3 className="text-foreground text-[15px] font-semibold">
               {experience.title}
@@ -99,7 +99,7 @@ const ExperienceItem = ({ experience }: { experience: Experience }) => {
             )}
           </div>
           {experience.skills && experience.skills.length > 0 && (
-            <div className="flex flex-wrap justify-end gap-1.5">
+            <div className="flex flex-wrap gap-1.5 sm:justify-end">
               {experience.skills.map(skill => {
                 const colors = getSkillColor(skill);
                 return (
@@ -121,14 +121,6 @@ const ExperienceItem = ({ experience }: { experience: Experience }) => {
         </div>
         {experience.description && (
           <>
-            {!expanded && (
-              <div className="mt-3">
-                <SeeMoreButton
-                  onClick={() => setExpanded(true)}
-                  expanded={expanded}
-                />
-              </div>
-            )}
             {expanded && (
               <ul className="text-foreground/90 mt-3 ml-5 list-outside list-disc space-y-1.5 pl-1 text-[14px] leading-relaxed">
                 {experience.description.items.map((item, index) => (
@@ -136,6 +128,12 @@ const ExperienceItem = ({ experience }: { experience: Experience }) => {
                 ))}
               </ul>
             )}
+            <div className="mt-3">
+              <SeeMoreButton
+                onClick={() => setExpanded(!expanded)}
+                expanded={expanded}
+              />
+            </div>
           </>
         )}
       </div>
