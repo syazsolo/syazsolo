@@ -2,12 +2,12 @@ export const aboutContent: (
   | string
   | { title: string; description: string }[]
 )[] = [
-  "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and that standard shows in my code: clean, intentional, and built to last.",
+  "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and I try to show that standard in my code: clean, intentional, and built to last.",
   "This site is my digital workshop, where I put that philosophy into practice. I recreated LinkedIn's interface to build a portfolio that's creative, unique, and professional—a fun, challenging way to demonstrate frontend mastery using a design everyone recognizes.",
-  'A few things you can poke around in:',
+  'A few things here:',
   [
     {
-      title: 'Chat with me (via bot)',
+      title: 'Chat with me (chatbot)',
       description:
         "It's a collection of pre-written conversations with different personas I've created: from Star Wars to The Incredibles, and even Uncle Bob's Clean Code principles. Think of it as a choose-your-own-adventure intro to my world.",
     },
@@ -22,5 +22,5 @@ export const aboutContent: (
         'I build to solve my own problems first. If others find them useful, I share them — and who knows, some may grow into something more. Each project is a playground for clean architecture and new patterns.',
     },
   ],
-  "If you want to reach out, there's a lovely contact form where you can tell me how to reach you — I'll get in touch with you myself. I'm always delighted to talk!",
+  "If you want to reach out, my contact form offers two ways: send a message directly, or—lovely and easy—just leave your email or phone number and I'll get back to you myself. I'm always delighted to talk!",
 ];
