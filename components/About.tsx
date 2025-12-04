@@ -2,8 +2,13 @@
 
 import Section from '@/components/Section';
 import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
-import { aboutContent } from '@/data/about';
+import aboutContentData from '@/data/about.json';
 import { useState } from 'react';
+
+const aboutContent: (
+  | string
+  | { title: string; description: string }[]
+)[] = aboutContentData;
 
 const About = () => {
   const [expanded, setExpanded] = useState(false);

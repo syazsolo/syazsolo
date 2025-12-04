@@ -1,0 +1,68 @@
+[
+  {
+    "id": "syazsolo",
+    "title": "Syazsolo",
+    "status": "maintaining",
+    "url": "syazsolo.netlify.app",
+    "startDate": "Nov 2025",
+    "endDate": "Present",
+    "description": {
+      "type": "ul",
+      "items": [
+        "Personal portfolio demonstrating frontend capabilities by replicating LinkedIn's interface",
+        "Features multiple specialized chatbots for project explanations, Clean Code summaries, and career discussions",
+        "Serves as a testing ground for developer tools and utilities I actively use"
+      ]
+    },
+    "skills": ["React", "Next.js"]
+  },
+  {
+    "id": "atuk-opah",
+    "title": "Atuk Opah",
+    "status": "maintaining",
+    "url": "atuk-opah.netlify.app",
+    "startDate": "Nov 2025",
+    "endDate": "Present",
+    "description": {
+      "type": "ul",
+      "items": [
+        "Private family tree application for 100+ family members to visualize and explore their lineage",
+        "Treated as a freelance project with a family member as client, gathering requirements and delivering features iteratively",
+        "Built with free hosting (Netlify, Supabase) as a core constraint; password-protected (use \"demo\" to view sample data)"
+      ]
+    },
+    "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
+  },
+  {
+    "id": "infinite-days",
+    "title": "Infinite Days",
+    "status": "active",
+    "url": "infinite-days.netlify.app",
+    "startDate": "Nov 2025",
+    "endDate": "Present",
+    "description": {
+      "type": "ul",
+      "items": [
+        "A timeline-based todo app that visualizes all commitments on a single continuous stream",
+        "Built to track the gap between what I plan to do and what I actually do, revealing patterns in consistency and habit formation"
+      ]
+    },
+    "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
+  },
+  {
+    "id": "bigcampus",
+    "title": "Bigcampus",
+    "status": "on hold",
+    "startDate": "Jan 2025",
+    "endDate": "Present",
+    "description": {
+      "type": "ul",
+      "items": [
+        "A social platform for organizing group activities through user-created clubs, where club creators define their own formats, membership rules, and governance structures to solve the 'finding friends to hang out' problem",
+        "Currently on hold while prioritizing other projects; foundational architecture and theme completed"
+      ]
+    },
+    "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
+  }
+]
+

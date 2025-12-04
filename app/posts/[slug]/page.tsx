@@ -11,7 +11,7 @@ import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
 import { Card, CardContent } from '@/components/ui/card';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import Image from 'next/image';
-import { profileData } from '@/data/profile';
+import profileData from '@/data/profile.json';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';
 import { Post } from '@/types';
 

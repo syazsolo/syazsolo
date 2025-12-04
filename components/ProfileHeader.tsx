@@ -5,7 +5,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 import ContactInfoModal from '@/components/ContactInfoModal';
 import ItsMeButton from '@/components/ItsMeButton';
-import { profileData } from '@/data/profile';
+import profileData from '@/data/profile.json';
 import { useState } from 'react';
 import Image from 'next/image';
 
