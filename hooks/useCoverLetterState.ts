@@ -1,33 +1,19 @@
 import { useEffect, useState } from 'react';
 import React from 'react';
 
-export type Step = 'select' | 'form' | 'preview';
+export type View = 'list' | 'preview';
 
 export interface CoverLetterState {
-  step: Step;
-  selectedTemplateId: string | null;
-  formValues: Record<string, string>;
-  // We don't persist finalContent/regards as they can be re-derived from template + formValues
-  // But for "improving the preview (the code)" mentioned by user, maybe they edit the text directly?
-  // The current implementation doesn't seem to support direct text editing in preview,
-  // but the user said "I improve the preview (the code)".
-  // If they mean they edit the code *of the app*, then state loss is expected on HMR.
-  // If they mean they edit the text in the preview (if that feature existed), we'd need to save it.
-  // Looking at the code, `CoverLetterPreview` has `onEdit` which goes back to form.
-  // It doesn't seem to have a text editor.
-  // The user likely means they change the *form inputs* and then the state is lost on refresh.
-  // So persisting formValues and selectedTemplateId should be enough.
+  view: View;
+  selectedId: string | null;
 }
 
-const STORAGE_KEY = 'cover-letter-state';
+const STORAGE_KEY = 'cover-letter-state-v2';
 
 export function useCoverLetterState() {
   const [isInitialized, setIsInitialized] = useState(false);
-  const [step, setStep] = useState<Step>('select');
-  const [selectedTemplateId, setSelectedTemplateId] = useState<string | null>(
-    null
-  );
-  const [formValues, setFormValues] = useState<Record<string, string>>({});
+  const [view, setView] = useState<View>('list');
+  const [selectedId, setSelectedId] = useState<string | null>(null);
 
   // Load from storage on mount
   useEffect(() => {
@@ -35,11 +21,9 @@ export function useCoverLetterState() {
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        // Use startTransition to avoid synchronous setState in effect
         React.startTransition(() => {
-          setStep(parsed.step || 'select');
-          setSelectedTemplateId(parsed.selectedTemplateId || null);
-          setFormValues(parsed.formValues || {});
+          setView(parsed.view || 'list');
+          setSelectedId(parsed.selectedId || null);
         });
       } catch (e) {
         console.error('Failed to parse cover letter state', e);
@@ -56,27 +40,23 @@ export function useCoverLetterState() {
       return;
     }
     const state: CoverLetterState = {
-      step,
-      selectedTemplateId,
-      formValues,
+      view,
+      selectedId,
     };
     sessionStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }, [step, selectedTemplateId, formValues, isInitialized]);
+  }, [view, selectedId, isInitialized]);
 
   const clearState = () => {
-    setStep('select');
-    setSelectedTemplateId(null);
-    setFormValues({});
+    setView('list');
+    setSelectedId(null);
     sessionStorage.removeItem(STORAGE_KEY);
   };
 
   return {
-    step,
-    setStep,
-    selectedTemplateId,
-    setSelectedTemplateId,
-    formValues,
-    setFormValues,
+    view,
+    setView,
+    selectedId,
+    setSelectedId,
     clearState,
     isInitialized,
   };

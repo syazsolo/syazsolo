@@ -2,23 +2,25 @@ export const aboutContent: (
   | string
   | { title: string; description: string }[]
 )[] = [
-  "Hi, I'm Syazani.",
-  "I'm a software engineer. I build web applications and solve technical problems.",
-  "Recently, I've been focused on frontend work — this site mimics LinkedIn's design to show I can replicate complex interfaces. But I'm comfortable across the stack: frontend, backend, APIs, whatever the project needs.",
-  'A few things on this site:',
+  "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and that standard shows in my code: clean, intentional, and built to last.",
+  "This site is my digital workshop, where I put that philosophy into practice. I recreated LinkedIn's interface to build a portfolio that's creative, unique, and professional—a fun, challenging way to demonstrate frontend mastery using a design everyone recognizes.",
+  'A few things you can poke around in:',
   [
     {
-      title: 'Chatbot',
+      title: 'Chat with me (via bot)',
       description:
-        'Talk to an Chatbot version of me. Ask about my work, my approach to clean code, or just chat about Star Wars.',
+        "It's a collection of pre-written conversations with different personas I've created: from Star Wars to The Incredibles, and even Uncle Bob's Clean Code principles. Think of it as a choose-your-own-adventure intro to my world.",
     },
     {
-      title: 'Posts',
-      description: 'My thoughts on software engineering and building things.',
+      title: 'Read my posts',
+      description:
+        "I write about the things I notice: dissecting design decisions (like Apple's password field), reflecting on craft (what it means to 'wade through bad code'), and connecting software to the way we live. It's where my engineering mind meets the world.",
     },
-    // {
-    //   title: 'Skills Checklist',
-    //   description: "What I value as an engineer and where I'm growing.",
-    // },
+    {
+      title: 'See my projects',
+      description:
+        'I build to solve my own problems first. If others find them useful, I share them — and who knows, some may grow into something more. Each project is a playground for clean architecture and new patterns.',
+    },
   ],
+  "If you want to reach out, there's a lovely contact form where you can tell me how to reach you — I'll get in touch with you myself. I'm always delighted to talk!",
 ];

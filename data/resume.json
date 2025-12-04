@@ -26,7 +26,7 @@
         "type": "ul",
         "items": [
           "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code by 70%",
-          "Delivered backend features in Laravel with zero reported bugs from account managers and clients",
+          "Delivered backend features in Laravel with near-zero reported bugs from account managers and clients",
           "Collaborated with stakeholders to clarify requirements and ensure smooth project delivery"
         ]
       },

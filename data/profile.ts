@@ -1,7 +1,7 @@
 export const profileData = {
-  name: 'Syazani (Syaz Solo) Zulkhairi',
+  name: 'Syazani (syazsolo) Zulkhairi',
   shortName: 'Syazani Zulkhairi',
-  headline: 'Software Engineer',
+  headline: 'Software Engineer | Clean Code & Craftsmanship',
   location: 'Kuala Lumpur, Malaysia',
   bannerUrl: '/background.jpg',
   profileUrl: '/acak.jpg',

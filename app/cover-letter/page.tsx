@@ -1,167 +1,131 @@
 'use client';
 
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import {
-  ContentItem,
-  extractFields,
-  replaceFields,
-} from '@/lib/cover-letter-utils';
-import React from 'react';
+import { Input } from '@/components/ui/input';
+import React, { useState } from 'react';
 
-import { Button } from '@/components/ui/button';
-import CoverLetterForm from '@/components/cover-letter/CoverLetterForm';
 import CoverLetterPreview from '@/components/cover-letter/CoverLetterPreview';
-import templatesData from '@/data/cover-letter-templates.json';
+import coverLettersData from '@/data/cover-letters.json';
 import { useCoverLetterState } from '@/hooks/useCoverLetterState';
+import { CoverLetterEntry } from '@/types/cover-letter';
+import { Search } from 'lucide-react';
 
-// Force cast the JSON data to the correct type since JSON imports are loosely typed or inferred as simple types
-const templates = templatesData as unknown as Template[];
-
-interface Template {
-  id: string;
-  name: string;
-  summary?: string;
-  content: ContentItem[];
-  regards?: ContentItem[];
-}
+// Force cast the JSON data
+const coverLetters = coverLettersData as unknown as CoverLetterEntry[];
 
 export default function CoverLetterPage() {
-  const {
-    step,
-    setStep,
-    selectedTemplateId,
-    setSelectedTemplateId,
-    formValues,
-    setFormValues,
-    isInitialized,
-  } = useCoverLetterState();
+  const { view, setView, selectedId, setSelectedId, isInitialized } =
+    useCoverLetterState();
 
-  // Derive selected template from ID
-  const selectedTemplate =
-    templates.find(t => t.id === selectedTemplateId) || null;
+  const [searchQuery, setSearchQuery] = useState('');
 
-  // Derive fields from selected template
-  const fields = React.useMemo(() => {
-    return selectedTemplate ? extractFields(selectedTemplate.content) : [];
-  }, [selectedTemplate]);
+  // Sort by date descending
+  const sortedLetters = React.useMemo(() => {
+    return [...coverLetters].reverse().sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+  }, []);
 
-  // Derive final content when in preview mode
-  const { finalContent, finalRegards } = React.useMemo(() => {
-    if (step === 'preview' && selectedTemplate) {
-      const dataWithDefaults = { ...formValues };
-      fields.forEach(field => {
-        if (!dataWithDefaults[field] || dataWithDefaults[field].trim() === '') {
-          dataWithDefaults[field] = `[${field}]`;
-        }
-      });
-
-      const content = replaceFields(selectedTemplate.content, dataWithDefaults);
-      const regards = selectedTemplate.regards
-        ? replaceFields(selectedTemplate.regards, dataWithDefaults)
-        : [];
-
-      return { finalContent: content, finalRegards: regards };
+  // Filter by search query
+  const filteredLetters = React.useMemo(() => {
+    if (!searchQuery.trim()) {
+      return sortedLetters;
     }
-    return { finalContent: [], finalRegards: [] };
-  }, [step, selectedTemplate, formValues, fields]);
+    const query = searchQuery.toLowerCase();
+    return sortedLetters.filter(
+      letter =>
+        letter.company.toLowerCase().includes(query) ||
+        letter.role.toLowerCase().includes(query)
+    );
+  }, [searchQuery, sortedLetters]);
 
-  const handleSelectTemplate = (template: Template) => {
-    setSelectedTemplateId(template.id);
-    const extractedFields = extractFields(template.content);
-
-    if (extractedFields.length > 0) {
-      setStep('form');
-    } else {
-      // No fields, skip to preview
-      setStep('preview');
-    }
+  const handleSelectLetter = (id: string) => {
+    setSelectedId(id);
+    setView('preview');
   };
 
-  const handleFormSubmit = (data: Record<string, string>) => {
-    setFormValues(data);
-    setStep('preview');
-  };
-
-  const handleEdit = () => {
-    if (fields.length > 0) {
-      setStep('form');
-    } else {
-      setStep('select');
-    }
-  };
-
-  const handleBackToTemplates = () => {
-    setStep('select');
-    // Optional: Clear form values if going back to templates?
-    // User asked for persistence, so maybe keep them is better.
-    // But if they switch templates, fields might mismatch.
-    // For now, we keep them.
+  const handleBack = () => {
+    setView('list');
+    setSelectedId(null);
   };
 
   if (!isInitialized) {
-    return null; // or a loading spinner
+    return null;
   }
 
-  if (step === 'select') {
-    return (
-      <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
-        <div className="container mx-auto max-w-4xl py-12">
-          <h1 className="mb-8 text-3xl font-bold text-slate-900">
-            Select a Template
-          </h1>
-          <div className="grid gap-6 md:grid-cols-2">
-            {templates.map(template => (
-              <Card
-                key={template.id}
-                className="cursor-pointer bg-white transition-all hover:border-slate-400 hover:shadow-md"
-                onClick={() => handleSelectTemplate(template)}
-              >
-                <CardHeader>
-                  <CardTitle className="text-slate-900">
-                    {template.name}
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-sm text-slate-500">
-                    {template.summary || 'No summary available.'}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  if (step === 'form') {
-    return (
-      <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
-        <div className="container mx-auto max-w-4xl py-12">
-          <Button
-            variant="ghost"
-            onClick={handleBackToTemplates}
-            className="mb-6"
-          >
-            ← Back to Templates
-          </Button>
-          <CoverLetterForm
-            fields={fields}
-            initialValues={formValues}
-            onSubmit={handleFormSubmit}
+  if (view === 'preview' && selectedId) {
+    const selectedLetter = coverLetters.find(l => l.id === selectedId);
+    if (selectedLetter) {
+      return (
+        <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
+          <CoverLetterPreview
+            content={selectedLetter.content}
+            regards={selectedLetter.regards}
+            onBack={handleBack}
           />
         </div>
-      </div>
-    );
+      );
+    }
   }
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-white dark:text-slate-900">
-      <CoverLetterPreview
-        content={finalContent}
-        regards={finalRegards}
-        onEdit={handleEdit}
-      />
+      <div className="container mx-auto max-w-4xl px-4 py-12">
+        <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+          <h1 className="text-3xl font-bold text-slate-900">
+            Cover Letter History
+          </h1>
+          <div className="relative w-full md:w-72">
+            <Search className="absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-slate-400" />
+            <Input
+              type="text"
+              placeholder="Search company or role..."
+              className="bg-white pl-10"
+              value={searchQuery}
+              onChange={e => setSearchQuery(e.target.value)}
+            />
+          </div>
+        </div>
+
+        <div className="space-y-2">
+          {filteredLetters.length === 0 ? (
+            <p className="py-12 text-center text-slate-500">
+              No cover letters found.
+            </p>
+          ) : (
+            filteredLetters.map(letter => (
+              <div
+                key={letter.id}
+                className="group flex cursor-pointer items-center justify-between rounded-lg border border-slate-200 bg-white p-4 transition-all hover:border-slate-400 hover:shadow-sm dark:border-slate-800 dark:bg-slate-950 dark:hover:border-slate-700"
+                onClick={() => handleSelectLetter(letter.id)}
+              >
+                <div className="min-w-0 flex-1 pr-4">
+                  <div className="mb-1 flex items-center gap-2">
+                    <h3 className="truncate text-base font-semibold text-slate-900 dark:text-slate-50">
+                      {letter.company}
+                    </h3>
+                    <span className="hidden text-slate-300 sm:inline dark:text-slate-700">
+                      |
+                    </span>
+                    <p className="truncate text-sm font-medium text-slate-600 dark:text-slate-400">
+                      {letter.role}
+                    </p>
+                  </div>
+                  <p className="truncate text-xs text-slate-400 dark:text-slate-500">
+                    {typeof letter.content[0] === 'string'
+                      ? letter.content[0]
+                      : 'Content available'}
+                  </p>
+                </div>
+                <div className="shrink-0 text-right">
+                  <span className="rounded bg-slate-100 px-2 py-1 text-xs font-medium text-slate-500 dark:bg-slate-900 dark:text-slate-400">
+                    {letter.date}
+                  </span>
+                </div>
+              </div>
+            ))
+          )}
+        </div>
+      </div>
     </div>
   );
 }

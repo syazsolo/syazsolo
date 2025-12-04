@@ -18,7 +18,7 @@ const Header = () => {
             <Link href="/" className="cursor-pointer">
               <Image
                 src={isDark ? '/logo-dark.png' : '/logo.png'}
-                alt="Syaz Solo Logo"
+                alt="Syazsolo Logo"
                 width={120}
                 height={32}
                 className="h-8 w-auto"

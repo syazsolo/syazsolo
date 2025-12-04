@@ -2,7 +2,7 @@
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
-import { ContentItem } from '@/lib/cover-letter-utils';
+import { ContentItem } from '@/types/cover-letter';
 import { Printer } from 'lucide-react';
 import React from 'react';
 import resumeData from '@/data/resume.json';
@@ -10,7 +10,7 @@ import resumeData from '@/data/resume.json';
 interface CoverLetterPreviewProps {
   content: ContentItem[];
   regards?: ContentItem[];
-  onEdit: () => void;
+  onBack: () => void;
 }
 
 const { profile } = resumeData;
@@ -130,7 +130,7 @@ const ContentRow = ({
 export default function CoverLetterPreview({
   content,
   regards = [],
-  onEdit,
+  onBack,
 }: CoverLetterPreviewProps) {
   const [fontSizeScale, setFontSizeScale] = React.useState(1);
   const contentRef = React.useRef<HTMLDivElement>(null);
@@ -158,7 +158,7 @@ export default function CoverLetterPreview({
     return (
       <ContentRow key={key} scale={scale} className="pb-6">
         <ListTag className={`ml-4 ${listStyle} space-y-2`}>
-          {item.items.map((subItem, index) => (
+          {(item.items || []).map((subItem, index) => (
             <li key={index} className="pl-1">
               {typeof subItem === 'string' ? (
                 renderBoldText(subItem)
@@ -203,9 +203,20 @@ export default function CoverLetterPreview({
           scale={scale}
           className={isFirst ? 'mt-8' : ''}
         >
-          {typeof item === 'string'
-            ? renderBoldText(item)
-            : renderContentItem(item, scale, `regards-${index}`)}
+          {typeof item === 'string' ? (
+            renderBoldText(item)
+          ) : item.type === 'link' ? (
+            <a
+              href={item.to}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline decoration-slate-400 underline-offset-4"
+            >
+              {item.text || item.to}
+            </a>
+          ) : (
+            renderContentItem(item, scale, `regards-${index}`)
+          )}
         </ContentRow>
       );
     });
@@ -227,17 +238,20 @@ export default function CoverLetterPreview({
       // Measure the unscaled content
       const contentHeight = contentRef.current.scrollHeight;
 
-      if (contentHeight > maxHeightPx) {
-        // Calculate ratio to fit
-        // Use a smaller safety factor to ensure content fits comfortably on a single page
-        const SAFETY_FACTOR = 0.9;
-        const ratio = (maxHeightPx / contentHeight) * SAFETY_FACTOR;
-        // Don't scale up, only down. Allow a bit more shrink if needed.
-        const newScale = Math.max(0.4, Math.min(1, ratio));
-        setFontSizeScale(newScale);
-      } else {
-        setFontSizeScale(1);
-      }
+      // Calculate ratio to fit
+      // Use a larger safety factor to utilize more of the page height (0.95)
+      const SAFETY_FACTOR = 0.95;
+      const ratio = maxHeightPx / contentHeight;
+
+      // Allow scaling up to 1.15x if there's space, and shrink down to 0.35x if needed
+      const MAX_SCALE = 1.15;
+      const MIN_SCALE = 0.35;
+
+      const newScale = Math.min(
+        MAX_SCALE,
+        Math.max(MIN_SCALE, ratio * SAFETY_FACTOR)
+      );
+      setFontSizeScale(newScale);
     };
 
     calculateScale();
@@ -250,11 +264,11 @@ export default function CoverLetterPreview({
       {/* Action Buttons (Hidden in Print) */}
       <div className="fixed top-8 right-8 flex flex-col gap-4 print:hidden">
         <Button
-          onClick={onEdit}
+          onClick={onBack}
           variant="outline"
           className="border border-slate-300 bg-white text-slate-900 shadow-lg hover:bg-slate-100 dark:border-slate-300 dark:bg-white dark:text-slate-900 dark:hover:bg-slate-100"
         >
-          Edit Details
+          ← Back to List
         </Button>
         <Button
           onClick={handlePrint}
