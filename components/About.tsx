@@ -1,15 +1,18 @@
 'use client';
 
 import Section from '@/components/Section';
-import { aboutContent } from '@/data/about';
+import { SeeMoreButton } from '@/components/ui/SeeMoreButton';
+import aboutContentData from '@/data/about.json';
 import { useState } from 'react';
+
+const aboutContent: (string | { title: string; description: string }[])[] =
+  aboutContentData;
 
 const About = () => {
   const [expanded, setExpanded] = useState(false);
   const collapsedItemCount = 2;
 
   const shouldCollapse = aboutContent.length > collapsedItemCount;
-  const hasHiddenItems = shouldCollapse && !expanded;
 
   const itemsToRender =
     shouldCollapse && !expanded
@@ -24,23 +27,21 @@ const About = () => {
       {itemsToRender.map((item, index) => {
         const isLastVisibleItem = index === itemsToRender.length - 1;
         const showInlineToggle =
-          hasHiddenItems && isLastVisibleItem && canInlineToggle;
+          shouldCollapse && isLastVisibleItem && canInlineToggle;
 
         if (typeof item === 'string') {
           return (
             <p key={index} className="text-foreground text-[14px] leading-6">
               {item}
-              {showInlineToggle && (
+              {showInlineToggle && !expanded && (
                 <>
                   {' '}
-                  <button
-                    type="button"
-                    onClick={() => setExpanded(true)}
-                    className="text-muted-foreground hover:text-foreground inline-flex items-center text-[14px] leading-6"
-                    aria-expanded={expanded}
-                  >
-                    ... see more
-                  </button>
+                  <SeeMoreButton
+                    onClick={() => setExpanded(!expanded)}
+                    expanded={expanded}
+                    className="inline-flex items-center"
+                    collapsible={false}
+                  />
                 </>
               )}
             </p>
@@ -65,15 +66,13 @@ const About = () => {
         return null;
       })}
 
-      {hasHiddenItems && !canInlineToggle && (
-        <button
-          type="button"
-          onClick={() => setExpanded(true)}
-          className="text-muted-foreground hover:text-foreground text-left text-[14px] leading-6"
-          aria-expanded={expanded}
-        >
-          ... see more
-        </button>
+      {shouldCollapse && !canInlineToggle && !expanded && (
+        <SeeMoreButton
+          onClick={() => setExpanded(!expanded)}
+          expanded={expanded}
+          className="text-left"
+          collapsible={false}
+        />
       )}
     </Section>
   );

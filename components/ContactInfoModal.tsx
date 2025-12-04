@@ -1,16 +1,28 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { Copy, Check } from 'lucide-react';
-import { ContactItem, contactItems } from '@/data/contact-info';
+import { Check, Copy } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
+import { useEffect, useState } from 'react';
+
 import { Button } from '@/components/ui/button';
-import { profileData } from '@/data/profile';
+import contactInfoData from '@/data/contact-info.json';
+import { getIcon } from '@/lib/iconMapping';
+import profileData from '@/data/profile.json';
+
+interface ContactItem {
+  icon: string;
+  label: string;
+  value: string;
+  href: string;
+  isLink: boolean;
+}
+
+const contactItems: ContactItem[] = contactInfoData;
 
 interface ContactInfoModalProps {
   open: boolean;
@@ -23,7 +35,7 @@ const renderContactItem = (
   copiedIndex: number | null,
   onCopy: (index: number, text: string) => void
 ) => {
-  const Icon = item.icon;
+  const Icon = getIcon(item.icon);
   const isLink = item.isLink;
   const isCopied = copiedIndex === index;
 
@@ -112,6 +124,7 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -120,26 +133,70 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
 
+  useEffect(() => {
+    if (error) {
+      const timer = setTimeout(() => setError(null), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [error]);
+
+  const checkPopupBlocked = (popupWindow: Window | null): Promise<boolean> => {
+    return new Promise(resolve => {
+      if (!popupWindow) {
+        resolve(true);
+        return;
+      }
+
+      setTimeout(() => {
+        try {
+          const blocked =
+            !popupWindow ||
+            popupWindow.closed ||
+            typeof popupWindow.closed === 'undefined';
+          resolve(blocked);
+        } catch {
+          resolve(true);
+        }
+      }, 500);
+    });
+  };
+
   const handleResumeClick = async () => {
     setError(null);
-    if (!isMobile) {
-      window.open('/resume', '_blank');
-      return;
-    }
+    setIsLoading(true);
 
     try {
+      if (!isMobile) {
+        const popupWindow = window.open('/resume', '_blank');
+        const isBlocked = await checkPopupBlocked(popupWindow);
+
+        if (isBlocked) {
+          setError(
+            'Popup blocked. Please allow popups for this site in your browser settings.'
+          );
+        }
+        return;
+      }
+
       const response = await fetch('/resume.pdf', { method: 'HEAD' });
       if (response.ok) {
-        window.open('/resume.pdf', '_blank');
+        const popupWindow = window.open('/resume.pdf', '_blank');
+        const isBlocked = await checkPopupBlocked(popupWindow);
+
+        if (isBlocked) {
+          setError(
+            'Popup blocked. Please allow popups for this site in your browser settings.'
+          );
+        }
       } else {
         setError(
           'Mobile PDF not found. Please save resume.pdf to public folder.'
         );
-        setTimeout(() => setError(null), 3000);
       }
     } catch (_err) {
       setError('Error checking for PDF.');
-      setTimeout(() => setError(null), 3000);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -169,14 +226,17 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
           <div className="flex flex-col gap-2">
             <Button
               size="sm"
-              className="rounded-full"
+              className="rounded-full transition-opacity active:opacity-70"
               variant="default"
               onClick={handleResumeClick}
+              disabled={isLoading}
             >
-              Resume
+              {isLoading ? 'Opening...' : 'Resume'}
             </Button>
             {error && (
-              <p className="text-center text-xs text-red-500">{error}</p>
+              <p className="animate-in fade-in text-center text-xs text-red-500 duration-200">
+                {error}
+              </p>
             )}
             <Button
               size="sm"

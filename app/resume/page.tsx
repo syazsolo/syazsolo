@@ -18,20 +18,20 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import React from 'react';
 import { cn } from '@/utils';
-import { experiences } from '@/data/experiences';
 import resumeData from '@/data/resume.json';
+import skillMetadata from '@/data/skillMetadata.json';
 
 // ============================================================================
 // Utility Functions
 // ============================================================================
 
 function getSkillColor(skill: string) {
-  const skillMetadata = resumeData.skillMetadata as Record<
+  const metadata = skillMetadata as Record<
     string,
     { bg: string; text: string; border: string }
   >;
   return (
-    skillMetadata[skill] || {
+    metadata[skill] || {
       bg: '#E2E8F0',
       text: '#475569',
       border: '#CBD5E1',
@@ -66,17 +66,9 @@ function calculateDuration(startDate: string, endDate: string): string {
 // Component Helper Functions
 // ============================================================================
 
-function getCompanyLogo(companyName: string): string | undefined {
-  const experience = experiences.find(
-    exp =>
-      exp.company === companyName ||
-      exp.id ===
-        companyName
-          .toLowerCase()
-          .replace(/\s+/g, '')
-          .replace(/[^a-z0-9]/g, '')
-  );
-  return experience?.logo;
+function getCompanyLogo(experienceId: string): string | undefined {
+  const experience = resumeData.experience.find(exp => exp.id === experienceId);
+  return experience?.companyLogo;
 }
 
 type Description = string | { type: 'ul' | 'ol'; items: Description[] };
@@ -290,7 +282,7 @@ export default function ResumePage() {
               <div className="flex items-center gap-2">
                 <Avatar className="h-6 w-6 shrink-0 rounded">
                   <AvatarImage
-                    src={getCompanyLogo(exp.company)}
+                    src={getCompanyLogo(exp.id)}
                     alt={`${exp.company} logo`}
                   />
                   <AvatarFallback>

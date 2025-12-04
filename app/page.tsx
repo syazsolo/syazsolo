@@ -6,8 +6,9 @@ import Header from '@/components/Header';
 import { Post } from '@/types';
 import PostsSection from '@/components/PostsSection';
 import ProfileHeader from '@/components/ProfileHeader';
+import Projects from '@/components/Projects';
 import ScrollActionBar from '@/components/ScrollActionBar';
-import { profileData } from '@/data/profile';
+import profileData from '@/data/profile.json';
 import { client as sanityClient } from '@/lib/sanity';
 
 const POSTS_QUERY = `*[
@@ -51,6 +52,7 @@ export default async function Home() {
               }}
             />
             <Experience />
+            <Projects />
             <Education />
           </div>
           <div className="hidden min-[770px]:flex min-[770px]:flex-col">

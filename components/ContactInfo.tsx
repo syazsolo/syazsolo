@@ -2,7 +2,6 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Check, Copy } from 'lucide-react';
-import { ContactItem, contactItems } from '@/data/contact-info';
 import {
   Tooltip,
   TooltipContent,
@@ -11,8 +10,20 @@ import {
 } from '@/components/ui/tooltip';
 
 import { Button } from '@/components/ui/button';
+import contactInfoData from '@/data/contact-info.json';
+import { getIcon } from '@/lib/iconMapping';
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
+
+interface ContactItem {
+  icon: string;
+  label: string;
+  value: string;
+  href: string;
+  isLink: boolean;
+}
+
+const contactItems: ContactItem[] = contactInfoData;
 
 const renderContactItem = (
   item: ContactItem,
@@ -20,7 +31,7 @@ const renderContactItem = (
   copiedIndex: number | null,
   onCopy: (index: number, text: string) => void
 ) => {
-  const Icon = item.icon;
+  const Icon = getIcon(item.icon);
   const isLink = item.isLink;
   const isCopied = copiedIndex === index;
 

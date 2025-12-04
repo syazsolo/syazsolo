@@ -1,12 +1,22 @@
 'use client';
 
+import Image from 'next/image';
+import Section from '@/components/Section';
+import educationData from '@/data/education.json';
 import { useState } from 'react';
 
-import Image from 'next/image';
+interface Education {
+  id: string;
+  institution: string;
+  program: string;
+  startYear: string;
+  endYear: string;
+  grade?: string;
+  description?: string;
+  logo?: string;
+}
 
-import Section from '@/components/Section';
-import { educationHistory } from '@/data/education';
-import type { Education } from '@/data/education';
+const educationHistory: Education[] = educationData;
 
 const FALLBACK_LOGO = '/fallback.jpg';
 

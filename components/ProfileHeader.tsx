@@ -4,10 +4,10 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Card, CardContent } from '@/components/ui/card';
 
 import ContactInfoModal from '@/components/ContactInfoModal';
-import ItsMeButton from '@/components/ItsMeButton';
-import { profileData } from '@/data/profile';
-import { useState } from 'react';
 import Image from 'next/image';
+import ItsMeButton from '@/components/ItsMeButton';
+import profileData from '@/data/profile.json';
+import { useState } from 'react';
 
 const ProfileHeader = () => {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
@@ -36,7 +36,7 @@ const ProfileHeader = () => {
               <AvatarFallback>
                 {profileData.name
                   .split(' ')
-                  .map(n => n[0])
+                  .map((n: string) => n[0])
                   .join('')}
               </AvatarFallback>
             </Avatar>
@@ -49,7 +49,7 @@ const ProfileHeader = () => {
               </h1>
               <ItsMeButton />
             </div>
-            <p className="text-foreground mt-0.5 text-[14px] leading-5 md:text-[16px] md:leading-6">
+            <p className="text-foreground mt-0.5 text-[12px] leading-4 md:text-[16px] md:leading-6">
               {profileData.headline}
             </p>
             <div className="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
