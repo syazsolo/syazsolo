@@ -49,7 +49,7 @@ const ProfileHeader = () => {
               </h1>
               <ItsMeButton />
             </div>
-            <p className="text-foreground mt-0.5 text-[14px] leading-5 md:text-[16px] md:leading-6">
+            <p className="text-foreground mt-0.5 text-[12px] leading-4 md:text-[16px] md:leading-6">
               {profileData.headline}
             </p>
             <div className="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">

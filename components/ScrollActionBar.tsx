@@ -52,11 +52,11 @@ export default function ScrollActionBar({
                   .join('')}
               </AvatarFallback>
             </Avatar>
-            <div className="flex flex-col">
+            <div className="flex flex-col gap-0.5">
               <span className="text-foreground text-sm leading-tight font-semibold">
                 {profileData.name}
               </span>
-              <span className="text-muted-foreground text-xs leading-tight">
+              <span className="text-muted-foreground text-[9.5px] leading-tight sm:text-[12px]">
                 {profileData.headline}
               </span>
             </div>
