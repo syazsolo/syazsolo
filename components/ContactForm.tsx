@@ -236,7 +236,7 @@ const ContactForm = () => {
               type="button"
               onClick={toggleContactType}
               className={cn(
-                'absolute right-1.5 flex h-7 w-9 items-center justify-center rounded-md',
+                'absolute right-1.5 flex h-7 w-9 cursor-pointer items-center justify-center rounded-md',
                 'bg-muted hover:bg-accent text-muted-foreground hover:text-foreground',
                 'transition-all duration-200 hover:scale-105 active:scale-95'
               )}
