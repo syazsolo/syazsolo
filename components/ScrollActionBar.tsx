@@ -4,6 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import ContactInfoModal from '@/components/ContactInfoModal';
 import profileData from '@/data/profile.json';
 
 interface ScrollActionBarProps {
@@ -18,6 +19,7 @@ export default function ScrollActionBar({
   topOffsetPx = 52,
 }: ScrollActionBarProps) {
   const [isVisible, setIsVisible] = useState(false);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,11 +63,19 @@ export default function ScrollActionBar({
               </span>
             </div>
           </div>
-          <Button size="sm" className="rounded-full">
+          <Button
+            size="sm"
+            className="rounded-full"
+            onClick={() => setIsContactModalOpen(true)}
+          >
             Contact
           </Button>
         </div>
       </div>
+      <ContactInfoModal
+        open={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
+      />
     </div>
   );
 }
