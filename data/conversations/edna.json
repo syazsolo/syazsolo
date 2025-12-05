@@ -96,9 +96,33 @@
     {
       "id": "bigcampus",
       "message": [
-        "Social platform. Finding friends. A bold vision.",
-        "Started January. Paused September.",
-        "Why? Because the execution did not match the vision. And unless it is ready, it is NOT."
+        "Social media is for staring at screens. This is for getting off them.",
+        "The goal is simple: Find friends to actually do things with.",
+        "What things? You define. With whom? You define. From hiking to chess, the users set the rules, not the algorithm."
+      ]
+    },
+    {
+      "id": "bigcampus_mechanic",
+      "message": [
+        "Safety is the hardest problem. He solved it with a strict 'Chain of Responsibility'.",
+        "Organizers answer to Presidents. Presidents answer to the Admin. Accountability is hard-coded into the schema.",
+        "Open voting or strict control? The club settings decide. The system simply enforces the hierarchy."
+      ]
+    },
+    {
+      "id": "bigcampus_sanctuary",
+      "message": [
+        "Do you know why he builds this? Therapy.",
+        "His day job was a sewer of spaghetti code. He needed a sanctuary.",
+        "He worked on Bigcampus on random nights just to feel the touch of clean architecture again. It was his oxygen."
+      ]
+    },
+    {
+      "id": "bigcampus_status",
+      "message": [
+        "Status: Sleeping. Started January, paused September.",
+        "It is a 'Tar Pit' idea. Seductively simple, but it has created a graveyard of failed startups.",
+        "He paused because he respects the trap. He will not enter that arena until the weapon is sharp."
       ]
     },
     {
@@ -215,7 +239,7 @@
       "label": "See the work"
     },
     {
-      "from": ["syazsolo", "atuk_opah", "infinite_days", "bigcampus"],
+      "from": ["syazsolo", "atuk_opah", "infinite_days"],
       "to": "hub_projects",
       "label": "Next design"
     },
@@ -270,6 +294,47 @@
       "label": "That is all"
     },
     {
+      "from": "bigcampus",
+      "to": "bigcampus_mechanic",
+      "label": "How is it safe?",
+      "order": 1
+    },
+    {
+      "from": ["bigcampus", "bigcampus_mechanic"],
+      "to": "bigcampus_sanctuary",
+      "label": "The Code Sanctuary",
+      "order": 2
+    },
+    {
+      "from": ["bigcampus", "bigcampus_mechanic", "bigcampus_sanctuary"],
+      "to": "bigcampus_status",
+      "label": "Is it live?",
+      "order": 3
+    },
+    {
+      "from": ["bigcampus_mechanic", "bigcampus_sanctuary", "bigcampus_status"],
+      "to": "hub_projects",
+      "label": "Next design",
+      "order": 4
+    },
+    {
+      "from": "bigcampus",
+      "to": "hub_projects",
+      "label": "Next design",
+      "order": 4
+    },
+    {
+      "from": [
+        "bigcampus",
+        "bigcampus_mechanic",
+        "bigcampus_sanctuary",
+        "bigcampus_status"
+      ],
+      "to": "goodbye",
+      "label": "That is all",
+      "order": 5
+    },
+    {
       "from": [
         "hub_projects",
         "hub_attitudes",
@@ -278,8 +343,7 @@
         "attitude_stewardship",
         "syazsolo",
         "atuk_opah",
-        "infinite_days",
-        "bigcampus"
+        "infinite_days"
       ],
       "to": "goodbye",
       "label": "That is all"
