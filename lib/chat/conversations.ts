@@ -4,8 +4,9 @@ import syazaniConversation from '@/data/conversations/syazani.json';
 
 export interface QuickReply {
   text: string;
-  nextState?: string;
+  nextState?: string; // omit to end conversation
   message?: string | string[] | MessageNode;
+  order?: number;
 }
 
 // Minimal recursive message algebra
@@ -46,6 +47,7 @@ export interface GraphEdge {
   to?: string; // optional: omit to end the conversation after this reply
   label: string; // shown as quick reply text
   message?: string | string[] | MessageNode; // optional user echo before transition
+  order?: number; // optional: lower numbers appear first
 }
 
 export interface GraphConversationData {
@@ -87,13 +89,16 @@ const normalizeConversation = (data: unknown): ConversationData => {
       text: edge.label,
       nextState: edge.to,
       message: edge.message,
+      order: edge.order,
     };
     for (const fromNode of fromNodes) {
       const fromState = states[fromNode];
       if (!fromState) {
         continue;
       }
-      fromState.quickReplies = [...(fromState.quickReplies ?? []), reply];
+      fromState.quickReplies = [...(fromState.quickReplies ?? []), reply].sort(
+        (a, b) => (a.order ?? Infinity) - (b.order ?? Infinity)
+      );
     }
   }
 
