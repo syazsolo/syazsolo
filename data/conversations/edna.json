@@ -13,8 +13,8 @@
           "url": "https://www.youtube.com/embed/Frg2xBkS3BU?si=asuFmaKbKdF-xIxN&start=220",
           "preview": "Come in, come in!"
         },
-        "You are early. Good. I detest waiting.",
-        "We have much to discuss. The work? or the method?"
+        "I am busy perfecting the universe, darling. But for you?",
+        "I will make time. Briefly. What captures your attention?"
       ]
     },
     {
@@ -88,9 +88,33 @@
           "text": "infinite-days.netlify.app",
           "url": "https://infinite-days.netlify.app"
         },
-        "Timeline tracker. The truth machine.",
-        "He got tired of lying to himself about consistency. So he built a mirror.",
-        "The gap between intention and reality... it is painful, darling. But necessary."
+        "It is NOT a calendar. Calendars are for coordinating with others.",
+        "This is a life mirror. A single, continuous stream of your existence.",
+        "Work, habits, goals, delusions... everything mapped onto one timeline. No hiding."
+      ]
+    },
+    {
+      "id": "infinite_visual",
+      "message": [
+        "Grids are arbitrary! Who decided life happens in boxes of seven?",
+        "Time is linear, darling.",
+        "Horizontal scroll. Beads on an infinite string. Zoom in to see the day; zoom out to see the decade."
+      ]
+    },
+    {
+      "id": "infinite_mechanics",
+      "message": [
+        "Most apps treat all tasks the same. Primitive.",
+        "We distinguish the burden: 'Events' are fixed points. 'Deadlines' are sustained effort.",
+        "And 'Soon' tasks? They anchor to 'Today' and follow you like a ghost until you confront them."
+      ]
+    },
+    {
+      "id": "infinite_philosophy",
+      "message": [
+        "The Truth Machine. It does not just track what you finish; it tracks what you postpone.",
+        "Passive observation. Every time you push a task back, it remembers.",
+        "It reveals the gap between who you claim to be and who you actually are. Brutal, but necessary."
       ]
     },
     {
@@ -239,9 +263,9 @@
       "label": "See the work"
     },
     {
-      "from": ["syazsolo", "atuk_opah", "infinite_days"],
+      "from": ["syazsolo", "atuk_opah"],
       "to": "hub_projects",
-      "label": "Next design"
+      "label": "Next project"
     },
     {
       "from": "studii",
@@ -271,12 +295,12 @@
         "studii_business"
       ],
       "to": "hub_projects",
-      "label": "Next design"
+      "label": "Next project"
     },
     {
       "from": "studii",
       "to": "hub_projects",
-      "label": "Next design"
+      "label": "Next project"
     },
     {
       "from": [
@@ -292,6 +316,48 @@
       "from": "studii",
       "to": "goodbye",
       "label": "That is all"
+    },
+    {
+      "from": "infinite_days",
+      "to": "infinite_visual",
+      "label": "What does it look like?",
+      "order": 1
+    },
+    {
+      "from": ["infinite_days", "infinite_visual"],
+      "to": "infinite_mechanics",
+      "label": "How does it work?",
+      "order": 2
+    },
+    {
+      "from": ["infinite_days", "infinite_visual", "infinite_mechanics"],
+      "to": "infinite_philosophy",
+      "label": "Why is it painful?",
+      "order": 3
+    },
+    {
+      "from": ["infinite_visual", "infinite_mechanics", "infinite_philosophy"],
+      "to": "hub_projects",
+      "label": "Next project",
+      "order": 4
+    },
+    {
+      "from": "infinite_days",
+      "to": "hub_projects",
+      "label": "Next project",
+      "order": 4
+    },
+    {
+      "from": ["infinite_visual", "infinite_mechanics", "infinite_philosophy"],
+      "to": "goodbye",
+      "label": "That is all",
+      "order": 5
+    },
+    {
+      "from": "infinite_days",
+      "to": "goodbye",
+      "label": "That is all",
+      "order": 5
     },
     {
       "from": "bigcampus",
@@ -314,13 +380,13 @@
     {
       "from": ["bigcampus_mechanic", "bigcampus_sanctuary", "bigcampus_status"],
       "to": "hub_projects",
-      "label": "Next design",
+      "label": "Next project",
       "order": 4
     },
     {
       "from": "bigcampus",
       "to": "hub_projects",
-      "label": "Next design",
+      "label": "Next project",
       "order": 4
     },
     {
@@ -342,8 +408,7 @@
         "attitude_ai",
         "attitude_stewardship",
         "syazsolo",
-        "atuk_opah",
-        "infinite_days"
+        "atuk_opah"
       ],
       "to": "goodbye",
       "label": "That is all"
