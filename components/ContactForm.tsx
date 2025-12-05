@@ -12,7 +12,6 @@ import {
   Phone,
   Send,
   ArrowRightLeft,
-  Sparkles,
   CheckCircle,
   Loader2,
 } from 'lucide-react';
@@ -264,9 +263,9 @@ const ContactForm = () => {
           <div className="animate-in slide-in-from-top-2 fade-in space-y-2 duration-300">
             <label
               htmlFor="contact-message"
-              className="text-foreground mb-2 block text-sm font-medium"
+              className="text-foreground mb-1 block text-sm font-medium"
             >
-              What's on your mind?
+              What&apos;s on your mind?
             </label>
             <Textarea
               id="contact-message"

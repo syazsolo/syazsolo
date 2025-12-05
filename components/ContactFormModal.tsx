@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/dialog';
 
 import ContactForm from '@/components/ContactForm';
-import profileData from '@/data/profile.json';
 
 interface ContactFormModalProps {
   open: boolean;
@@ -23,7 +22,7 @@ const ContactFormModal = ({ open, onOpenChange }: ContactFormModalProps) => {
         <DialogHeader>
           <DialogTitle>Get in Touch</DialogTitle>
           <DialogDescription>
-            Reach out to me - I'd love to hear from you!
+            Reach out to me - I&apos;d love to hear from you!
           </DialogDescription>
         </DialogHeader>
         <div className="pt-2">
