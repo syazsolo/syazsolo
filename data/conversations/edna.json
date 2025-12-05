@@ -104,9 +104,41 @@
     {
       "id": "studii",
       "message": [
-        "The origin story. Ancient history.",
-        "University project. It convinced him to leave electronics for software.",
-        "A wise choice. He was dreadful at soldering."
+        "Ancient history. His university project. The reason he quit electronics for code.",
+        "He spent three years in that dorm trying to catch Zuckerberg. A naive, solitary crusade.",
+        "It failed, of course. But we keep it out of respect."
+      ]
+    },
+    {
+      "id": "studii_vision",
+      "message": [
+        "The idea was noble! Free exercises for every student.",
+        "Crowdsourced by volunteering teachers. Funded by ads. He wanted to remove money from learning.",
+        "He wanted to be a hero. He forgot he also needed to be a CEO."
+      ]
+    },
+    {
+      "id": "studii_wins",
+      "message": [
+        "He actually secured RM10,000! A university grant.",
+        "He felt like a tycoon. He spent it on FB ads and paying the teachers.",
+        "For a brief moment, the system worked. He had users. He had content."
+      ]
+    },
+    {
+      "id": "studii_tech_horror",
+      "message": [
+        "He was self-taught. A savage! Do you know what he did?",
+        "He created a separate database for EVERY user! Digital spaghetti!",
+        "Thankfully, a saint of a lecturer volunteered to review it. He saved the code, and perhaps Syazani's soul."
+      ]
+    },
+    {
+      "id": "studii_business",
+      "message": [
+        "The math did not math, darling.",
+        "Ads pay pennies. Teachers need dollars. The RM10,000 evaporated.",
+        "He learned that 'saving the world' is impossible if you cannot pay the server bills. Passion starts it; economics sustains it."
       ]
     },
     {
@@ -125,7 +157,7 @@
     {
       "from": "root",
       "to": "hub_projects",
-      "label": "Show me the designs"
+      "label": "Show me the works"
     },
     {
       "from": "root",
@@ -150,27 +182,27 @@
     {
       "from": "hub_projects",
       "to": "syazsolo",
-      "label": "The Portfolio"
+      "label": "syazsolo"
     },
     {
       "from": "hub_projects",
       "to": "atuk_opah",
-      "label": "Family Tree"
+      "label": "Atuk-Opah"
     },
     {
       "from": "hub_projects",
       "to": "infinite_days",
-      "label": "The Tracker"
+      "label": "Infinite Days"
     },
     {
       "from": "hub_projects",
       "to": "bigcampus",
-      "label": "The Paused One"
+      "label": "Bigcampus"
     },
     {
       "from": "hub_projects",
       "to": "studii",
-      "label": "The Origin"
+      "label": "Studii"
     },
     {
       "from": ["attitude_clean_code", "attitude_ai", "attitude_stewardship"],
@@ -183,18 +215,62 @@
       "label": "See the work"
     },
     {
-      "from": ["syazsolo", "atuk_opah", "infinite_days", "bigcampus", "studii"],
+      "from": ["syazsolo", "atuk_opah", "infinite_days", "bigcampus"],
       "to": "hub_projects",
       "label": "Next design"
     },
     {
-      "from": ["syazsolo", "atuk_opah", "infinite_days", "bigcampus", "studii"],
-      "to": "hub_attitudes",
-      "label": "The Philosophy"
+      "from": "studii",
+      "to": "studii_vision",
+      "label": "The Vision"
+    },
+    {
+      "from": ["studii", "studii_vision"],
+      "to": "studii_wins",
+      "label": "Any Wins?"
+    },
+    {
+      "from": ["studii", "studii_vision", "studii_wins"],
+      "to": "studii_tech_horror",
+      "label": "The Code Horror"
+    },
+    {
+      "from": ["studii", "studii_vision", "studii_wins", "studii_tech_horror"],
+      "to": "studii_business",
+      "label": "Why did it fail?"
     },
     {
       "from": [
-        "root",
+        "studii_vision",
+        "studii_wins",
+        "studii_tech_horror",
+        "studii_business"
+      ],
+      "to": "hub_projects",
+      "label": "Next design"
+    },
+    {
+      "from": "studii",
+      "to": "hub_projects",
+      "label": "Next design"
+    },
+    {
+      "from": [
+        "studii_vision",
+        "studii_wins",
+        "studii_tech_horror",
+        "studii_business"
+      ],
+      "to": "goodbye",
+      "label": "That is all"
+    },
+    {
+      "from": "studii",
+      "to": "goodbye",
+      "label": "That is all"
+    },
+    {
+      "from": [
         "hub_projects",
         "hub_attitudes",
         "attitude_clean_code",
@@ -203,8 +279,7 @@
         "syazsolo",
         "atuk_opah",
         "infinite_days",
-        "bigcampus",
-        "studii"
+        "bigcampus"
       ],
       "to": "goodbye",
       "label": "That is all"
