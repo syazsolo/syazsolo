@@ -19,16 +19,279 @@
       ]
     },
     {
-      "id": "projects",
-      "message": ["There are work projects & personal projects."]
+      "id": "what_is_this",
+      "message": [
+        "Words are useless! Gobble-gobble-gobble-gobble-gobble! Too much of it, darling, too much!",
+        "That is why I show you my work. That is why you are here."
+      ]
+    },
+    {
+      "id": "projects_intro",
+      "message": [
+        "Five projects. Each one started because we couldn't ignore the problem.",
+        "Which interests you?"
+      ]
+    },
+    {
+      "id": "syazsolo",
+      "message": [
+        {
+          "type": "link",
+          "text": "syazsolo.netlify.app",
+          "url": "https://syazsolo.netlify.app"
+        },
+        "Resume generator. Cover letters automated. Chatbots explaining his work.",
+        "You are using one right now, darling. Tools he actually needs, so he built them.",
+        "The interface replicates LinkedIn. Not to deceive—to demonstrate capability."
+      ]
+    },
+    {
+      "id": "atuk_opah",
+      "message": [
+        {
+          "type": "link",
+          "text": "atuk-opah.netlify.app",
+          "url": "https://atuk-opah.netlify.app"
+        },
+        "(Password: 'demo')",
+        "A family tree for 100+ relatives. Free work treated like paid work.",
+        "Requirements gathered. Iterations delivered. Everything runs on free hosting because that was the constraint.",
+        "Most see constraints as problems. We see them as parameters."
+      ]
+    },
+    {
+      "id": "infinite_days",
+      "message": [
+        {
+          "type": "link",
+          "text": "infinite-days.netlify.app",
+          "url": "https://infinite-days.netlify.app"
+        },
+        "Timeline tracker. Every commitment logged. Every promise visible.",
+        "Built because he got tired of lying to himself about consistency.",
+        "The gap between intention and reality made visible. Usually uncomfortable."
+      ]
+    },
+    {
+      "id": "bigcampus",
+      "message": [
+        "Social platform for finding friends. Club-based. Ambitious vision.",
+        "Started January. Paused September.",
+        "Not because it failed. Because unless it is ready, it is not."
+      ]
+    },
+    {
+      "id": "studii",
+      "message": [
+        "The origin. University project. Ancient now.",
+        "But that's when the realization hit: I enjoy building this more than circuits.",
+        "So electronics engineering became software engineering. Mostly."
+      ]
+    },
+    {
+      "id": "approach",
+      "message": [
+        "The approach? Code so clear machines understand it.",
+        "A senior colleague once fed his abstractions to an LLM. It understood immediately.",
+        "Not genius, darling. Just refusing to be clever when clarity works better."
+      ]
+    },
+    {
+      "id": "ownership",
+      "message": [
+        "He once told account managers: if you find bugs in my code, it is my fault.",
+        "Then shipped features. They found none.",
+        "Not because perfection—because proper testing before handoff."
+      ]
+    },
+    {
+      "id": "reality",
+      "message": [
+        "Here is what doesn't make it to portfolios: false starts. Abandoned ideas. Approaches that failed.",
+        "Bigcampus paused because execution wasn't worthy of vision yet.",
+        "Infinite Days exists because self-deception needed accountability.",
+        "The work is real. The struggles are real. The rest is just... presentation."
+      ]
+    },
+    {
+      "id": "learning",
+      "message": [
+        "Football training: random movements, observe impact, iterate success.",
+        "Recently realized—that's reinforcement learning. Feedback and adjustment.",
+        "Now wants to apply that same curiosity to systems that learn. Not trendy. Connected."
+      ]
+    },
+    {
+      "id": "maintenance",
+      "message": [
+        "Inherited messy code once. Refactored. Added types. Added tests.",
+        "You touch code, you leave it better. That is the responsibility."
+      ]
+    },
+    {
+      "id": "standards",
+      "message": [
+        "I never look back, darling. It distracts from the now.",
+        "But standards? Those stay consistent. No shortcuts. No compromises.",
+        "Every project must justify its existence. Every line must earn its place."
+      ]
+    },
+    {
+      "id": "why_edna",
+      "message": [
+        "Why me? Because I say 'no' when the world expects 'yes.'",
+        "No capes. No half-measures. No accepting baseline as acceptable.",
+        "He allows me to be bold. So few people do, darling. So few."
+      ]
+    },
+    {
+      "id": "goodbye",
+      "message": [
+        "Go. Confront the problem. Fight. Win.",
+        {
+          "type": "link",
+          "text": "And call me when you get back, darling. I enjoy our visits.",
+          "url": "https://syazsolo.netlify.app"
+        }
+      ]
     }
   ],
   "edges": [
     {
       "from": "root",
-      "to": "projects",
-      "label": "Projects.",
-      "message": "What projects have you worked on?"
+      "to": "what_is_this",
+      "label": "What is this?"
+    },
+    {
+      "from": "root",
+      "to": "projects_intro",
+      "label": "Show me the work"
+    },
+    {
+      "from": "what_is_this",
+      "to": "projects_intro",
+      "label": "Show me"
+    },
+    {
+      "from": "projects_intro",
+      "to": "syazsolo",
+      "label": "Testing ground"
+    },
+    {
+      "from": "projects_intro",
+      "to": "atuk_opah",
+      "label": "Family tree"
+    },
+    {
+      "from": "projects_intro",
+      "to": "infinite_days",
+      "label": "Accountability tracker"
+    },
+    {
+      "from": "projects_intro",
+      "to": "bigcampus",
+      "label": "Paused platform"
+    },
+    {
+      "from": "projects_intro",
+      "to": "studii",
+      "label": "Origin story"
+    },
+    {
+      "from": ["syazsolo", "atuk_opah", "infinite_days", "bigcampus", "studii"],
+      "to": "projects_intro",
+      "label": "Another project"
+    },
+    {
+      "from": "syazsolo",
+      "to": "approach",
+      "label": "How do you work?"
+    },
+    {
+      "from": "atuk_opah",
+      "to": "standards",
+      "label": "What about standards?"
+    },
+    {
+      "from": "infinite_days",
+      "to": "reality",
+      "label": "This sounds personal"
+    },
+    {
+      "from": "bigcampus",
+      "to": "reality",
+      "label": "Why pause?"
+    },
+    {
+      "from": "studii",
+      "to": "learning",
+      "label": "What's next?"
+    },
+    {
+      "from": "approach",
+      "to": "ownership",
+      "label": "What about quality?"
+    },
+    {
+      "from": "approach",
+      "to": "maintenance",
+      "label": "Existing code?"
+    },
+    {
+      "from": "ownership",
+      "to": "standards",
+      "label": "Your standards?"
+    },
+    {
+      "from": "standards",
+      "to": "why_edna",
+      "label": "Why you?"
+    },
+    {
+      "from": "reality",
+      "to": "learning",
+      "label": "What's next?"
+    },
+    {
+      "from": "reality",
+      "to": "why_edna",
+      "label": "Who are you?"
+    },
+    {
+      "from": "maintenance",
+      "to": "learning",
+      "label": "Learning now?"
+    },
+    {
+      "from": "learning",
+      "to": "projects_intro",
+      "label": "Show current work"
+    },
+    {
+      "from": "why_edna",
+      "to": "projects_intro",
+      "label": "Show me the work"
+    },
+    {
+      "from": [
+        "root",
+        "what_is_this",
+        "projects_intro",
+        "syazsolo",
+        "atuk_opah",
+        "infinite_days",
+        "bigcampus",
+        "studii",
+        "approach",
+        "ownership",
+        "standards",
+        "reality",
+        "maintenance",
+        "learning",
+        "why_edna"
+      ],
+      "to": "goodbye",
+      "label": "That's enough"
     }
   ]
 }
