@@ -93,6 +93,7 @@ const ContactForm = () => {
 
   const contactValueRegister = register('contactValue');
   const {
+    name: contactValueName,
     onChange: contactValueOnChange,
     onBlur: contactValueOnBlur,
     ref: contactValueRef,
@@ -217,7 +218,7 @@ const ContactForm = () => {
             </div>
             <Input
               id="contact-value"
-              name="contact-value"
+              name={contactValueName}
               type={contactType === 'email' ? 'email' : 'tel'}
               placeholder={
                 contactType === 'email'
