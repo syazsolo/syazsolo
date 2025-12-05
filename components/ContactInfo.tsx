@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/tooltip';
 
 import { Button } from '@/components/ui/button';
+import ContactForm from '@/components/ContactForm';
 import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
 import { useAuth } from '@/context/AuthContext';
@@ -51,31 +52,6 @@ const renderContactItem = (
     onCopy(index, copyValue);
   };
 
-  const content = (
-    <>
-      <div className="flex h-10 w-10 items-center justify-center rounded-md transition-colors">
-        <Icon className="text-muted-foreground h-5 w-5" />
-      </div>
-      <div className="min-w-0 flex-1">
-        <div className="text-foreground text-sm font-medium">{item.label}</div>
-        <div className={valueClasses}>{item.value}</div>
-      </div>
-      <Button
-        variant="ghost"
-        size="icon"
-        className="h-8 w-8 shrink-0"
-        onClick={handleCopy}
-        title="Copy to clipboard"
-      >
-        {isCopied ? (
-          <Check className="h-4 w-4 text-green-500" />
-        ) : (
-          <Copy className="h-4 w-4" />
-        )}
-      </Button>
-    </>
-  );
-
   if (isLink) {
     return (
       <div key={index} className="group flex items-center gap-3">
@@ -114,7 +90,26 @@ const renderContactItem = (
 
   return (
     <div key={index} className="flex items-center gap-3">
-      {content}
+      <div className="flex h-10 w-10 items-center justify-center rounded-md transition-colors">
+        <Icon className="text-muted-foreground h-5 w-5" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <div className="text-foreground text-sm font-medium">{item.label}</div>
+        <div className={valueClasses}>{item.value}</div>
+      </div>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="h-8 w-8 shrink-0"
+        onClick={handleCopy}
+        title="Copy to clipboard"
+      >
+        {isCopied ? (
+          <Check className="h-4 w-4 text-green-500" />
+        ) : (
+          <Copy className="h-4 w-4" />
+        )}
+      </Button>
     </div>
   );
 };
@@ -136,12 +131,28 @@ const ContactInfo = () => {
   return (
     <Card className="bg-card border-border transition-colors">
       <CardContent className="px-3 pt-4 pb-6">
-        <div className="space-y-4">
-          {contactItems.map((item, index) =>
-            renderContactItem(item, index, copiedIndex, handleCopy)
-          )}
+        {/* Section 1: My Contact Details */}
+        <div className="border-border border-b pb-4">
+          <p className="mb-3 text-sm font-medium text-muted-foreground">
+            My Contact Details
+          </p>
+          <div className="space-y-2">
+            {contactItems.map((item, index) =>
+              renderContactItem(item, index, copiedIndex, handleCopy)
+            )}
+          </div>
         </div>
-        <div className="border-border mt-4 border-t pt-4">
+
+        {/* Section 2: Contact Form */}
+        <div className="border-border border-b py-4">
+          <p className="mb-4 text-sm font-medium text-muted-foreground">
+            Get in Touch
+          </p>
+          <ContactForm />
+        </div>
+
+        {/* Section 3: Action Buttons */}
+        <div className="pt-4">
           <div className="flex flex-col gap-2">
             <Button
               size="sm"
@@ -189,3 +200,4 @@ const ContactInfo = () => {
 };
 
 export default ContactInfo;
+
