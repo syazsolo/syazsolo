@@ -4,7 +4,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import ContactInfoModal from '@/components/ContactInfoModal';
+import ContactFormModal from '@/components/ContactFormModal';
 import profileData from '@/data/profile.json';
 
 interface ScrollActionBarProps {
@@ -72,10 +72,11 @@ export default function ScrollActionBar({
           </Button>
         </div>
       </div>
-      <ContactInfoModal
+      <ContactFormModal
         open={isContactModalOpen}
         onOpenChange={setIsContactModalOpen}
       />
     </div>
   );
 }
+

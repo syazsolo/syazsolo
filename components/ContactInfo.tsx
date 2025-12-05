@@ -10,7 +10,6 @@ import {
 } from '@/components/ui/tooltip';
 
 import { Button } from '@/components/ui/button';
-import ContactForm from '@/components/ContactForm';
 import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
 import { useAuth } from '@/context/AuthContext';
@@ -131,28 +130,12 @@ const ContactInfo = () => {
   return (
     <Card className="bg-card border-border transition-colors">
       <CardContent className="px-3 pt-4 pb-6">
-        {/* Section 1: My Contact Details */}
-        <div className="border-border border-b pb-4">
-          <p className="mb-3 text-sm font-medium text-muted-foreground">
-            My Contact Details
-          </p>
-          <div className="space-y-2">
-            {contactItems.map((item, index) =>
-              renderContactItem(item, index, copiedIndex, handleCopy)
-            )}
-          </div>
+        <div className="space-y-4">
+          {contactItems.map((item, index) =>
+            renderContactItem(item, index, copiedIndex, handleCopy)
+          )}
         </div>
-
-        {/* Section 2: Contact Form */}
-        <div className="border-border border-b py-4">
-          <p className="mb-4 text-sm font-medium text-muted-foreground">
-            Get in Touch
-          </p>
-          <ContactForm />
-        </div>
-
-        {/* Section 3: Action Buttons */}
-        <div className="pt-4">
+        <div className="border-border mt-4 border-t pt-4">
           <div className="flex flex-col gap-2">
             <Button
               size="sm"
@@ -200,4 +183,5 @@ const ContactInfo = () => {
 };
 
 export default ContactInfo;
+
 

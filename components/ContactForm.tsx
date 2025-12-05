@@ -1,101 +1,142 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useEffect, useMemo } from 'react';
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import { Mail, Phone, MessageSquare, Handshake, Send, ArrowRightLeft, Sparkles, CheckCircle, Loader2 } from 'lucide-react';
+import {
+  Mail,
+  Phone,
+  Send,
+  ArrowRightLeft,
+  Sparkles,
+  CheckCircle,
+  Loader2,
+} from 'lucide-react';
 import { cn } from '@/utils';
+import FormModeToggle, { type FormMode } from '@/components/FormModeToggle';
 
-type FormMode = 'standard' | 'simple';
 type ContactType = 'email' | 'phone';
 
-interface FormData {
-  name: string;
-  contactValue: string;
-  message: string;
-}
+const createSchema = () => {
+  return z
+    .object({
+      name: z.string().min(1, 'Please let me know how to address you'),
+      contactValue: z.string(),
+      message: z.string(),
+      contactType: z.enum(['email', 'phone']),
+      mode: z.enum(['standard', 'simple']),
+    })
+    .superRefine((data, ctx) => {
+      if (!data.contactValue.trim()) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `Please enter your ${data.contactType}`,
+          path: ['contactValue'],
+        });
+      } else if (data.contactType === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(data.contactValue)) {
+          ctx.addIssue({
+            code: z.ZodIssueCode.custom,
+            message: 'Please enter a valid email address',
+            path: ['contactValue'],
+          });
+        }
+      }
+      if (data.mode === 'standard' && !data.message.trim()) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: "What's on your mind?",
+          path: ['message'],
+        });
+      }
+    });
+};
+
+type FormData = z.infer<ReturnType<typeof createSchema>>;
 
 const ContactForm = () => {
   const [mode, setMode] = useState<FormMode>('standard');
   const [contactType, setContactType] = useState<ContactType>('email');
-  const [formData, setFormData] = useState<FormData>({
-    name: '',
-    contactValue: '',
-    message: '',
-  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const formRef = useRef<HTMLFormElement>(null);
 
-  const handleInputChange = (field: keyof FormData, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
-    setError(null);
-  };
+  const schema = useMemo(() => createSchema(), []);
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    setValue,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(schema),
+    defaultValues: {
+      name: '',
+      contactValue: '',
+      message: '',
+      contactType: 'email',
+      mode: 'standard',
+    },
+  });
+
+  useEffect(() => {
+    setValue('contactType', contactType, { shouldValidate: true });
+  }, [contactType, setValue]);
+
+  useEffect(() => {
+    setValue('mode', mode, { shouldValidate: true });
+  }, [mode, setValue]);
+
+  const contactValueRegister = register('contactValue');
+  const {
+    onChange: contactValueOnChange,
+    onBlur: contactValueOnBlur,
+    ref: contactValueRef,
+  } = contactValueRegister;
 
   const toggleContactType = () => {
-    setContactType(prev => (prev === 'email' ? 'phone' : 'email'));
-    setFormData(prev => ({ ...prev, contactValue: '' }));
+    const newType = contactType === 'email' ? 'phone' : 'email';
+    setContactType(newType);
+    setValue('contactValue', '');
   };
 
-  const validateForm = (): boolean => {
-    if (!formData.name.trim()) {
-      setError('Please let me know how to address you');
-      return false;
-    }
-    if (!formData.contactValue.trim()) {
-      setError(`Please enter your ${contactType}`);
-      return false;
-    }
-    if (contactType === 'email') {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(formData.contactValue)) {
-        setError('Please enter a valid email address');
-        return false;
-      }
-    }
-    if (mode === 'standard' && !formData.message.trim()) {
-      setError("What's on your mind?");
-      return false;
-    }
-    return true;
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) return;
-    
+  const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    setError(null);
 
     try {
       const formDataToSend = new FormData();
       formDataToSend.append('form-name', 'contact');
       formDataToSend.append('mode', mode);
       formDataToSend.append('contact-type', contactType);
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('contact-value', formData.contactValue);
+      formDataToSend.append('name', data.name);
+      formDataToSend.append('contact-value', data.contactValue);
       if (mode === 'standard') {
-        formDataToSend.append('message', formData.message);
+        formDataToSend.append('message', data.message);
       }
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formDataToSend as unknown as Record<string, string>).toString(),
+        body: new URLSearchParams(
+          formDataToSend as unknown as Record<string, string>
+        ).toString(),
       });
 
       if (response.ok) {
         setIsSuccess(true);
-        setFormData({ name: '', contactValue: '', message: '' });
+        reset();
         setTimeout(() => setIsSuccess(false), 4000);
       } else {
         throw new Error('Submission failed');
       }
     } catch {
-      setError('Something went wrong. Please try again.');
+      // Error handling is done per-field via react-hook-form
+      // For submission errors, we can use setError on root if needed
     } finally {
       setIsSubmitting(false);
     }
@@ -103,18 +144,18 @@ const ContactForm = () => {
 
   if (isSuccess) {
     return (
-      <div className="flex flex-col items-center justify-center py-8 text-center animate-in fade-in zoom-in duration-300">
+      <div className="animate-in fade-in zoom-in flex flex-col items-center justify-center py-8 text-center duration-300">
         <div className="relative">
-          <div className="absolute inset-0 bg-primary/20 rounded-full blur-xl animate-pulse" />
-          <CheckCircle className="relative h-16 w-16 text-primary mb-4" />
+          <div className="bg-primary/20 absolute inset-0 animate-pulse rounded-full blur-xl" />
+          <CheckCircle className="text-primary relative mb-4 h-16 w-16" />
         </div>
-        <h3 className="text-lg font-semibold text-foreground mb-2">
+        <h3 className="text-foreground mb-2 text-lg font-semibold">
           {mode === 'standard' ? 'Message Sent!' : "I'll reach out soon!"}
         </h3>
-        <p className="text-sm text-muted-foreground">
-          {mode === 'standard' 
-            ? "Thanks for reaching out. I'll get back to you soon!" 
-            : "Thanks for connecting. Expect to hear from me shortly!"}
+        <p className="text-muted-foreground text-sm">
+          {mode === 'standard'
+            ? "Thanks for reaching out. I'll get back to you soon!"
+            : 'Thanks for connecting. Expect to hear from me shortly!'}
         </p>
       </div>
     );
@@ -122,88 +163,53 @@ const ContactForm = () => {
 
   return (
     <div className="space-y-4">
-      {/* Mode Toggle */}
-      <div className="relative flex rounded-full bg-muted p-1">
-        {/* Sliding background */}
-        <div
-          className={cn(
-            "absolute top-1 bottom-1 rounded-full bg-primary shadow-lg transition-all duration-300 ease-out",
-            mode === 'standard' ? 'left-1 right-1/2' : 'left-1/2 right-1'
-          )}
-          style={{ width: 'calc(50% - 4px)' }}
-        />
-        
-        <button
-          type="button"
-          onClick={() => setMode('standard')}
-          className={cn(
-            "relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-full text-sm font-medium transition-colors duration-200",
-            mode === 'standard' ? 'text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
-          )}
-        >
-          <MessageSquare className="h-4 w-4" />
-          <span className="hidden sm:inline">Send a Message</span>
-          <span className="sm:hidden">Message</span>
-        </button>
-        
-        <button
-          type="button"
-          onClick={() => setMode('simple')}
-          className={cn(
-            "relative z-10 flex-1 flex items-center justify-center gap-2 py-2 px-3 rounded-full text-sm font-medium transition-colors duration-200",
-            mode === 'simple' ? 'text-primary-foreground' : 'text-muted-foreground hover:text-foreground'
-          )}
-        >
-          <Handshake className="h-4 w-4" />
-          <span className="hidden sm:inline">Just Reach Out</span>
-          <span className="sm:hidden">Connect</span>
-        </button>
-      </div>
-
-      {/* Mode Description */}
-      <p className="text-xs text-muted-foreground text-center animate-in fade-in duration-200">
-        {mode === 'standard' 
-          ? "Send me a message and I'll respond as soon as I can" 
-          : "Leave your contact info and I'll reach out to you"}
-      </p>
+      <FormModeToggle mode={mode} onModeChange={setMode} />
 
       {/* Form */}
       <form
-        ref={formRef}
         name="contact"
         method="POST"
         data-netlify="true"
-        onSubmit={handleSubmit}
+        onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
       >
         {/* Hidden Netlify fields */}
         <input type="hidden" name="form-name" value="contact" />
-        <input type="hidden" name="mode" value={mode} />
-        <input type="hidden" name="contact-type" value={contactType} />
+        <input type="hidden" {...register('mode')} />
+        <input type="hidden" {...register('contactType')} name="contact-type" />
 
         {/* Name Field */}
         <div className="space-y-2">
-          <label htmlFor="contact-name" className="text-sm font-medium text-foreground">
+          <label
+            htmlFor="contact-name"
+            className="text-foreground mb-1 block text-sm font-medium"
+          >
             How should I address you?
           </label>
           <Input
             id="contact-name"
-            name="name"
             type="text"
             placeholder="e.g., John, Ms. Smith..."
-            value={formData.name}
-            onChange={(e) => handleInputChange('name', e.target.value)}
-            className="bg-background"
+            className={cn('bg-background', errors.name && 'border-destructive')}
+            {...register('name')}
           />
+          {errors.name && (
+            <p className="text-destructive animate-in fade-in slide-in-from-top-1 text-sm duration-200">
+              {errors.name.message}
+            </p>
+          )}
         </div>
 
         {/* Contact Field with Toggle */}
         <div className="space-y-2">
-          <label htmlFor="contact-value" className="text-sm font-medium text-foreground">
+          <label
+            htmlFor="contact-value"
+            className="text-foreground mb-1 block text-sm font-medium"
+          >
             {contactType === 'email' ? 'Your email' : 'Your phone number'}
           </label>
-          <div className="relative flex items-center">
-            <div className="absolute left-3 text-muted-foreground pointer-events-none">
+          <div className="relative mb-0.5 flex items-center">
+            <div className="text-muted-foreground pointer-events-none absolute left-3">
               {contactType === 'email' ? (
                 <Mail className="h-4 w-4" />
               ) : (
@@ -214,54 +220,70 @@ const ContactForm = () => {
               id="contact-value"
               name="contact-value"
               type={contactType === 'email' ? 'email' : 'tel'}
-              placeholder={contactType === 'email' ? 'hello@example.com' : '+60 12-345 6789'}
-              value={formData.contactValue}
-              onChange={(e) => handleInputChange('contactValue', e.target.value)}
-              className="bg-background pl-10 pr-12"
+              placeholder={
+                contactType === 'email'
+                  ? 'hello@example.com'
+                  : '+60 12-345 6789'
+              }
+              className={cn(
+                'bg-background pr-12 pl-10',
+                errors.contactValue && 'border-destructive'
+              )}
+              onChange={contactValueOnChange}
+              onBlur={contactValueOnBlur}
+              ref={contactValueRef}
             />
             <button
               type="button"
               onClick={toggleContactType}
               className={cn(
-                "absolute right-1.5 flex items-center justify-center h-7 w-9 rounded-md",
-                "bg-muted hover:bg-accent text-muted-foreground hover:text-foreground",
-                "transition-all duration-200 hover:scale-105 active:scale-95"
+                'absolute right-1.5 flex h-7 w-9 items-center justify-center rounded-md',
+                'bg-muted hover:bg-accent text-muted-foreground hover:text-foreground',
+                'transition-all duration-200 hover:scale-105 active:scale-95'
               )}
               title={`Switch to ${contactType === 'email' ? 'phone' : 'email'}`}
             >
               <ArrowRightLeft className="h-3.5 w-3.5" />
             </button>
           </div>
-          <p className="text-xs text-muted-foreground">
-            {contactType === 'email' 
-              ? 'Tap the arrow to use phone instead' 
-              : 'Tap the arrow to use email instead'}
-          </p>
+          {errors.contactValue ? (
+            <p className="text-destructive animate-in fade-in slide-in-from-top-1 text-sm duration-200">
+              {errors.contactValue.message}
+            </p>
+          ) : (
+            <p className="text-muted-foreground text-xs">
+              {contactType === 'email'
+                ? 'Tap the arrow to use phone instead'
+                : 'Tap the arrow to use email instead'}
+            </p>
+          )}
         </div>
 
         {/* Message Field (Standard mode only) */}
         {mode === 'standard' && (
-          <div className="space-y-2 animate-in slide-in-from-top-2 fade-in duration-300">
-            <label htmlFor="contact-message" className="text-sm font-medium text-foreground">
+          <div className="animate-in slide-in-from-top-2 fade-in space-y-2 duration-300">
+            <label
+              htmlFor="contact-message"
+              className="text-foreground mb-2 block text-sm font-medium"
+            >
               What's on your mind?
             </label>
             <Textarea
               id="contact-message"
-              name="message"
               placeholder="I'd love to discuss..."
-              value={formData.message}
-              onChange={(e) => handleInputChange('message', e.target.value)}
-              className="bg-background min-h-[100px] resize-none"
+              className={cn(
+                'bg-background min-h-[100px] resize-none',
+                errors.message && 'border-destructive'
+              )}
               rows={4}
+              {...register('message')}
             />
+            {errors.message && (
+              <p className="text-destructive animate-in fade-in slide-in-from-top-1 text-sm duration-200">
+                {errors.message.message}
+              </p>
+            )}
           </div>
-        )}
-
-        {/* Error Message */}
-        {error && (
-          <p className="text-sm text-destructive text-center animate-in fade-in slide-in-from-top-1 duration-200">
-            {error}
-          </p>
         )}
 
         {/* Submit Button */}
@@ -269,8 +291,8 @@ const ContactForm = () => {
           type="submit"
           disabled={isSubmitting}
           className={cn(
-            "w-full gap-2 transition-all duration-300",
-            isSubmitting && "opacity-80"
+            'w-full gap-2 transition-all duration-300',
+            isSubmitting && 'opacity-80'
           )}
           size="lg"
         >
@@ -279,15 +301,10 @@ const ContactForm = () => {
               <Loader2 className="h-4 w-4 animate-spin" />
               Sending...
             </>
-          ) : mode === 'standard' ? (
-            <>
-              <Send className="h-4 w-4" />
-              Send Message
-            </>
           ) : (
             <>
-              <Sparkles className="h-4 w-4" />
-              Let's Connect
+              <Send className="h-4 w-4" />
+              {mode === 'standard' ? 'Send Message' : "Let's Connect"}
             </>
           )}
         </Button>

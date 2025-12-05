@@ -1,6 +1,6 @@
 'use client';
 
-import { Check, Copy, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, Copy } from 'lucide-react';
 import {
   Dialog,
   DialogContent,
@@ -10,11 +10,9 @@ import {
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
-import ContactForm from '@/components/ContactForm';
 import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
 import profileData from '@/data/profile.json';
-import { cn } from '@/utils';
 
 interface ContactItem {
   icon: string;
@@ -125,30 +123,15 @@ const renderContactItem = (
 const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [isMobile, setIsMobile] = useState(false);
-  const [isContactInfoExpanded, setIsContactInfoExpanded] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      // On desktop, always show contact info
-      if (!mobile) {
-        setIsContactInfoExpanded(true);
-      }
-    };
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
-
-  // Reset expanded state when modal opens on mobile
-  useEffect(() => {
-    if (open && isMobile) {
-      setIsContactInfoExpanded(false);
-    }
-  }, [open, isMobile]);
 
   useEffect(() => {
     if (error) {
@@ -229,70 +212,17 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="max-h-[90vh] overflow-y-auto pb-5 sm:max-w-md">
+      <DialogContent className="pb-5 sm:max-w-md">
         <DialogHeader className="relative">
           <DialogTitle>{profileData.shortName}</DialogTitle>
         </DialogHeader>
-
-        {/* Section 1: Current Contact Info (Collapsible on mobile) */}
-        <div className="border-border border-b pb-4">
-          {isMobile ? (
-            <>
-              <button
-                type="button"
-                onClick={() => setIsContactInfoExpanded(!isContactInfoExpanded)}
-                className="flex w-full items-center justify-between py-2 text-left"
-              >
-                <span className="text-sm font-medium text-muted-foreground">
-                  My Contact Details
-                </span>
-                {isContactInfoExpanded ? (
-                  <ChevronUp className="h-4 w-4 text-muted-foreground" />
-                ) : (
-                  <ChevronDown className="h-4 w-4 text-muted-foreground" />
-                )}
-              </button>
-              <div
-                className={cn(
-                  "grid transition-all duration-300 ease-in-out",
-                  isContactInfoExpanded 
-                    ? "grid-rows-[1fr] opacity-100" 
-                    : "grid-rows-[0fr] opacity-0"
-                )}
-              >
-                <div className="overflow-hidden">
-                  <div className="space-y-2 pt-2">
-                    {contactItems.map((item, index) =>
-                      renderContactItem(item, index, copiedIndex, handleCopy)
-                    )}
-                  </div>
-                </div>
-              </div>
-            </>
-          ) : (
-            <>
-              <p className="mb-3 text-sm font-medium text-muted-foreground">
-                My Contact Details
-              </p>
-              <div className="space-y-2">
-                {contactItems.map((item, index) =>
-                  renderContactItem(item, index, copiedIndex, handleCopy)
-                )}
-              </div>
-            </>
+        <p className="mt-1 text-lg">Contact Info</p>
+        <div className="space-y-3 pt-2">
+          {contactItems.map((item, index) =>
+            renderContactItem(item, index, copiedIndex, handleCopy)
           )}
         </div>
-
-        {/* Section 2: Contact Form */}
-        <div className="py-4">
-          <p className="mb-4 text-sm font-medium text-muted-foreground">
-            Get in Touch
-          </p>
-          <ContactForm />
-        </div>
-
-        {/* Section 3: Action Buttons */}
-        <div className="border-border border-t pt-4">
+        <div className="border-border mt-4 border-t pt-4">
           <div className="flex flex-col gap-2">
             <Button
               size="sm"
