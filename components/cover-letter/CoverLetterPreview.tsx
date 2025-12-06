@@ -139,41 +139,109 @@ export default function CoverLetterPreview({
     window.print();
   };
 
-  const renderContentItem = (
-    item: ContentItem,
-    scale: number,
-    key: string | number
-  ): React.ReactNode => {
-    if (typeof item === 'string') {
-      return (
-        <ContentRow key={key} scale={scale} className="pb-6">
-          {renderBoldText(item)}
-        </ContentRow>
-      );
-    }
+    const renderContentItem = (
+      item: ContentItem,
+      scale: number,
+      key: string | number
+    ): React.ReactNode => {
+      if (typeof item === 'string') {
+        return (
+          <ContentRow key={key} scale={scale} className="pb-6">
+            {renderBoldText(item)}
+          </ContentRow>
+        );
+      }
 
-    const ListTag = item.type === 'ul' ? 'ul' : 'ol';
-    const listStyle = item.type === 'ul' ? 'list-disc' : 'list-decimal';
+      // Handle array type (grouped content - e.g., text + image together)
+      if (Array.isArray(item)) {
+        return (
+          <React.Fragment key={key}>
+            {item.map((subItem, index) =>
+              renderContentItem(subItem, scale, `${key}-group-${index}`)
+            )}
+          </React.Fragment>
+        );
+      }
 
-    return (
-      <ContentRow key={key} scale={scale} className="pb-6">
-        <ListTag className={`ml-4 ${listStyle} space-y-2`}>
-          {(item.items || []).map((subItem, index) => (
-            <li key={index} className="pl-1">
-              {typeof subItem === 'string' ? (
-                renderBoldText(subItem)
-              ) : (
-                // Recursive rendering for nested lists if needed, though simple string items are expected for now
-                <div className="mt-2">
-                  {renderContentItem(subItem, scale, `nested-${index}`)}
-                </div>
+      // Handle image type
+      if (item.type === 'image') {
+        return (
+          <ContentRow key={key} scale={scale} className="pb-6">
+            <figure className="w-full">
+              <img
+                src={item.src}
+                alt={item.caption || 'Cover letter image'}
+                className="w-full rounded"
+              />
+              {item.caption && (
+                <figcaption className="mt-2 text-center text-sm text-slate-500">
+                  {item.caption}
+                </figcaption>
               )}
-            </li>
-          ))}
-        </ListTag>
-      </ContentRow>
-    );
-  };
+            </figure>
+          </ContentRow>
+        );
+      }
+
+      // Helper to render content inline (without ContentRow wrapper) - for use inside list items
+      const renderInlineContent = (
+        inlineItem: ContentItem,
+        inlineKey: string | number
+      ): React.ReactNode => {
+        if (typeof inlineItem === 'string') {
+          return <React.Fragment key={inlineKey}>{renderBoldText(inlineItem)}</React.Fragment>;
+        }
+
+        if (Array.isArray(inlineItem)) {
+          return (
+            <React.Fragment key={inlineKey}>
+              {inlineItem.map((sub, idx) => renderInlineContent(sub, `${inlineKey}-${idx}`))}
+            </React.Fragment>
+          );
+        }
+
+        if (inlineItem.type === 'image') {
+          return (
+            <figure key={inlineKey} className="mt-4 w-full">
+              <img
+                src={inlineItem.src}
+                alt={inlineItem.caption || 'Cover letter image'}
+                className="w-full rounded"
+              />
+              {inlineItem.caption && (
+                <figcaption className="mt-2 text-center text-sm text-slate-500">
+                  {inlineItem.caption}
+                </figcaption>
+              )}
+            </figure>
+          );
+        }
+
+        // For other types, fall back to full renderContentItem
+        return renderContentItem(inlineItem, scale, inlineKey);
+      };
+
+      // Handle list types
+      if (item.type === 'ul' || item.type === 'ol') {
+        const ListTag = item.type === 'ul' ? 'ul' : 'ol';
+        const listStyle = item.type === 'ul' ? 'list-disc' : 'list-decimal';
+
+        return (
+          <ContentRow key={key} scale={scale} className="pb-6">
+            <ListTag className={`ml-4 ${listStyle} space-y-2`}>
+              {item.items.map((subItem, index) => (
+                <li key={index} className="pl-1">
+                  {renderInlineContent(subItem, `li-${index}`)}
+                </li>
+              ))}
+            </ListTag>
+          </ContentRow>
+        );
+      }
+
+      // Fallback for unknown types
+      return null;
+    };
 
   const renderCoverLetterContent = (scale: number) => {
     const renderedContent = content.map((item, index) => {
@@ -205,6 +273,10 @@ export default function CoverLetterPreview({
         >
           {typeof item === 'string' ? (
             renderBoldText(item)
+          ) : Array.isArray(item) ? (
+            item.map((subItem, subIndex) =>
+              renderContentItem(subItem, scale, `regards-${index}-${subIndex}`)
+            )
           ) : item.type === 'link' ? (
             <a
               href={item.to}
