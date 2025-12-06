@@ -116,6 +116,7 @@ export default function ContactForm() {
         'contact-type': contactType,
         name: data.name,
         'contact-value': data.contactValue,
+        'bot-field': '',
       };
 
       if (mode === 'standard') {
@@ -176,12 +177,12 @@ export default function ContactForm() {
       <form
         name="contact"
         method="POST"
-        data-netlify="true"
         onSubmit={handleSubmit(onSubmit)}
         className="space-y-4"
       >
         {/* Hidden Netlify fields */}
         <input type="hidden" name="form-name" value="contact" />
+        <input type="hidden" name="bot-field" />
         <input type="hidden" {...register('mode')} />
         <input type="hidden" {...register('contactType')} name="contact-type" />
 
