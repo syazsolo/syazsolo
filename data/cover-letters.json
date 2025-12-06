@@ -201,5 +201,41 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "leviat-senior-software-engineer",
+    "company": "Leviat",
+    "role": "Senior Software Engineer",
+    "date": "2025-12-06",
+    "content": [
+      "To the Hiring Team at Leviat,",
+      "I am applying for the Senior Software Engineer position. While my three years of experience falls short of the five requested, my engineering approach centers on architectural clarity, systematic ownership, and writing exemplary code—qualities essential for this senior role.",
+      "Professionally, I've led frontend architecture work, most recently redesigning a Nuxt application with reusable abstractions that reduced boilerplate by 70%. This focus on clean, maintainable systems carries into my personal projects, where I explore the visual complexity that your engineering software demands:",
+      {
+        "type": "ul",
+        "items": [
+          [
+            "**Infinite Days** is a timeline visualizer that maps commitments onto a continuous, sine-wave-based stream, transforming abstract planning data into an intuitive visual interface.",
+            {
+              "type": "image",
+              "src": "/cover-letters/infinite-days.png"
+            }
+          ],
+          "**Syazsolo** is my creative professional portfolio, built with a LinkedIn-inspired theme and enhanced with scripted chatbots for interactive project walkthroughs."
+        ]
+      },
+      "These projects underscore my ability to develop clear, interactive interfaces from complex data—a skill directly applicable to your work with forms, visualization, and geometric calculation.",
+      "I operate with a strong sense of code stewardship and am eager to contribute to a team that values exemplary standards and collaboration. I am confident I can deliver high-quality work from the outset while rapidly growing into the senior responsibilities of the role.",
+      "I welcome the opportunity to discuss how I can contribute to Leviat's engineering platforms."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]

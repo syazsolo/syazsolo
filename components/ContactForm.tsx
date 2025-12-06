@@ -58,7 +58,7 @@ const createSchema = () => {
 
 type FormData = z.infer<ReturnType<typeof createSchema>>;
 
-const ContactForm = () => {
+export default function ContactForm() {
   const [mode, setMode] = useState<FormMode>('standard');
   const [contactType, setContactType] = useState<ContactType>('email');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -311,6 +311,4 @@ const ContactForm = () => {
       </form>
     </div>
   );
-};
-
-export default ContactForm;
+}

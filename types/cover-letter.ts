@@ -1,11 +1,19 @@
 export type ContentItem =
   | string
+  | ContentItem[]
   | {
-      type?: string;
-      items?: ContentItem[];
-      text?: string;
-      to?: string;
-      [key: string]: unknown;
+      type: 'image';
+      src: string;
+      caption?: string;
+    }
+  | {
+      type: 'ul' | 'ol';
+      items: ContentItem[];
+    }
+  | {
+      type: 'link';
+      text: string;
+      to: string;
     };
 
 export interface CoverLetterEntry {
