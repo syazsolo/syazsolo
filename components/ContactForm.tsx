@@ -109,22 +109,29 @@ export default function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      const formDataToSend = new FormData();
-      formDataToSend.append('form-name', 'contact');
-      formDataToSend.append('mode', mode);
-      formDataToSend.append('contact-type', contactType);
-      formDataToSend.append('name', data.name);
-      formDataToSend.append('contact-value', data.contactValue);
+      // Build form data as a plain object for proper encoding
+      const formBody: Record<string, string> = {
+        'form-name': 'contact',
+        mode: mode,
+        'contact-type': contactType,
+        name: data.name,
+        'contact-value': data.contactValue,
+      };
+
       if (mode === 'standard') {
-        formDataToSend.append('message', data.message);
+        formBody['message'] = data.message;
       }
+
+      // Debug: log the form data being sent
+      console.log(
+        'Submitting to Netlify:',
+        new URLSearchParams(formBody).toString()
+      );
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(
-          formDataToSend as unknown as Record<string, string>
-        ).toString(),
+        body: new URLSearchParams(formBody).toString(),
       });
 
       if (response.ok) {
