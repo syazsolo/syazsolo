@@ -124,23 +124,31 @@ export default function ContactForm() {
       }
 
       // Debug: log the form data being sent
-      console.log(
-        'Submitting to Netlify:',
-        new URLSearchParams(formBody).toString()
-      );
+      const bodyString = new URLSearchParams(formBody).toString();
+      console.log('Submitting to Netlify:', bodyString);
+      console.log('Current URL:', window.location.href);
 
       const response = await fetch('/', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams(formBody).toString(),
+        body: bodyString,
       });
+
+      // Debug: log full response details
+      console.log('Response status:', response.status, response.statusText);
+      console.log('Response URL:', response.url);
+      const responseText = await response.text();
+      console.log(
+        'Response body (first 500 chars):',
+        responseText.substring(0, 500)
+      );
 
       if (response.ok) {
         setIsSuccess(true);
         reset();
         setTimeout(() => setIsSuccess(false), 4000);
       } else {
-        throw new Error('Submission failed');
+        throw new Error(`Submission failed: ${response.status}`);
       }
     } catch {
       // Error handling is done per-field via react-hook-form
