@@ -128,7 +128,7 @@ export default function ContactForm() {
       console.log('Submitting to Netlify:', bodyString);
       console.log('Current URL:', window.location.href);
 
-      const response = await fetch('/', {
+      const response = await fetch('/__forms.html', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: bodyString,

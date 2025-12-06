@@ -19,22 +19,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className="antialiased">
-        {/* Hidden form for Netlify form detection at build time */}
-        <form
-          name="contact"
-          netlify-honeypot="bot-field"
-          data-netlify="true"
-          hidden
-        >
-          <input type="hidden" name="form-name" value="contact" />
-          <input name="bot-field" />
-          <input name="name" />
-          <input name="mode" />
-          <input name="contact-type" />
-          <input name="contact-value" />
-          <textarea name="message" />
-        </form>
-
         <ThemeProvider>
           <TooltipProvider>
             <AuthProvider>
