@@ -202,7 +202,7 @@ export const getNodePreview = (node: MessageNode): string => {
 };
 
 const defaultConversationsData: Record<string, ConversationData> = {
-  syazani: normalizeConversation(syazaniConversation),
+  // syazani: normalizeConversation(syazaniConversation), // temporarily disabled
   solo: normalizeConversation(soloConversation),
   edna: normalizeConversation(ednaConversation),
 };
