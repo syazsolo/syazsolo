@@ -9,7 +9,7 @@ import { PortableText } from 'next-sanity';
 import { Post } from '@/types';
 import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import type { SanityImageSource } from '@sanity/image-url';
 import { formatDistanceToNow } from 'date-fns';
 import imageUrlBuilder from '@sanity/image-url';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';

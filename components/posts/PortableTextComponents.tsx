@@ -3,7 +3,7 @@ import { dataset, projectId } from '@/lib/sanity';
 import type { PortableTextComponents } from 'next-sanity';
 import { QuoteBlock } from '@/components/posts/QuoteBlock';
 import type { ReactElement } from 'react';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import type { SanityImageSource } from '@sanity/image-url';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 

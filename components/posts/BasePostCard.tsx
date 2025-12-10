@@ -7,7 +7,7 @@ import { Globe } from 'lucide-react';
 import Link from 'next/link';
 import { PortableText } from 'next-sanity';
 import { Post } from '@/types';
-import type { SanityImageSource } from '@sanity/image-url/lib/types/types';
+import type { SanityImageSource } from '@sanity/image-url';
 import { compactPortableTextComponents } from '@/components/posts/CompactPortableText';
 import { formatDistanceToNow } from 'date-fns';
 import imageUrlBuilder from '@sanity/image-url';

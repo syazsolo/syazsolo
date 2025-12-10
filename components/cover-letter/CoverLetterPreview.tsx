@@ -3,6 +3,7 @@
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
 import { ContentItem } from '@/types/cover-letter';
+import Image from 'next/image';
 import { Printer } from 'lucide-react';
 import React from 'react';
 import resumeData from '@/data/resume.json';
@@ -168,10 +169,13 @@ export default function CoverLetterPreview({
       return (
         <ContentRow key={key} scale={scale} className="pb-6">
           <figure className="w-full">
-            <img
+            <Image
               src={item.src}
+              width={100}
+              height={100}
               alt={item.caption || 'Cover letter image'}
               className="w-full rounded"
+              unoptimized
             />
             {item.caption && (
               <figcaption className="mt-2 text-center text-sm text-slate-500">
@@ -209,10 +213,13 @@ export default function CoverLetterPreview({
       if (inlineItem.type === 'image') {
         return (
           <figure key={inlineKey} className="mt-4 w-full">
-            <img
+            <Image
+              width={100}
+              height={100}
               src={inlineItem.src}
               alt={inlineItem.caption || 'Cover letter image'}
               className="w-full rounded"
+              unoptimized
             />
             {inlineItem.caption && (
               <figcaption className="mt-2 text-center text-sm text-slate-500">

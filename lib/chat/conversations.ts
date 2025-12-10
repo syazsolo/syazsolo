@@ -1,6 +1,7 @@
 import ednaConversation from '@/data/conversations/edna.json';
 import soloConversation from '@/data/conversations/solo.json';
-import syazaniConversation from '@/data/conversations/syazani.json';
+
+// import syazaniConversation from '@/data/conversations/syazani.json';
 
 export interface QuickReply {
   text: string;
