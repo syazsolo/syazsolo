@@ -10,6 +10,12 @@ import {
   Printer,
   Smartphone,
 } from 'lucide-react';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import { differenceInMonths, parse } from 'date-fns';
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
@@ -20,6 +26,7 @@ import React from 'react';
 import { cn } from '@/utils';
 import resumeData from '@/data/resume.json';
 import skillMetadata from '@/data/skillMetadata.json';
+import { useAuth } from '@/context/AuthContext';
 
 // ============================================================================
 // Utility Functions
@@ -432,6 +439,7 @@ export default function ResumePage() {
 // ============================================================================
 
 function ResumeActions() {
+  const { isOwner } = useAuth();
   const [status, setStatus] = React.useState<
     'idle' | 'loading' | 'success' | 'error'
   >('idle');
@@ -477,15 +485,28 @@ function ResumeActions() {
         </div>
       )}
       <div className="flex gap-2">
-        <Button
-          onClick={handleSaveForMobile}
-          disabled={status === 'loading'}
-          className="gap-2 bg-slate-700 text-white shadow-xl hover:bg-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-          size="lg"
-        >
-          <Smartphone className="h-4 w-4" />
-          {status === 'loading' ? 'Saving...' : 'Save for Mobile'}
-        </Button>
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <span tabIndex={0}>
+                <Button
+                  onClick={handleSaveForMobile}
+                  disabled={status === 'loading' || !isOwner}
+                  className="gap-2 bg-slate-700 text-white shadow-xl hover:bg-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
+                  size="lg"
+                >
+                  <Smartphone className="h-4 w-4" />
+                  {status === 'loading' ? 'Saving...' : 'Save for Mobile'}
+                </Button>
+              </span>
+            </TooltipTrigger>
+            {!isOwner && (
+              <TooltipContent side="top">
+                <p>Only for me</p>
+              </TooltipContent>
+            )}
+          </Tooltip>
+        </TooltipProvider>
         <Button
           onClick={() => window.print()}
           className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
