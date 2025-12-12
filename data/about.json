@@ -1,20 +1,21 @@
 [
-  "Hi, I'm Syazani, but I go by Syazsolo — a nod to Han Solo's (Star Wars) boldness and creativity, paired with his deep, hands-on knowledge. I hold myself to a higher standard, and I try to show that standard in my code: clean, intentional, and built to last.",
-  "This site is my digital workshop, where I put that philosophy into practice. I recreated LinkedIn's interface to build a portfolio that's creative, unique, and professional—a fun, challenging way to demonstrate frontend mastery using a design everyone recognizes.",
-  "A few things here:",
+  "Hi, I'm Syazani, but I go by Syazsolo.",
+  "Like Han Solo, I value boldness, creativity, and deep, hands-on knowledge. I take great pride in my craft, ensuring my work reflects that dedication: clean, intentional, and built to last.",
+  "Welcome to my digital workshop. You might recognize the layout—I recreated the LinkedIn interface from scratch. It was a challenge to myself: take a design everyone knows, rebuild it with pixel-perfect precision, but fill it with my own personality. It is a demonstration of frontend mastery in a familiar package.",
+  "While you are here, take a look around:",
   [
     {
-      "title": "Chat with me (chatbot)",
-      "description": "It's a collection of pre-written conversations with different personas I've created: from Star Wars to The Incredibles, and even Uncle Bob's Clean Code principles. Think of it as a choose-your-own-adventure intro to my world."
+      "title": "Chat with me (the bot version)",
+      "description": "I've created a collection of interactive personas for you to talk to. From Star Wars characters to The Incredibles, and even a \"Clean Code\" bot inspired by Uncle Bob. Think of it as a choose-your-own-adventure intro to how I think."
     },
     {
-      "title": "Read my posts",
-      "description": "I write about the things I notice: dissecting design decisions (like Apple's password field), reflecting on craft (what it means to 'wade through bad code'), and connecting software to the way we live. It's where my engineering mind meets the world."
+      "title": "Read my notes",
+      "description": "I write about the details most people miss—dissecting design decisions (like Apple's password field) or reflecting on the philosophy of our craft. This is where my engineering mind meets the real world."
     },
     {
-      "title": "See my projects",
-      "description": "I build to solve my own problems first. If others find them useful, I share them — and who knows, some may grow into something more. Each project is a playground for clean architecture and new patterns."
+      "title": "Explore my projects",
+      "description": "I build tools to solve my own problems first. Each project is a playground where I test new architectures and patterns. If they solve a problem for me, I share them here."
     }
   ],
-  "If you want to reach out, my contact form offers two ways: send a message directly, or—lovely and easy—just leave your contact information for me to reach you myself. I'm always delighted to talk!"
+  "Let's connect. My contact form offers two paths: send me a direct message, or—if you prefer—simply leave your details and I'll reach out to you. I'm always delighted to talk tech, design, or Star Wars!"
 ]

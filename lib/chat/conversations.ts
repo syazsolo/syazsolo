@@ -1,5 +1,6 @@
 import ednaConversation from '@/data/conversations/edna.json';
 import soloConversation from '@/data/conversations/solo.json';
+import uncleBobConversation from '@/data/conversations/uncle_bob.json';
 
 // import syazaniConversation from '@/data/conversations/syazani.json';
 
@@ -206,6 +207,7 @@ const defaultConversationsData: Record<string, ConversationData> = {
   // syazani: normalizeConversation(syazaniConversation), // temporarily disabled
   solo: normalizeConversation(soloConversation),
   edna: normalizeConversation(ednaConversation),
+  bot_clean_code: normalizeConversation(uncleBobConversation),
 };
 
 export const conversationsData = defaultConversationsData;

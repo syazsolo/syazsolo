@@ -1,0 +1,145 @@
+{
+  "id": "bot_clean_code",
+  "name": "Clean Code",
+  "avatar": "/bots/uncle-bob.webp",
+  "initialState": "node_start",
+  "nodes": [
+    {
+      "id": "node_start",
+      "message": [
+        "Welcome. I am an AI simulacrum of Robert C. Martin—better known as Uncle Bob.",
+        "We are here to explore the principles of my book, *Clean Code*. Why? Because code is not just for machines. It is for humans.",
+        "I am here to help you navigate the difference between code that merely works, and code that is clean."
+      ]
+    },
+    {
+      "id": "node_chapter_select",
+      "message": "This book is a handbook of Agile Software Craftsmanship. Where shall we open it?"
+    },
+    {
+      "id": "node_ch1_menu",
+      "message": "Chapter 1: Clean Code. This is where it all begins. We discuss why good code matters and the cost of messy code. Shall we walk through the lesson, or do you want the raw heuristics?"
+    },
+    {
+      "id": "node_ch1_seq_1",
+      "message": [
+        "Let's talk about the total cost of owning a mess. As the mess builds, the productivity of the team continues to decrease, asymptotically approaching zero.",
+        "Management adds more staff, but they don't know the system. They make more messes. It is a downward spiral."
+      ]
+    },
+    {
+      "id": "node_ch1_seq_2",
+      "message": [
+        "The solution is continuous improvement. The Boy Scouts of America have a simple rule that we can apply to our profession:",
+        "'Leave the campground cleaner than you found it.'",
+        "If we all checked-in our code a little cleaner than when we checked it out, the code simply could not rot."
+      ]
+    },
+    {
+      "id": "node_ch1_seq_3",
+      "message": [
+        "It doesn't have to be big. Rename a variable. Break up one large function. Eliminate one small bit of duplication.",
+        "Code rot is not inevitable. It is a choice. We must be honest in small things."
+      ]
+    },
+    {
+      "id": "node_ch1_random",
+      "message": {
+        "type": "random",
+        "items": [
+          "LeBlanc's law: Later equals never.",
+          "Clean code always looks like it was written by someone who cares.",
+          "You know you are working on clean code when each routine you read turns out to be pretty much what you expected.",
+          "We wade through bad code. We slog through a morass of tangled brambles and hidden pitfalls.",
+          "The only valid measurement of code quality: WTFs/minute."
+        ]
+      }
+    },
+    {
+      "id": "node_end",
+      "message": "Go forth and clean. Practice, son. Practice!"
+    }
+  ],
+  "edges": [
+    {
+      "from": "node_start",
+      "to": "node_chapter_select",
+      "label": "Let's begin"
+    },
+    {
+      "from": "node_chapter_select",
+      "to": "node_ch1_menu",
+      "label": "Ch 1: Clean Code"
+    },
+    {
+      "from": "node_ch1_menu",
+      "to": "node_ch1_seq_1",
+      "label": "Sequential Learning"
+    },
+    {
+      "from": "node_ch1_menu",
+      "to": "node_ch1_random",
+      "label": "Random Wisdom"
+    },
+    {
+      "from": "node_ch1_menu",
+      "to": "node_chapter_select",
+      "label": "Pick another chapter"
+    },
+    {
+      "from": "node_ch1_seq_1",
+      "to": "node_ch1_seq_2",
+      "label": "So what is the solution?"
+    },
+    {
+      "from": "node_ch1_seq_1",
+      "to": "node_ch1_random",
+      "label": "I get it. Give me a quote."
+    },
+    {
+      "from": "node_ch1_seq_2",
+      "to": "node_ch1_seq_3",
+      "label": "How do I start?"
+    },
+    {
+      "from": "node_ch1_seq_2",
+      "to": "node_ch1_random",
+      "label": "Bored. Quote me."
+    },
+    {
+      "from": "node_ch1_seq_3",
+      "to": "node_ch1_seq_1",
+      "label": "Review from start"
+    },
+    {
+      "from": "node_ch1_seq_3",
+      "to": "node_ch1_random",
+      "label": "Show me random insights"
+    },
+    {
+      "from": "node_ch1_seq_3",
+      "to": "node_chapter_select",
+      "label": "Back to Chapter Selection"
+    },
+    {
+      "from": "node_ch1_random",
+      "to": "node_ch1_random",
+      "label": "Hit me with another."
+    },
+    {
+      "from": "node_ch1_random",
+      "to": "node_ch1_seq_1",
+      "label": "Actually, teach me the lesson."
+    },
+    {
+      "from": "node_ch1_random",
+      "to": "node_chapter_select",
+      "label": "Back to Chapters"
+    },
+    {
+      "from": "node_chapter_select",
+      "to": "node_end",
+      "label": "I'm done for now"
+    }
+  ]
+}
