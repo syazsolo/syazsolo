@@ -394,5 +394,42 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "hmi-full-stack-developer",
+    "company": "HMI Ltd",
+    "role": "Full Stack Developer",
+    "date": "2025-12-12",
+    "content": [
+      "To the Hiring Team at HMI Ltd,",
+      "I am writing to express my genuine interest in the Full Stack Developer position. With three years of professional experience, I am confident in my ability to execute seamlessly across your Node.js and React.js stack. However, what truly compelled me to apply was your emphasis on creating \"shared code libraries\" and \"clean, maintainable code.\" This aligns perfectly with my engineering philosophy: I don't just build features; I build the architecture that makes future development faster.",
+      "My approach to development is defined by architectural clarity. At IMT Tech, I led a frontend architecture redesign specifically to reduce complexity. By building logical, reusable abstractions, I was able to cut boilerplate code by nearly 70%. **I invite you to visit my portfolio at syazsolo.netlify.app to see this attitude in practice;** I built it to be clean, intuitive, and reflective of the standards I bring to production code. This habit of creating elegant, self-documenting systems directly addresses your requirement for tools that \"boost team productivity.\"",
+      "To me, a developer's worth is defined by stewardship. I view code quality as a personal responsibility, not just a requirement. In my previous role, I enforced testing standards so rigorous that my backend deliverables resulted in zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I strive to be the engineer you can trust to deliver stable, high-quality work without the need for constant supervision.",
+      "I am looking for a professional home where I can contribute to meaningful applications while growing alongside a team that values high standards. I would be thrilled to bring this blend of full-stack confidence and architectural care to HMI Ltd."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "mr-bur-full-stack-developer",
+    "company": "MR. BUR (M) BHD.",
+    "role": "Full Stack Developer",
+    "date": "2025-12-13",
+    "content": [
+      "To the Hiring Team at MR. BUR (M) BHD.,",
+      "I am writing to apply for the Full Stack Developer position. My approach to development is defined by a commitment to code stewardship and systematic ownership—a mindset proven to build and maintain reliable applications, which aligns directly with the standards emphasized in your role.",
+      "While my backend expertise is in PHP (Laravel), the principles of designing clean APIs and writing testable, maintainable code are language-agnostic. I am adept at quickly applying these fundamentals to new contexts, and I employ an AI-native workflow to rapidly gain proficiency in your Python-based stack.",
+      "I was particularly drawn to your emphasis on testing and code quality. In my previous role at IMT Tech, I advocated for these practices in an environment that undervalued them. I am now seeking a team where such discipline is foundational. This commitment is reflected in my work at 9LOOP, where refactoring a legacy system with TypeScript and automated tests reduced production bug reports by over 80%.",
+      "Furthermore, I have prior exposure to the Odoo ecosystem. I spent three months at an Odoo business partner before my role at Webcada, where I explored the platform's modules and customization logic to understand its value proposition. This experience, though brief, provides me with practical context for contributing to ERP-related workflows and customizations.",
+      "I am eager to contribute my blend of architectural rigor, proactive ownership, and fast learning to your team."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi"]
   }
 ]
