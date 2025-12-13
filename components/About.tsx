@@ -8,7 +8,7 @@ import { useState } from 'react';
 const aboutContent: (string | { title: string; description: string }[])[] =
   aboutContentData;
 
-const About = () => {
+const About = ({ id }: { id?: string }) => {
   const [expanded, setExpanded] = useState(false);
   const collapsedItemCount = 2;
 
@@ -23,7 +23,7 @@ const About = () => {
   const canInlineToggle = typeof lastItem === 'string';
 
   return (
-    <Section title="About" className="flex flex-col gap-3">
+    <Section id={id} title="About" className="flex flex-col gap-3">
       {itemsToRender.map((item, index) => {
         const isLastVisibleItem = index === itemsToRender.length - 1;
         const showInlineToggle =

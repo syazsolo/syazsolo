@@ -61,9 +61,9 @@ const EducationItem = ({ item }: { item: Education }) => {
   );
 };
 
-const Education = () => {
+const Education = ({ id }: { id?: string }) => {
   return (
-    <Section title="Education">
+    <Section id={id} title="Education">
       <div className="divide-border -mt-2 flex flex-col divide-y">
         {educationHistory.map(item => (
           <EducationItem key={item.id} item={item} />

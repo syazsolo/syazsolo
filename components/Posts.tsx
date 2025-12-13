@@ -9,11 +9,13 @@ interface PostsSectionProps {
     headline: string;
     profileUrl: string;
   };
+  id?: string;
 }
 
-export default function PostsSection({ posts, profile }: PostsSectionProps) {
+export default function Posts({ posts, profile, id }: PostsSectionProps) {
   return (
     <Section
+      id={id}
       title="Posts"
       footer={{
         text: 'Show all posts',

@@ -11,11 +11,15 @@ interface SectionProps {
     href: string;
   };
   className?: string;
+  id?: string;
 }
 
-const Section = ({ title, children, footer, className }: SectionProps) => {
+const Section = ({ title, children, footer, className, id }: SectionProps) => {
   return (
-    <Card className="bg-card border-border pl-2 transition-colors">
+    <Card
+      id={id}
+      className="bg-card border-border scroll-mt-28 pl-2 transition-colors md:scroll-mt-[150px]"
+    >
       <CardHeader className="pt-6">
         <CardTitle className="text-xl">{title}</CardTitle>
       </CardHeader>

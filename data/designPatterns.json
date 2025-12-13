@@ -1,0 +1,40 @@
+[
+  {
+    "category": "Creational Patterns",
+    "patterns": [
+      { "name": "Abstract Factory", "lastStudied": null },
+      { "name": "Builder", "lastStudied": null },
+      { "name": "Factory Method", "lastStudied": null },
+      { "name": "Prototype", "lastStudied": null },
+      { "name": "Singleton", "lastStudied": null }
+    ]
+  },
+  {
+    "category": "Structural Patterns",
+    "patterns": [
+      { "name": "Adapter", "lastStudied": null },
+      { "name": "Bridge", "lastStudied": null },
+      { "name": "Composite", "lastStudied": "1 Nov 2025" },
+      { "name": "Decorator", "lastStudied": null },
+      { "name": "Facade", "lastStudied": null },
+      { "name": "Flyweight", "lastStudied": null },
+      { "name": "Proxy", "lastStudied": null }
+    ]
+  },
+  {
+    "category": "Behavioral Patterns",
+    "patterns": [
+      { "name": "Chain of Responsibility", "lastStudied": null },
+      { "name": "Command", "lastStudied": null },
+      { "name": "Interpreter", "lastStudied": null },
+      { "name": "Iterator", "lastStudied": null },
+      { "name": "Mediator", "lastStudied": null },
+      { "name": "Memento", "lastStudied": null },
+      { "name": "Observer", "lastStudied": null },
+      { "name": "State", "lastStudied": null },
+      { "name": "Strategy", "lastStudied": "1 Nov 2025" },
+      { "name": "Template Method", "lastStudied": null },
+      { "name": "Visitor", "lastStudied": null }
+    ]
+  }
+]
