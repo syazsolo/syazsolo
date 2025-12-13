@@ -14,7 +14,7 @@
     "patterns": [
       { "name": "Adapter", "lastStudied": null },
       { "name": "Bridge", "lastStudied": null },
-      { "name": "Composite", "lastStudied": "1 Dec 2025" },
+      { "name": "Composite", "lastStudied": "1 Nov 2025" },
       { "name": "Decorator", "lastStudied": null },
       { "name": "Facade", "lastStudied": null },
       { "name": "Flyweight", "lastStudied": null },
@@ -32,7 +32,7 @@
       { "name": "Memento", "lastStudied": null },
       { "name": "Observer", "lastStudied": null },
       { "name": "State", "lastStudied": null },
-      { "name": "Strategy", "lastStudied": "1 Dec 2025" },
+      { "name": "Strategy", "lastStudied": "1 Nov 2025" },
       { "name": "Template Method", "lastStudied": null },
       { "name": "Visitor", "lastStudied": null }
     ]
