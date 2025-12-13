@@ -11,7 +11,7 @@ interface PostsSectionProps {
   };
 }
 
-export default function PostsSection({ posts, profile }: PostsSectionProps) {
+export default function Posts({ posts, profile }: PostsSectionProps) {
   return (
     <Section
       title="Posts"

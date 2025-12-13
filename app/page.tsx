@@ -4,7 +4,7 @@ import Education from '@/components/Education';
 import Experience from '@/components/Experience';
 import Header from '@/components/Header';
 import { Post } from '@/types';
-import PostsSection from '@/components/PostsSection';
+import Posts from '@/components/Posts';
 import ProfileHeader from '@/components/ProfileHeader';
 import Projects from '@/components/Projects';
 import ScrollActionBar from '@/components/ScrollActionBar';
@@ -43,7 +43,8 @@ export default async function Home() {
           <div className="flex flex-col gap-4 md:gap-2">
             <ProfileHeader />
             <About />
-            <PostsSection
+            {/* New Section */}
+            <Posts
               posts={posts}
               profile={{
                 name: profileData.shortName,
