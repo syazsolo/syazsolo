@@ -22,7 +22,9 @@ export default function Directory() {
   ) => {
     e.preventDefault();
     const element = document.getElementById(targetId);
-    if (!element) return;
+    if (!element) {
+      return;
+    }
 
     // Get the scroll-margin-top defined in CSS (responsive)
     const style = window.getComputedStyle(element);
