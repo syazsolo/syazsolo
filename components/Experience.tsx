@@ -43,9 +43,9 @@ function getSkillColor(skill: string) {
   );
 }
 
-export default function Experience() {
+export default function Experience({ id }: { id?: string }) {
   return (
-    <Section title="Experience">
+    <Section id={id} title="Experience">
       <div className="divide-border -mt-2 flex flex-col divide-y">
         {experiences.map(experience => (
           <ExperienceItem key={experience.id} experience={experience} />

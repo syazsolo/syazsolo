@@ -37,9 +37,9 @@ function getSkillColor(skill: string) {
   );
 }
 
-export default function Projects() {
+export default function Projects({ id }: { id?: string }) {
   return (
-    <Section title="Projects">
+    <Section id={id} title="Projects">
       <div className="divide-border -mt-2 flex flex-col divide-y">
         {projects.map(project => (
           <ProjectItem key={project.id} project={project} />
