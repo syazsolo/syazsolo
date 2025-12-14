@@ -431,5 +431,49 @@
       "I am eager to contribute my blend of architectural rigor, proactive ownership, and fast learning to your team."
     ],
     "regards": ["Best regards,", "Syazani Zulkhairi"]
+  },
+  {
+    "id": "pixelate-everything-senior-full-stack-developer",
+    "company": "PIXELATE EVERYTHING",
+    "role": "Senior Full Stack Developer",
+    "date": "2025-12-14",
+    "content": [
+      "To the Hiring Team at PIXELATE EVERYTHING,",
+      "I am writing to express my interest in the Senior Full Stack Developer position. I recognize that my three years of experience places me at a mid-level stage, yet I have deliberately cultivated an approach centered on architectural stewardship and systematic ownership. I am confident I can contribute with the impact expected of a senior role, and I am seeking the opportunity to prove this, with compensation aligned to my current level of tenure.",
+      "Your stack of Next.js, Express/NestJS, and PostgreSQL aligns directly with my expertise in crafting clean, TypeScript-first applications. At IMT Tech, I led a frontend architecture redesign focused on creating reusable abstractions that reduced boilerplate by nearly 70%. This work was driven by a philosophy that clean, logical code is not just for maintainability; it establishes a foundation for high-velocity development, whether by human teams or AI-augmented workflows. I am confident in my ability to design responsive interfaces, architect robust REST APIs, and write optimized PostgreSQL queries within your Docker-based environment.",
+      "My view of seniority is defined by a deep sense of ownership over code quality and team outcomes. This is evidenced by my record of delivering backend features at IMT Tech with a personal testing standard so rigorous that it resulted in near zero client-reported bugs. Similarly, at 9LOOP, refactoring a legacy system with TypeScript and automated tests reduced production bug reports by over 80%. I am seeking a team where such standards are the norm—an environment where I can both contribute my discipline and learn from the collaborative depth of solving complex, high-volume challenges.",
+      "I am eager to bring this blend of full-stack proficiency and a stewardship mindset to your platform. I look forward to discussing how I can contribute to your technical leadership and architectural planning."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "prizm-group-web-developer",
+    "company": "PRIZM Group",
+    "role": "Web Developer",
+    "date": "2025-12-14",
+    "content": [
+      "To the Hiring Team at PRIZM Group,",
+      "I am writing to express my genuine interest in the Web Developer position. While I am excited by PRIZM's reputation as an Agency of the Year, what truly compelled me to apply was your explicit requirement for \"passion in web development.\" To me, passion is not just enthusiasm; it is the discipline to treat code as a craft, ensuring that what we build is not only functional but architecturally sound and scalable.",
+      "Although your technology stack includes Java, my engineering philosophy is language-agnostic, focusing on structural logic and maintainability. At IMT Tech, I led a frontend architecture redesign where I built reusable, logical abstractions that reduced boilerplate code by nearly 70%. **I invite you to visit my portfolio at syazsolo.netlify.app to see this attitude in practice;** I built it to be clean, intuitive, and reflective of the standards I bring to production code. This habit of creating elegant, self-documenting systems directly addresses your need for \"high-quality programming works.\"",
+      "I define seniority and quality not just by tenure, but by stewardship. I view code quality as a personal responsibility. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I am eager to bring this level of ownership to your new team in Malaysia.",
+      "I am looking for a professional home where high standards are the norm and passion is translated into excellence. I would be thrilled to discuss how my approach to engineering can contribute to PRIZM's continued growth."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
