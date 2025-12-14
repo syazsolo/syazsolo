@@ -100,30 +100,15 @@
       "skills": ["React", "Next.js", "Supabase", "PostgreSQL"]
     },
     {
-      "title": "Infinite Days",
-      "status": "active",
-      "url": "infinite-days.netlify.app",
-      "startDate": "Nov 2025",
-      "endDate": "Present",
-      "description": {
-        "type": "ul",
-        "items": [
-          "A timeline-based todo app that visualizes all commitments on a single continuous stream",
-          "Built to track the gap between what I plan to do and what I actually do, revealing patterns in consistency and habit formation"
-        ]
-      },
-      "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
-    },
-    {
       "title": "Bigcampus",
-      "status": "on hold",
+      "status": "developing",
       "startDate": "Jan 2025",
       "endDate": "Present",
       "description": {
         "type": "ul",
         "items": [
-          "A social platform for organizing group activities through user-created clubs, where club creators define their own formats, membership rules, and governance structures to solve the 'finding friends to hang out' problem",
-          "Currently on hold while prioritizing other projects; foundational architecture and theme completed"
+          "Addressing the persistent 'finding friends' problem by engineering a platform with infinite settings flexibility, allowing users to solve social friction through granular, custom-defined configuration rather than rigid algorithms",
+          "Implementing a hierarchical responsibility system (Platform → Owner → Host → Attendee) to ensure safety and accountability are actively delegated and enforced at every level"
         ]
       },
       "skills": ["React", "Next.js", "PHP", "Laravel", "MySQL"]
