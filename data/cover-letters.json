@@ -523,5 +523,27 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "eastone-frontend-software-engineer",
+    "company": "Eastone Software Integration",
+    "role": "Frontend Software Engineer",
+    "date": "2025-12-15",
+    "content": [
+      "To the Hiring Team at Eastone Software Integration,",
+      "I am writing to apply for the Frontend Software Engineer position. I was specifically drawn to this role because it emphasizes the entire lifecycle of a feature—from defining UX with designers to monitoring production metrics. This aligns perfectly with my engineering philosophy: I don't just write code; I own the system's health.",
+      "Your requirement for expertise in debugging, refactoring, and releasing large web apps is where I thrive. At IMT Tech, I led a frontend architecture redesign (Nuxt/Vue) specifically to reduce complexity. By building logical, reusable abstractions and enforcing strict TypeScript interfaces, I reduced boilerplate code by nearly 70%. This focus on architectural hygiene ensures that the code is not only performant for the user but intuitive for the team—and logical enough for AI-augmented workflows to interact with seamlessly. **I invite you to visit my portfolio at syazsolo.netlify.app to see this standard in practice;** I built it to be clean, responsive, and structurally sound.",
+      "I want to be transparent about my experience: I am a mid-level engineer with three years of tenure, and I know I have a long way to go. However, I strive to operate with a senior-level mindset—defined by stewardship. I view code quality as a personal responsibility. In my previous role, I enforced personal testing standards so rigorous that my deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript and implemented automated tests, cutting production bug reports by over 80%. I strive to be the engineer who solves speed and security issues before they become tickets.",
+      "I am looking for a team where high standards are the norm and where I can contribute to best-in-class user experiences while continuing to grow technically. I would be thrilled to bring this blend of architectural care and ownership to Eastone Software Integration."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
