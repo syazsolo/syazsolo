@@ -523,5 +523,73 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "eastone-frontend-software-engineer",
+    "company": "Eastone Software Integration",
+    "role": "Frontend Software Engineer",
+    "date": "2025-12-15",
+    "content": [
+      "To the Hiring Team at Eastone Software Integration,",
+      "I am writing to apply for the Frontend Software Engineer position. I was specifically drawn to this role because it emphasizes the entire lifecycle of a feature—from defining UX with designers to monitoring production metrics. This aligns perfectly with my engineering philosophy: I don't just write code; I own the system's health.",
+      "Your requirement for expertise in debugging, refactoring, and releasing large web apps is where I thrive. At IMT Tech, I led a frontend architecture redesign (Nuxt/Vue) specifically to reduce complexity. By building logical, reusable abstractions and enforcing strict TypeScript interfaces, I reduced boilerplate code by nearly 70%. This focus on architectural hygiene ensures that the code is not only performant for the user but intuitive for the team—and logical enough for AI-augmented workflows to interact with seamlessly. **I invite you to visit my portfolio at syazsolo.netlify.app to see this standard in practice;** I built it to be clean, responsive, and structurally sound.",
+      "I want to be transparent about my experience: I am a mid-level engineer with three years of tenure, and I know I have a long way to go. However, I strive to operate with a senior-level mindset—defined by stewardship. I view code quality as a personal responsibility. In my previous role, I enforced personal testing standards so rigorous that my deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript and implemented automated tests, cutting production bug reports by over 80%. I strive to be the engineer who solves speed and security issues before they become tickets.",
+      "I am looking for a team where high standards are the norm and where I can contribute to best-in-class user experiences while continuing to grow technically. I would be thrilled to bring this blend of architectural care and ownership to Eastone Software Integration."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "axrail-full-stack-developer",
+    "company": "Axrail Sdn. Bhd.",
+    "role": "Full Stack Developer",
+    "date": "2025-12-17",
+    "content": [
+      "To the Hiring Team at Axrail Sdn. Bhd.,",
+      "I am writing to express my strong interest in the Full Stack Developer position. What truly compelled me to apply was the palpable energy of your posting—specifically the mission to \"engineer intelligence\" rather than just write code. I thrive in environments where the focus is on the craft and the team, and I am looking for a culture where high standards are a shared language, not a battleground.",
+      "Your requirement for robust, scalable Next.js applications aligns directly with my engineering focus. At IMT Tech, I led a frontend architecture redesign using Nuxt (Vue), building reusable, logical abstractions that reduced boilerplate code by nearly 70%. To demonstrate this standard in your specific stack, I have two personal Next.js projects ready for immediate review—including my portfolio at syazsolo.netlify.app. I invite you to examine them to see how I structure logical abstractions and ensure clarity, allowing you to assess my engineering quality firsthand.",
+      "While my backend experience is rooted in the Node.js and PHP ecosystems, my engineering approach is language-agnostic. I focus on structural logic, API design, and data integrity—skills that translate rapidly to Python. I leverage an AI-native workflow to bridge syntax gaps quickly, allowing me to focus on solving business problems.",
+      "I recognize that my three years of experience places me at a mid-level stage, but I strive to produce work that reflects a senior-level mindset—one defined by stewardship. I view code quality as a personal responsibility, not just a requirement. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I strive to be the engineer the team can trust to deliver stable, high-quality work without the need for constant supervision.",
+      "I am looking for a professional home where I can contribute to meaningful cloud solutions while growing alongside a team that values innovation and quality. I would be thrilled to bring this blend of architectural care and ownership to Axrail."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "yonyou-senior-front-end-developer",
+    "company": "Yonyou (Malaysia) Sdn Bhd",
+    "role": "Senior Front-End Developer",
+    "date": "2025-12-17",
+    "content": [
+      "To the Hiring Team at Yonyou (Malaysia) Sdn Bhd,",
+      "I am applying for the Senior Front-End Developer role because I believe I am exactly the \"strong candidate\" with 3+ years of experience you are looking for. While my tenure places me at a mid-level stage, I have deliberately cultivated a senior-level mindset defined by architectural rigor and a relentless pursuit of quality—qualities essential for the ownership of complex modules you require.",
+      "Your emphasis on component-based architecture and modular design aligns perfectly with my expertise. At IMT Tech, I led a frontend architecture redesign using Nuxt (Vue) driven by a specific goal: to prove the operational impact of clean architecture to a team that needed a new standard. I didn't just want to write code; I wanted to change how we worked. By building logical, reusable abstractions, I reduced boilerplate by nearly 70%. The result was transformative: routine maintenance, like adding a new field to a form—which previously consumed an hour of development time—was reduced to a one-minute task. I build systems not just to function, but to make every future developer faster.",
+      "Beyond technical competence, I possess a quality that many companies do not prioritize, but I hope Yonyou does: an obsession with elegance. My specialty is translating complexity into clarity—stripping away \"fluff\" to reveal utility. I train myself to prefer this elegance in everything I do, viewing code as a direct reflection of my mindset. However, I balance this aesthetic drive with strict pragmatism. I am vigilant against the trap of over-engineering, ensuring that my pursuit of structure always serves the deadline rather than delaying it.",
+      "I invite you to visit my portfolio at syazsolo.netlify.app to see this standard in practice. I built it to be clean, responsive, and structurally sound—a testament to my belief that high-performance systems should also be beautiful to work with.",
+      "I am eager to bring this blend of architectural care, elegance, and ownership to Yonyou's enterprise systems."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
