@@ -591,5 +591,157 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "pulsesync-fullstack-developer",
+    "company": "PulseSync",
+    "role": "Full Stack Developer",
+    "date": "2025-12-19",
+    "content": [
+      "Dear Hiring Manager at PulseSync,",
+      "I thrive in that space where speed meets a solid technical foundation. While my professional career has been built in the Laravel and Node.js ecosystems, my background is in Electronics Engineering—a field that taught me to prioritize structural logic and clear systems over just getting the syntax to work. Moving into your ASP.NET and Angular stack is exactly the kind of \"out-of-comfort-zone\" growth I am looking for.",
+      "I live by the \"campsite rule\" of software engineering: I make it a point to leave every codebase cleaner and more stable than I found it. To me, code is a long-term asset that requires real stewardship. At IMT Tech, I practiced this by leading a frontend architecture redesign focused on reusable parts that stripped away unnecessary complexity. I built a system so logical and consistent that it became a force multiplier for the team, allowing both my senior leads and our AI-augmented workflows to extend the codebase without friction.",
+      "I brought that same sense of ownership to 9LOOP. I inherited a fragile legacy system and refactored its foundation to ensure long-term stability. I own the quality of my output from the first line of code to the final deployment. This ensures that when I hand off a project, it is a reliable base the team can trust, not a problem they have to fix.",
+      "I maintain a high velocity by being AI-native, architecting my systems to be so clear and modular that they amplify the entire team's efficiency. You can see this philosophy in action at syazsolo.netlify.app, where I showcase how I translate complex requirements into intuitive interfaces.",
+      "I am looking for an environment where standards are high and the learning is constant. I am ready to bring this blend of \"hardware-level\" logic and full-stack agility to your KL office. Let's discuss how my habit of building reliable, scalable systems can contribute to PulseSync's next cloud-based pilot project."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "seg-international-system-developer",
+    "company": "SEG International Bhd",
+    "role": "System Developer",
+    "date": "2025-12-19",
+    "content": [
+      "To the Hiring Team at SEG International Bhd,",
+      "A system developer's job is to ensure that the logic connecting a mobile interface to an enterprise ERP remains invisible to the user and invincible to errors. Whether bridging a frontend app to a payment gateway or synchronizing complex data across 3rd-party SaaS platforms, I believe in building architectures that prioritize long-term stability. This mindset of stewardship—treating code as infrastructure that must outlive its current sprint—defines my work.",
+      "At IMT Tech and Webcada, I specialized in the exact \"end-to-end\" delivery your team requires. My professional career has centered on linking diverse systems through complex API integrations and architecting maintainable codebases that handle the weight of enterprise-scale data. I don't just patch features; I design systems. I previously led a frontend architecture redesign that reduced boilerplate code by 70%, creating a foundation so logical that it became a force multiplier for the entire team's delivery speed.",
+      "Reliability is my primary metric. When I inherited a fragile legacy system at 9LOOP, I refactored the core logic to TypeScript and implemented rigorous automated testing. The result was an 80% reduction in production bugs. I bring this same obsession with quality to your stack. While my foundations are in Laravel and Node.js, my background in Electronics Engineering (Robotics & Automation) gives me a unique advantage in understanding the low-level data flows and \"machine logic\" required for high-performance mobile and backend synchronization.",
+      "I invite you to visit syazsolo.netlify.app to see how I translate these architectural principles into intuitive, clean interfaces. I am not looking for a place to simply write code; I am looking to contribute to a room where technical standards are high and systems are built to scale.",
+      "I am ready to bring this blend of systems thinking and high-velocity execution to SEG International Bhd. I look forward to discussing how my habit of building reliable, scalable systems can drive your next phase of growth."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "foto-zzoom-fullstack-developer",
+    "company": "Foto-Zzoom Sdn Bhd",
+    "role": "Full Stack Developer",
+    "date": "2025-12-19",
+    "content": [
+      "To the Hiring Team at Foto-Zzoom Sdn Bhd,",
+      "Software is fundamentally a tool for solving problems, and I believe that to build effective systems, we must first think deeply about the problem itself before writing a single line of code. When we discuss a voucher system, for example, the priority isn't just the syntax—it's the logic of global caps, expiration rules, and race conditions that ensure the system remains reliable for the business and the user.",
+      "I approach my work with a focus on stewardship and maintainability. In my previous role at IMT Tech, this mindset translated into a frontend architecture redesign that significantly reduced boilerplate and a backend testing standard that resulted in near-zero client-reported bugs. I believe that thoroughness during development is an act of respect for the team and the end-user. My time at 9LOOP followed a similar path; by refactoring a legacy system with TypeScript and automated testing, I was able to help the team reduce production bugs by 80%.",
+      "My background in Electronics Engineering (Robotics & Automation) provides a unique foundation for your IoT and machine integrations. I am comfortable at the intersection of \"machine logic\" and high-level software, ensuring that data flows smoothly from sensors to the dashboard.",
+      "**On top of all this, I live in Selayang Baru, which puts me less than 10 minutes from your Sri Gombak office**. This proximity allows for the kind of consistent, face-to-face collaboration I value as we solve operational challenges together.",
+      "I invite you to visit syazsolo.netlify.app to see how I translate these architectural principles into clean, maintainable systems. I look forward to discussing how my focus on stability and thoughtful design can support Foto-Zzoom's scaling platform."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "the-pique-lab-personal-follow-up",
+    "company": "The Pique Lab",
+    "role": "Software Engineer",
+    "date": "2026-01-02",
+    "content": [
+      "Dear The Pique Lab,",
+      "You are in the top three on my list of companies I want to join. This is out of a list of hundreds. I don't say that lightly. I like your culture—or rather, the impression of what it's like to work there judging by your job description, the emails you've sent, and the deliberate flow of this application process. It feels intentional. It feels like the work of people who care.",
+      "I have spent my life caring like that, too. My best craft is who I am as a person; only second or later is my code. Living this way is not easy; it is hard to stay true to yourself. I know I need friends, and so I try my best to show this side of me to everyone I meet, hoping to attract similar people closer. In my life so far, I can say I have only found about 20 people like that. I don't think this is a testament to my weakness—though that surely contributes—but a reflection of the environment I am living in (the world).",
+      "One hard thing about living like this is that I feel I cannot afford to make mistakes. I see myself as representing \"something\"—maybe the idea of care—and it is my utmost priority not to give that something a bad name. At my last job, that weight was real. I made mistakes while trying to avoid giving that care a bad name; more often than not, I would overengineer and stress-test a deadline just to avoid making a mistake. I will improve.",
+      "I am writing this while I am on my way to start your video interview assessment. I don't know if I am going to do okay, but I am going to try my best. Dear The Pique Lab, wish me luck."
+    ],
+    "regards": ["Regards,", "Syazani Zulkhairi", "+6019-209 9853"]
+  },
+  {
+    "id": "talentbook-solutions-software-engineer",
+    "company": "Talentbook Solutions Sdn Bhd",
+    "role": "Software Engineer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at Talentbook Solutions Sdn Bhd,",
+      "Reliable systems are not built through effort alone; they are the result of intentional stewardship. In my three years as an engineer, I have learned that the difference between a working application and a scalable, multi-tiered system lies in the architectural clarity established on day one. I am a Malaysian engineer who treats code as infrastructure that must outlive its current sprint.",
+      "My approach to Node.js development is defined by this Architect mindset. At 9LOOP, I inherited a fragile legacy system and led a total refactoring effort. By migrating the core logic to TypeScript and implementing rigorous testing, I achieved an 80% reduction in production bugs. I don't just patch features; I analyze program performance to identify the bottlenecks that others overlook, ensuring the system remains invincible to errors as it scales.",
+      "At IMT Tech, this philosophy translated into a frontend architecture redesign that reduced boilerplate by 70%. I built logical abstractions so clean that they became a force multiplier for the team—creating a codebase that was as easily interpretable by my senior leads as it was by the AI-augmented workflows I use to accelerate delivery. Whether managing complex API integrations or optimizing MS SQL queries, my focus is on stripping away complexity to reveal utility.",
+      "I invite you to visit syazsolo.netlify.app to see this standard of structural logic in practice. I am not looking for a place to simply write code; I am looking for a conducive environment like Talentbook Solutions where technical standards are high and systems are built for the long term.",
+      "I am ready to bring this blend of high-velocity execution and architectural rigor to your core development team. I look forward to discussing how my habit of building reliable, scalable systems can contribute to your upcoming projects."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "onl-biz-nodejs-developer-v2",
+    "company": "ONL Biz Solutions Sdn Bhd",
+    "role": "Node.js Developer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at ONL Biz Solutions Sdn Bhd,",
+      "I am applying for the Node.js Developer position because I specialize in building backend systems that prioritize long-term stability and architectural clarity. I focus on leaving every codebase cleaner and more scalable than I found it.",
+      "Direct Experience & Reliability:",
+      {
+        "type": "ul",
+        "items": [
+          "Legacy Refactoring: At 9LOOP, I inherited a fragile system and refactored the core logic into TypeScript. By implementing automated testing, I reduced production bugs by 80%.",
+          "System Ownership: At IMT Tech, I led a frontend architecture redesign that reduced boilerplate code by 70%, creating modular systems that handled complex API integrations and enterprise-scale data.",
+          "Quality Standards: I hold myself to a zero-bug standard. In my previous backend deliverables, my personal testing resulted in near-zero client-reported bugs.",
+          "Workflow: I utilize an AI-native workflow to accelerate the delivery of high-quality code. I architect my systems to be so logical and modular that they are easily understood by both human teams and AI-augmented tools."
+        ]
+      },
+      "I invite you to visit syazsolo.netlify.app to see the standard of engineering I bring to every project. I am ready to bring this blend of technical ownership and velocity to your backend team."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-click-full-stack-developer",
+    "company": "Dynamic Click Sdn Bhd",
+    "role": "Full-Stack Developer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at Dynamic Click Sdn Bhd,",
+      "Software is not just a product of effort; it is a product of stewardship. I am applying for the Full-Stack Developer role with the architectural discipline and ownership required to build systems that outlive their current sprint.",
+      "My approach to Node.js is defined by this Architect mindset. At 9LOOP, I refactored a fragile legacy system into a robust TypeScript environment, reducing production bugs by 80%. I do not just patch features; I design systems to be invincible to errors as they scale.",
+      "At IMT Tech, I led a frontend architecture redesign that reduced boilerplate by 70%. I built logical abstractions so clean they became force multipliers for both human collaborators and the AI-native workflows I use to accelerate delivery. I invite you to visit syazsolo.netlify.app to see this standard of structural logic in action.",
+      "I am ready to bring this blend of high-velocity execution and systematic rigor to Dynamic Click. I look forward to discussing how my habit of building stable, scalable systems can drive your upcoming projects."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
