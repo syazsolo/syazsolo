@@ -671,7 +671,7 @@
     "id": "talentbook-solutions-software-engineer",
     "company": "Talentbook Solutions Sdn Bhd",
     "role": "Software Engineer",
-    "date": "2026-01-13",
+    "date": "2026-01-12",
     "content": [
       "To the Hiring Team at Talentbook Solutions Sdn Bhd,",
       "Reliable systems are not built through effort alone; they are the result of intentional stewardship. In my three years as an engineer, I have learned that the difference between a working application and a scalable, multi-tiered system lies in the architectural clarity established on day one. I am a Malaysian engineer who treats code as infrastructure that must outlive its current sprint.",
@@ -694,7 +694,7 @@
     "id": "onl-biz-nodejs-developer-v2",
     "company": "ONL Biz Solutions Sdn Bhd",
     "role": "Node.js Developer",
-    "date": "2026-01-13",
+    "date": "2026-01-12",
     "content": [
       "To the Hiring Team at ONL Biz Solutions Sdn Bhd,",
       "I am applying for the Node.js Developer position because I specialize in building backend systems that prioritize long-term stability and architectural clarity. I focus on leaving every codebase cleaner and more scalable than I found it.",
@@ -725,7 +725,7 @@
     "id": "dynamic-click-full-stack-developer",
     "company": "Dynamic Click Sdn Bhd",
     "role": "Full-Stack Developer",
-    "date": "2026-01-14",
+    "date": "2026-01-12",
     "content": [
       "To the Hiring Team at Dynamic Click Sdn Bhd,",
       "Software is not just a product of effort; it is a product of stewardship. I am applying for the Full-Stack Developer role with the architectural discipline and ownership required to build systems that outlive their current sprint.",
@@ -737,6 +737,82 @@
       "Best regards,",
       "Syazani Zulkhairi",
       "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "ideal-reliance-software-engineer",
+    "company": "Agensi Pekerjaan Ideal Reliance Sdn Bhd",
+    "role": "Software Engineer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at Agensi Pekerjaan Ideal Reliance Sdn Bhd,",
+      "Software is fundamentally a tool for solving business problems; effective systems require deep thinking before writing a single line of code. When we discuss \"end-to-end ownership,\" the priority isn't just syntax—it's the logic of race conditions and data integrity that ensures a system remains invincible as it scales.",
+      "I approach development with a focus on stewardship and maintainability. At IMT Tech, this mindset drove a frontend architecture redesign that reduced boilerplate by 70% and a backend standard resulting in near-zero client-reported bugs. I believe thoroughness is an act of respect for the team; at 9LOOP, refactoring a legacy system with TypeScript and automated testing reduced production bugs by 80%.",
+      "I operate with high velocity and a relentless focus on quality. I am comfortable managing complex data flows, whether I am optimizing asynchronous Node.js services or architecting scalable data schemas within PostgreSQL and Supabase—ensuring every feature I deliver is a reliable base for the team.",
+      "I invite you to visit **syazsolo.netlify.app** to see how I translate these architectural principles into clean, maintainable systems. I built my portfolio to be intuitive and structurally sound—a testament to my belief that high-performance systems should be beautiful to work with.",
+      "I am seeking a professional home where high standards are the norm and ownership is the default. I look forward to discussing how my focus on stability and thoughtful design can support your production-grade applications."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "posable-software-engineer",
+    "company": "POSABLE",
+    "role": "Software Engineer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at POSABLE Sdn Bhd,",
+      "Software engineering is no longer a game of typing; it is a game of curation. In my workflow, the traditional coder is the machine, and I am the lead reviewer. This shift has allowed me to operate with the output of a three-person engineering office while maintaining a level of architectural stewardship that most teams struggle to achieve with ten.",
+      "I live in a dual-IDE environment. My primary driver is **Cursor** in agentic mode for high-velocity execution. Simultaneously, I leverage **Antigravity** to pipe in **Gemini Pro** and **Claude Opus** through my personal Google quotas, ensuring I always have the most sophisticated models auditing my logic without being throttled by standard subscription limits. This isn't just about speed—it's about precision. By shifting my energy from syntax to system design, I spend my time reading, validating, and refactoring rather than just writing.",
+      "This AI-native methodology is currently fueling Bigcampus, a complex, multi-tiered personal project I am building as a standalone developer. I have moved from zero to a production-ready state in record time, with an initial user launch scheduled in just 30 days. This is the same velocity I bring to legacy systems. At 9LOOP, I inherited a fragile bot infrastructure and refactored the core logic into a robust TypeScript environment, achieving an 80% reduction in production bugs. At IMT Tech, I redesigned a frontend architecture so logically consistent that my senior leads noted it was immediately interpretable by LLM tools—reducing boilerplate by 70% and turning hour-long tasks into one-minute updates.",
+      "I am not applying to POSABLE to be a passive participant. I am looking to lead the design and modernization of your mission-critical platforms using a workflow that turns tight timelines into a competitive advantage. I invite you to visit **syazsolo.netlify.app** to see the standard of structural logic I bring to every system.",
+      "I am ready to demonstrate how my approach to AI-assisted stewardship can stabilize and scale your codebases. Let's discuss how I can help rebuild your infrastructure for the long term."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "gentech-ai-agent-fullstack-developer",
+    "company": "GenTech AI Sdn Bhd",
+    "role": "AI Agent & Full Stack Developer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at GenTech AI Sdn Bhd,",
+      "The future of web development isn't just about building interfaces; it's about architecting brains. I am an AI-native engineer who treats software as a living infrastructure, and I am applying for the AI Agent & Full Stack Developer role to help GenTech define the standard for intelligent, autonomous systems.",
+      "My development process is a blueprint for the agentic era. I typically operate with two IDEs open simultaneously: **Cursor** and **Antigravity**. I use Cursor in agentic mode to handle the initial heavy lifting of writing and syntax, but I maintain a workflow where I spend significantly more time reading and auditing than typing. When I need to leverage the deep reasoning of Gemini Pro or Claude Opus without being restricted by Cursor's limits, I switch to Antigravity. This allows me to utilize Google quotas, which Google has discounted a lot, I can use way more Opus. This dual-stream approach ensures I am always acting as the lead architect and final validator, guaranteeing that every piece of code is logically sound and easily extendable by either humans or future agents.",
+      "My professional record backs this velocity with rigorous stability:",
+      {
+        "type": "ul",
+        "items": [
+          "**Architectural Stewardship:** At IMT Tech, I led a frontend architecture redesign that reduced boilerplate by 70%, creating a codebase so logical it was immediately usable by LLMs.",
+          "**System Turnaround:** At 9LOOP, I refactored legacy bot infrastructure into a robust TypeScript environment, resulting in an 80% reduction in production bugs.",
+          "**Engineering Roots:** My background in Electronics Engineering (Robotics & Automation) provides a unique advantage in understanding the machine logic and feedback loops essential for AI Agents."
+        ]
+      },
+      "I invite you to visit syazsolo.netlify.app to see how I translate these principles into clean, maintainable systems. I am ready to bring this blend of hardware-level logic and AI-first engineering to GenTech AI."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
       {
         "type": "link",
         "text": "syazsolo.netlify.app",
