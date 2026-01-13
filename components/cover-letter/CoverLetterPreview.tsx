@@ -1,6 +1,5 @@
 'use client';
 
-import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
 import { ContentItem } from '@/types/cover-letter';
 import Image from 'next/image';
@@ -309,6 +308,8 @@ export default function CoverLetterPreview({
     return [...renderedContent, ...renderedRegards];
   };
 
+  const PADDING_MM = 12;
+
   // Auto-fit logic
   React.useLayoutEffect(() => {
     const calculateScale = () => {
@@ -316,7 +317,7 @@ export default function CoverLetterPreview({
         return;
       }
 
-      const MAX_HEIGHT_MM = 297 - 12 * 2; // A4 height - padding (top + bottom)
+      const MAX_HEIGHT_MM = 297 - PADDING_MM * 2; // A4 height - padding (top + bottom)
       const MM_TO_PX = 3.7795275591;
       const maxHeightPx = MAX_HEIGHT_MM * MM_TO_PX;
 
@@ -324,12 +325,11 @@ export default function CoverLetterPreview({
       const contentHeight = contentRef.current.scrollHeight;
 
       // Calculate ratio to fit
-      // Use a larger safety factor to utilize more of the page height (0.95)
       const SAFETY_FACTOR = 0.95;
       const ratio = maxHeightPx / contentHeight;
 
-      // Allow scaling up to 1.15x if there's space, and shrink down to 0.35x if needed
-      const MAX_SCALE = 1.15;
+      // Don't scale up (max 1.0), only scale down if needed
+      const MAX_SCALE = 1.0;
       const MIN_SCALE = 0.35;
 
       const newScale = Math.min(
@@ -367,27 +367,43 @@ export default function CoverLetterPreview({
       {/* Hidden Measurement Container */}
       <div
         className="pointer-events-none fixed -z-50 w-[210mm] bg-white opacity-0"
-        style={{ padding: '12mm' }}
+        style={{ padding: `${PADDING_MM}mm` }}
         aria-hidden="true"
       >
-        {/* 
-            We need to replicate the structure exactly to get accurate height.
-            The Sidebar takes 0 height, so it doesn't contribute to the flow height 
-            except for the vertical line which is absolute.
-            The main content flow is what matters.
-            We render with scale=1 to get the natural height.
-         */}
         <div ref={contentRef}>{renderCoverLetterContent(1)}</div>
       </div>
 
-      {/* A4 Paginator Wrapper */}
-      <A4Paginator paddingMM={12}>
-        {/* Sidebar (Absolute, on Page 1) */}
-        <Sidebar />
+      {/* Single A4 Page (no pagination - cover letters are always one page) */}
+      <div className="flex flex-col items-center print:block">
+        <div
+          className="relative h-[297mm] w-[210mm] overflow-hidden bg-white shadow-xl print:h-[297mm] print:w-full print:shadow-none"
+          style={{ padding: `${PADDING_MM}mm` }}
+        >
+          <Sidebar />
+          {renderCoverLetterContent(fontSizeScale)}
+        </div>
+      </div>
 
-        {/* Scaled Content */}
-        {renderCoverLetterContent(fontSizeScale)}
-      </A4Paginator>
+      <style jsx global>{`
+        @media print {
+          @page {
+            size: A4;
+            margin: 0 !important;
+          }
+          html,
+          body {
+            width: 210mm;
+            height: auto !important;
+            min-height: 100%;
+            background-color: white !important;
+            margin: 0 !important;
+            padding: 0 !important;
+            overflow: visible !important;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+          }
+        }
+      `}</style>
     </div>
   );
 }
