@@ -819,5 +819,75 @@
         "to": "https://syazsolo.netlify.app"
       }
     ]
+  },
+  {
+    "id": "mha-consultancy-frontend-developer",
+    "company": "MHA Consultancy Services Sdn Bhd",
+    "role": "Frontend Developer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at MHA Consultancy Services Sdn Bhd,",
+      "Most developers optimize for the current sprint; I optimize for the system's lifespan. I treat frontend architecture as infrastructure, refusing to ship mediocre code that creates future technical debt.",
+      "At IMT Tech, I led a Nuxt redesign that reduced boilerplate by 70% through reusable abstractions. This system was so logically sound it was immediately interpretable by AI-augmented tools, allowing the team to scale without friction. I prioritize system reliability and systematic logic over simple syntax, ensuring the user interface is both performant and maintainable.",
+      "I am proficient in integrating RESTful APIs and WebSocket connections—capabilities required for the customer-facing portals and real-time dashboards MHA is developing. My professional record includes refactoring legacy systems into TypeScript environments at 9LOOP, which resulted in an 80% reduction in production bugs.",
+      "I invite you to visit **syazsolo.netlify.app** to see this standard of engineering in practice. I am ready to bring this blend of technical rigor and high-velocity execution to your financing projects. Let's discuss how my habit of building stable, scalable systems can drive MHA's growth."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "commerce-dot-com-software-engineer",
+    "company": "Commerce Dot Com Sdn. Bhd.",
+    "role": "Software Engineer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at Commerce Dot Com Sdn. Bhd.,",
+      "ePerolehan has been running for twenty-five years. In software, that duration usually means decades of temporary fixes that have become permanent infrastructure. While others avoid legacy technical debt, I specialize in the surgical stabilization and modernization of these aging systems.",
+      "I excel at un-breaking complex environments. At 9LOOP, I inherited a fragile legacy system and refactored it into a robust environment, reducing production bugs by 80%. I don't just patch symptoms; I architect systems to be invincible to the errors that plague long-running platforms.",
+      "My workflow is AI-native, allowing me to audit and document legacy code significantly faster than traditional methods. At IMT Tech, I led an architecture redesign that cut boilerplate by 70%—creating a codebase so logical that it was immediately interpretable by both AI tools and junior developers. This ensures that the documentation and standards I deliver actually help the team scale.",
+      "I hold my output to a zero-bug standard because I view code as a long-term asset. I invite you to see this architectural clarity in practice at **syazsolo.netlify.app**. I am ready to stabilize your core systems, and I look forward to meeting the team on your in-house futsal court."
+    ],
+    "regards": [
+      "Regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "the-next-six-software-engineer",
+    "company": "THE NEXT SIX SDN. BHD.",
+    "role": "Software Engineer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at THE NEXT SIX SDN. BHD.,",
+      "Most software engineers optimize for today's deployment; I optimize for the engineer who inherits the system in three years. I don't just move tickets; I act as a steward for the codebase, ensuring every React component and Node.js service is treated as a long-term asset rather than a temporary fix.",
+      "My approach is built on three pillars of surgical efficiency:",
+      "Legacy Turnaround: At 9LOOP, I inherited a fragile infrastructure and refactored the core logic into a robust TypeScript environment, resulting in an 80% reduction in production bugs.",
+      "Architectural Clarity: At IMT Tech, I led a redesign that reduced boilerplate by 70% through reusable abstractions. The system was so logical it became a force multiplier for the team and our AI-augmented tools.",
+      "AI-Native Velocity: I operate in a dual-IDE environment to maximize both speed and reasoning depth. While I use Cursor's agentic mode for rapid execution, I switch to Antigravity to audit complex logic using Gemini Pro and Claude Opus 4.5. By utilizing my personal Google and Anthropic quotas, I bypass standard subscription throttles, ensuring I always have the most sophisticated models auditing my architecture for bottlenecks and security flaws.",
+      "I hold my output to a near-zero bug standard, a discipline that resulted in flawless handoffs in my previous roles. I invite you to visit **syazsolo.netlify.app** to see how I translate this level of technical care into clean, responsive interfaces.",
+      "I am ready to bring this blend of high-velocity execution and systematic rigor to your Kuchai Lama team."
+    ],
+    "regards": [
+      "Regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
   }
 ]
