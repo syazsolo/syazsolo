@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Check, Copy } from 'lucide-react';
+import { Check, Copy, FileText, Lock, MessageSquare } from 'lucide-react';
 import {
   Tooltip,
   TooltipContent,
@@ -14,6 +14,7 @@ import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
 import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
+import ContactFormModal from '@/components/ContactFormModal';
 
 interface ContactItem {
   icon: string;
@@ -116,6 +117,7 @@ const renderContactItem = (
 const ContactInfo = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const { isOwner } = useAuth();
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleCopy = async (index: number, text: string) => {
     try {
@@ -135,49 +137,67 @@ const ContactInfo = () => {
             renderContactItem(item, index, copiedIndex, handleCopy)
           )}
         </div>
-        <div className="border-border mt-4 border-t pt-4">
-          <div className="flex flex-col gap-2">
+        <div className="border-border mt-6 border-t pt-5">
+          <div className="flex flex-col gap-4">
             <Button
-              size="sm"
-              className="rounded-full"
-              variant="default"
-              onClick={() => window.open('/resume', '_blank')}
+              className="bg-primary/10 text-primary hover:bg-primary/20 w-full rounded-full font-semibold shadow-none transition-all active:scale-[0.98]"
+              onClick={() => setIsContactModalOpen(true)}
             >
-              Resume
+              <MessageSquare className="mr-2 h-4 w-4" /> Message Me
             </Button>
-            {isOwner ? (
-              <Button
-                size="sm"
-                className="rounded-full"
-                variant="default"
-                onClick={() => window.open('/cover-letter', '_blank')}
-              >
-                Cover Letter
-              </Button>
-            ) : (
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <span tabIndex={0} className="w-full">
-                      <Button
-                        size="sm"
-                        className="w-full rounded-full opacity-50"
-                        variant="default"
-                        disabled
-                      >
-                        Cover Letter
-                      </Button>
-                    </span>
-                  </TooltipTrigger>
-                  <TooltipContent side="bottom">
-                    <p>Only for me</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
-            )}
+
+            <div className="space-y-2">
+              <h4 className="text-muted-foreground px-1 text-xs font-medium tracking-wider uppercase">
+                Documents
+              </h4>
+              <div className="grid grid-cols-2 gap-2">
+                <Button
+                  size="sm"
+                  className="w-full rounded-full"
+                  variant="secondary"
+                  onClick={() => window.open('/resume', '_blank')}
+                >
+                  <FileText className="mr-2 h-4 w-4" /> Resume
+                </Button>
+                {isOwner ? (
+                  <Button
+                    size="sm"
+                    className="w-full rounded-full"
+                    variant="secondary"
+                    onClick={() => window.open('/cover-letter', '_blank')}
+                  >
+                    <FileText className="mr-2 h-4 w-4" /> Cover Letter
+                  </Button>
+                ) : (
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <span tabIndex={0} className="block w-full">
+                          <Button
+                            size="sm"
+                            className="w-full rounded-full opacity-50"
+                            variant="secondary"
+                            disabled
+                          >
+                            <Lock className="mr-2 h-3.5 w-3.5" /> Cover Letter
+                          </Button>
+                        </span>
+                      </TooltipTrigger>
+                      <TooltipContent side="bottom">
+                        <p>Only for me</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
+                )}
+              </div>
+            </div>
           </div>
         </div>
       </CardContent>
+      <ContactFormModal
+        open={isContactModalOpen}
+        onOpenChange={setIsContactModalOpen}
+      />
     </Card>
   );
 };
