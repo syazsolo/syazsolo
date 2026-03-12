@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find /c/Users/syazani/hobby/code/syazsolo -type f -name \"*resume*\" -o -name \"*cover*\" -o -name \"*job*\" -o -name \"*hunt*\" -o -name \"*career*\" 2>/dev/null | head -50)",
+      "Bash(git log:*)",
+      "Bash(mkdir -p C:/Users/syazani/hobby/code/syazsolo/data/job-hunt/v1 && mkdir -p C:/Users/syazani/hobby/code/syazsolo/data/job-hunt/v2)",
+      "Bash(cp C:/Users/syazani/hobby/code/syazsolo/data/resume.json C:/Users/syazani/hobby/code/syazsolo/data/job-hunt/v1/resume.json && cp C:/Users/syazani/hobby/code/syazsolo/data/cover-letters.json C:/Users/syazani/hobby/code/syazsolo/data/job-hunt/v1/cover-letters.json)",
+      "WebSearch",
+      "mcp__ide__getDiagnostics",
+      "Bash(cat \"C:/Users/syazani/hobby/code/syazsolo/docs/report.html\" | grep -oP '>\\([^<]+\\)<' | sed 's/^>//; s/<$//' | grep -v '^\\\\s*$' | head -200)",
+      "Bash(cat \"C:/Users/syazani/hobby/code/syazsolo/docs/report.html\" | grep -oP '>\\([^<]+\\)<' | sed 's/^>//; s/<$//' | grep -v '^\\\\s*$' | tail -n +200)",
+      "Bash(grep -rl \"cover-letter\\\\|cover_letter\" C:/Users/syazani/hobby/code/syazsolo --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.json\" 2>/dev/null | grep -v node_modules | grep -v \".next\")"
+    ]
+  }
+}

@@ -7,27 +7,18 @@ import { z } from 'zod';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
-import {
-  Mail,
-  Phone,
-  Send,
-  ArrowRightLeft,
-  CheckCircle,
-  Loader2,
-} from 'lucide-react';
+import { CheckCircle, Loader2 } from 'lucide-react';
 import { cn } from '@/utils';
-import FormModeToggle, { type FormMode } from '@/components/FormModeToggle';
 
 type ContactType = 'email' | 'phone';
 
 const createSchema = () => {
   return z
     .object({
-      name: z.string().min(1, 'Please let me know how to address you'),
+      name: z.string().min(1, 'Name is required'),
       contactValue: z.string(),
-      message: z.string(),
+      message: z.string().optional(),
       contactType: z.enum(['email', 'phone']),
-      mode: z.enum(['standard', 'simple']),
     })
     .superRefine((data, ctx) => {
       if (!data.contactValue.trim()) {
@@ -46,20 +37,12 @@ const createSchema = () => {
           });
         }
       }
-      if (data.mode === 'standard' && !data.message.trim()) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: "What's on your mind?",
-          path: ['message'],
-        });
-      }
     });
 };
 
 type FormData = z.infer<ReturnType<typeof createSchema>>;
 
 export default function ContactForm() {
-  const [mode, setMode] = useState<FormMode>('standard');
   const [contactType, setContactType] = useState<ContactType>('email');
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
@@ -79,17 +62,12 @@ export default function ContactForm() {
       contactValue: '',
       message: '',
       contactType: 'email',
-      mode: 'standard',
     },
   });
 
   useEffect(() => {
     setValue('contactType', contactType, { shouldValidate: true });
   }, [contactType, setValue]);
-
-  useEffect(() => {
-    setValue('mode', mode, { shouldValidate: true });
-  }, [mode, setValue]);
 
   const contactValueRegister = register('contactValue');
   const {
@@ -112,16 +90,12 @@ export default function ContactForm() {
       // Build form data as a plain object for proper encoding
       const formBody: Record<string, string> = {
         'form-name': 'contact',
-        mode: mode,
         'contact-type': contactType,
         name: data.name,
         'contact-value': data.contactValue,
+        message: data.message || '',
         'bot-field': '',
       };
-
-      if (mode === 'standard') {
-        formBody['message'] = data.message;
-      }
 
       // Debug: log the form data being sent
       const bodyString = new URLSearchParams(formBody).toString();
@@ -166,12 +140,10 @@ export default function ContactForm() {
           <CheckCircle className="text-primary relative mb-4 h-16 w-16" />
         </div>
         <h3 className="text-foreground mb-2 text-lg font-semibold">
-          {mode === 'standard' ? 'Message Sent!' : "I'll reach out soon!"}
+          Message Sent!
         </h3>
         <p className="text-muted-foreground text-sm">
-          {mode === 'standard'
-            ? "Thanks for reaching out. I'll get back to you soon!"
-            : 'Thanks for connecting. Expect to hear from me shortly!'}
+          Thanks for reaching out. I'll get back to you soon!
         </p>
       </div>
     );
@@ -179,9 +151,6 @@ export default function ContactForm() {
 
   return (
     <div className="space-y-4">
-      <FormModeToggle mode={mode} onModeChange={setMode} />
-
-      {/* Form */}
       <form
         name="contact"
         method="POST"
@@ -191,7 +160,6 @@ export default function ContactForm() {
         {/* Hidden Netlify fields */}
         <input type="hidden" name="form-name" value="contact" />
         <input type="hidden" name="bot-field" />
-        <input type="hidden" {...register('mode')} />
         <input type="hidden" {...register('contactType')} name="contact-type" />
 
         {/* Name Field */}
@@ -200,12 +168,12 @@ export default function ContactForm() {
             htmlFor="contact-name"
             className="text-foreground mb-1 block text-sm font-medium"
           >
-            How should I address you?
+            Name
           </label>
           <Input
             id="contact-name"
             type="text"
-            placeholder="e.g., John, Ms. Smith..."
+            placeholder="Lando"
             className={cn('bg-background', errors.name && 'border-destructive')}
             {...register('name')}
           />
@@ -216,91 +184,71 @@ export default function ContactForm() {
           )}
         </div>
 
-        {/* Contact Field with Toggle */}
+        {/* Contact Field */}
         <div className="space-y-2">
-          <label
-            htmlFor="contact-value"
-            className="text-foreground mb-1 block text-sm font-medium"
-          >
-            {contactType === 'email' ? 'Your email' : 'Your phone number'}
-          </label>
-          <div className="relative mb-0.5 flex items-center">
-            <div className="text-muted-foreground pointer-events-none absolute left-3">
-              {contactType === 'email' ? (
-                <Mail className="h-4 w-4" />
-              ) : (
-                <Phone className="h-4 w-4" />
-              )}
-            </div>
-            <Input
-              id="contact-value"
-              name={contactValueName}
-              type={contactType === 'email' ? 'email' : 'tel'}
-              placeholder={
-                contactType === 'email'
-                  ? 'hello@example.com'
-                  : '+60 12-345 6789'
-              }
-              className={cn(
-                'bg-background pr-12 pl-10',
-                errors.contactValue && 'border-destructive'
-              )}
-              onChange={contactValueOnChange}
-              onBlur={contactValueOnBlur}
-              ref={contactValueRef}
-            />
+          <div className="mb-1 flex items-baseline justify-between">
+            <label
+              htmlFor="contact-value"
+              className="text-foreground text-sm font-medium"
+            >
+              {contactType === 'email' ? 'Email' : 'Phone'}
+            </label>
             <button
               type="button"
               onClick={toggleContactType}
-              className={cn(
-                'absolute right-1.5 flex h-7 w-9 cursor-pointer items-center justify-center rounded-md',
-                'bg-muted hover:bg-accent text-muted-foreground hover:text-foreground',
-                'transition-all duration-200 hover:scale-105 active:scale-95'
-              )}
-              title={`Switch to ${contactType === 'email' ? 'phone' : 'email'}`}
+              className="text-muted-foreground hover:text-foreground text-xs font-medium transition-colors"
             >
-              <ArrowRightLeft className="h-3.5 w-3.5" />
+              or use {contactType === 'email' ? 'phone' : 'email'}
             </button>
           </div>
-          {errors.contactValue ? (
+          <Input
+            id="contact-value"
+            name={contactValueName}
+            type={contactType === 'email' ? 'email' : 'tel'}
+            placeholder={
+              contactType === 'email'
+                ? 'lando@admin.cloudcity'
+                : '12-345-6789-CC'
+            }
+            className={cn(
+              'bg-background',
+              errors.contactValue && 'border-destructive'
+            )}
+            onChange={contactValueOnChange}
+            onBlur={contactValueOnBlur}
+            ref={contactValueRef}
+          />
+          {errors.contactValue && (
             <p className="text-destructive animate-in fade-in slide-in-from-top-1 text-sm duration-200">
               {errors.contactValue.message}
-            </p>
-          ) : (
-            <p className="text-muted-foreground text-xs">
-              {contactType === 'email'
-                ? 'Tap the arrow to use phone instead'
-                : 'Tap the arrow to use email instead'}
             </p>
           )}
         </div>
 
-        {/* Message Field (Standard mode only) */}
-        {mode === 'standard' && (
-          <div className="animate-in slide-in-from-top-2 fade-in space-y-2 duration-300">
-            <label
-              htmlFor="contact-message"
-              className="text-foreground mb-1 block text-sm font-medium"
-            >
-              What&apos;s on your mind?
-            </label>
-            <Textarea
-              id="contact-message"
-              placeholder="I'd love to discuss..."
-              className={cn(
-                'bg-background min-h-[100px] resize-none',
-                errors.message && 'border-destructive'
-              )}
-              rows={4}
-              {...register('message')}
-            />
-            {errors.message && (
-              <p className="text-destructive animate-in fade-in slide-in-from-top-1 text-sm duration-200">
-                {errors.message.message}
-              </p>
+        {/* Message Field */}
+        <div className="space-y-2">
+          <label
+            htmlFor="contact-message"
+            className="text-foreground mb-1 block text-sm font-medium"
+          >
+            Message (optional)
+          </label>
+          <Textarea
+            id="contact-message"
+            placeholder="how's my falcon doing buddy?"
+            className={cn(
+              'bg-background min-h-[100px] resize-none',
+              errors.message && 'border-destructive'
             )}
-          </div>
-        )}
+            rows={4}
+            {...register('message')}
+          />
+          {errors.message && (
+            <p className="text-destructive animate-in fade-in slide-in-from-top-1 text-sm duration-200">
+              {errors.message.message}
+            </p>
+          )}
+        </div>
 
         {/* Submit Button */}
         <Button
@@ -318,10 +266,7 @@ export default function ContactForm() {
               Sending...
             </>
           ) : (
-            <>
-              <Send className="h-4 w-4" />
-              {mode === 'standard' ? 'Send Message' : "Let's Connect"}
-            </>
+            'Send'
           )}
         </Button>
       </form>

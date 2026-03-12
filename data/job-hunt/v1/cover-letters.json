@@ -1,0 +1,893 @@
+[
+  {
+    "id": "ml-engineer",
+    "company": "Company Name",
+    "role": "Machine Learning Software Engineer",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at Company Name,",
+      "I am applying for this role because I see a clear intersection between your engineering needs and my strengths. While I am new to the professional AI domain, I am not starting from zero. My background is in Electronics Engineering (Robotics & Automation), which gave me my foundational understanding of control systems and logic.",
+      "I approach my career with a philosophy of living passionately and following where my curiosity leads. Right now, I am deeply fascinated by the mechanics of learning. I recently realized that the way I train for football—making random movements, observing the impact, and iterating to replicate positive outcomes—is essentially Reinforcement Learning in practice. I am excited about the future and eager to see where applying this rigorous, inquisitive mindset to your ML pipelines will take me.",
+      "Regarding the job description: the engineering fundamentals are already solved on my end.",
+      "My professional career at IMT Tech and Webcada involved linking diverse systems, managing complex API integrations (Webhooks/WebSockets), and architecting maintainable codebases. I can immediately handle the \"backend infrastructure\" and \"service integration\" required. Additionally, I am well-versed in the frontend technologies you listed (React, Next.js), allowing me to deliver immediate value across the stack while I get up to speed on your specific ML model implementations.",
+      "I am looking for a team where I can contribute stable, high-quality engineering while exploring this new field. I learn fast, build reliably, and am excited to see what we can build together."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "software-engineer-efficiency",
+    "company": "Company Name",
+    "role": "Software Engineer - Efficiency & Tools",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at Company Name,",
+      "I am writing this cover letter to apply for the Software Engineer position. Company Name's reputation for high-caliber engineering and code quality is highly appealing; I seek an environment where I can focus on architectural excellence, building, and learning, rather than fixing foundational instability.",
+      "My approach to software engineering is defined by efficiency and tool utilization. I view complexity as a problem to solve through automation, not manual effort. To illustrate this commitment, I want to share the personal, automated generation workflow that produced this document:",
+      {
+        "type": "ol",
+        "items": [
+          "Template Creation: I maintain multiple comprehensive cover letter templates (for example, one emphasizing architectural strength and one for pivoting into ML engineering) to accurately match my skills to specific job requirements.",
+          "Integration: I copy the relevant template and integrate it into my custom cover letter generator tool on syazsolo.netlify.app, storing it as reusable JSON data.",
+          "Rapid Recycling: When I need to apply to a new company, I do not manually update a text file or a Google Doc. I revisit my portfolio, select the template, fill in the required fields (like company name and role), and a new, perfectly formatted PDF is generated instantly.",
+          "The Result: I can quickly recycle and tailor applications while eliminating the risk of manual errors and formatting drift."
+        ]
+      },
+      "This habit of turning repetitive tasks into reliable, scalable processes is central to my professional output:",
+      "Architectural Efficiency: In a previous role, I led a frontend architecture redesign using Nuxt.js, where implementing reusable abstractions enabled efficient development and reduced boilerplate code by 70%.",
+      "I am an engineer who excels at building robust, maintainable systems. I am excited by the opportunity to contribute my skills in systems optimization and code stewardship to your talented team."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "ai-engineer-pivot",
+    "company": "Company Name",
+    "role": "AI Engineer (Pivot from Full-Stack)",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at Company Name,",
+      "I am applying for the AI Engineer role because I see a clear intersection between your need for robust, end-to-end solution building and my engineering strengths. While I am pivoting into the professional AI domain, I am not starting from zero. My background is in **Electronics Engineering (Robotics & Automation)**, which gave me my foundational understanding of control systems and logic.",
+      "I approach my career with a philosophy of living passionately and following where my curiosity leads. I am deeply fascinated by the mechanics of learning and have realized that the rigorous, iterative mindset I apply to software architecture parallels the tuning of ML pipelines. I am eager to apply this inquisitive mindset to your LLM and RAG solutions.",
+      "Regarding the job requirements: the engineering fundamentals are already solved on my end.",
+      "Your description emphasizes 'integration with enterprise infrastructure' and 'clarifying business challenges.' My professional career at **IMT Tech** and **Webcada** involved exactly this—linking diverse systems and managing complex API integrations (Webhooks/WebSockets). At IMT Tech, I led architecture redesigns that reduced boilerplate by 70%, proving I can contribute to the 'shared components and templates' requirement immediately.",
+      "I am well-versed in the full stack (Laravel, Next.js, Cloud deployments), allowing me to deliver immediate value on the 'application' side of your AI solutions while I rapidly integrate with your specific LLM/agent workflows.",
+      "I am looking for a multidisciplinary team where I can contribute stable, high-quality engineering while exploring this field. I learn fast, build reliably, and am excited to see what we can build together."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "genai-robotics-homecoming",
+    "company": "Senserbot",
+    "role": "GenAI Engineer (Robotics Homecoming)",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at Senserbot,",
+      "I am writing to apply for the **Generative AI Engineer** role. This application represents a significant personal milestone for me: a chance to combine my professional expertise in software engineering with my academic roots in robotics.",
+      "When I graduated with my degree in **Electronics Engineering (Robotics & Automation)** in 2021, the robotics landscape in Malaysia was relatively quiet. To build a sustainable career, I pivoted to Software Engineering, focusing on building robust, scalable web applications. However, seeing the industry enter a new age with pioneers like Senserbot, I am thrilled by the possibility of 'coming back' to the field I originally fell in love with.",
+      "I believe my unique blend of high-level software discipline and low-level engineering intuition makes me an ideal fit for building your GenAI-powered Concierge and Tour Guide robots:",
+      {
+        "type": "ul",
+        "items": [
+          "**Engineering Rigor & Deployment:** Unlike a pure researcher, I have 3+ years of experience in production software environments. I understand the full lifecycle of deployment (CI/CD, Docker) and maintaining health in complex codebases—skills I currently apply using **Laravel** and **Nuxt**.",
+          "**Conversational Logic:** I have practical experience engineering conversational flows. At 9LOOP, I refactored and maintained complex **Telegram bots**, migrating them to TypeScript and drastically reducing bugs. I understand that a robot's 'brain' is only as good as the logic structures that guide it.",
+          "**The Robotics Context:** Because of my background, I understand the constraints of physical hardware and real-time processing. I am comfortable bridging the gap between abstract LLM responses and the concrete actions a robot must perform."
+        ]
+      },
+      "I am eager to bring my 'software stewardship' mindset to your AI team, helping you build systems that are not just intelligent, but also maintainable and reliable."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "cet-developer-natural-mechanic",
+    "company": "Expogain International Inc.",
+    "role": "CET Configura Software Developer",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at Expogain International Inc.,",
+      "I am applying for the **CET Configura Software Developer** role specifically because your job description prioritizes candidates who **'augment their workflow with AI.'**",
+      "I don't just use AI tools; I build the architecture that makes them useful. To demonstrate this, I want to disclose that this cover letter was not written manually—it was generated by a custom automation engine I architected to solve the 'job application' problem.",
+      "Instead of treating applications as static text, I treat them as a data engineering challenge. I built a system that decouples content from presentation, storing my professional history as modular JSON data. When I saw your requirement for AI augmentation, I updated my data payload to dynamically inject that context into this template.",
+      "I didn't build this to be flashy. I built it because I believe engineering time is valuable. This habit of creating reliable, reusable systems to solve foundational problems is central to how I work.",
+      "Regarding the technical fit for CET:",
+      {
+        "type": "ul",
+        "items": [
+          "**The Language Gap vs. Engineering Fundamentals:** While I am new to the Configura CM language, the underlying physics are second nature to me. During my degree in **Electronics Engineering (Robotics & Automation)**, 'Engineering Mechanics' was the subject where I instinctively outperformed the curve—surpassing the top students even when I wasn't trying—simply because the logic of 3D space is in my blood. I don't need to learn how geometry works; I only need to learn the syntax to describe it.",
+          "**Architecting for AI:** At IMT Tech, I led a frontend revamp with a specific goal: creating an architecture that AI could natively understand. I built composables and abstractions that were so elegant and consistent that they removed the ambiguity that usually trips up LLMs. My specialty is creating these 'AI-readable' environments—where the tools are so logical that AI agents can generate high-quality code without errors.",
+          "**Remote & Communication:** I have significant experience working remotely with distributed teams, handling complex API integrations, and delivering stable software without constant supervision."
+        ]
+      },
+      "I am looking for a team that values this meta-engineering approach. I am ready to translate my 'tool-builder' attitude into building robust CET extensions for your US clients."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "ai-engineer-airasia",
+    "company": "AirAsia",
+    "role": "Artificial Intelligence Engineer",
+    "date": "2025-12-03",
+    "content": [
+      "Dear Hiring Manager at AirAsia,",
+      "I am writing to apply for the AI Engineer role at AirAsia. While I have 3 years of experience, I approach my work with the discipline and architectural stewardship expected of a senior engineer.",
+      "My edge is simple: I am an AI-native engineer.",
+      "I don't just use AI tools; I architect my entire workflow around them. At IMT Tech, I led a frontend architecture redesign specifically to build reusable abstractions that enabled efficient AI-assisted development. I write code designed to be easily understood by both humans and LLMs, creating a feedback loop where my tooling amplifies my output. This allows me to tackle complex \"0-1\" projects—like the Agent-to-Agent workflows you are building—with the speed of a startup founder and the rigor of an enterprise architect.",
+      "You are looking for a champion of engineering excellence. To me, that means stewardship. My career hasn't just been about following orders; it's been about raising standards. At 9LOOP, I learned that code must be treated with care; I took ownership of refactoring our critical legacy Telegram bot to TypeScript, reducing production bugs by 80%. Later, at IMT Tech, I didn't just patch features; I designed high-level abstractions that the entire team—and our AI tools—could rely on. I view seniority not as a title, but as a daily practice of ownership. I refused to accept a culture where developers offloaded testing to stakeholders, instead elevating the standard by guaranteeing my code was bug-free before it ever left my hands. Simply put, I possess the relentless drive to improve systems that defines the role.",
+      "I am eager to bring this \"AI-first\" mindset to AirAsia's BrandCo. I am confident that I can rapidly adapt to your specific GCP and Vertex AI stack, leveraging my ability to build whatever is needed to drive retrieval accuracy and system performance.",
+      "I am ready to prove that my approach to AI-augmented engineering can accelerate your team's roadmap."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "software-engineer-arkmind",
+    "company": "ARKMIND SDN. BHD.",
+    "role": "Software Engineer (Javascript)",
+    "date": "2025-12-03",
+    "content": [
+      "To the Hiring Manager of Arkmind Sdn. Bhd.,",
+      "I am a Software Engineer with 3 years of experience, using an AI-native workflow to maximize velocity. I don't just write code; I design clean, self-documenting abstractions that allow me to collaborate seamlessly with LLMs. This frees me to focus on the complexity of business problems rather than syntax.",
+      "You need deep proficiency in JavaScript and TypeScript. This ecosystem is my home. Whether building complex productivity tools in Next.js or re-architecting legacy systems, strict TypeScript is my default mode. At IMT Tech, I leveraged this fluency to build composables that reduced boilerplate by 70%, creating a codebase so logical that our AI tools could interpret it instantly. I bring this same architectural clarity to your stack.",
+      "Regardless of my official level, I operate with a senior mindset: stewardship. I noticed your requirement for \"minimal supervision.\" In my last role, the culture relied on Account Managers to test developer code—a back-and-forth cycle they despised. I broke that pattern. I held myself to a zero-bug standard, ensuring my handoffs were flawless so the team could keep moving. I don't rely on others to catch my mistakes; I own my quality.",
+      "I am conscious that I am not the finished product. While I take pride in my delivery, I want to join your company to be challenged by the deep technical knowledge that comes from solving scale problems I haven't seen yet.",
+      "I am ready to bring this velocity and stewardship to your team."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi"]
+  },
+  {
+    "id": "beyondsoft-full-stack-engineer",
+    "company": "BEYONDSOFT (MALAYSIA) SDN. BHD",
+    "role": "Full Stack Software Engineer - CE&S BI Project",
+    "date": "2025-12-03",
+    "content": [
+      "To the Hiring Team at Beyondsoft (Malaysia) Sdn. Bhd.,",
+      "While my experience totals three years, I approach development with the standards and velocity of a senior engineer. I achieve this by architecting AI-native workflows that accelerate the delivery of high-quality, maintainable code.",
+      "I was drawn to your posting for a Full Stack Engineer with a focus on React, Next.js, and Laravel. At IMT Tech, I led the frontend architecture redesign of a Nuxt application, building reusable abstractions that cut boilerplate by 70% and were crafted to be as clear for LLM-assisted development as for human engineers. This focus on clean, intentional architecture is how I ensure quality and velocity, whether the stack is Vue or React.",
+      "My view of seniority is defined by stewardship. At IMT Tech, this meant enforcing personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. At 9LOOP, refactoring a critical Telegram bot to TypeScript and adding automated tests reduced production bug reports by over 80%. I believe developers must own the quality and health of their code.",
+      "I move with purpose but learn with humility. While I am confident in my output and high agency, I am intentional about seeking environments where I can contribute to and learn from complex systems. I want to join a team where architectural decisions are debated and standards are high.",
+      "I am ready to bring this blend of velocity, ownership, and collaborative drive to your team. I welcome the opportunity to discuss how my approach can contribute to your project's success."
+    ],
+    "regards": [
+      "Best,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "carro-senior-software-engineer",
+    "company": "CARRO",
+    "role": "Senior Software Engineer (FullStack)",
+    "date": "2025-12-04",
+    "content": [
+      "To the Hiring Team at Carro,",
+      "As a mid-level engineer with three years of experience, my core value lies in the deliberate cultivation of a senior-level mindset—focused on stewardship, ownership, and architectural clarity. My time at IMT Tech serves as the clearest testament to this approach, where I was able to translate that mindset into concrete, high-impact work.",
+      "At IMT Tech, I led the frontend architecture redesign of a critical application using Nuxt (Vue). My primary objective was to build a system defined by clarity and reusability. I developed a suite of composables and abstractions so logical that they reduced boilerplate by 70% and, as noted by a senior colleague, were immediately usable by LLMs. This wasn't just about writing code; it was about creating a foundation for AI-native, high-velocity development.",
+      "More importantly, IMT Tech is where I fully embraced the principle of developer-owned quality. When assigned backend deliverables in Laravel, I instituted a personal testing standard so rigorous that the features I shipped resulted in near zero bugs reported by clients or account managers. In a culture where early testing was often deferred, I made it my responsibility to ensure my code was production-ready upon handoff. This built a level of trust—account managers knew that if an issue ever did surface, it would be an anomaly I would own completely and ensure never recurred.",
+      "I recognize that seniority is more than a mindset—it's a role earned through trust, scaled responsibility, and guidance within a team. I may not carry the title yet, but I operate from the same principles. I am confident that with the opportunity to contribute within your environment, I will grow rapidly into the scope and impact you expect, bringing both disciplined execution and a commitment to collective success.",
+      "I am eager to bring this blend of craftsmanship and systematic ownership to your full-stack environment at Carro. I am confident I can contribute effectively across your Laravel, Next.js/Vue, and AWS stack, while growing within a team that values high standards and collaborative problem-solving.",
+      "I look forward to discussing how I can help build and scale your platforms."
+    ],
+    "regards": [
+      "Best,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "metacloud-software-developer",
+    "company": "Metacloud Sdn Bhd",
+    "role": "Software Developer",
+    "date": "2025-12-05",
+    "content": [
+      "To the Hiring Team at Metacloud Sdn Bhd,",
+      "I am writing to express my sincere interest in the software developer position. As a mid-level engineer with three years of experience, my core value lies in the deliberate cultivation of a senior-level mindset—focused on stewardship, ownership, and architectural clarity. This framework drives how I approach development and is reflected in my most recent work.",
+      "Professionally, this mindset translated into concrete outcomes at IMT Tech. I led a frontend architecture redesign using Nuxt (Vue), building reusable abstractions that reduced boilerplate by 70%. On the Laravel backend, I maintained personal testing standards so disciplined that my delivered features resulted in near zero post-release bugs. This systematic, full-cycle approach aligns with the end-to-end responsibilities outlined in your role, from analysis and development to deployment and support.",
+      "My exposure at IMT Tech to property technology also provides relevant industry context, helping me appreciate the business challenges your systems aim to solve.",
+      "On a personal note, Sunway left a strong and lasting impression on me. I was interviewed by two people at your Geo Avenue office, and what stood out was not just the vibrant workspace, but the genuine humanity of the process. One of the interviewers even called me personally after the decision to offer feedback—a gesture I deeply respected and still remember. If given the opportunity to join Metacloud, I would be proud to return—and to thank them in person.",
+      "I recognize that seniority is a role built on trust and scaled contribution. While I may not carry the title yet, I operate with the ownership and architectural intent required to grow into it quickly. I am confident I can deliver immediate value within your Laravel, Vue, and full-stack environment while evolving alongside a team that values quality and collaboration.",
+      "Thank you for your consideration. I look forward to the possibility of contributing to Sunway's continued innovation."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "leviat-senior-software-engineer",
+    "company": "Leviat",
+    "role": "Senior Software Engineer",
+    "date": "2025-12-06",
+    "content": [
+      "To the Hiring Team at Leviat,",
+      "I am applying for the Senior Software Engineer position. While my three years of experience falls short of the five requested, my engineering approach centers on architectural clarity, systematic ownership, and writing exemplary code—qualities essential for this senior role.",
+      "Professionally, I've led frontend architecture work, most recently redesigning a Nuxt application with reusable abstractions that reduced boilerplate by 70%. This focus on clean, maintainable systems carries into my personal projects, where I explore the visual complexity that your engineering software demands:",
+      {
+        "type": "ul",
+        "items": [
+          [
+            "**Infinite Days** is a timeline visualizer that maps commitments onto a continuous, sine-wave-based stream, transforming abstract planning data into an intuitive visual interface.",
+            {
+              "type": "image",
+              "src": "/cover-letters/infinite-days.png"
+            }
+          ],
+          "**Syazsolo** is my creative professional portfolio, built with a LinkedIn-inspired theme and enhanced with scripted chatbots for interactive project walkthroughs."
+        ]
+      },
+      "These projects underscore my ability to develop clear, interactive interfaces from complex data—a skill directly applicable to your work with forms, visualization, and geometric calculation.",
+      "I operate with a strong sense of code stewardship and am eager to contribute to a team that values exemplary standards and collaboration. I am confident I can deliver high-quality work from the outset while rapidly growing into the senior responsibilities of the role.",
+      "I welcome the opportunity to discuss how I can contribute to Leviat's engineering platforms."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "airsquire-fullstack-engineer",
+    "company": "Airsquire",
+    "role": "Fullstack Software Engineer",
+    "date": "2025-12-10",
+    "content": [
+      "To the Hiring Team at Airsquire,",
+      "I am writing to express my strong interest in the Fullstack Software Engineer role. I am actively seeking to move beyond conventional data management and contribute to meaningful, visual products—like your platform that transforms physical spaces into interactive environments. This is the kind of engaging technical challenge I want to focus on.",
+      "My approach is to build with architectural clarity as a foundation for quality and velocity. At IMT Tech, I led a frontend redesign focused on creating reusable, logical abstractions that reduced boilerplate by 70% and produced code noted for its clarity. This discipline in crafting maintainable systems ensures I can contribute effectively to the intuitive and high-performance experiences your product requires.",
+      [
+        "This interest in translating complexity into clarity extends to my personal work. My project \"Infinite Days\" is a timeline visualizer that maps commitments onto a continuous, animated stream—an exploration in making abstract planning data visually intuitive. I am eager to apply this same mindset to the spatial and 3D challenges at Airsquire.",
+        {
+          "type": "image",
+          "src": "/cover-letters/infinite-days.png"
+        }
+      ],
+      "I am confident I can deliver immediate value and am motivated to prove my impact. I am open to a probationary structure to start—such as an initial period at a junior salary—with the clear goal of demonstrating my contribution and transitioning to a confirmed role with appropriate compensation.",
+      "I look forward to discussing how I can help build the next generation of your platform."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "onl-biz-nodejs-developer",
+    "company": "ONL Biz Solutions Sdn Bhd",
+    "role": "Node.js Developer",
+    "date": "2025-12-10",
+    "content": [
+      "To the Hiring Team at ONL Biz Solutions Sdn Bhd,",
+      "I am writing to apply for the Node.js Developer role. I was specifically drawn to your emphasis on building Proofs of Concept (POCs) to validate new architectures. This is where I thrive—operating at the intersection of rapid experimentation and rigorous design.",
+      "While I have three years of professional experience, I approach development with a focus on architectural beauty and structural logic. At IMT Tech, I demonstrated this by leading a major architecture redesign, building reusable abstractions that reduced boilerplate code by 70%. My philosophy is that a POC doesn't just prove feasibility; it establishes the architectural precedent. I operate on the reality that teams often build directly on top of early prototypes, so I ensure that initial code sets the right \"vibes\"—establishing a standard of aesthetic and logical coherence that the production system will naturally follow.",
+      "I recognize that I may have fewer years of exclusive Node.js production experience than typical candidates, but I compensate with high velocity and an intense focus on quality stewardship. I utilize an AI-native workflow to accelerate my learning and output, ensuring I can adapt to new third-party APIs rapidly. More importantly, I own my outcomes. In my previous role handling backend deliverables, I enforced personal testing standards so rigorous that the features I shipped resulted in near zero client-reported bugs.",
+      "I am eager to bring this blend of creative experimentation and disciplined engineering to your team. I am ready to deliver high-quality POCs and stable backend systems that drive ONL Biz Solutions forward."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "links-international-nodejs-typescript-developer",
+    "company": "Links International",
+    "role": "Node.js & TypeScript Developer",
+    "date": "2025-12-10",
+    "content": [
+      "To the Hiring Team at Links International,",
+      "I am writing to apply for the Node.js & TypeScript Developer role. While my official experience spans three years, I operate with the architectural discipline and standards expected of a senior engineer. I view code as a direct reflection of one's mindset; I strive for clarity and structure not just for functionality, but because I am seeking a team where clean code is a shared priority.",
+      "Your emphasis on SOLID principles and design patterns aligns with my core strengths. I do not just write TypeScript; I use it to enforce architectural integrity. At IMT Tech, I led a redesign using strict logical abstractions that reduced boilerplate by 70%. My goal was to create a codebase so consistent that it was immediately interpretable by AI tools—proving that clean architecture is the ultimate efficiency hack.",
+      "This focus on rigorous standards drives my reliability. At 9LOOP, I refactored a legacy Telegram bot, reducing production bugs by over 80% through automated testing. Similarly, at IMT Tech, I enforced such strict personal testing on my backend deliverables that I achieved near zero client-reported bugs.",
+      "Regarding your Python requirement: while my expertise is currently in the Node ecosystem, my understanding of software engineering principles is language-agnostic. I focus on decoupling logic from syntax, and I am confident I can translate my grasp of design patterns to your Python stack rapidly.",
+      "I am eager to bring this level of care and architectural focus to the Links Integration Hubs. I look forward to the possibility of discussing how I can contribute to your team."
+    ],
+    "regards": ["Sincerely,", "Syazani Zulkhairi"]
+  },
+  {
+    "id": "allocate-space-fullstack-engineer",
+    "company": "Allocate Space",
+    "role": "Fullstack Engineer",
+    "date": "2025-12-10",
+    "content": [
+      "To the Hiring Team at Allocate Space,",
+      "I am applying because I possess the specific hybrid background this role demands: Electronics Engineering (Robotics) foundations combined with Fullstack Web Development. I don't just understand the React dashboard; I understand the sensors and signals powering it.",
+      "My specialty is translating complexity into clarity. I believe software should be concise—stripping away \"fluff\" to reveal utility. This philosophy governs everything I do, from writing this letter to designing interfaces.",
+      "Intuitive Design: Your platform requires visualizing massive amounts of IoT data. I have experience solving this exact problem. My personal project, Infinite Days, maps abstract data into fluid, single-stream visualizations. I focus on making the complex feel simple and the \"machine logic\" feel human.",
+      "Architectural Rigor: Clean UIs must be backed by clean code. At IMT Tech, I led a frontend re-architecture that reduced boilerplate by 70%. I build systems that are easy to maintain and scalable enough to handle the thousands of devices your platform orchestrates.",
+      "AI-Native Velocity: You emphasize speed—onboarding devices in \"hours, not months.\" I match this pace by architecting my workflow around AI tools, allowing me to bypass syntax drudgery and focus purely on solving business logic.",
+      "I offer the \"hardware intuition\" of a robotics engineer with the design sensibility of a product builder. I am ready to help you build the interface for the physical world."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "alphatech-software-engineer",
+    "company": "Alphatech Software",
+    "role": "Software Engineer",
+    "date": "2025-12-11",
+    "content": [
+      "To the Hiring Team at Alphatech Software,",
+      "I am writing to express my genuine interest in the Software Engineer position. While the technical fit with React and Next.js is clear, what truly resonated with me was your emphasis on a positive, politics-free culture. In my experience, the best software is built in environments where the focus is purely on the craft and the team, not the noise.",
+      "Your requirement for a \"clean and concise codebase\" aligns perfectly with my engineering philosophy. I don't just write code to function; I write it to be elegant and understood. At IMT Tech, I led a frontend architecture redesign specifically to reduce complexity. By building logical, reusable abstractions, I was able to cut boilerplate code by nearly 70%. My goal is always to leave the codebase in a state that is a joy for the rest of the team to work with.",
+      "To me, seniority is defined by stewardship. For the past year and a half, I have cultivated a deep sense of ownership over my work because I genuinely care about the quality of what I build. I hold myself to rigorous personal testing standards to ensure that when I hand off a feature, it is robust and reliable. I strive to be the engineer the team can trust to deliver stable, high-quality work without needing constant supervision.",
+      "I am looking for a professional home where high standards are matched by a supportive, human-centric culture. I would be thrilled to bring this blend of technical care and collaborative spirit to Alphatech."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "three-enix-consulting-software-engineer",
+    "company": "Three Enix Consulting",
+    "role": "Software Engineer",
+    "date": "2025-12-11",
+    "content": [
+      "To the Hiring Team at Three Enix Consulting,",
+      "I am writing to apply for the Software Engineer position. I was drawn to your posting by the promise of \"constant challenges,\" as I am actively seeking an environment that demands continuous growth. While my current expertise lies in the Node.js and PHP ecosystems rather than Java or Golang, I approach software engineering with a language-agnostic focus on architectural integrity and rapid adaptation.",
+      "My value lies in my ability to translate complex requirements into clean, maintainable systems. At IMT Tech, I led a frontend architecture redesign using Nuxt, where I built logical abstractions that reduced boilerplate code by nearly 70%. This focus on clarity is not just for my own benefit; it directly supports the team. During this project, I mentored an intern, creating a comfortable environment where we could tackle problems collaboratively. By abstracting away complexity, I helped him contribute meaningfully to the codebase, turning a learning curve into a period of high productivity.",
+      "I view seniority as a practice of stewardship. I believe in taking full ownership of the quality I ship. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. I am eager to bring this same discipline to your Java or Golang stack, utilizing my AI-native workflow to accelerate my learning and deliver value from day one.",
+      "I am looking for a team where technical standards are high and mentorship is a shared value. I would be thrilled to discuss how my approach to engineering and collaboration can contribute to Three Enix Consulting."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "tranglo-senior-software-engineer",
+    "company": "Tranglo",
+    "role": "Senior Software Engineer",
+    "date": "2025-12-11",
+    "content": [
+      "To the Hiring Team at Tranglo,",
+      "I am writing to express my strong interest in the Senior Software Engineer position. I was specifically drawn to the challenge of transitioning legacy systems to modern architectures, as I believe the most impactful engineering work often happens at that intersection.",
+      "While my current background is rooted in the Node.js and PHP ecosystems rather than .NET, I approach development with a focus on system architecture and maintainability that transcends syntax. At IMT Tech, I led an architecture redesign using Nuxt where I built reusable abstractions that reduced boilerplate code by 70%. I don't just patch systems; I design them to be cleaner and more efficient for the entire team.",
+      "I recognize that I do not yet hold the tenure of a traditional Senior Engineer, but I strive to operate with a senior-level mindset: stewardship. I treat every codebase as something to be protected and improved. In my previous role handling backend deliverables, I enforced personal testing standards so rigorous that the features I shipped resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy bot to TypeScript, reducing production bugs by over 80%.",
+      "I am eager to apply this velocity and ownership to Tranglo. I am confident I can deliver immediate value in maintaining and optimizing your systems, while rapidly adapting to your specific .NET stack."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "hmi-full-stack-developer",
+    "company": "HMI Ltd",
+    "role": "Full Stack Developer",
+    "date": "2025-12-12",
+    "content": [
+      "To the Hiring Team at HMI Ltd,",
+      "I am writing to express my genuine interest in the Full Stack Developer position. With three years of professional experience, I am confident in my ability to execute seamlessly across your Node.js and React.js stack. However, what truly compelled me to apply was your emphasis on creating \"shared code libraries\" and \"clean, maintainable code.\" This aligns perfectly with my engineering philosophy: I don't just build features; I build the architecture that makes future development faster.",
+      "My approach to development is defined by architectural clarity. At IMT Tech, I led a frontend architecture redesign specifically to reduce complexity. By building logical, reusable abstractions, I was able to cut boilerplate code by nearly 70%. **I invite you to visit my portfolio at syazsolo.netlify.app to see this attitude in practice;** I built it to be clean, intuitive, and reflective of the standards I bring to production code. This habit of creating elegant, self-documenting systems directly addresses your requirement for tools that \"boost team productivity.\"",
+      "To me, a developer's worth is defined by stewardship. I view code quality as a personal responsibility, not just a requirement. In my previous role, I enforced testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I strive to be the engineer you can trust to deliver stable, high-quality work without the need for constant supervision.",
+      "I am looking for a professional home where I can contribute to meaningful applications while growing alongside a team that values high standards. I would be thrilled to bring this blend of full-stack confidence and architectural care to HMI Ltd."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "mr-bur-full-stack-developer",
+    "company": "MR. BUR (M) BHD.",
+    "role": "Full Stack Developer",
+    "date": "2025-12-13",
+    "content": [
+      "To the Hiring Team at MR. BUR (M) BHD.,",
+      "I am writing to apply for the Full Stack Developer position. My approach to development is defined by a commitment to code stewardship and systematic ownership—a mindset proven to build and maintain reliable applications, which aligns directly with the standards emphasized in your role.",
+      "While my backend expertise is in PHP (Laravel), the principles of designing clean APIs and writing testable, maintainable code are language-agnostic. I am adept at quickly applying these fundamentals to new contexts, and I employ an AI-native workflow to rapidly gain proficiency in your Python-based stack.",
+      "I was particularly drawn to your emphasis on testing and code quality. In my previous role at IMT Tech, I advocated for these practices in an environment that undervalued them. I am now seeking a team where such discipline is foundational. This commitment is reflected in my work at 9LOOP, where refactoring a legacy system with TypeScript and automated tests reduced production bug reports by over 80%.",
+      "Furthermore, I have prior exposure to the Odoo ecosystem. I spent three months at an Odoo business partner before my role at Webcada, where I explored the platform's modules and customization logic to understand its value proposition. This experience, though brief, provides me with practical context for contributing to ERP-related workflows and customizations.",
+      "I am eager to contribute my blend of architectural rigor, proactive ownership, and fast learning to your team."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi"]
+  },
+  {
+    "id": "pixelate-everything-senior-full-stack-developer",
+    "company": "PIXELATE EVERYTHING",
+    "role": "Senior Full Stack Developer",
+    "date": "2025-12-14",
+    "content": [
+      "To the Hiring Team at PIXELATE EVERYTHING,",
+      "I am writing to express my interest in the Senior Full Stack Developer position. I recognize that my three years of experience places me at a mid-level stage, yet I have deliberately cultivated an approach centered on architectural stewardship and systematic ownership. I am confident I can contribute with the impact expected of a senior role, and I am seeking the opportunity to prove this, with compensation aligned to my current level of tenure.",
+      "Your stack of Next.js, Express/NestJS, and PostgreSQL aligns directly with my expertise in crafting clean, TypeScript-first applications. At IMT Tech, I led a frontend architecture redesign focused on creating reusable abstractions that reduced boilerplate by nearly 70%. This work was driven by a philosophy that clean, logical code is not just for maintainability; it establishes a foundation for high-velocity development, whether by human teams or AI-augmented workflows. I am confident in my ability to design responsive interfaces, architect robust REST APIs, and write optimized PostgreSQL queries within your Docker-based environment.",
+      "My view of seniority is defined by a deep sense of ownership over code quality and team outcomes. This is evidenced by my record of delivering backend features at IMT Tech with a personal testing standard so rigorous that it resulted in near zero client-reported bugs. Similarly, at 9LOOP, refactoring a legacy system with TypeScript and automated tests reduced production bug reports by over 80%. I am seeking a team where such standards are the norm—an environment where I can both contribute my discipline and learn from the collaborative depth of solving complex, high-volume challenges.",
+      "I am eager to bring this blend of full-stack proficiency and a stewardship mindset to your platform. I look forward to discussing how I can contribute to your technical leadership and architectural planning."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "prizm-group-web-developer",
+    "company": "PRIZM Group",
+    "role": "Web Developer",
+    "date": "2025-12-14",
+    "content": [
+      "To the Hiring Team at PRIZM Group,",
+      "I am writing to express my genuine interest in the Web Developer position. While I am excited by PRIZM's reputation as an Agency of the Year, what truly compelled me to apply was your explicit requirement for \"passion in web development.\" To me, passion is not just enthusiasm; it is the discipline to treat code as a craft, ensuring that what we build is not only functional but architecturally sound and scalable.",
+      "Although your technology stack includes Java, my engineering philosophy is language-agnostic, focusing on structural logic and maintainability. At IMT Tech, I led a frontend architecture redesign where I built reusable, logical abstractions that reduced boilerplate code by nearly 70%. **I invite you to visit my portfolio at syazsolo.netlify.app to see this attitude in practice;** I built it to be clean, intuitive, and reflective of the standards I bring to production code. This habit of creating elegant, self-documenting systems directly addresses your need for \"high-quality programming works.\"",
+      "I define seniority and quality not just by tenure, but by stewardship. I view code quality as a personal responsibility. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I am eager to bring this level of ownership to your new team in Malaysia.",
+      "I am looking for a professional home where high standards are the norm and passion is translated into excellence. I would be thrilled to discuss how my approach to engineering can contribute to PRIZM's continued growth."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "agmo-studio-full-stack-developer",
+    "company": "Agmo Studio Sdn Bhd",
+    "role": "Full-Stack Developer",
+    "date": "2025-12-14",
+    "content": [
+      "To the Hiring Team at Agmo Studio Sdn Bhd,",
+      "I am writing to express my strong interest in the Full-Stack Developer position. While I possess three years of experience compared to the six requested, I have deliberately cultivated a mindset centered on architectural discipline and stewardship. I was particularly drawn to Agmo's emphasis on building a positive engineering culture and fostering shared learning, as I thrive in environments where the focus is on collective growth.",
+      "Your focus on writing maintainable, reusable, and well-tested code aligns perfectly with my engineering philosophy. I don't just write code to function; I write it to be elegant and understood. At IMT Tech, I led a frontend architecture redesign (Nuxt/Vue) specifically to reduce complexity. By building logical, reusable abstractions, I was able to cut boilerplate code by nearly 70%. This focus on clarity is not just for my own benefit; it establishes a foundation for high-velocity development, whether by human teams or AI-augmented workflows.",
+      "**I invite you to visit my portfolio at syazsolo.netlify.app to see this overall philosophy in practice;** I built it to be clean, intuitive, and reflective of the standards I bring to production code—demonstrating that I can effectively balance precise design implementation with robust backend development.",
+      "To me, a developer's worth is defined by stewardship—a quality essential when representing Agmo at a client site. I view code quality as a personal responsibility, not just a requirement. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I strive to be the engineer the team can trust to deliver stable, high-quality work without the need for constant supervision.",
+      "I am looking for a professional home where high standards are matched by a supportive, collaborative culture. I would be thrilled to bring this blend of technical care and ownership to Agmo Studio."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "the-pique-lab-software-engineer",
+    "company": "The Pique Lab",
+    "role": "Software Engineer",
+    "date": "2025-12-14",
+    "content": [
+      "To the Hiring Team at The Pique Lab,",
+      "To answer the question in your job description: Yes.",
+      "I am applying specifically because you value an \"innate gift for writing elegant code.\" This is not just a skill I list on a resume; it is the obsession that drives my career. I believe code should be distinct, self-documenting, and a joy to read—aligning perfectly with your mission to avoid \"refactoring buggy, legacy code.\"",
+      "While I bring three years of experience, I have deliberately cultivated a mindset focused on stewardship and architectural clarity. At IMT Tech, I led a frontend architecture redesign (Nuxt/Vue) where I didn't just patch features; I engineered a system. By building logical, reusable abstractions, I reduced boilerplate code by nearly 70%. My designs earned the trust of my senior lead, who noted that after \"diving deep\" into just a few of my modules, he stopped reviewing the rest in detail—confident that I maintained that same level of care and elegance throughout the entire system.",
+      "Your transition to an \"AI-first engineering team\" is exactly where I belong. I am already an AI-native engineer. I don't just use tools to write code faster; I write code specifically so that AI can understand it. My architecture at IMT Tech was noted for being so logical that it became immediately interpretable by LLMs, creating a feedback loop of high velocity and precision.",
+      "I want to be transparent about my seniority: I am not applying as a Tech Lead. I am a mid-level engineer actively growing into a Senior role, and I was compelled to apply simply because your description of an engineering culture is rare and exciting. However, I already offer the stewardship mindset essential for that growth. I take personal responsibility for the health of the codebase. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%.",
+      "I am looking for a mentorship-rich environment—specifically the opportunity to learn from leadership with Rakuten-level experience—where I can contribute my obsession with quality while growing into the next stage of my career.",
+      "I invite you to visit syazsolo.netlify.app to see this philosophy in practice. I built it to be clean, intuitive, and a testament to the \"elegant code\" you are looking for."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "eastone-frontend-software-engineer",
+    "company": "Eastone Software Integration",
+    "role": "Frontend Software Engineer",
+    "date": "2025-12-15",
+    "content": [
+      "To the Hiring Team at Eastone Software Integration,",
+      "I am writing to apply for the Frontend Software Engineer position. I was specifically drawn to this role because it emphasizes the entire lifecycle of a feature—from defining UX with designers to monitoring production metrics. This aligns perfectly with my engineering philosophy: I don't just write code; I own the system's health.",
+      "Your requirement for expertise in debugging, refactoring, and releasing large web apps is where I thrive. At IMT Tech, I led a frontend architecture redesign (Nuxt/Vue) specifically to reduce complexity. By building logical, reusable abstractions and enforcing strict TypeScript interfaces, I reduced boilerplate code by nearly 70%. This focus on architectural hygiene ensures that the code is not only performant for the user but intuitive for the team—and logical enough for AI-augmented workflows to interact with seamlessly. **I invite you to visit my portfolio at syazsolo.netlify.app to see this standard in practice;** I built it to be clean, responsive, and structurally sound.",
+      "I want to be transparent about my experience: I am a mid-level engineer with three years of tenure, and I know I have a long way to go. However, I strive to operate with a senior-level mindset—defined by stewardship. I view code quality as a personal responsibility. In my previous role, I enforced personal testing standards so rigorous that my deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript and implemented automated tests, cutting production bug reports by over 80%. I strive to be the engineer who solves speed and security issues before they become tickets.",
+      "I am looking for a team where high standards are the norm and where I can contribute to best-in-class user experiences while continuing to grow technically. I would be thrilled to bring this blend of architectural care and ownership to Eastone Software Integration."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "axrail-full-stack-developer",
+    "company": "Axrail Sdn. Bhd.",
+    "role": "Full Stack Developer",
+    "date": "2025-12-17",
+    "content": [
+      "To the Hiring Team at Axrail Sdn. Bhd.,",
+      "I am writing to express my strong interest in the Full Stack Developer position. What truly compelled me to apply was the palpable energy of your posting—specifically the mission to \"engineer intelligence\" rather than just write code. I thrive in environments where the focus is on the craft and the team, and I am looking for a culture where high standards are a shared language, not a battleground.",
+      "Your requirement for robust, scalable Next.js applications aligns directly with my engineering focus. At IMT Tech, I led a frontend architecture redesign using Nuxt (Vue), building reusable, logical abstractions that reduced boilerplate code by nearly 70%. To demonstrate this standard in your specific stack, I have two personal Next.js projects ready for immediate review—including my portfolio at syazsolo.netlify.app. I invite you to examine them to see how I structure logical abstractions and ensure clarity, allowing you to assess my engineering quality firsthand.",
+      "While my backend experience is rooted in the Node.js and PHP ecosystems, my engineering approach is language-agnostic. I focus on structural logic, API design, and data integrity—skills that translate rapidly to Python. I leverage an AI-native workflow to bridge syntax gaps quickly, allowing me to focus on solving business problems.",
+      "I recognize that my three years of experience places me at a mid-level stage, but I strive to produce work that reflects a senior-level mindset—one defined by stewardship. I view code quality as a personal responsibility, not just a requirement. In my previous role, I enforced personal testing standards so rigorous that my backend deliverables resulted in near zero client-reported bugs. Similarly, at 9LOOP, I refactored a legacy system to TypeScript, cutting production bug reports by over 80%. I strive to be the engineer the team can trust to deliver stable, high-quality work without the need for constant supervision.",
+      "I am looking for a professional home where I can contribute to meaningful cloud solutions while growing alongside a team that values innovation and quality. I would be thrilled to bring this blend of architectural care and ownership to Axrail."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "yonyou-senior-front-end-developer",
+    "company": "Yonyou (Malaysia) Sdn Bhd",
+    "role": "Senior Front-End Developer",
+    "date": "2025-12-17",
+    "content": [
+      "To the Hiring Team at Yonyou (Malaysia) Sdn Bhd,",
+      "I am applying for the Senior Front-End Developer role because I believe I am exactly the \"strong candidate\" with 3+ years of experience you are looking for. While my tenure places me at a mid-level stage, I have deliberately cultivated a senior-level mindset defined by architectural rigor and a relentless pursuit of quality—qualities essential for the ownership of complex modules you require.",
+      "Your emphasis on component-based architecture and modular design aligns perfectly with my expertise. At IMT Tech, I led a frontend architecture redesign using Nuxt (Vue) driven by a specific goal: to prove the operational impact of clean architecture to a team that needed a new standard. I didn't just want to write code; I wanted to change how we worked. By building logical, reusable abstractions, I reduced boilerplate by nearly 70%. The result was transformative: routine maintenance, like adding a new field to a form—which previously consumed an hour of development time—was reduced to a one-minute task. I build systems not just to function, but to make every future developer faster.",
+      "Beyond technical competence, I possess a quality that many companies do not prioritize, but I hope Yonyou does: an obsession with elegance. My specialty is translating complexity into clarity—stripping away \"fluff\" to reveal utility. I train myself to prefer this elegance in everything I do, viewing code as a direct reflection of my mindset. However, I balance this aesthetic drive with strict pragmatism. I am vigilant against the trap of over-engineering, ensuring that my pursuit of structure always serves the deadline rather than delaying it.",
+      "I invite you to visit my portfolio at syazsolo.netlify.app to see this standard in practice. I built it to be clean, responsive, and structurally sound—a testament to my belief that high-performance systems should also be beautiful to work with.",
+      "I am eager to bring this blend of architectural care, elegance, and ownership to Yonyou's enterprise systems."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "pulsesync-fullstack-developer",
+    "company": "PulseSync",
+    "role": "Full Stack Developer",
+    "date": "2025-12-19",
+    "content": [
+      "Dear Hiring Manager at PulseSync,",
+      "I thrive in that space where speed meets a solid technical foundation. While my professional career has been built in the Laravel and Node.js ecosystems, my background is in Electronics Engineering—a field that taught me to prioritize structural logic and clear systems over just getting the syntax to work. Moving into your ASP.NET and Angular stack is exactly the kind of \"out-of-comfort-zone\" growth I am looking for.",
+      "I live by the \"campsite rule\" of software engineering: I make it a point to leave every codebase cleaner and more stable than I found it. To me, code is a long-term asset that requires real stewardship. At IMT Tech, I practiced this by leading a frontend architecture redesign focused on reusable parts that stripped away unnecessary complexity. I built a system so logical and consistent that it became a force multiplier for the team, allowing both my senior leads and our AI-augmented workflows to extend the codebase without friction.",
+      "I brought that same sense of ownership to 9LOOP. I inherited a fragile legacy system and refactored its foundation to ensure long-term stability. I own the quality of my output from the first line of code to the final deployment. This ensures that when I hand off a project, it is a reliable base the team can trust, not a problem they have to fix.",
+      "I maintain a high velocity by being AI-native, architecting my systems to be so clear and modular that they amplify the entire team's efficiency. You can see this philosophy in action at syazsolo.netlify.app, where I showcase how I translate complex requirements into intuitive interfaces.",
+      "I am looking for an environment where standards are high and the learning is constant. I am ready to bring this blend of \"hardware-level\" logic and full-stack agility to your KL office. Let's discuss how my habit of building reliable, scalable systems can contribute to PulseSync's next cloud-based pilot project."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "seg-international-system-developer",
+    "company": "SEG International Bhd",
+    "role": "System Developer",
+    "date": "2025-12-19",
+    "content": [
+      "To the Hiring Team at SEG International Bhd,",
+      "A system developer's job is to ensure that the logic connecting a mobile interface to an enterprise ERP remains invisible to the user and invincible to errors. Whether bridging a frontend app to a payment gateway or synchronizing complex data across 3rd-party SaaS platforms, I believe in building architectures that prioritize long-term stability. This mindset of stewardship—treating code as infrastructure that must outlive its current sprint—defines my work.",
+      "At IMT Tech and Webcada, I specialized in the exact \"end-to-end\" delivery your team requires. My professional career has centered on linking diverse systems through complex API integrations and architecting maintainable codebases that handle the weight of enterprise-scale data. I don't just patch features; I design systems. I previously led a frontend architecture redesign that reduced boilerplate code by 70%, creating a foundation so logical that it became a force multiplier for the entire team's delivery speed.",
+      "Reliability is my primary metric. When I inherited a fragile legacy system at 9LOOP, I refactored the core logic to TypeScript and implemented rigorous automated testing. The result was an 80% reduction in production bugs. I bring this same obsession with quality to your stack. While my foundations are in Laravel and Node.js, my background in Electronics Engineering (Robotics & Automation) gives me a unique advantage in understanding the low-level data flows and \"machine logic\" required for high-performance mobile and backend synchronization.",
+      "I invite you to visit syazsolo.netlify.app to see how I translate these architectural principles into intuitive, clean interfaces. I am not looking for a place to simply write code; I am looking to contribute to a room where technical standards are high and systems are built to scale.",
+      "I am ready to bring this blend of systems thinking and high-velocity execution to SEG International Bhd. I look forward to discussing how my habit of building reliable, scalable systems can drive your next phase of growth."
+    ],
+    "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+  },
+  {
+    "id": "foto-zzoom-fullstack-developer",
+    "company": "Foto-Zzoom Sdn Bhd",
+    "role": "Full Stack Developer",
+    "date": "2025-12-19",
+    "content": [
+      "To the Hiring Team at Foto-Zzoom Sdn Bhd,",
+      "Software is fundamentally a tool for solving problems, and I believe that to build effective systems, we must first think deeply about the problem itself before writing a single line of code. When we discuss a voucher system, for example, the priority isn't just the syntax—it's the logic of global caps, expiration rules, and race conditions that ensure the system remains reliable for the business and the user.",
+      "I approach my work with a focus on stewardship and maintainability. In my previous role at IMT Tech, this mindset translated into a frontend architecture redesign that significantly reduced boilerplate and a backend testing standard that resulted in near-zero client-reported bugs. I believe that thoroughness during development is an act of respect for the team and the end-user. My time at 9LOOP followed a similar path; by refactoring a legacy system with TypeScript and automated testing, I was able to help the team reduce production bugs by 80%.",
+      "My background in Electronics Engineering (Robotics & Automation) provides a unique foundation for your IoT and machine integrations. I am comfortable at the intersection of \"machine logic\" and high-level software, ensuring that data flows smoothly from sensors to the dashboard.",
+      "**On top of all this, I live in Selayang Baru, which puts me less than 10 minutes from your Sri Gombak office**. This proximity allows for the kind of consistent, face-to-face collaboration I value as we solve operational challenges together.",
+      "I invite you to visit syazsolo.netlify.app to see how I translate these architectural principles into clean, maintainable systems. I look forward to discussing how my focus on stability and thoughtful design can support Foto-Zzoom's scaling platform."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "the-pique-lab-personal-follow-up",
+    "company": "The Pique Lab",
+    "role": "Software Engineer",
+    "date": "2026-01-02",
+    "content": [
+      "Dear The Pique Lab,",
+      "You are in the top three on my list of companies I want to join. This is out of a list of hundreds. I don't say that lightly. I like your culture—or rather, the impression of what it's like to work there judging by your job description, the emails you've sent, and the deliberate flow of this application process. It feels intentional. It feels like the work of people who care.",
+      "I have spent my life caring like that, too. My best craft is who I am as a person; only second or later is my code. Living this way is not easy; it is hard to stay true to yourself. I know I need friends, and so I try my best to show this side of me to everyone I meet, hoping to attract similar people closer. In my life so far, I can say I have only found about 20 people like that. I don't think this is a testament to my weakness—though that surely contributes—but a reflection of the environment I am living in (the world).",
+      "One hard thing about living like this is that I feel I cannot afford to make mistakes. I see myself as representing \"something\"—maybe the idea of care—and it is my utmost priority not to give that something a bad name. At my last job, that weight was real. I made mistakes while trying to avoid giving that care a bad name; more often than not, I would overengineer and stress-test a deadline just to avoid making a mistake. I will improve.",
+      "I am writing this while I am on my way to start your video interview assessment. I don't know if I am going to do okay, but I am going to try my best. Dear The Pique Lab, wish me luck."
+    ],
+    "regards": ["Regards,", "Syazani Zulkhairi", "+6019-209 9853"]
+  },
+  {
+    "id": "talentbook-solutions-software-engineer",
+    "company": "Talentbook Solutions Sdn Bhd",
+    "role": "Software Engineer",
+    "date": "2026-01-12",
+    "content": [
+      "To the Hiring Team at Talentbook Solutions Sdn Bhd,",
+      "Reliable systems are not built through effort alone; they are the result of intentional stewardship. In my three years as an engineer, I have learned that the difference between a working application and a scalable, multi-tiered system lies in the architectural clarity established on day one. I am a Malaysian engineer who treats code as infrastructure that must outlive its current sprint.",
+      "My approach to Node.js development is defined by this Architect mindset. At 9LOOP, I inherited a fragile legacy system and led a total refactoring effort. By migrating the core logic to TypeScript and implementing rigorous testing, I achieved an 80% reduction in production bugs. I don't just patch features; I analyze program performance to identify the bottlenecks that others overlook, ensuring the system remains invincible to errors as it scales.",
+      "At IMT Tech, this philosophy translated into a frontend architecture redesign that reduced boilerplate by 70%. I built logical abstractions so clean that they became a force multiplier for the team—creating a codebase that was as easily interpretable by my senior leads as it was by the AI-augmented workflows I use to accelerate delivery. Whether managing complex API integrations or optimizing MS SQL queries, my focus is on stripping away complexity to reveal utility.",
+      "I invite you to visit syazsolo.netlify.app to see this standard of structural logic in practice. I am not looking for a place to simply write code; I am looking for a conducive environment like Talentbook Solutions where technical standards are high and systems are built for the long term.",
+      "I am ready to bring this blend of high-velocity execution and architectural rigor to your core development team. I look forward to discussing how my habit of building reliable, scalable systems can contribute to your upcoming projects."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "onl-biz-nodejs-developer-v2",
+    "company": "ONL Biz Solutions Sdn Bhd",
+    "role": "Node.js Developer",
+    "date": "2026-01-12",
+    "content": [
+      "To the Hiring Team at ONL Biz Solutions Sdn Bhd,",
+      "I am applying for the Node.js Developer position because I specialize in building backend systems that prioritize long-term stability and architectural clarity. I focus on leaving every codebase cleaner and more scalable than I found it.",
+      "Direct Experience & Reliability:",
+      {
+        "type": "ul",
+        "items": [
+          "Legacy Refactoring: At 9LOOP, I inherited a fragile system and refactored the core logic into TypeScript. By implementing automated testing, I reduced production bugs by 80%.",
+          "System Ownership: At IMT Tech, I led a frontend architecture redesign that reduced boilerplate code by 70%, creating modular systems that handled complex API integrations and enterprise-scale data.",
+          "Quality Standards: I hold myself to a zero-bug standard. In my previous backend deliverables, my personal testing resulted in near-zero client-reported bugs.",
+          "Workflow: I utilize an AI-native workflow to accelerate the delivery of high-quality code. I architect my systems to be so logical and modular that they are easily understood by both human teams and AI-augmented tools."
+        ]
+      },
+      "I invite you to visit syazsolo.netlify.app to see the standard of engineering I bring to every project. I am ready to bring this blend of technical ownership and velocity to your backend team."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "dynamic-click-full-stack-developer",
+    "company": "Dynamic Click Sdn Bhd",
+    "role": "Full-Stack Developer",
+    "date": "2026-01-12",
+    "content": [
+      "To the Hiring Team at Dynamic Click Sdn Bhd,",
+      "Software is not just a product of effort; it is a product of stewardship. I am applying for the Full-Stack Developer role with the architectural discipline and ownership required to build systems that outlive their current sprint.",
+      "My approach to Node.js is defined by this Architect mindset. At 9LOOP, I refactored a fragile legacy system into a robust TypeScript environment, reducing production bugs by 80%. I do not just patch features; I design systems to be invincible to errors as they scale.",
+      "At IMT Tech, I led a frontend architecture redesign that reduced boilerplate by 70%. I built logical abstractions so clean they became force multipliers for both human collaborators and the AI-native workflows I use to accelerate delivery. I invite you to visit syazsolo.netlify.app to see this standard of structural logic in action.",
+      "I am ready to bring this blend of high-velocity execution and systematic rigor to Dynamic Click. I look forward to discussing how my habit of building stable, scalable systems can drive your upcoming projects."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "ideal-reliance-software-engineer",
+    "company": "Agensi Pekerjaan Ideal Reliance Sdn Bhd",
+    "role": "Software Engineer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at Agensi Pekerjaan Ideal Reliance Sdn Bhd,",
+      "Software is fundamentally a tool for solving business problems; effective systems require deep thinking before writing a single line of code. When we discuss \"end-to-end ownership,\" the priority isn't just syntax—it's the logic of race conditions and data integrity that ensures a system remains invincible as it scales.",
+      "I approach development with a focus on stewardship and maintainability. At IMT Tech, this mindset drove a frontend architecture redesign that reduced boilerplate by 70% and a backend standard resulting in near-zero client-reported bugs. I believe thoroughness is an act of respect for the team; at 9LOOP, refactoring a legacy system with TypeScript and automated testing reduced production bugs by 80%.",
+      "I operate with high velocity and a relentless focus on quality. I am comfortable managing complex data flows, whether I am optimizing asynchronous Node.js services or architecting scalable data schemas within PostgreSQL and Supabase—ensuring every feature I deliver is a reliable base for the team.",
+      "I invite you to visit **syazsolo.netlify.app** to see how I translate these architectural principles into clean, maintainable systems. I built my portfolio to be intuitive and structurally sound—a testament to my belief that high-performance systems should be beautiful to work with.",
+      "I am seeking a professional home where high standards are the norm and ownership is the default. I look forward to discussing how my focus on stability and thoughtful design can support your production-grade applications."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "posable-software-engineer",
+    "company": "POSABLE",
+    "role": "Software Engineer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at POSABLE Sdn Bhd,",
+      "Software engineering is no longer a game of typing; it is a game of curation. In my workflow, the traditional coder is the machine, and I am the lead reviewer. This shift has allowed me to operate with the output of a three-person engineering office while maintaining a level of architectural stewardship that most teams struggle to achieve with ten.",
+      "I live in a dual-IDE environment. My primary driver is **Cursor** in agentic mode for high-velocity execution. Simultaneously, I leverage **Antigravity** to pipe in **Gemini Pro** and **Claude Opus** through my personal Google quotas, ensuring I always have the most sophisticated models auditing my logic without being throttled by standard subscription limits. This isn't just about speed—it's about precision. By shifting my energy from syntax to system design, I spend my time reading, validating, and refactoring rather than just writing.",
+      "This AI-native methodology is currently fueling Bigcampus, a complex, multi-tiered personal project I am building as a standalone developer. I have moved from zero to a production-ready state in record time, with an initial user launch scheduled in just 30 days. This is the same velocity I bring to legacy systems. At 9LOOP, I inherited a fragile bot infrastructure and refactored the core logic into a robust TypeScript environment, achieving an 80% reduction in production bugs. At IMT Tech, I redesigned a frontend architecture so logically consistent that my senior leads noted it was immediately interpretable by LLM tools—reducing boilerplate by 70% and turning hour-long tasks into one-minute updates.",
+      "I am not applying to POSABLE to be a passive participant. I am looking to lead the design and modernization of your mission-critical platforms using a workflow that turns tight timelines into a competitive advantage. I invite you to visit **syazsolo.netlify.app** to see the standard of structural logic I bring to every system.",
+      "I am ready to demonstrate how my approach to AI-assisted stewardship can stabilize and scale your codebases. Let's discuss how I can help rebuild your infrastructure for the long term."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "gentech-ai-agent-fullstack-developer",
+    "company": "GenTech AI Sdn Bhd",
+    "role": "AI Agent & Full Stack Developer",
+    "date": "2026-01-13",
+    "content": [
+      "To the Hiring Team at GenTech AI Sdn Bhd,",
+      "The future of web development isn't just about building interfaces; it's about architecting brains. I am an AI-native engineer who treats software as a living infrastructure, and I am applying for the AI Agent & Full Stack Developer role to help GenTech define the standard for intelligent, autonomous systems.",
+      "My development process is a blueprint for the agentic era. I typically operate with two IDEs open simultaneously: **Cursor** and **Antigravity**. I use Cursor in agentic mode to handle the initial heavy lifting of writing and syntax, but I maintain a workflow where I spend significantly more time reading and auditing than typing. When I need to leverage the deep reasoning of Gemini Pro or Claude Opus without being restricted by Cursor's limits, I switch to Antigravity. This allows me to utilize Google quotas, which Google has discounted a lot, I can use way more Opus. This dual-stream approach ensures I am always acting as the lead architect and final validator, guaranteeing that every piece of code is logically sound and easily extendable by either humans or future agents.",
+      "My professional record backs this velocity with rigorous stability:",
+      {
+        "type": "ul",
+        "items": [
+          "**Architectural Stewardship:** At IMT Tech, I led a frontend architecture redesign that reduced boilerplate by 70%, creating a codebase so logical it was immediately usable by LLMs.",
+          "**System Turnaround:** At 9LOOP, I refactored legacy bot infrastructure into a robust TypeScript environment, resulting in an 80% reduction in production bugs.",
+          "**Engineering Roots:** My background in Electronics Engineering (Robotics & Automation) provides a unique advantage in understanding the machine logic and feedback loops essential for AI Agents."
+        ]
+      },
+      "I invite you to visit syazsolo.netlify.app to see how I translate these principles into clean, maintainable systems. I am ready to bring this blend of hardware-level logic and AI-first engineering to GenTech AI."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "mha-consultancy-frontend-developer",
+    "company": "MHA Consultancy Services Sdn Bhd",
+    "role": "Frontend Developer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at MHA Consultancy Services Sdn Bhd,",
+      "Most developers optimize for the current sprint; I optimize for the system's lifespan. I treat frontend architecture as infrastructure, refusing to ship mediocre code that creates future technical debt.",
+      "At IMT Tech, I led a Nuxt redesign that reduced boilerplate by 70% through reusable abstractions. This system was so logically sound it was immediately interpretable by AI-augmented tools, allowing the team to scale without friction. I prioritize system reliability and systematic logic over simple syntax, ensuring the user interface is both performant and maintainable.",
+      "I am proficient in integrating RESTful APIs and WebSocket connections—capabilities required for the customer-facing portals and real-time dashboards MHA is developing. My professional record includes refactoring legacy systems into TypeScript environments at 9LOOP, which resulted in an 80% reduction in production bugs.",
+      "I invite you to visit **syazsolo.netlify.app** to see this standard of engineering in practice. I am ready to bring this blend of technical rigor and high-velocity execution to your financing projects. Let's discuss how my habit of building stable, scalable systems can drive MHA's growth."
+    ],
+    "regards": [
+      "Best regards,",
+      "Syazani",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "commerce-dot-com-software-engineer",
+    "company": "Commerce Dot Com Sdn. Bhd.",
+    "role": "Software Engineer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at Commerce Dot Com Sdn. Bhd.,",
+      "ePerolehan has been running for twenty-five years. In software, that duration usually means decades of temporary fixes that have become permanent infrastructure. While others avoid legacy technical debt, I specialize in the surgical stabilization and modernization of these aging systems.",
+      "I excel at un-breaking complex environments. At 9LOOP, I inherited a fragile legacy system and refactored it into a robust environment, reducing production bugs by 80%. I don't just patch symptoms; I architect systems to be invincible to the errors that plague long-running platforms.",
+      "My workflow is AI-native, allowing me to audit and document legacy code significantly faster than traditional methods. At IMT Tech, I led an architecture redesign that cut boilerplate by 70%—creating a codebase so logical that it was immediately interpretable by both AI tools and junior developers. This ensures that the documentation and standards I deliver actually help the team scale.",
+      "I hold my output to a zero-bug standard because I view code as a long-term asset. I invite you to see this architectural clarity in practice at **syazsolo.netlify.app**. I am ready to stabilize your core systems, and I look forward to meeting the team on your in-house futsal court."
+    ],
+    "regards": [
+      "Regards,",
+      "Syazani Zulkhairi",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  },
+  {
+    "id": "the-next-six-software-engineer",
+    "company": "THE NEXT SIX SDN. BHD.",
+    "role": "Software Engineer",
+    "date": "2026-01-14",
+    "content": [
+      "To the Hiring Team at THE NEXT SIX SDN. BHD.,",
+      "Most software engineers optimize for today's deployment; I optimize for the engineer who inherits the system in three years. I don't just move tickets; I act as a steward for the codebase, ensuring every React component and Node.js service is treated as a long-term asset rather than a temporary fix.",
+      "My approach is built on three pillars of surgical efficiency:",
+      "Legacy Turnaround: At 9LOOP, I inherited a fragile infrastructure and refactored the core logic into a robust TypeScript environment, resulting in an 80% reduction in production bugs.",
+      "Architectural Clarity: At IMT Tech, I led a redesign that reduced boilerplate by 70% through reusable abstractions. The system was so logical it became a force multiplier for the team and our AI-augmented tools.",
+      "AI-Native Velocity: I operate in a dual-IDE environment to maximize both speed and reasoning depth. While I use Cursor's agentic mode for rapid execution, I switch to Antigravity to audit complex logic using Gemini Pro and Claude Opus 4.5. By utilizing my personal Google and Anthropic quotas, I bypass standard subscription throttles, ensuring I always have the most sophisticated models auditing my architecture for bottlenecks and security flaws.",
+      "I hold my output to a near-zero bug standard, a discipline that resulted in flawless handoffs in my previous roles. I invite you to visit **syazsolo.netlify.app** to see how I translate this level of technical care into clean, responsive interfaces.",
+      "I am ready to bring this blend of high-velocity execution and systematic rigor to your Kuchai Lama team."
+    ],
+    "regards": [
+      "Regards,",
+      "Syazani Zulkhairi",
+      "019-209 9853",
+      {
+        "type": "link",
+        "text": "syazsolo.netlify.app",
+        "to": "https://syazsolo.netlify.app"
+      }
+    ]
+  }
+]

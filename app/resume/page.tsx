@@ -1,434 +1,153 @@
 'use client';
 
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import {
-  Github,
-  Link as LinkIcon,
-  Linkedin,
-  Mail,
-  Phone,
-  Printer,
-  Smartphone,
-} from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
-import { differenceInMonths, parse } from 'date-fns';
+import { Printer } from 'lucide-react';
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
-import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import Image from 'next/image';
 import React from 'react';
-import { cn } from '@/utils';
-import resumeData from '@/data/resume.json';
-import skillMetadata from '@/data/skillMetadata.json';
-import { useAuth } from '@/context/AuthContext';
-
-// ============================================================================
-// Utility Functions
-// ============================================================================
-
-function getSkillColor(skill: string) {
-  const metadata = skillMetadata as Record<
-    string,
-    { bg: string; text: string; border: string }
-  >;
-  return (
-    metadata[skill] || {
-      bg: '#E2E8F0',
-      text: '#475569',
-      border: '#CBD5E1',
-    }
-  );
-}
-
-function parseDate(dateStr: string): Date {
-  return parse(dateStr, 'MMM yyyy', new Date());
-}
-
-function calculateDuration(startDate: string, endDate: string): string {
-  const start = parseDate(startDate);
-  const end = parseDate(endDate);
-  const months = differenceInMonths(end, start) + 1;
-
-  if (months < 12) {
-    return `${months} ${months === 1 ? 'month' : 'months'}`;
-  }
-
-  const years = Math.floor(months / 12);
-  const remainingMonths = months % 12;
-
-  if (remainingMonths === 0) {
-    return `${years} ${years === 1 ? 'year' : 'years'}`;
-  }
-
-  return `${years} ${years === 1 ? 'year' : 'years'} ${remainingMonths} ${remainingMonths === 1 ? 'month' : 'months'}`;
-}
-
-// ============================================================================
-// Component Helper Functions
-// ============================================================================
-
-function getCompanyLogo(experienceId: string): string | undefined {
-  const experience = resumeData.experience.find(exp => exp.id === experienceId);
-  return experience?.companyLogo;
-}
-
-type Description = string | { type: 'ul' | 'ol'; items: Description[] };
-
-function renderDescriptionItem(item: Description): React.ReactNode {
-  if (typeof item === 'string') {
-    return item;
-  }
-
-  const ListTag = item.type === 'ul' ? 'ul' : 'ol';
-  const listStyle =
-    item.type === 'ul'
-      ? 'list-disc list-outside space-y-0.5 ml-6 pl-1'
-      : 'list-decimal list-outside space-y-0.5 ml-6 pl-1';
-
-  return (
-    <ListTag className={`text-sm leading-relaxed text-slate-600 ${listStyle}`}>
-      {item.items.map((nestedItem, index) => (
-        <li key={index}>{renderDescriptionItem(nestedItem)}</li>
-      ))}
-    </ListTag>
-  );
-}
-
-function renderDescription(description: Description): React.ReactNode {
-  if (typeof description === 'string') {
-    return (
-      <p className="mb-1 text-sm leading-relaxed text-slate-600">
-        {description}
-      </p>
-    );
-  }
-
-  const ListTag = description.type === 'ul' ? 'ul' : 'ol';
-  const baseListClass = 'list-outside space-y-0.5 mb-4 ml-6 pl-1';
-  const listStyle = cn(
-    baseListClass,
-    description.type === 'ul' ? 'list-disc' : 'list-decimal'
-  );
-
-  return (
-    <ListTag
-      className={cn('text-sm leading-relaxed text-slate-600', listStyle)}
-    >
-      {description.items.map((item, index) => (
-        <li key={index}>{renderDescriptionItem(item)}</li>
-      ))}
-    </ListTag>
-  );
-}
-
-function renderContactLink(
-  href: string,
-  icon: React.ReactNode,
-  label: string,
-  isExternal = false
-) {
-  const className =
-    'flex items-center gap-2 hover:text-slate-900 text-sm text-slate-500';
-  const content = (
-    <>
-      <span>{label}</span>
-      {icon}
-    </>
-  );
-
-  if (isExternal) {
-    return (
-      <a href={href} target="_blank" rel="noreferrer" className={className}>
-        {content}
-      </a>
-    );
-  }
-
-  return (
-    <a href={href} className={className}>
-      {content}
-    </a>
-  );
-}
-
-function renderSkillBadge(skill: string) {
-  const colors = getSkillColor(skill);
-  return (
-    <Badge
-      key={skill}
-      variant="secondary"
-      className="rounded-sm px-2 py-0.5 text-xs font-normal print:border"
-      style={{
-        backgroundColor: colors.bg,
-        color: colors.text,
-        borderColor: colors.border,
-      }}
-    >
-      {skill}
-    </Badge>
-  );
-}
-
-function SectionHeader({
-  title,
-  subtitle,
-  className,
-}: {
-  title: string;
-  subtitle?: string;
-  className?: string;
-}) {
-  return (
-    <div className={cn('mt-6 mb-3 break-after-avoid first:mt-0', className)}>
-      <div className="flex items-baseline justify-between gap-3">
-        <h2 className="border-b-2 border-slate-900 pb-1.5 text-lg font-bold tracking-wide text-slate-800 uppercase">
-          {title}
-        </h2>
-        {subtitle && (
-          <>
-            <div className="mx-2 h-px flex-1 bg-slate-300"></div>
-            <span className="relative top-[3px] shrink-0 text-xs text-slate-400">
-              {subtitle}
-            </span>
-          </>
-        )}
-      </div>
-    </div>
-  );
-}
+import resumeData from '@/data/job-hunt/v2/resume.json';
 
 // ============================================================================
 // Main Component
 // ============================================================================
 
 export default function ResumePage() {
-  const { profile, about, experience, projects, education, skills } =
+  const { header, one_liner, experience, projects, skills, education } =
     resumeData;
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8 dark:bg-white dark:text-slate-900 print:bg-white print:p-0">
-      <ResumeActions />
+    <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
+      {/* Print uses slightly less padding than screen to compensate for
+          browser print engine rendering fonts/layout slightly larger than screen */}
+      <style>{`
+        @media print {
+          .resume-page-content { padding: 8mm !important; }
+        }
+      `}</style>
+      <PrintButton />
 
-      <A4Paginator>
-        {/* Split Header Section */}
-        <header className="mb-5 border-b border-slate-200 pb-5">
-          <div className="flex flex-row items-start justify-between gap-4">
-            {/* Left Side: Name & Info */}
-            <div className="flex-1">
-              <h1 className="text-3xl font-light tracking-tight uppercase">
-                {profile.name}
-              </h1>
-              <p className="mt-1 text-lg font-medium text-slate-600">
-                {profile.headline}
-              </p>
-              <div className="mt-1 flex items-center gap-3 text-sm text-slate-500">
-                {profile.location && <span>{profile.location}</span>}
-              </div>
-            </div>
-
-            {/* Right Side: Contact */}
-            <div className="flex flex-col items-end gap-1.5 text-sm">
-              {profile.contact.email &&
-                renderContactLink(
-                  `mailto:${profile.contact.email}`,
-                  <Mail className="h-4 w-4" />,
-                  profile.contact.email
-                )}
-              {profile.contact.phone && (
-                <div className="flex items-center gap-2 text-slate-500 hover:text-slate-900">
-                  <span>{profile.contact.phone}</span>
-                  <Phone className="h-4 w-4" />
-                </div>
-              )}
-              {profile.contact.portfolio &&
-                renderContactLink(
-                  `https://${profile.contact.portfolio}`,
-                  <LinkIcon className="h-4 w-4" />,
-                  profile.contact.portfolio,
-                  true
-                )}
-              {profile.contact.linkedin &&
-                renderContactLink(
-                  `https://${profile.contact.linkedin}`,
-                  <Linkedin className="h-4 w-4" />,
-                  profile.contact.linkedin,
-                  true
-                )}
-              {profile.contact.github &&
-                renderContactLink(
-                  `https://${profile.contact.github}`,
-                  <Github className="h-4 w-4" />,
-                  profile.contact.github,
-                  true
-                )}
-            </div>
+      <A4Paginator paddingMM={10}>
+        {/* Header */}
+        <header className="mb-3 border-b-2 border-slate-900 pb-3">
+          <h1 className="text-[26px] font-bold tracking-tight text-slate-900 uppercase">
+            {header.name}
+          </h1>
+          <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-600">
+            <span>{header.title}</span>
+            <span className="text-slate-300">|</span>
+            <span>{header.location}</span>
+            <span className="text-slate-300">|</span>
+            <a href={`mailto:${header.email}`} className="hover:text-slate-900">{header.email}</a>
+            <span className="text-slate-300">|</span>
+            <span>{header.phone}</span>
+            <span className="text-slate-300">|</span>
+            <a href={`https://${header.portfolio}`} target="_blank" rel="noreferrer" className="hover:text-slate-900">{header.portfolio}</a>
+            <span className="text-slate-300">|</span>
+            <a href={`https://${header.github}`} target="_blank" rel="noreferrer" className="hover:text-slate-900">{header.github}</a>
+            <span className="text-slate-300">|</span>
+            <a href={`https://${header.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-slate-900">{header.linkedin}</a>
           </div>
+          <p className="mt-2 text-sm leading-relaxed text-slate-700 italic">
+            {one_liner}
+          </p>
         </header>
 
-        {/* About Section */}
-        <section className="mb-5">
-          <SectionHeader title="About" />
-          <p className="text-sm leading-relaxed text-slate-700">{about}</p>
-        </section>
-
-        {/* Experience Section */}
-        <SectionHeader title="Experience" />
-
-        {experience.map((exp, index) => (
-          <div
-            key={exp.id}
-            className={`break-inside-avoid ${index > 0 ? 'mt-4 border-t border-slate-200 pt-4' : 'mb-5'}`}
-          >
-            <div className="mb-1 flex items-baseline justify-between">
-              <div className="flex items-center gap-2">
-                <Avatar className="h-6 w-6 shrink-0 rounded">
-                  <AvatarImage
-                    src={getCompanyLogo(exp.id)}
-                    alt={`${exp.company} logo`}
-                  />
-                  <AvatarFallback>
-                    <Image
-                      src="/fallback.jpg"
-                      alt=""
-                      className="h-full w-full object-cover"
-                      width={40}
-                      height={40}
-                    />
-                  </AvatarFallback>
-                </Avatar>
+        {/* Experience */}
+        <section className="mb-4">
+          <SectionHeader title="Experience" />
+          {experience.map((exp, i) => (
+            <div key={i} className={`break-inside-avoid ${i > 0 ? 'mt-3 border-t border-slate-100 pt-3' : ''}`}>
+              <div className="flex items-baseline justify-between">
                 <div className="flex items-baseline gap-2">
-                  <h3 className="text-lg font-semibold text-slate-900">
-                    {exp.company}
-                  </h3>
+                  <span className="text-sm font-bold text-slate-900">{exp.company}</span>
                   <span className="text-xs text-slate-400">{exp.location}</span>
                 </div>
+                <span className="text-xs text-slate-500 tabular-nums">{exp.period}</span>
               </div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm text-slate-500">
-                  {exp.startDate} – {exp.endDate}
-                </span>
-                <span className="text-xs text-slate-400">
-                  {calculateDuration(exp.startDate, exp.endDate)}
-                </span>
-              </div>
+              <p className="mb-1 text-xs font-medium text-slate-500 italic">{exp.title}</p>
+              <ul className="list-disc list-outside ml-4 space-y-0.5">
+                {exp.bullets.map((bullet, j) => (
+                  <li key={j} className="text-sm leading-relaxed text-slate-700">
+                    {bullet}
+                  </li>
+                ))}
+              </ul>
             </div>
-            <div className="mt-1.5 mb-1 flex flex-wrap items-center gap-2">
-              <span className="text-sm font-medium text-slate-700 italic">
-                {exp.title}
-              </span>
-              {exp.skills && (
-                <div className="flex flex-wrap gap-1.5">
-                  {exp.skills.map(renderSkillBadge)}
-                </div>
-              )}
+          ))}
+        </section>
+
+        {/* Projects */}
+        <section className="mb-4">
+          <SectionHeader title="Projects" />
+
+          {/* Bigcampus - main project */}
+          <div className="break-inside-avoid">
+            <div className="flex items-baseline gap-2">
+              <span className="text-sm font-bold text-slate-900">{projects.main.name}</span>
+              <a
+                href={`https://${projects.main.url}`}
+                target="_blank"
+                rel="noreferrer"
+                className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
+              >
+                {projects.main.url}
+              </a>
+              <span className="text-xs text-slate-400">&middot;</span>
+              <span className="text-xs text-slate-500">{projects.main.stack}</span>
             </div>
-            <div className="mb-1">
-              {renderDescription(exp.description as Description)}
-            </div>
+            <ul className="mt-1 list-disc list-outside ml-4 space-y-0.5">
+              {projects.main.bullets.map((bullet, i) => (
+                <li key={i} className="text-sm leading-relaxed text-slate-700">
+                  {bullet}
+                </li>
+              ))}
+            </ul>
           </div>
-        ))}
 
-        {/* Projects Section */}
-        <SectionHeader title="Projects" />
-
-        {projects.map(project => (
-          <div key={project.title} className="mb-4 break-inside-avoid">
-            <div className="mb-2 flex items-baseline justify-between">
-              <div className="flex flex-wrap items-baseline gap-3">
-                <h3 className="text-base font-semibold text-slate-900">
-                  {project.title}
-                </h3>
-
-                {project.url && (
-                  <a
-                    href={`https://${project.url}`}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-xs text-slate-500 hover:text-slate-900 hover:underline"
-                  >
-                    {project.url}
-                  </a>
-                )}
-                {project.skills && (
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.skills.map(renderSkillBadge)}
-                  </div>
-                )}
+          {/* Other projects — compact */}
+          <div className="mt-3 space-y-1.5">
+            {projects.others.map((proj, i) => (
+              <div key={i} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm">
+                <span className="font-semibold text-slate-800">{proj.name}</span>
+                <a
+                  href={`https://${proj.url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
+                >
+                  {proj.url}
+                </a>
+                <span className="text-slate-400 text-xs">&mdash;</span>
+                <span className="text-sm text-slate-600">{proj.one_liner}</span>
               </div>
-              <div className="flex flex-col items-end gap-1 sm:flex-row sm:items-baseline sm:gap-2">
-                {'status' in project && (
-                  <span
-                    suppressHydrationWarning
-                    className="rounded-md bg-slate-100 px-1.5 py-0.5 text-xs font-medium text-slate-600 capitalize"
-                  >
-                    {project.status as string}
-                  </span>
-                )}
-                {'startDate' in project &&
-                  project.startDate &&
-                  'endDate' in project &&
-                  project.endDate && (
-                    <span className="text-sm text-slate-500">
-                      {project.endDate === 'Present'
-                        ? `Started ${project.startDate}`
-                        : `${project.startDate} – ${project.endDate}`}
-                    </span>
-                  )}
-              </div>
-            </div>
-            <div className="mb-2">
-              {renderDescription(project.description as Description)}
-            </div>
-          </div>
-        ))}
-
-        {/* Skills Section */}
-        <section className="mb-5 break-inside-avoid">
-          <SectionHeader title="Skills" />
-          <div className="grid grid-cols-1 gap-y-3 text-sm sm:grid-cols-[100px_1fr] sm:gap-x-2">
-            {Object.entries(skills).map(([category, categorySkills]) => (
-              <React.Fragment key={category}>
-                <div className="font-semibold text-slate-900">{category}</div>
-                <div className="flex flex-wrap gap-1.5">
-                  {categorySkills.map(renderSkillBadge)}
-                </div>
-              </React.Fragment>
             ))}
           </div>
         </section>
 
-        {/* Education Section */}
-        <SectionHeader title="Education" />
-
-        {education.map(edu => (
-          <div key={edu.id} className="break-inside-avoid">
-            <div className="flex items-baseline justify-between">
-              <h3 className="text-base font-semibold text-slate-900">
-                {edu.institution}
-              </h3>
-              <span className="text-sm text-slate-500">
-                {edu.startYear} – {edu.endYear}
-              </span>
-            </div>
-            <div className="mt-1 text-sm text-slate-600">{edu.program}</div>
-            {edu.description && (
-              <div className="mt-1 text-sm text-slate-500">
-                {edu.description}
+        {/* Skills */}
+        <section className="mb-3 break-inside-avoid">
+          <SectionHeader title="Skills" />
+          <div className="space-y-1">
+            {Object.entries(skills).map(([category, items]) => (
+              <div key={category} className="flex gap-3 text-sm">
+                <span className="w-20 shrink-0 font-semibold text-slate-800">{category}</span>
+                <span className="text-slate-600">{(items as string[]).join(', ')}</span>
               </div>
-            )}
-            {edu.grade && (
-              <div className="mt-1 text-xs text-slate-400">
-                CGPA: {edu.grade}
-              </div>
-            )}
+            ))}
           </div>
-        ))}
+        </section>
+
+        {/* Education */}
+        <section className="break-inside-avoid">
+          <SectionHeader title="Education" />
+          <div className="flex items-baseline justify-between">
+            <span className="text-sm font-bold text-slate-900">{education.institution}</span>
+            <span className="text-xs text-slate-500">{education.years}</span>
+          </div>
+          <p className="text-sm text-slate-600">
+            {education.program} &middot; {education.grade} &middot; {education.note}
+          </p>
+        </section>
       </A4Paginator>
     </div>
   );
@@ -438,84 +157,26 @@ export default function ResumePage() {
 // Sub-components
 // ============================================================================
 
-function ResumeActions() {
-  const { isOwner } = useAuth();
-  const [status, setStatus] = React.useState<
-    'idle' | 'loading' | 'success' | 'error'
-  >('idle');
-  const [message, setMessage] = React.useState('');
-
-  const handleSaveForMobile = async () => {
-    setStatus('loading');
-    setMessage('');
-
-    try {
-      const response = await fetch('/api/generate-resume', { method: 'POST' });
-      const data = await response.json();
-
-      if (data.success) {
-        setStatus('success');
-        setMessage('Saved for mobile!');
-      } else {
-        setStatus('error');
-        setMessage(data.message || 'Failed to save');
-      }
-    } catch (_error) {
-      setStatus('error');
-      setMessage('Network error');
-    }
-
-    setTimeout(() => {
-      setStatus('idle');
-      setMessage('');
-    }, 3000);
-  };
-
+function SectionHeader({ title }: { title: string }) {
   return (
-    <div className="fixed right-8 bottom-8 z-50 flex flex-col items-end gap-2 print:hidden">
-      {message && (
-        <div
-          className={cn(
-            'rounded-lg px-4 py-2 text-sm font-medium shadow-lg',
-            status === 'success' && 'bg-green-500 text-white',
-            status === 'error' && 'bg-red-500 text-white'
-          )}
-        >
-          {message}
-        </div>
-      )}
-      <div className="flex gap-2">
-        <TooltipProvider>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <span tabIndex={0}>
-                <Button
-                  onClick={handleSaveForMobile}
-                  disabled={status === 'loading' || !isOwner}
-                  className="gap-2 bg-slate-700 text-white shadow-xl hover:bg-slate-600 dark:bg-slate-700 dark:text-white dark:hover:bg-slate-600"
-                  size="lg"
-                >
-                  <Smartphone className="h-4 w-4" />
-                  {status === 'loading' ? 'Saving...' : 'Save for Mobile'}
-                </Button>
-              </span>
-            </TooltipTrigger>
-            {!isOwner && (
-              <TooltipContent side="top">
-                <p>Only for me</p>
-              </TooltipContent>
-            )}
-          </Tooltip>
-        </TooltipProvider>
-        <Button
-          onClick={() => window.print()}
-          className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
-          size="lg"
-        >
-          <Printer className="h-4 w-4" />
-          Print PDF
-        </Button>
-      </div>
+    <h2 className="mb-1.5 border-b border-slate-200 pb-0.5 text-[10px] font-bold tracking-widest text-slate-400 uppercase">
+      {title}
+    </h2>
+  );
+}
+
+
+function PrintButton() {
+  return (
+    <div className="fixed right-8 bottom-8 z-50 print:hidden">
+      <Button
+        onClick={() => window.print()}
+        className="gap-2 bg-slate-900 text-white shadow-xl hover:bg-slate-800 dark:bg-slate-900 dark:text-white dark:hover:bg-slate-800"
+        size="lg"
+      >
+        <Printer className="h-4 w-4" />
+        Print PDF
+      </Button>
     </div>
   );
 }

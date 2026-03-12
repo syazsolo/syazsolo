@@ -1,0 +1,44 @@
+{
+  "company": "Webcada Sdn Bhd (Shopcada)",
+  "role": "Junior PHP Developer",
+  "period": "Oct 2021 - Apr 2023",
+  "location": "Kuala Lumpur",
+
+  "the_good": [
+    "Good product, good pay. Started RM3000, bumped to RM4500 within 3 months.",
+    "For context: 2 years later pay was only RM5000 — Shopcada paid well early.",
+    "First year was solid. Boss loved me. Everyone loved me.",
+    "Genuinely loved the place and the people."
+  ],
+
+  "what_went_wrong": [
+    "After the first year, got lazy and started slacking. Gave bare minimum. Work quality dropped.",
+    "Had a wrong assumption: thought work culture runs on silent slacking. Was wrong.",
+    "Work culture never made sense — who sells 8 hours a day for 60 years? — but the assumption that others were coasting too was incorrect.",
+    "Boss eventually hated me. He had anger issues but was generally reasonable.",
+    "Listening to friends now, what I did wasn't that bad compared to what they do — and they don't seem punished as badly. But still own the mistake."
+  ],
+
+  "fair_criticism_of_the_company": [
+    "No code review at all. Code just passed through.",
+    "Tech lead (Shiau Shin / SS) was not strong. No push and pull, pure blind trust in the junior.",
+    "No comments on poor work performance. Daily standup every morning: what I did yesterday, what I plan today — but if the kanban board never moved, no problem.",
+    "Boss noticed only when things were already a point of no return.",
+    "From current view: letting code pass without review is irresponsible. Every output of everyone under you is your output."
+  ],
+
+  "lesson_learned": "Take my work seriously.",
+
+  "interview_frame": "My career started okay but went downhill from my own mistakes. From Shopcada, I learned to take my work seriously.",
+
+  "real_work": [
+    "Built and maintained shipping integrations: J&T, NinjaVan, ParcelHub",
+    "Built and maintained marketplace integrations: Shopee, Lazada, Zalora",
+    "These were core features — the operational backbone for key clients",
+    "Built a real-time sales dashboard for Facebook Live streams using webhooks and WebSockets, surfacing live order and revenue data during streams",
+    "Boss loved the FB live dashboard. From current view it was naive junior work, but still okay considering no AI to help.",
+    "Day to day: kanban board, fix bugs, occasional new feature, add new integration"
+  ],
+
+  "notes": "ADD MORE MEMORIES HERE AS THEY COME BACK"
+}

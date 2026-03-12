@@ -1,0 +1,38 @@
+{
+  "approach": "Direct & honest. Even weaknesses. No bullshit.",
+
+  "resume": {
+    "status": "NOT STARTED - structure only",
+    "format": "1 page. Trimmed to the bone.",
+    "philosophy": "Direct and honest to god. The 2026 way.",
+    "foundation": "Built from everything in this project - career stories, existing resume data, profile, projects, insights report, and the codebase itself as proof of work",
+    "next_steps": [
+      "Research 2026 software engineer resume best practices",
+      "Build the template",
+      "Fill with real, honest content derived from career stories"
+    ]
+  },
+
+  "cover_letter": {
+    "status": "NOT STARTED - concept only",
+    "format": "One honest template. No more per-company personalization.",
+    "philosophy": "Let Claude speak for me. Use the 'How You Use Claude Code' section from /insights report.",
+    "source": "docs/report.html - the narrative about how I use Claude Code as a collaborative partner",
+    "key_quote": "Highly engaged, architecturally opinionated developer who uses Claude Code as a collaborative partner across a full-stack TypeScript/PHP codebase.",
+    "next_steps": [
+      "Extract the relevant insights from the report",
+      "Build an honest cover letter template",
+      "One template for all applications"
+    ]
+  },
+
+  "interview_narrative": {
+    "arc": "My career started okay but went downhill from my own mistakes. But I learned something from each place.",
+    "per_company": {
+      "webcada": "I learned to take my work seriously.",
+      "9loop": "I learned to separate work and personal life properly.",
+      "imttech": "I learned to be better - faster, more reliable."
+    },
+    "identity": "I am a damn good engineer. I am honest. I am fun to be around. I am smart. I made mistakes I won't undo because without those mistakes I wasn't even trying."
+  }
+}

@@ -21,8 +21,8 @@ const ContactFormModal = ({ open, onOpenChange }: ContactFormModalProps) => {
       <DialogContent className="max-h-[90vh] overflow-y-auto pb-5 sm:max-w-md">
         <DialogHeader>
           <DialogTitle>Get in Touch</DialogTitle>
-          <DialogDescription>
-            Reach out to me - I&apos;d love to hear from you!
+          <DialogDescription className="sr-only">
+            Send me a message
           </DialogDescription>
         </DialogHeader>
         <div className="pt-2">

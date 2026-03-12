@@ -1,8 +1,8 @@
-import ednaConversation from '@/data/conversations/edna.json';
+// import ednaConversation from '@/data/conversations/edna.json';
 import soloConversation from '@/data/conversations/solo.json';
-import uncleBobConversation from '@/data/conversations/uncle_bob.json';
+// import uncleBobConversation from '@/data/conversations/uncle_bob.json';
 
-// import syazaniConversation from '@/data/conversations/syazani.json';
+import syazaniConversation from '@/data/conversations/syazani.json';
 
 export interface QuickReply {
   text: string;
@@ -204,10 +204,10 @@ export const getNodePreview = (node: MessageNode): string => {
 };
 
 const defaultConversationsData: Record<string, ConversationData> = {
-  // syazani: normalizeConversation(syazaniConversation), // temporarily disabled
+  syazani: normalizeConversation(syazaniConversation), // temporarily disabled
   solo: normalizeConversation(soloConversation),
-  edna: normalizeConversation(ednaConversation),
-  bot_clean_code: normalizeConversation(uncleBobConversation),
+  // edna: normalizeConversation(ednaConversation),
+  // bot_clean_code: normalizeConversation(uncleBobConversation),
 };
 
 export const conversationsData = defaultConversationsData;
