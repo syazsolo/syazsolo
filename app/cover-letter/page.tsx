@@ -86,7 +86,7 @@ export default function CoverLetterPage() {
               {meta.command}
             </code>{' '}
             command produced the following output for{' '}
-            <span className="font-medium">{meta.project}</span>:
+            <a href={meta.project_url} target="_blank" rel="noopener noreferrer" className="font-medium text-slate-700">{meta.project}</a>:
           </p>
           <p className="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
             <span
