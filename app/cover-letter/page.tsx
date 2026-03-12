@@ -1,11 +1,52 @@
 'use client';
 
-import { Printer } from 'lucide-react';
-
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
+import { Printer } from 'lucide-react';
 import React from 'react';
 import coverLetterData from '@/data/job-hunt/v2/cover-letter.json';
+
+const HIGHLIGHTS = [
+  'highly engaged, architecturally opinionated developer',
+  '188 sessions in just one month',
+  'comfortable letting Claude do heavy multi-file refactors',
+  'planning first, then executing',
+  'willingness to course-correct Claude aggressively',
+  'strong design sensibility, driving UX decisions',
+  'you hold Claude to a high standard',
+  'architecturally hands-on developer',
+  'but actively intervenes and redirects',
+];
+
+function HighlightedText({ text }: { text: string }) {
+  const pattern = HIGHLIGHTS.map(h =>
+    h.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+  ).join('|');
+  const regex = new RegExp(`(${pattern})`, 'g');
+  const parts = text.split(regex);
+  const highlightSet = new Set(HIGHLIGHTS);
+
+  return (
+    <>
+      {parts.map((part, i) =>
+        highlightSet.has(part) ? (
+          <mark
+            key={i}
+            style={{
+              background: 'linear-gradient(#fef08a, #fef08a) bottom / 100% 60% no-repeat',
+              backgroundColor: 'transparent',
+            }}
+            className="rounded-sm font-medium text-slate-900"
+          >
+            {part}
+          </mark>
+        ) : (
+          <span key={i}>{part}</span>
+        )
+      )}
+    </>
+  );
+}
 
 export default function CoverLetterPage() {
   const { meta, how_you_use_claude_code, key_pattern, regards } =
@@ -35,9 +76,7 @@ export default function CoverLetterPage() {
           <h1 className="text-2xl font-bold tracking-tight text-slate-900">
             Syazani Zulkhairi
           </h1>
-          <p className="mt-1 text-sm text-slate-500">
-            Cover Letter
-          </p>
+          <p className="mt-1 text-sm text-slate-500">Cover Letter</p>
         </header>
 
         <div className="mb-6 rounded-lg border border-slate-200 bg-slate-50 px-5 py-4">
@@ -49,6 +88,17 @@ export default function CoverLetterPage() {
             command produced the following output for{' '}
             <span className="font-medium">{meta.project}</span>:
           </p>
+          <p className="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
+            <span
+              className="inline-block h-3 w-5 rounded-sm"
+              style={{
+                background: 'linear-gradient(#fef08a, #fef08a) bottom / 100% 60% no-repeat',
+                backgroundColor: 'transparent',
+              }}
+              aria-hidden="true"
+            />
+            Key signals highlighted for easier scanning.
+          </p>
         </div>
 
         <section className="mb-6">
@@ -58,15 +108,15 @@ export default function CoverLetterPage() {
           <div className="space-y-4">
             {how_you_use_claude_code.map((paragraph, i) => (
               <p key={i} className="text-sm leading-relaxed text-slate-700">
-                {paragraph}
+                <HighlightedText text={paragraph} />
               </p>
             ))}
           </div>
         </section>
 
         <div className="mb-8 border-l-2 border-slate-300 pl-4">
-          <p className="text-sm font-medium leading-relaxed text-slate-800 italic">
-            {key_pattern}
+          <p className="text-sm leading-relaxed font-medium text-slate-800 italic">
+            <HighlightedText text={key_pattern} />
           </p>
         </div>
 
