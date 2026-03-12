@@ -6,3 +6,9 @@ I have a lot of changes covering many things. help me do the process to commit r
 4. I will review the changes & the draft message. If I like it, I will commit myself. If not I will tell you what I want.
 5. repeat step 2 with the next related changes.
 6. we finish when there is no more changes to commit.
+
+===
+
+1. I want to commit what I have in staging.
+2. do git log -n to learn my commit message style (I use gitmoji), help me draft a commit message. dont commit for me. just tell me the message.
+3. I will review the changes & the draft message. If I like it, I will commit myself. If not I will tell you what I want.
