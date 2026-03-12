@@ -4,7 +4,8 @@
     "model": "Claude Opus",
     "effort": "medium",
     "command": "/insights",
-    "project": "Bigcampus (bigcampus.co)"
+    "project": "Bigcampus (bigcampus.co)",
+    "project_url": "https://bigcampus.co"
   },
 
   "how_you_use_claude_code": [
