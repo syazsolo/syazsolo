@@ -159,36 +159,14 @@ const ContactInfo = () => {
                 >
                   <FileText className="mr-2 h-4 w-4" /> Resume
                 </Button>
-                {isOwner ? (
-                  <Button
-                    size="sm"
-                    className="w-full rounded-full"
-                    variant="secondary"
-                    onClick={() => window.open('/cover-letter', '_blank')}
-                  >
-                    <FileText className="mr-2 h-4 w-4" /> Cover Letter
-                  </Button>
-                ) : (
-                  <TooltipProvider>
-                    <Tooltip>
-                      <TooltipTrigger asChild>
-                        <span tabIndex={0} className="block w-full">
-                          <Button
-                            size="sm"
-                            className="w-full rounded-full opacity-50"
-                            variant="secondary"
-                            disabled
-                          >
-                            <Lock className="mr-2 h-3.5 w-3.5" /> Cover Letter
-                          </Button>
-                        </span>
-                      </TooltipTrigger>
-                      <TooltipContent side="bottom">
-                        <p>Only for me</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  </TooltipProvider>
-                )}
+                <Button
+                  size="sm"
+                  className="w-full rounded-full"
+                  variant="secondary"
+                  onClick={() => window.open('/cover-letter', '_blank')}
+                >
+                  <FileText className="mr-2 h-4 w-4" /> Cover Letter
+                </Button>
               </div>
             </div>
           </div>
