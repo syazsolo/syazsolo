@@ -1,0 +1,49 @@
+{
+  "company": "IMT Tech Sdn Bhd",
+  "role": "Software Engineer",
+  "period": "Jan 2025 - Oct 2025",
+  "location": "Bangsar South, Kuala Lumpur",
+
+  "context": "Joined because I had to. After 9LOOP, no one wanted me. My career was behind peers who only had work in their life — they do okay because they're not distracted. Joined to redeem myself.",
+
+  "the_good": [
+    "In the spirit of redeeming myself — no issues here. Did okay.",
+    "Everyone loved me except the boss. Don't mind what she thinks.",
+    "Made friends here that I plan to keep.",
+    "My Nuxt.js architecture was genuinely good — welcomed all feedback, got none, because it was just good.",
+    "AI had no problem with it. Things like useApiForm composition for communicating to backend (initial fetch, submit, delete, whatever). Consistent UI designs across pages.",
+    "Never missed a deadline. Work had no complaints. Seniors praised my code quality.",
+    "The metrics I worked toward: how many pages covered in the revamp migration."
+  ],
+
+  "what_went_wrong": [
+    "Let go after 9 months probation.",
+    "Was told it was because 'boss doesn't know if I can do backend' — then was put on backend, did well, still let go.",
+    "Shitty reasons made up."
+  ],
+
+  "fair_criticism_of_the_company": [
+    "Worst code culture I've seen. Senior colleague said it's 3-4/10 in ~15 years of working at various places.",
+    "'Hot processor' — not efficient, just hot. Busy doesn't mean productive.",
+    "12 of 15 team members have left since I joined. That kind of company.",
+    "9 months to decide they don't want me = a sign of a bad company, not a bad employee.",
+    "Considering how they treat their employees, it's a sad world if they do okay. They don't look like they're going to do okay."
+  ],
+
+  "what_i_worked_on": [
+    "Nuxt.js frontend revamp — designed the architecture from scratch: composables, consistent UI patterns, reusable API abstractions",
+    "The old project had bloated so much they wanted a full revamp. My job: build the foundation, then use it to recreate pages from the old Vue project.",
+    "Worked on this for ~6 months. Estimated I needed ~10 months to cover everything + new additions. Boss didn't have the resource.",
+    "Was moved to a different project (Laravel backend tasks) for probation assessment.",
+    "At least 2 random Laravel tasks — met deadlines, no complaints, seniors loved the work.",
+    "Was accidentally over-engineering sometimes — when I saw the mistakes, I fixed them."
+  ],
+
+  "lesson_learned": "Be better at my job. Be faster. Be better. Still wasn't enough for this company, but the growth was real.",
+
+  "interview_frame": "From IMT Tech, I just focused on being better — faster, more reliable. The environment was tough, but I came out a stronger engineer.",
+
+  "original_plan": "I always knew I'd eventually leave IMT Tech. The plan was to stay ~2 years (to show loyalty and a cleaner timeline), then leave with Bigcampus ready at my side. The timeline got accelerated by someone else's decision. But Bigcampus is now ready.",
+
+  "notes": "ADD MORE MEMORIES HERE AS THEY COME BACK"
+}

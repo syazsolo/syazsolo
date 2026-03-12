@@ -1,0 +1,102 @@
+{
+  "header": {
+    "name": "Syazani Zulkhairi",
+    "title": "Software Engineer",
+    "location": "Kuala Lumpur, Malaysia",
+    "email": "syazanizul@gmail.com",
+    "phone": "019-209 9853",
+    "portfolio": "syazsolo.netlify.app",
+    "github": "github.com/syazsolo",
+    "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188"
+  },
+
+  "one_liner": "I care about code quality more than anything, and I push everyone around me to care too — across 3+ years of building with React, Vue, Svelte, and Laravel.",
+
+  "experience": [
+    {
+      "company": "IMT Tech Sdn Bhd",
+      "title": "Software Engineer",
+      "period": "Jan 2025 - Oct 2025",
+      "location": "Kuala Lumpur",
+      "bullets": [
+        "Designed the frontend architecture for a full Nuxt.js revamp — composables, UI patterns, and API abstractions adopted by the team without friction",
+        "Shipped Laravel backend features with zero reported bugs across all client deployments"
+      ]
+    },
+    {
+      "company": "9LOOP Software Sdn Bhd",
+      "title": "Software Engineer II",
+      "period": "Jul 2023 - May 2024",
+      "location": "Petaling Jaya",
+      "bullets": [
+        "Migrated Telegram bot codebase from JavaScript to TypeScript and added automated Playwright tests, reducing production bug reports by over 80%",
+        "Built reusable component library in Svelte/SvelteKit for a full system revamp"
+      ]
+    },
+    {
+      "company": "Webcada Sdn Bhd",
+      "title": "Junior PHP Developer",
+      "period": "Oct 2021 - Apr 2023",
+      "location": "Kuala Lumpur",
+      "bullets": [
+        "Built and maintained shipping integrations (J&T, NinjaVan) and marketplace integrations (Shopee, Lazada, Zalora) — core features that clients depended on daily",
+        "Designed a real-time sales dashboard for Facebook Live streams using webhooks and WebSockets, surfacing live order and revenue data during broadcasts"
+      ]
+    }
+  ],
+
+  "projects": {
+    "main": {
+      "name": "Bigcampus",
+      "url": "bigcampus.co",
+      "stack": "Laravel, Next.js, TypeScript, MySQL",
+      "bullets": [
+        "Built a social platform where people meet through clubs and gatherings, designed around the idea that socializing should be as easy as possible",
+        "Engineered gathering lifecycle with state machines (Open > Lock-in > Room > Completed), including auto-cancellation, conflict windows, and real-time coordination via WebSockets",
+        "Deployed as a containerized PWA with native push notifications via service workers, running Laravel, Reverb, and scheduler in a single Docker container"
+      ]
+    },
+    "others": [
+      {
+        "name": "Atuk Opah",
+        "url": "atuk-opah.netlify.app",
+        "one_liner": "Family tree app for 100+ members to explore their lineage (Next.js, Supabase)"
+      },
+      {
+        "name": "Syazsolo",
+        "url": "syazsolo.netlify.app",
+        "one_liner": "Portfolio site that mirrors LinkedIn's interface as a deliberate design choice (Next.js)"
+      }
+    ]
+  },
+
+  "skills": {
+    "Frontend": [
+      "React",
+      "Next.js",
+      "Vue",
+      "Nuxt",
+      "Svelte",
+      "SvelteKit",
+      "TypeScript"
+    ],
+    "Backend": ["Laravel", "PHP", "Node.js"],
+    "Database": ["MySQL", "PostgreSQL", "Supabase", "Redis"],
+    "Other": [
+      "Git",
+      "Docker",
+      "REST APIs",
+      "Tailwind CSS",
+      "Playwright",
+      "Claude Code"
+    ]
+  },
+
+  "education": {
+    "institution": "Multimedia University",
+    "program": "Electronics Engineering, Robotics & Automation",
+    "years": "2017 - 2021",
+    "grade": "CGPA 3.65",
+    "note": "Yayasan Telekom Malaysia scholar"
+  }
+}

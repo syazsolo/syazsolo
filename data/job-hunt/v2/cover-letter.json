@@ -1,0 +1,19 @@
+{
+  "meta": {
+    "date": "2026-03-11",
+    "model": "Claude Opus",
+    "effort": "medium",
+    "command": "/insights",
+    "project": "Bigcampus (bigcampus.co)"
+  },
+
+  "how_you_use_claude_code": [
+    "You are a highly engaged, architecturally opinionated developer who uses Claude Code as a collaborative partner across a full-stack TypeScript/PHP codebase. Over 188 sessions in just one month, you maintain a rapid iteration pace — averaging ~18.6 messages per session — and you're clearly comfortable letting Claude do heavy multi-file refactors (1,193 edits, 1,680 reads). Your workflow centers on planning first, then executing, often starting sessions with architecture discussions or code reviews before moving into implementation. You frequently use the Task/TaskUpdate tools (323 combined uses), suggesting you leverage Claude's sub-task capabilities for complex, multi-phase work like your Room feature implementation or the gathering events system redesign.",
+    "What stands out most is your willingness to course-correct Claude aggressively. With 36 instances of \"wrong approach\" friction, you don't hesitate to push back when Claude misunderstands scope or suggests conservative changes when you want aggressive refactors. You caught Claude proposing misleading database designs, misunderstanding gathering lifecycles, and suggesting backend fixes when the issue was frontend. Despite this friction, your outcomes are strong — 75 of 89 sessions were fully or mostly achieved — because you treat Claude's missteps as conversation points rather than blockers. You also have a strong design sensibility, driving UX decisions like randomized DiceBear avatars, mobile-first tappable cards, and privacy-respecting anonymous member teasers.",
+    "Your interaction pattern reveals someone building a club/gathering PWA with real-time features, and you use Claude across the entire development lifecycle: from architecture discussions and WebSocket migration planning, through implementation of full features spanning backend and frontend, to cleanup tasks like renaming concepts project-wide or removing dead code. You're notably zero commits in this dataset, suggesting you review and commit outside of Claude sessions or use a separate workflow. The 27 \"dissatisfied\" ratings despite mostly successful outcomes suggest you hold Claude to a high standard — you notice redundant conditions, incorrect field references, and over-broad analyses that waste your time."
+  ],
+
+  "key_pattern": "You are an architecturally hands-on developer who lets Claude execute large multi-file changes but actively intervenes and redirects when Claude's approach diverges from your vision.",
+
+  "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+}

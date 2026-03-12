@@ -1,0 +1,57 @@
+{
+  "company": "9LOOP Software Sdn Bhd",
+  "role": "Software Engineer II",
+  "period": "Jul 2023 - May 2024",
+  "location": "Petaling Jaya, Selangor",
+
+  "the_good": [
+    "Loved at the beginning again.",
+    "CTO groomed me because he liked my attitude toward clean code.",
+    "Was the standard for how to write good code in the team.",
+    "CTO was a great guy — gave the team a lot of freedom to explore and learn.",
+    "I am in regret about how things ended with him. I wish I never wronged him and we stayed friends."
+  ],
+
+  "what_went_wrong": [
+    "Did not separate work and personal life.",
+    "Shared my aspiration to be an actor, comedian, filmmaker with colleagues.",
+    "Asked the boss to use the office for my short film. He said okay at first, but later I knew he didn't like it — he just didn't have the guts to say so.",
+    "Work performance dropped — the film and the work project had deadlines 2 days apart.",
+    "Was under a lot of pressure, half of it self-inflicted.",
+    "My massive ego was also a factor: I was competing with the CTO on who could come up with better architecture designs. The mesh/table component took so long, partly because of that tension.",
+    "Had a breakdown and quit. First time in my life I just couldn't work anymore. Just sudden stop. Never knew that was possible.",
+    "CEO (weak man, no push and pull) just let me go quietly."
+  ],
+
+  "platos_cave_moment": "The CRUD Generator work broke me. In my eye, everyone else was perfectly happy living in the darkness of the cave. The code was shitty and they knew it, but they wouldn't do anything because it was too near the deadline. I couldn't move. This was Plato's allegory of the cave — and at the time, I just couldn't handle it.",
+
+  "crud_generator_context": [
+    "I joined the CRUD generator small team about a week after they started.",
+    "Realized they were making a generator for something they didn't know — no template yet. Doesn't make sense.",
+    "CTO should have been clear on what was needed for them to proceed.",
+    "My task was to come up with the template. I did the index page template and a bit of the form page.",
+    "The code was terrible. I couldn't move. They knew it but wouldn't act. Too near deadline."
+  ],
+
+  "fair_criticism_of_the_company": [
+    "Shareholders were out of sight, which the management (CEO & CTO) liked.",
+    "Heard the shareholders were rich but stupid — couldn't agree or make decisions.",
+    "CTO had great desire to be a great engineer but may not have had the ability. His architecture designs, from current view, were not smart.",
+    "Everyone was silent about my dropping performance because I had a reputation — I competed with the CTO. That silence didn't help."
+  ],
+
+  "lesson_learned": "Separate work and personal life properly.",
+
+  "interview_frame": "From 9LOOP, I learned to separate work and personal life properly. I brought too much of my outside ambitions into the workplace and it affected my performance.",
+
+  "real_work": [
+    "Telegram Bot project: loved it, learned a lot — but later realized it was a small contributor to the big picture",
+    "Migrated Telegram bot from JavaScript to TypeScript",
+    "Added automated Playwright tests — reduced production bug reports significantly",
+    "Built component library in Svelte/SvelteKit for a full system revamp (new project to replace old one)",
+    "Built the mesh/table component (spent too long on it, over-engineered it)",
+    "Worked on CRUD generator — specifically the index page template and start of form page"
+  ],
+
+  "notes": "ADD MORE MEMORIES HERE AS THEY COME BACK"
+}
