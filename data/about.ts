@@ -1,34 +1,32 @@
 type AboutContentItem = string | { title: string; description: string }[];
 
 const aboutContentData: AboutContentItem[] = [
-  // "Hi, I'm Syazani, but I go by Syazsolo.",
-  // 'Like Han Solo, I value boldness, creativity, and deep, hands-on knowledge. I take great pride in my craft, ensuring my work reflects that dedication: clean, intentional, and built to last.',
-  // 'Welcome to my digital workshop. You might recognize the layout—I recreated the LinkedIn interface from scratch. It was a challenge to myself: take a design everyone knows, rebuild it with pixel-perfect precision, but fill it with my own personality. It is a demonstration of frontend mastery in a familiar package.',
-  // 'While you are here, take a look around:',
-  'Hi,',
+  "Hi, I'm Syazani, but I go by Syazsolo.",
+  'Like Han Solo, I value boldness, creativity, and deep, hands-on knowledge. I take great pride in my craft, ensuring my work reflects that dedication: clean, intentional, and built to last.',
+  // 'Hi,',
   // "I'm Syazani, or Syaz, but you can call me Syazsolo. If you ask why *** **** would you call me that? Because I'm just stupid I guess. But I do LOVE Han Solo, I'm sure I love him more than you.",
   // 'Like Han Solo, I value boldness, creativity, and deep, hands-on knowledge. I take great pride in my craft, ensuring my work reflects that dedication: clean, intentional, and built to last. Not a Han Solo thing to say? Well ... Hm ... Okay ...',
   // 'If you want to see what a good product is, you look at my product, Bigcampus. If you want to see how good code looks like, you look at my code, I dont mind showing. I am aware of my weakness-I write slow. But I know I produce good works.',
-  // 'Welcome to my digital workshop. You might recognize the layout—I recreated the LinkedIn interface from scratch. It was a challenge to myself: take a design everyone knows, rebuild it with pixel-perfect precision, but fill it with my own personality. It is a demonstration of frontend mastery in a familiar package.',
-  // 'While you are here, take a look around:',
-  // [
-  //   {
-  //     title: 'Chat with me (the bot version)',
-  //     description:
-  //       'I\'ve created a collection of interactive personas for you to talk to. From Star Wars characters to The Incredibles, and even a "Clean Code" bot inspired by Uncle Bob. Think of it as a choose-your-own-adventure intro to how I think.',
-  //   },
-  //   {
-  //     title: 'Read my notes',
-  //     description:
-  //       "I write about the details most people miss—dissecting design decisions (like Apple's password field) or reflecting on the philosophy of our craft. This is where my engineering mind meets the real world.",
-  //   },
-  //   {
-  //     title: 'Explore my projects',
-  //     description:
-  //       'I build tools to solve my own problems first. Each project is a playground where I test new architectures and patterns. If they solve a problem for me, I share them here.',
-  //   },
-  // ],
-  // "Let's connect. My contact form offers two paths: send me a direct message, or—if you prefer—simply leave your details and I'll reach out to you. I'm always delighted to talk tech, design, or Star Wars!",
+  'Welcome to my digital workshop. You might recognize the layout—I recreated the LinkedIn interface from scratch. It was a challenge to myself: take a design everyone knows, rebuild it with pixel-perfect precision, but fill it with my own personality. It is a demonstration of frontend mastery in a familiar package.',
+  'While you are here, take a look around:',
+  [
+    {
+      title: 'Chat with me (the bot version)',
+      description:
+        'I\'ve created a collection of interactive personas for you to talk to. From Star Wars characters to The Incredibles, and even a "Clean Code" bot inspired by Uncle Bob. Think of it as a choose-your-own-adventure intro to how I think.',
+    },
+    {
+      title: 'Read my notes',
+      description:
+        "I write about the details most people miss—dissecting design decisions (like Apple's password field) or reflecting on the philosophy of our craft. This is where my engineering mind meets the real world.",
+    },
+    {
+      title: 'Explore my projects',
+      description:
+        'I build tools to solve my own problems first. Each project is a playground where I test new architectures and patterns. If they solve a problem for me, I share them here.',
+    },
+  ],
+  "Let's connect. My contact form offers two paths: send me a direct message, or—if you prefer—simply leave your details and I'll reach out to you. I'm always delighted to talk tech, design, or Star Wars!",
 ];
 
 export default aboutContentData;
