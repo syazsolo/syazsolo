@@ -1,5 +1,22 @@
 [
   {
+    "id": "bigcampus",
+    "title": "Bigcampus",
+    "status": "developing",
+    "url": "bigcampus.co",
+    "startDate": "Dec 2025",
+    "endDate": "Present",
+    "description": {
+      "type": "ul",
+      "items": [
+        "Social platform for meeting people through clubs and gatherings — full-stack Laravel + Next.js",
+        "Engineered gathering lifecycle as a state machine (Open > Lock-in > Room > Completed) with auto-cancellation, conflict windows, and real-time WebSocket coordination",
+        "Containerized PWA with service-worker push notifications — Laravel, Reverb, and scheduler in a single Docker image"
+      ]
+    },
+    "skills": ["Next.js", "TypeScript", "Laravel", "MySQL"]
+  },
+  {
     "id": "syazsolo",
     "title": "Syazsolo",
     "status": "maintaining",
@@ -32,20 +49,5 @@
       ]
     },
     "skills": ["Next.js", "Supabase"]
-  },
-  {
-    "id": "bigcampus",
-    "title": "Bigcampus",
-    "status": "developing",
-    "startDate": "Jan 2025",
-    "endDate": "Present",
-    "description": {
-      "type": "ul",
-      "items": [
-        "Addressing the persistent 'finding friends' problem by engineering a platform with infinite settings flexibility, allowing users to solve social friction through granular, custom-defined configuration rather than rigid algorithms",
-        "Implementing a hierarchical responsibility system (Platform → Owner → Host → Attendee) to ensure safety and accountability are actively delegated and enforced at every level"
-      ]
-    },
-    "skills": ["Next.js", "PHP", "Laravel", "MySQL"]
   }
 ]

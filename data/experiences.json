@@ -11,9 +11,8 @@
     "description": {
       "type": "ul",
       "items": [
-        "Led frontend architecture redesign using Nuxt.js, building reusable abstractions and composables that enabled efficient AI-assisted development and reduced boilerplate code by 70%",
-        "Delivered backend features in Laravel with near-zero reported bugs from account managers and clients",
-        "Collaborated with stakeholders to clarify requirements and ensure smooth project delivery"
+        "Designed Nuxt.js frontend architecture (composables, shared UI patterns, API abstractions) for a 6-month page-by-page migration from a legacy Vue codebase",
+        "Built Laravel backend features delivered on deadline and approved without change requests"
       ]
     },
     "skills": ["Vue", "Nuxt", "Laravel", "MySQL"],
@@ -31,8 +30,8 @@
     "description": {
       "type": "ul",
       "items": [
-        "Built interactive user interfaces with Svelte/SvelteKit for a system revamp, including custom reusable components and a CRUD generator",
-        "Refactored and maintained Telegram bot codebase, migrating from JavaScript to TypeScript with automated Playwright tests, reducing production bug reports by over 80%"
+        "Migrated Telegram bot from JavaScript to TypeScript with Playwright coverage — production bug reports dropped from 2–3 per week to about 1 every 2 weeks, mostly JS type-error crashes the migration eliminated",
+        "Built 15+ Svelte/SvelteKit components for a full system revamp — including the data-mesh/table component used across the new product's admin views"
       ]
     },
     "skills": ["Svelte", "Sveltekit", "PostgreSQL", "Telegraf", "Redis"],
@@ -50,8 +49,8 @@
     "description": {
       "type": "ul",
       "items": [
-        "Built & maintained critical shipping integrations (J&T, NinjaVan, ParcelHub) and marketplace integrations (Shopee, Lazada, Zalora) that served as the operational backbone for key clients",
-        "Built a real-time sales dashboard for Facebook Live integrations using webhooks and WebSockets to surface live order and revenue data during streams"
+        "Built and maintained 6 shipping and marketplace integrations (J&T, NinjaVan, ParcelHub, Shopee, Lazada, Zalora) powering daily order operations for 20+ B2B SaaS clients",
+        "Built a real-time Facebook Live sales dashboard — webhooks for order events, WebSockets pushing live revenue and order counts during broadcasts"
       ]
     },
     "skills": ["PHP", "Drupal", "MySQL"]
