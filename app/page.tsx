@@ -48,6 +48,8 @@ export default async function Home() {
               <ProfileHeader />
               <About />
               <Directory />
+              <Experience id="experience" />
+              <Projects id="projects" />
               <Posts
                 id="posts"
                 posts={posts}
@@ -57,8 +59,6 @@ export default async function Home() {
                   profileUrl: profileData.profileUrl,
                 }}
               />
-              <Experience id="experience" />
-              <Projects id="projects" />
               <Education id="education" />
             </div>
             <Gap />

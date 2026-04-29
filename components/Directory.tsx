@@ -5,12 +5,20 @@ import { Fragment } from 'react';
 import Section from '@/components/Section';
 import { animate } from 'framer-motion';
 
-const DIRECTORY_ITEMS = [
+type DirectoryItem =
+  | { label: string; id: string; href?: undefined }
+  | { label: string; href: string; id?: undefined };
+
+const DIRECTORY_ITEMS: DirectoryItem[][] = [
   [
-    { label: 'Posts', id: 'posts' },
     { label: 'Experience', id: 'experience' },
     { label: 'Projects', id: 'projects' },
+    { label: 'Posts', id: 'posts' },
     { label: 'Education', id: 'education' },
+  ],
+  [
+    { label: 'Resume', href: '/resume' },
+    { label: 'Cover letter', href: '/cover-letter' },
   ],
   [{ label: 'Design Patterns', id: 'design-patterns' }],
 ];
@@ -48,19 +56,26 @@ export default function Directory() {
         {DIRECTORY_ITEMS.map((group, groupIndex) => (
           <Fragment key={groupIndex}>
             <div className="flex flex-wrap gap-2">
-              {group.map(item => (
-                <a
-                  key={item.id}
-                  href={`#${item.id}`}
-                  onClick={e => handleScroll(e, item.id)}
-                  className="group hover:bg-muted bg-card hover:border-foreground/20 border-border flex items-center justify-between gap-3 rounded-lg border px-4 py-3 text-sm font-medium transition-all"
-                >
-                  <span className="text-foreground/80 group-hover:text-foreground">
-                    {item.label}
-                  </span>
-                  <ArrowRight className="text-muted-foreground/60 group-hover:text-foreground h-4 w-4 transition-colors" />
-                </a>
-              ))}
+              {group.map(item => {
+                const isAnchor = typeof item.id === 'string';
+                const key = item.id ?? item.href;
+                const href = isAnchor ? `#${item.id}` : item.href!;
+                return (
+                  <a
+                    key={key}
+                    href={href}
+                    onClick={
+                      isAnchor ? e => handleScroll(e, item.id!) : undefined
+                    }
+                    className="group hover:bg-muted bg-card hover:border-foreground/20 border-border flex items-center justify-between gap-3 rounded-lg border px-4 py-3 text-sm font-medium transition-all"
+                  >
+                    <span className="text-foreground/80 group-hover:text-foreground">
+                      {item.label}
+                    </span>
+                    <ArrowRight className="text-muted-foreground/60 group-hover:text-foreground h-4 w-4 transition-colors" />
+                  </a>
+                );
+              })}
             </div>
             {groupIndex < DIRECTORY_ITEMS.length - 1 && (
               <div className="flex items-center">
