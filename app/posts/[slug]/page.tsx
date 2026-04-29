@@ -10,7 +10,7 @@ import { Post } from '@/types';
 import PostsLayout from '@/components/layout/PostsLayout';
 import PostsProfileSidebar from '@/components/posts/PostsProfileSidebar';
 import type { SanityImageSource } from '@sanity/image-url';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 import imageUrlBuilder from '@sanity/image-url';
 import { portableTextComponents } from '@/components/posts/PortableTextComponents';
 import profileData from '@/data/profile.json';
@@ -66,7 +66,7 @@ export default async function PostPage({
     : null;
 
   const relative = post.publishedAt
-    ? formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })
+    ? formatDistanceToNow(parseISO(post.publishedAt), { addSuffix: true })
     : null;
 
   const metadataItems = [

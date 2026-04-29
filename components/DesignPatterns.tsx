@@ -2,7 +2,7 @@
 
 import Section from '@/components/Section';
 import { cn } from '@/utils';
-import { format } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { motion } from 'framer-motion';
 import patternsData from '@/data/designPatterns.json';
 
@@ -87,7 +87,7 @@ const DesignPatterns = ({ id }: { id?: string }) => {
                     )}
                   >
                     {pattern.lastStudied
-                      ? format(new Date(pattern.lastStudied), 'MMM yyyy')
+                      ? format(parseISO(pattern.lastStudied), 'MMM yyyy')
                       : 'Not yet'}
                   </span>
                 </motion.li>

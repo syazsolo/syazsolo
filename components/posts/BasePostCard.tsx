@@ -9,7 +9,7 @@ import { PortableText } from 'next-sanity';
 import { Post } from '@/types';
 import type { SanityImageSource } from '@sanity/image-url';
 import { compactPortableTextComponents } from '@/components/posts/CompactPortableText';
-import { formatDistanceToNow } from 'date-fns';
+import { formatDistanceToNow, parseISO } from 'date-fns';
 import imageUrlBuilder from '@sanity/image-url';
 import Image from 'next/image';
 
@@ -34,7 +34,7 @@ export default function BasePostCard({
   strategy,
 }: BasePostCardProps) {
   const relative = post.publishedAt
-    ? formatDistanceToNow(new Date(post.publishedAt), { addSuffix: true })
+    ? formatDistanceToNow(parseISO(post.publishedAt), { addSuffix: true })
     : null;
 
   const metadataItems = [
