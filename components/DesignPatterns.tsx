@@ -87,7 +87,7 @@ const DesignPatterns = ({ id }: { id?: string }) => {
                     )}
                   >
                     {pattern.lastStudied
-                      ? format(new Date(pattern.lastStudied), 'MMM d, yyyy')
+                      ? format(new Date(pattern.lastStudied), 'MMM yyyy')
                       : 'Not yet'}
                   </span>
                 </motion.li>
