@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "date": "2026-04-28",
+    "model": "Claude Opus",
+    "effort": "medium",
+    "command": "/insights",
+    "command_description": "which reads my Claude Code session logs and reports how I work with AI",
+    "project": "Bigcampus",
+    "project_url": "https://bigcampus.co"
+  },
+
+  "how_you_use_claude_code": [
+    "You are an architecturally opinionated developer who uses Claude Code as a collaborative partner across a full-stack TypeScript and PHP codebase (React, Next.js, Laravel). Across 135 sessions and roughly 150 hours, your workflow centers on planning first, then executing — often starting sessions with architecture discussions or code reviews before moving into implementation. You stay alert to the AI tooling landscape: you've built your own slash-command pipeline on top of Claude Code (gsd-discuss-phase, gsd-ui-phase, gsd-plan-phase, gsd-execute-phase, gsd-verify-work), suggesting you treat AI as infrastructure to design around rather than a tool to lean on.",
+    "What stands out most is the standard you hold Claude to. You don't hesitate to push back when Claude misunderstands scope, drifts to a wrong approach, or suggests shallow fixes. You also have a strong design sensibility, driving UX decisions yourself — premium mobile feel, mobile-first tappable cards, privacy-respecting anonymous member teasers — and rejecting 'good enough' when an interaction still feels cheap.",
+    "You also lean on Claude for git hygiene — rather than drafting commit messages manually, you've built an agent (git-commit-crafter) that groups diffs and proposes gitmoji messages iteratively. That instinct — turning repetitive work into reusable tools — runs through your wider workflow. You pair with Claude across the full lifecycle (architecture, implementation, and review), and despite holding Claude to a high standard (visible in 13 dissatisfied ratings against 86 likely-satisfied), your outcomes consistently land — because you treat Claude's missteps as conversation points rather than blockers."
+  ],
+
+  "key_pattern": "You are an architecturally hands-on developer who pairs with Claude across the full lifecycle — architecture, implementation, and review — and intervenes decisively the moment Claude's approach diverges from your vision.",
+
+  "conclusion": "I'm sharing this output to give you a sense of what it's like to work with me — beyond what a resume or a one-paragraph pitch can show. I'm confident I can bring this same care and discipline to your team as a software engineer.",
+
+  "highlights": [
+    "architecturally opinionated developer",
+    "Claude Code as a collaborative partner",
+    "alert to the AI tooling landscape",
+    "treat AI as infrastructure to design around",
+    "standard you hold Claude to",
+    "push back when Claude misunderstands scope",
+    "strong design sensibility, driving UX decisions yourself",
+    "turning repetitive work into reusable tools",
+    "treat Claude's missteps as conversation points rather than blockers",
+    "architecturally hands-on developer",
+    "intervenes decisively"
+  ],
+
+  "regards": ["Best regards,", "Syazani Zulkhairi", "019-209 9853"]
+}
