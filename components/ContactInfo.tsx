@@ -1,18 +1,11 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Check, Copy, FileText, Lock, MessageSquare } from 'lucide-react';
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from '@/components/ui/tooltip';
+import { Check, Copy, FileText, MessageSquare } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
 import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
-import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 import ContactFormModal from '@/components/ContactFormModal';
 
@@ -116,7 +109,6 @@ const renderContactItem = (
 
 const ContactInfo = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
-  const { isOwner } = useAuth();
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
   const handleCopy = async (index: number, text: string) => {
