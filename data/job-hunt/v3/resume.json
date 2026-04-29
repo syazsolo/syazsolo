@@ -1,0 +1,92 @@
+{
+  "header": {
+    "name": "Syazani Zulkhairi",
+    "title": "Software Engineer",
+    "location": "Kuala Lumpur, Malaysia",
+    "email": "syazanizul@gmail.com",
+    "phone": "019-209 9853",
+    "portfolio": "syazsolo.netlify.app",
+    "github": "github.com/syazsolo",
+    "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188"
+  },
+
+  "one_liner": "Software engineer with 4 years of experience across React, Vue, Svelte, and Laravel — known on every team I've joined for clean architecture and code that survives review and production.",
+
+  "experience": [
+    {
+      "company": "IMT Tech Sdn Bhd",
+      "title": "Software Engineer",
+      "period": "Jan 2025 - Oct 2025",
+      "location": "Kuala Lumpur",
+      "bullets": [
+        "Designed Nuxt.js frontend architecture (composables, shared UI patterns, API abstractions) for a 6-month page-by-page migration from a legacy Vue codebase",
+        "Built Laravel backend features delivered on deadline and approved without change requests"
+      ]
+    },
+    {
+      "company": "9LOOP Software Sdn Bhd",
+      "title": "Software Engineer",
+      "period": "Jul 2023 - May 2024",
+      "location": "Petaling Jaya",
+      "bullets": [
+        "Migrated Telegram bot from JavaScript to TypeScript with Playwright coverage, eliminating most type-error crashes — production bug reports dropped from 2–3 per week to about 1 every 2 weeks",
+        "Built 15+ Svelte/SvelteKit components for a full system revamp — including the data-mesh/table component used across the new product's admin views"
+      ]
+    },
+    {
+      "company": "Webcada Sdn Bhd",
+      "title": "Junior PHP Developer",
+      "period": "Oct 2021 - Apr 2023",
+      "location": "Kuala Lumpur",
+      "bullets": [
+        "Built and maintained 6 shipping and marketplace integrations (J&T, NinjaVan, ParcelHub, Shopee, Lazada, Zalora) powering daily order operations for 20+ B2B SaaS clients",
+        "Built a real-time Facebook Live sales dashboard — webhooks ingested order events, WebSockets pushed live revenue and order counts during broadcasts"
+      ]
+    }
+  ],
+
+  "projects": {
+    "main": {
+      "name": "Bigcampus",
+      "url": "bigcampus.co",
+      "period": "Dec 2025 - present",
+      "stack": "Laravel, Next.js, TypeScript, MySQL",
+      "bullets": [
+        "Social platform for meeting people through clubs and gatherings — full-stack Laravel + Next.js",
+        "Engineered the gathering lifecycle as a state machine (Open > Lock-in > Room > Completed) with auto-cancellation, conflict windows, and real-time WebSocket coordination",
+        "Deployed as a containerized PWA with service-worker push notifications — Laravel, Reverb, and scheduler in a single Docker image"
+      ]
+    },
+    "others": [
+      {
+        "name": "Atuk Opah",
+        "url": "atuk-opah.netlify.app",
+        "one_liner": "Family tree app for 100+ members to explore their lineage (Next.js, Supabase)"
+      }
+    ]
+  },
+
+  "skills": {
+    "Frontend": [
+      "React",
+      "Next.js",
+      "Vue",
+      "Nuxt",
+      "Svelte",
+      "SvelteKit",
+      "TypeScript",
+      "Tailwind CSS"
+    ],
+    "Backend": ["Laravel", "PHP", "Node.js"],
+    "Database": ["MySQL", "PostgreSQL", "Supabase", "Redis"],
+    "Tools": ["Docker", "Playwright", "Claude Code"]
+  },
+
+  "education": {
+    "institution": "Multimedia University",
+    "program": "Electronics Engineering, Robotics & Automation",
+    "years": "2017 - 2021",
+    "grade": "CGPA 3.65",
+    "note": "Yayasan Telekom Malaysia scholar"
+  }
+}

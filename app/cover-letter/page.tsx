@@ -3,20 +3,9 @@
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
 import { Printer } from 'lucide-react';
-import React from 'react';
-import coverLetterData from '@/data/job-hunt/v2/cover-letter.json';
+import coverLetterData from '@/data/job-hunt/v3/cover-letter.json';
 
-const HIGHLIGHTS = [
-  'highly engaged, architecturally opinionated developer',
-  '188 sessions in just one month',
-  'comfortable letting Claude do heavy multi-file refactors',
-  'planning first, then executing',
-  'willingness to course-correct Claude aggressively',
-  'strong design sensibility, driving UX decisions',
-  'you hold Claude to a high standard',
-  'architecturally hands-on developer',
-  'but actively intervenes and redirects',
-];
+const HIGHLIGHTS = coverLetterData.highlights;
 
 function HighlightedText({ text }: { text: string }) {
   const pattern = HIGHLIGHTS.map(h =>
@@ -33,7 +22,8 @@ function HighlightedText({ text }: { text: string }) {
           <mark
             key={i}
             style={{
-              background: 'linear-gradient(#fef08a, #fef08a) bottom / 100% 60% no-repeat',
+              background:
+                'linear-gradient(#fef08a, #fef08a) bottom / 100% 60% no-repeat',
               backgroundColor: 'transparent',
             }}
             className="rounded-sm font-medium text-slate-900"
@@ -49,7 +39,7 @@ function HighlightedText({ text }: { text: string }) {
 }
 
 export default function CoverLetterPage() {
-  const { meta, how_you_use_claude_code, key_pattern, regards } =
+  const { meta, how_you_use_claude_code, key_pattern, conclusion, regards } =
     coverLetterData;
 
   return (
@@ -81,44 +71,53 @@ export default function CoverLetterPage() {
 
         <div className="mb-6 rounded-lg border border-slate-200 bg-slate-50 px-5 py-4">
           <p className="text-sm leading-relaxed text-slate-700">
-            On {meta.date}, using {meta.model} at {meta.effort} effort, the{' '}
+            On {meta.date}, {meta.model} ran the{' '}
             <code className="rounded bg-slate-200 px-1.5 py-0.5 text-xs font-medium text-slate-800">
               {meta.command}
             </code>{' '}
-            command produced the following output for{' '}
-            <a href={meta.project_url} target="_blank" rel="noopener noreferrer" className="font-medium text-slate-700">{meta.project}</a>:
-          </p>
-          <p className="mt-2 flex items-center gap-1.5 text-xs text-slate-400">
-            <span
-              className="inline-block h-3 w-5 rounded-sm"
-              style={{
-                background: 'linear-gradient(#fef08a, #fef08a) bottom / 100% 60% no-repeat',
-                backgroundColor: 'transparent',
-              }}
-              aria-hidden="true"
-            />
-            Key signals highlighted for easier scanning.
+            command at {meta.effort} effort
+            {meta.command_description && ` — ${meta.command_description} — `}
+            for{' '}
+            <a
+              href={meta.project_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-slate-700"
+            >
+              {meta.project}
+            </a>
+            , a project of mine:
           </p>
         </div>
 
-        <section className="mb-6">
-          <h2 className="mb-3 text-sm font-bold tracking-wide text-slate-400 uppercase">
+        <section className="mb-6 rounded-lg border border-slate-200 bg-white p-5">
+          <h2 className="mb-3 text-xs font-bold tracking-wide text-slate-400 uppercase">
             How You Use Claude Code
           </h2>
-          <div className="space-y-4">
+          <div className="space-y-3">
             {how_you_use_claude_code.map((paragraph, i) => (
-              <p key={i} className="text-sm leading-relaxed text-slate-700">
+              <p
+                key={i}
+                className="text-[12.5px] leading-relaxed text-slate-600"
+              >
                 <HighlightedText text={paragraph} />
               </p>
             ))}
           </div>
+
+          <div className="mt-4 rounded-md border border-emerald-200 bg-emerald-50 px-4 py-3">
+            <p className="text-sm leading-relaxed font-medium text-emerald-900">
+              <span className="font-semibold">Key pattern: </span>
+              <HighlightedText text={key_pattern} />
+            </p>
+          </div>
         </section>
 
-        <div className="mb-8 border-l-2 border-slate-300 pl-4">
-          <p className="text-sm leading-relaxed font-medium text-slate-800 italic">
-            <HighlightedText text={key_pattern} />
+        {conclusion && (
+          <p className="mb-6 text-sm leading-relaxed text-slate-700">
+            {conclusion}
           </p>
-        </div>
+        )}
 
         <div className="space-y-0.5">
           {regards.map((line, i) => (

@@ -5,18 +5,18 @@
       { "name": "Abstract Factory", "lastStudied": null },
       { "name": "Builder", "lastStudied": null },
       { "name": "Factory Method", "lastStudied": null },
-      { "name": "Prototype", "lastStudied": null },
+      { "name": "Prototype", "lastStudied": "Apr 2026" },
       { "name": "Singleton", "lastStudied": null }
     ]
   },
   {
     "category": "Structural Patterns",
     "patterns": [
-      { "name": "Adapter", "lastStudied": null },
+      { "name": "Adapter", "lastStudied": "Apr 2026" },
       { "name": "Bridge", "lastStudied": null },
-      { "name": "Composite", "lastStudied": "1 Nov 2025" },
+      { "name": "Composite", "lastStudied": "Nov 2025" },
       { "name": "Decorator", "lastStudied": null },
-      { "name": "Facade", "lastStudied": null },
+      { "name": "Facade", "lastStudied": "Apr 2026" },
       { "name": "Flyweight", "lastStudied": null },
       { "name": "Proxy", "lastStudied": null }
     ]
@@ -31,8 +31,8 @@
       { "name": "Mediator", "lastStudied": null },
       { "name": "Memento", "lastStudied": null },
       { "name": "Observer", "lastStudied": null },
-      { "name": "State", "lastStudied": null },
-      { "name": "Strategy", "lastStudied": "10 Jan 2026" },
+      { "name": "State", "lastStudied": "Apr 2026" },
+      { "name": "Strategy", "lastStudied": "Jan 2026" },
       { "name": "Template Method", "lastStudied": null },
       { "name": "Visitor", "lastStudied": null }
     ]
