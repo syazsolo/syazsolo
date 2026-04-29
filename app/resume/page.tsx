@@ -5,7 +5,7 @@ import { Printer } from 'lucide-react';
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
 import React from 'react';
-import resumeData from '@/data/job-hunt/v2/resume.json';
+import resumeData from '@/data/job-hunt/v3/resume.json';
 
 // ============================================================================
 // Main Component
@@ -82,18 +82,21 @@ export default function ResumePage() {
 
           {/* Bigcampus - main project */}
           <div className="break-inside-avoid">
-            <div className="flex items-baseline gap-2">
-              <span className="text-sm font-bold text-slate-900">{projects.main.name}</span>
-              <a
-                href={`https://${projects.main.url}`}
-                target="_blank"
-                rel="noreferrer"
-                className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
-              >
-                {projects.main.url}
-              </a>
-              <span className="text-xs text-slate-400">&middot;</span>
-              <span className="text-xs text-slate-500">{projects.main.stack}</span>
+            <div className="flex items-baseline justify-between">
+              <div className="flex items-baseline gap-2">
+                <span className="text-sm font-bold text-slate-900">{projects.main.name}</span>
+                <a
+                  href={`https://${projects.main.url}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
+                >
+                  {projects.main.url}
+                </a>
+                <span className="text-xs text-slate-400">&middot;</span>
+                <span className="text-xs text-slate-500">{projects.main.stack}</span>
+              </div>
+              <span className="text-xs text-slate-500 tabular-nums">{projects.main.period}</span>
             </div>
             <ul className="mt-1 list-disc list-outside ml-4 space-y-0.5">
               {projects.main.bullets.map((bullet, i) => (
