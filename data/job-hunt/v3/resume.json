@@ -7,10 +7,10 @@
     "phone": "019-209 9853",
     "portfolio": "syazsolo.netlify.app",
     "github": "github.com/syazsolo",
-    "linkedin": "linkedin.com/in/syazani-zulkhairi-6649b4188"
+    "linkedin": "linkedin.com/in/syazsolo"
   },
 
-  "one_liner": "Software engineer with 4 years of experience across React, Vue, Svelte, and Laravel — known on every team I've joined for clean architecture and code that survives review and production.",
+  "one_liner": "I care about good engineering more than anything, and I push everyone around me to care too — across 4 years of building with React, Vue, and Laravel",
 
   "experience": [
     {
@@ -20,7 +20,7 @@
       "location": "Kuala Lumpur",
       "bullets": [
         "Designed Nuxt.js frontend architecture (composables, shared UI patterns, API abstractions) for a 6-month page-by-page migration from a legacy Vue codebase",
-        "Built Laravel backend features delivered on deadline and approved without change requests"
+        "Shipped Laravel backend work on deadline with zero review revisions — 2 feature refactors, plenty of bug fixes, and feature ports across their fragmented multi-repo setup"
       ]
     },
     {
@@ -29,7 +29,7 @@
       "period": "Jul 2023 - May 2024",
       "location": "Petaling Jaya",
       "bullets": [
-        "Migrated Telegram bot from JavaScript to TypeScript with Playwright coverage, eliminating most type-error crashes — production bug reports dropped from 2–3 per week to about 1 every 2 weeks",
+        "Migrated Telegram bot from JavaScript to TypeScript with Playwright coverage, eliminating most type-error crashes — dropping production bug reports from 2–3 per week to about 1 every 2 weeks",
         "Built 15+ Svelte/SvelteKit components for a full system revamp — including the data-mesh/table component used across the new product's admin views"
       ]
     },
