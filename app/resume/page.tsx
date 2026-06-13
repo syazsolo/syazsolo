@@ -4,12 +4,10 @@ import { Printer } from 'lucide-react';
 
 import { A4Paginator } from '@/components/ui/A4Paginator';
 import { Button } from '@/components/ui/button';
-import React from 'react';
-import resumeData from '@/data/job-hunt/v3/resume.json';
+import resumeData from '@/data/job-hunt/v4/resume.json';
 
-// ============================================================================
-// Main Component
-// ============================================================================
+type Experience = (typeof resumeData.experience)[number];
+type ResumeProject = (typeof resumeData.projects)[number];
 
 export default function ResumePage() {
   const { header, one_liner, experience, projects, skills, education } =
@@ -17,8 +15,6 @@ export default function ResumePage() {
 
   return (
     <div className="min-h-screen bg-gray-50 py-8 print:bg-white print:p-0">
-      {/* Print uses slightly less padding than screen to compensate for
-          browser print engine rendering fonts/layout slightly larger than screen */}
       <style>{`
         @media print {
           .resume-page-content { padding: 8mm !important; }
@@ -27,128 +23,85 @@ export default function ResumePage() {
       <PrintButton />
 
       <A4Paginator paddingMM={10}>
-        {/* Header */}
         <header className="mb-3 border-b-2 border-slate-900 pb-3">
           <h1 className="text-[26px] font-bold tracking-tight text-slate-900 uppercase">
             {header.name}
           </h1>
           <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs text-slate-600">
             <span>{header.title}</span>
-            <span className="text-slate-300">|</span>
+            <Separator />
             <span>{header.location}</span>
-            <span className="text-slate-300">|</span>
-            <a href={`mailto:${header.email}`} className="hover:text-slate-900">{header.email}</a>
-            <span className="text-slate-300">|</span>
+            <Separator />
+            <a href={`mailto:${header.email}`} className="hover:text-slate-900">
+              {header.email}
+            </a>
+            <Separator />
             <span>{header.phone}</span>
-            <span className="text-slate-300">|</span>
-            <a href={`https://${header.portfolio}`} target="_blank" rel="noreferrer" className="hover:text-slate-900">{header.portfolio}</a>
-            <span className="text-slate-300">|</span>
-            <a href={`https://${header.github}`} target="_blank" rel="noreferrer" className="hover:text-slate-900">{header.github}</a>
-            <span className="text-slate-300">|</span>
-            <a href={`https://${header.linkedin}`} target="_blank" rel="noreferrer" className="hover:text-slate-900">{header.linkedin}</a>
+            <Separator />
+            <ExternalLink href={`https://${header.portfolio}`}>
+              {header.portfolio}
+            </ExternalLink>
+            <Separator />
+            <ExternalLink href={`https://${header.github}`}>
+              {header.github}
+            </ExternalLink>
+            <Separator />
+            <ExternalLink href={`https://${header.linkedin}`}>
+              {header.linkedin}
+            </ExternalLink>
           </div>
           <p className="mt-2 text-sm leading-relaxed text-slate-700 italic">
             {one_liner}
           </p>
         </header>
 
-        {/* Experience */}
         <section className="mb-4">
           <SectionHeader title="Experience" />
-          {experience.map((exp, i) => (
-            <div key={i} className={`break-inside-avoid ${i > 0 ? 'mt-3 border-t border-slate-100 pt-3' : ''}`}>
-              <div className="flex items-baseline justify-between">
-                <div className="flex items-baseline gap-2">
-                  <span className="text-sm font-bold text-slate-900">{exp.company}</span>
-                  <span className="text-xs text-slate-400">{exp.location}</span>
-                </div>
-                <span className="text-xs text-slate-500 tabular-nums">{exp.period}</span>
-              </div>
-              <p className="mb-1 text-xs font-medium text-slate-500 italic">{exp.title}</p>
-              <ul className="list-disc list-outside ml-4 space-y-0.5">
-                {exp.bullets.map((bullet, j) => (
-                  <li key={j} className="text-sm leading-relaxed text-slate-700">
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <div className="space-y-3">
+            {experience.map((item, index) => (
+              <ExperienceItem key={item.company} experience={item} />
+            ))}
+          </div>
         </section>
 
-        {/* Projects */}
         <section className="mb-4">
           <SectionHeader title="Projects" />
-
-          {/* Bigcampus - main project */}
-          <div className="break-inside-avoid">
-            <div className="flex items-baseline justify-between">
-              <div className="flex items-baseline gap-2">
-                <span className="text-sm font-bold text-slate-900">{projects.main.name}</span>
-                <a
-                  href={`https://${projects.main.url}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
-                >
-                  {projects.main.url}
-                </a>
-                <span className="text-xs text-slate-400">&middot;</span>
-                <span className="text-xs text-slate-500">{projects.main.stack}</span>
-              </div>
-              <span className="text-xs text-slate-500 tabular-nums">{projects.main.period}</span>
-            </div>
-            <ul className="mt-1 list-disc list-outside ml-4 space-y-0.5">
-              {projects.main.bullets.map((bullet, i) => (
-                <li key={i} className="text-sm leading-relaxed text-slate-700">
-                  {bullet}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Other projects — compact */}
-          <div className="mt-3 space-y-1.5">
-            {projects.others.map((proj, i) => (
-              <div key={i} className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm">
-                <span className="font-semibold text-slate-800">{proj.name}</span>
-                <a
-                  href={`https://${proj.url}`}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
-                >
-                  {proj.url}
-                </a>
-                <span className="text-slate-400 text-xs">&mdash;</span>
-                <span className="text-sm text-slate-600">{proj.one_liner}</span>
-              </div>
+          <div className="space-y-3">
+            {projects.map(project => (
+              <ProjectItem key={project.name} project={project} />
             ))}
           </div>
         </section>
 
-        {/* Skills */}
-        <section className="mb-3 break-inside-avoid">
+        <section className="mb-4 break-inside-avoid">
           <SectionHeader title="Skills" />
-          <div className="space-y-1">
-            {Object.entries(skills).map(([category, items]) => (
-              <div key={category} className="flex gap-3 text-sm">
-                <span className="w-20 shrink-0 font-semibold text-slate-800">{category}</span>
-                <span className="text-slate-600">{(items as string[]).join(', ')}</span>
-              </div>
-            ))}
+          <div className="space-y-1 text-sm">
+            <SkillRow
+              groups={[
+                ['Backend', skills.Backend],
+                ['Database', skills.Database],
+              ]}
+            />
+            <SkillRow
+              groups={[
+                ['Frontend', skills.Frontend],
+                ['Tools', skills.Tools],
+              ]}
+            />
           </div>
         </section>
 
-        {/* Education */}
         <section className="break-inside-avoid">
           <SectionHeader title="Education" />
           <div className="flex items-baseline justify-between">
-            <span className="text-sm font-bold text-slate-900">{education.institution}</span>
+            <span className="text-sm font-bold text-slate-900">
+              {education.institution}
+            </span>
             <span className="text-xs text-slate-500">{education.years}</span>
           </div>
           <p className="text-sm text-slate-600">
-            {education.program} &middot; {education.grade} &middot; {education.note}
+            {education.program} &middot; {education.grade} &middot;{' '}
+            {education.note}
           </p>
         </section>
       </A4Paginator>
@@ -156,9 +109,89 @@ export default function ResumePage() {
   );
 }
 
-// ============================================================================
-// Sub-components
-// ============================================================================
+function ExperienceItem({ experience }: { experience: Experience }) {
+  return (
+    <div className="break-inside-avoid">
+      <div className="flex items-baseline justify-between gap-3">
+        <div className="flex items-baseline gap-2">
+          <span className="text-sm font-bold text-slate-900">
+            {experience.company}
+          </span>
+          <span className="text-xs text-slate-400">{experience.location}</span>
+        </div>
+        <span className="shrink-0 text-xs text-slate-500 tabular-nums">
+          {experience.period}
+        </span>
+      </div>
+      <p className="mb-1 text-xs font-medium text-slate-500 italic">
+        {experience.title}
+      </p>
+      <BulletList bullets={experience.bullets} />
+    </div>
+  );
+}
+
+function ProjectItem({ project }: { project: ResumeProject }) {
+  return (
+    <div className="break-inside-avoid">
+      <div className="flex items-baseline justify-between gap-3">
+        <div className="flex flex-wrap items-baseline gap-x-2 gap-y-0.5 text-sm">
+          <span className="font-bold text-slate-900">{project.name}</span>
+          {project.url ? (
+            <ExternalLink
+              href={project.url}
+              className="text-xs text-slate-400 hover:text-slate-700 hover:underline"
+            >
+              {project.url}
+            </ExternalLink>
+          ) : null}
+          {'stack' in project ? (
+            <>
+              <span className="text-xs text-slate-400">&middot;</span>
+              <span className="text-xs text-slate-500">{project.stack}</span>
+            </>
+          ) : null}
+        </div>
+        {'period' in project ? (
+          <span className="shrink-0 text-xs text-slate-500 tabular-nums">
+            {project.period}
+          </span>
+        ) : null}
+      </div>
+      <ProjectBullets bullets={project.bullets} />
+    </div>
+  );
+}
+
+function ProjectBullets({ bullets }: { bullets: string[] }) {
+  if (bullets.length === 1) {
+    return (
+      <p className="mt-1 text-sm leading-relaxed text-slate-700">
+        {bullets[0]}
+      </p>
+    );
+  }
+
+  return <BulletList bullets={bullets} className="mt-1" />;
+}
+
+function BulletList({
+  bullets,
+  className = '',
+}: {
+  bullets: string[];
+  className?: string;
+}) {
+  return (
+    <ul className={`ml-4 list-outside list-disc space-y-0.5 ${className}`}>
+      {bullets.map((bullet, index) => (
+        <li key={index} className="text-sm leading-relaxed text-slate-700">
+          {bullet}
+        </li>
+      ))}
+    </ul>
+  );
+}
 
 function SectionHeader({ title }: { title: string }) {
   return (
@@ -168,6 +201,39 @@ function SectionHeader({ title }: { title: string }) {
   );
 }
 
+function SkillRow({ groups }: { groups: [string, string[]][] }) {
+  return (
+    <div className="flex flex-wrap gap-x-5 gap-y-0.5">
+      {groups.map(([category, items]) => (
+        <span key={category} className="text-slate-600">
+          <span className="font-semibold text-slate-800">{category}</span>
+          {': '}
+          {items.join(', ')}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function ExternalLink({
+  href,
+  children,
+  className = 'hover:text-slate-900',
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <a href={href} target="_blank" rel="noreferrer" className={className}>
+      {children}
+    </a>
+  );
+}
+
+function Separator() {
+  return <span className="text-slate-300">|</span>;
+}
 
 function PrintButton() {
   return (

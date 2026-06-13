@@ -1,31 +1,41 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type Page } from '@playwright/test';
 
-test('Resume has Projects section at the top of the second page', async ({
-  page,
-}) => {
+async function openResume(page: Page) {
   await page.goto('/resume');
-
   await page.waitForSelector('.resume-page-content');
+}
+
+test('Resume renders as a single page', async ({ page }) => {
+  await openResume(page);
 
   const pages = page.locator('.resume-page-content');
 
   const count = await pages.count();
-  expect(count).toBeGreaterThanOrEqual(2);
+  expect(count).toBe(1);
+});
 
-  const secondPage = pages.nth(1);
+test('Resume shows active round 4 sections and projects', async ({ page }) => {
+  await openResume(page);
 
-  const projectsHeader = secondPage.locator('h2', { hasText: 'Projects' });
+  const pages = page.locator('.resume-page-content');
+  const resumePage = pages.nth(0);
 
-  await expect(projectsHeader).toBeVisible();
+  await expect(
+    resumePage.locator('h2', { hasText: 'Experience' })
+  ).toBeVisible();
+  await expect(
+    resumePage.locator('h2', { hasText: 'Projects' })
+  ).toBeVisible();
+  await expect(resumePage.getByText('Collective Chess')).toBeVisible();
+  await expect(resumePage.getByText('Bigcampus', { exact: true })).toBeVisible();
+  await expect(resumePage.locator('h2', { hasText: 'Skills' })).toBeVisible();
+  await expect(
+    resumePage.locator('h2', { hasText: 'Education' })
+  ).toBeVisible();
+});
 
-  const headerBox = await projectsHeader.boundingBox();
-  const pageBox = await secondPage.boundingBox();
+test('Resume does not render empty project URLs', async ({ page }) => {
+  await openResume(page);
 
-  if (headerBox && pageBox) {
-    const relativeTop = headerBox.y - pageBox.y;
-    console.log(`Projects header is at ${relativeTop}px from top of page 2`);
-
-    expect(relativeTop).toBeLessThan(100);
-    expect(relativeTop).toBeGreaterThan(40);
-  }
+  await expect(page.locator('a[href="https://null"]')).toHaveCount(0);
 });
