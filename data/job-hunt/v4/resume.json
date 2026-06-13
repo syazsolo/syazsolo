@@ -70,7 +70,9 @@
       "name": "Atuk Opah",
       "url": "https://atuk-opah.netlify.app",
       "stack": "Next.js, Supabase, PostgreSQL",
-      "bullets": ["Family tree app for 100+ members to explore their lineage"]
+      "bullets": [
+        "Family tree app for 100+ members to explore their lineage; use password 'demo' to view sample family data"
+      ]
     }
   ],
 
