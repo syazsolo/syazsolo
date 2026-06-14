@@ -1,32 +1,28 @@
 type AboutContentItem = string | { title: string; description: string }[];
 
 const aboutContentData: AboutContentItem[] = [
-  "Hi, I'm Syazani, but I go by Syazsolo.",
-  'Like Han Solo, I value boldness, creativity, and deep, hands-on knowledge. I take great pride in my craft, ensuring my work reflects that dedication: clean, intentional, and built to last.',
-  // 'Hi,',
-  // "I'm Syazani, or Syaz, but you can call me Syazsolo. If you ask why *** **** would you call me that? Because I'm just stupid I guess. But I do LOVE Han Solo, I'm sure I love him more than you.",
-  // 'Like Han Solo, I value boldness, creativity, and deep, hands-on knowledge. I take great pride in my craft, ensuring my work reflects that dedication: clean, intentional, and built to last. Not a Han Solo thing to say? Well ... Hm ... Okay ...',
-  // 'If you want to see what a good product is, you look at my product, Bigcampus. If you want to see how good code looks like, you look at my code, I dont mind showing. I am aware of my weakness-I write slow. But I know I produce good works.',
-  'Welcome to my digital workshop. You might recognize the layout—I recreated the LinkedIn interface from scratch. It was a challenge to myself: take a design everyone knows, rebuild it with pixel-perfect precision, but fill it with my own personality. It is a demonstration of frontend mastery in a familiar package.',
-  'While you are here, take a look around:',
+  "Hi, I'm Syazani, a software engineer in Kuala Lumpur with 3+ years of experience building Laravel/PHP, MySQL, and full-stack React/Vue applications.",
+  'I am strongest when a team needs someone reliable: the person who finishes scoped backend work, communicates early when tradeoffs appear, and keeps fixes moving quickly from report to production.',
+  'Recently I have been sharpening that through my own products and reading. Bigcampus and Collective Chess are where I keep applying the ideas I want to bring back into a real engineering team: cleaner delivery, stronger architecture, and healthier development flow.',
+  'A few things worth checking here:',
   [
     {
-      title: 'Chat with me (the bot version)',
+      title: 'Resume and cover letter',
       description:
-        'I\'ve created a collection of interactive personas for you to talk to. From Star Wars characters to The Incredibles, and even a "Clean Code" bot inspired by Uncle Bob. Think of it as a choose-your-own-adventure intro to how I think.',
+        'The latest versions are written for hiring teams and show the clearest summary of my work, projects, and current motivation.',
     },
     {
-      title: 'Read my notes',
+      title: 'Projects',
       description:
-        "I write about the details most people miss—dissecting design decisions (like Apple's password field) or reflecting on the philosophy of our craft. This is where my engineering mind meets the real world.",
+        'Bigcampus, Collective Chess, and Atuk Opah are the best signals for how I design systems, make tradeoffs, and keep building outside work.',
     },
     {
-      title: 'Explore my projects',
+      title: 'Interactive profile',
       description:
-        'I build tools to solve my own problems first. Each project is a playground where I test new architectures and patterns. If they solve a problem for me, I share them here.',
+        'The chatbot and design-pattern sections are still here for a more playful look at how I think, but the main path now focuses on hiring-relevant work.',
     },
   ],
-  "Let's connect. My contact form offers two paths: send me a direct message, or—if you prefer—simply leave your details and I'll reach out to you. I'm always delighted to talk tech, design, or Star Wars!",
+  'If the work looks relevant, send me a message. I would rather show you good work than only describe it.',
 ];
 
 export default aboutContentData;

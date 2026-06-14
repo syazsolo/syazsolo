@@ -6,37 +6,11 @@ import Education from '@/components/Education';
 import Experience from '@/components/Experience';
 import Gap from '@/components/Gap';
 import Header from '@/components/Header';
-import { Post } from '@/types';
-import Posts from '@/components/Posts';
 import ProfileHeader from '@/components/ProfileHeader';
 import Projects from '@/components/Projects';
 import ScrollActionBar from '@/components/ScrollActionBar';
-import profileData from '@/data/profile.json';
-import { client as sanityClient } from '@/lib/sanity';
 
-const POSTS_QUERY = `*[
-  _type == "post" && defined(slug.current)
-] | order(publishedAt desc)[0...4]{
-  _id,
-  title,
-  slug,
-  publishedAt,
-  excerpt,
-  image,
-  // project a direct URL to avoid client-side builder issues
-  "imageUrl": image.asset->url,
-  body,
-  tags,
-  readingTimeMinutes
-}`;
-
-export default async function Home() {
-  const posts = await sanityClient.fetch<Post[]>(
-    POSTS_QUERY,
-    {},
-    { next: { revalidate: 30 } }
-  );
-
+export default function Home() {
   return (
     <div className="bg-background relative min-h-screen pt-[52px] pb-16 transition-colors">
       <Header />
@@ -50,15 +24,6 @@ export default async function Home() {
               <Directory />
               <Experience id="experience" />
               <Projects id="projects" />
-              <Posts
-                id="posts"
-                posts={posts}
-                profile={{
-                  name: profileData.shortName,
-                  headline: profileData.headline,
-                  profileUrl: profileData.profileUrl,
-                }}
-              />
               <Education id="education" />
             </div>
             <Gap />

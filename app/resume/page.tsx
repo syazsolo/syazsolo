@@ -58,7 +58,7 @@ export default function ResumePage() {
         <section className="mb-4">
           <SectionHeader title="Experience" />
           <div className="space-y-3">
-            {experience.map((item, index) => (
+            {experience.map(item => (
               <ExperienceItem key={item.company} experience={item} />
             ))}
           </div>

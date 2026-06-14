@@ -1,37 +1,33 @@
 [
   {
+    "id": "collective-chess",
+    "title": "Collective Chess",
+    "status": "developing",
+    "startDate": "Jun 2026",
+    "endDate": "Present",
+    "description": {
+      "type": "ul",
+      "items": [
+        "Chess knowledge platform for exploring positions through community-submitted moves and explanations"
+      ]
+    },
+    "skills": ["Laravel", "Next.js", "TypeScript", "MySQL"]
+  },
+  {
     "id": "bigcampus",
     "title": "Bigcampus",
     "status": "developing",
     "url": "bigcampus.co",
-    "startDate": "Dec 2025",
+    "startDate": "Jan 2026",
     "endDate": "Present",
     "description": {
       "type": "ul",
       "items": [
-        "Social platform for meeting people through clubs and gatherings — full-stack Laravel + Next.js",
-        "Engineered gathering lifecycle as a state machine (Open > Lock-in > Room > Completed) with auto-cancellation, conflict windows, and real-time WebSocket coordination",
-        "Containerized PWA with service-worker push notifications — Laravel, Reverb, and scheduler in a single Docker image"
+        "Social platform for meeting people through clubs and gatherings, built full-stack with Laravel and Next.js",
+        "Deployed as a containerized PWA with service-worker push notifications, running Laravel, Reverb, and scheduler in a single Docker image"
       ]
     },
     "skills": ["Next.js", "TypeScript", "Laravel", "MySQL"]
-  },
-  {
-    "id": "syazsolo",
-    "title": "Syazsolo",
-    "status": "maintaining",
-    "url": "syazsolo.netlify.app",
-    "startDate": "Nov 2025",
-    "endDate": "Present",
-    "description": {
-      "type": "ul",
-      "items": [
-        "Personal portfolio demonstrating frontend capabilities by replicating LinkedIn's interface",
-        "Features multiple specialized chatbots for project explanations, Clean Code summaries, and career discussions",
-        "Serves as a testing ground for developer tools and utilities I actively use"
-      ]
-    },
-    "skills": ["Next.js"]
   },
   {
     "id": "atuk-opah",
@@ -43,11 +39,9 @@
     "description": {
       "type": "ul",
       "items": [
-        "Private family tree application for 100+ family members to visualize and explore their lineage",
-        "Treated as a freelance project with a family member as client, gathering requirements and delivering features iteratively",
-        "Built with free hosting (Netlify, Supabase) as a core constraint; password-protected (use \"demo\" to view sample data)"
+        "Family tree app for 100+ members to explore their lineage; use password \"demo\" to view sample family data"
       ]
     },
-    "skills": ["Next.js", "Supabase"]
+    "skills": ["Next.js", "Supabase", "PostgreSQL"]
   }
 ]

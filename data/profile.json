@@ -3,6 +3,8 @@
   "shortName": "Syazani Zulkhairi",
   "headline": "Software Engineer",
   "location": "Kuala Lumpur, Malaysia",
+  "summary": "3+ years building Laravel/PHP, MySQL, and full-stack React/Vue applications.",
+  "focusAreas": ["Laravel/PHP", "React/Next.js", "MySQL", "TypeScript"],
   "bannerUrl": "/background.jpg",
   "profileUrl": "/acak.jpg"
 }

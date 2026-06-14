@@ -1,6 +1,7 @@
 'use client';
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { Badge } from '@/components/ui/badge';
 import { Card, CardContent } from '@/components/ui/card';
 
 import ContactInfoModal from '@/components/ContactInfoModal';
@@ -52,6 +53,20 @@ const ProfileHeader = () => {
             <p className="text-foreground mt-0.5 text-[12px] leading-4 md:text-[16px] md:leading-6">
               {profileData.headline}
             </p>
+            <p className="text-muted-foreground mt-2 max-w-2xl text-[14px] leading-6">
+              {profileData.summary}
+            </p>
+            <div className="mt-3 flex flex-wrap gap-1.5">
+              {profileData.focusAreas.map(focus => (
+                <Badge
+                  key={focus}
+                  variant="secondary"
+                  className="text-[12px] font-medium"
+                >
+                  {focus}
+                </Badge>
+              ))}
+            </div>
             <div className="text-muted-foreground mt-2 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px]">
               <span>{profileData.location}</span>
               <button

@@ -13,7 +13,6 @@ const DIRECTORY_ITEMS: DirectoryItem[][] = [
   [
     { label: 'Experience', id: 'experience' },
     { label: 'Projects', id: 'projects' },
-    { label: 'Posts', id: 'posts' },
     { label: 'Education', id: 'education' },
   ],
   [
