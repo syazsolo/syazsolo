@@ -235,7 +235,7 @@ export default function ContactForm() {
           </label>
           <Textarea
             id="contact-message"
-            placeholder="how's my falcon doing buddy?"
+            placeholder="How is my Falcon doing?"
             className={cn(
               'bg-background min-h-[100px] resize-none',
               errors.message && 'border-destructive'
