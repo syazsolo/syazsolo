@@ -22,14 +22,7 @@ function HighlightedText({ text }: { text: string }) {
         highlightSet.has(part) ? (
           <mark
             key={index}
-            style={{
-              background:
-                'linear-gradient(transparent 30%, rgba(255, 190, 82, 0.48) 30%, rgba(255, 190, 82, 0.48) 92%, transparent 92%)',
-              backgroundColor: 'transparent',
-              boxDecorationBreak: 'clone',
-              WebkitBoxDecorationBreak: 'clone',
-            }}
-            className="text-neutral-950"
+            className="cover-letter-highlight text-neutral-950"
           >
             {part}
           </mark>
@@ -47,8 +40,30 @@ export default function CoverLetterDocument() {
   return (
     <div className="min-h-screen bg-stone-50 py-8 print:bg-white print:p-0">
       <style>{`
+        .cover-letter-highlight {
+          background: linear-gradient(
+            transparent 30%,
+            rgba(255, 190, 82, 0.48) 30%,
+            rgba(255, 190, 82, 0.48) 92%,
+            transparent 92%
+          );
+          background-color: transparent;
+          box-decoration-break: clone;
+          -webkit-box-decoration-break: clone;
+          print-color-adjust: exact;
+          -webkit-print-color-adjust: exact;
+        }
+
         @media print {
           .resume-page-content { padding: 12mm !important; }
+          .cover-letter-highlight {
+            background: #ffd88a !important;
+            box-decoration-break: clone;
+            -webkit-box-decoration-break: clone;
+            box-shadow: 0 0 0 1px #ffd88a, inset 0 -0.62em 0 #ffd88a;
+            print-color-adjust: exact;
+            -webkit-print-color-adjust: exact;
+          }
         }
       `}</style>
 
