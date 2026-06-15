@@ -62,7 +62,7 @@
       "period": "Jan 2026 - Present",
       "stack": "Laravel, Next.js, TypeScript, MySQL",
       "bullets": [
-        "Social platform for meeting people through clubs and gatherings, built full-stack with Laravel and Next.js",
+        "Social platform built around one goal: making real-life socializing as frictionless as possible",
         "Deployed as a containerized PWA with service-worker push notifications, running Laravel, Reverb, and scheduler in a single Docker image"
       ]
     },
