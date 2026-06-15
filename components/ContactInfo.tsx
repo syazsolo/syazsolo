@@ -1,13 +1,19 @@
 'use client';
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Check, Copy, FileText, MessageSquare } from 'lucide-react';
+import { Check, Copy, FileText, Lock, MessageSquare } from 'lucide-react';
 
 import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
 import { useState } from 'react';
 import ContactFormModal from '@/components/ContactFormModal';
+import { useAuth } from '@/context/AuthContext';
 
 interface ContactItem {
   icon: string;
@@ -110,6 +116,24 @@ const renderContactItem = (
 const ContactInfo = () => {
   const [copiedIndex, setCopiedIndex] = useState<number | null>(null);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  const { isOwner } = useAuth();
+
+  const coverLetterButton = (
+    <Button
+      size="sm"
+      className="w-full rounded-full disabled:opacity-50"
+      variant="secondary"
+      onClick={() => window.open('/cover-letter', '_blank')}
+      disabled={!isOwner}
+    >
+      {isOwner ? (
+        <FileText className="mr-2 h-4 w-4" />
+      ) : (
+        <Lock className="mr-2 h-3.5 w-3.5" />
+      )}
+      Cover Letter
+    </Button>
+  );
 
   const handleCopy = async (index: number, text: string) => {
     try {
@@ -151,14 +175,20 @@ const ContactInfo = () => {
                 >
                   <FileText className="mr-2 h-4 w-4" /> Resume
                 </Button>
-                <Button
-                  size="sm"
-                  className="w-full rounded-full"
-                  variant="secondary"
-                  onClick={() => window.open('/cover-letter', '_blank')}
-                >
-                  <FileText className="mr-2 h-4 w-4" /> Cover Letter
-                </Button>
+                {isOwner ? (
+                  coverLetterButton
+                ) : (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="w-full cursor-not-allowed">
+                        {coverLetterButton}
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Unlock with It&apos;s Me to view this.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
               </div>
             </div>
           </div>

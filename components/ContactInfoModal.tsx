@@ -10,10 +10,16 @@ import {
 import { useEffect, useState } from 'react';
 
 import { Button } from '@/components/ui/button';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
 import contactInfoData from '@/data/contact-info.json';
 import { getIcon } from '@/lib/iconMapping';
 import profileData from '@/data/profile.json';
 import ContactFormModal from '@/components/ContactFormModal';
+import { useAuth } from '@/context/AuthContext';
 
 interface ContactItem {
   icon: string;
@@ -127,6 +133,24 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
   const [error, setError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isContactFormOpen, setIsContactFormOpen] = useState(false);
+  const { isOwner } = useAuth();
+
+  const coverLetterButton = (
+    <Button
+      size="sm"
+      className="w-full rounded-full disabled:opacity-50"
+      variant="secondary"
+      onClick={() => window.open('/cover-letter', '_blank')}
+      disabled={!isOwner}
+    >
+      {isOwner ? (
+        <FileText className="mr-2 h-4 w-4" />
+      ) : (
+        <Lock className="mr-2 h-3.5 w-3.5" />
+      )}
+      Cover Letter
+    </Button>
+  );
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -253,14 +277,20 @@ const ContactInfoModal = ({ open, onOpenChange }: ContactInfoModalProps) => {
                     </>
                   )}
                 </Button>
-                <Button
-                  size="sm"
-                  className="w-full rounded-full opacity-50"
-                  variant="secondary"
-                  disabled
-                >
-                  <Lock className="mr-2 h-3.5 w-3.5" /> Cover Letter
-                </Button>
+                {isOwner ? (
+                  coverLetterButton
+                ) : (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <span className="w-full cursor-not-allowed">
+                        {coverLetterButton}
+                      </span>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Unlock with It&apos;s Me to view this.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                )}
               </div>
               {error && (
                 <p className="animate-in fade-in pt-1 text-center text-xs text-red-500 duration-200">
